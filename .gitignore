@@ -37,3 +37,6 @@ next-env.d.ts
 
 # embedded repos
 hakkenbroek-housing/
+
+# Local Netlify folder
+.netlify
