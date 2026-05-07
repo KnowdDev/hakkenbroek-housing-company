@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-stone-50 text-ink;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  }
+  .font-body {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+}

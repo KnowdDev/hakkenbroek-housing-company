@@ -2,65 +2,74 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">Hakkenbroek Housing Company</h3>
-            <p className="text-gray-400 mb-4">
-              Your reliable partner in real estate in Amsterdam and the Netherlands. 
-              Over 20 years of experience serving expats and locals.
+    <footer className="bg-charcoal text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+          <div className="md:col-span-5">
+            <h3 className="font-display text-2xl mb-4">Hakkenbroek</h3>
+            <p className="text-stone-300 leading-relaxed mb-6 max-w-sm">
+              Boutique real estate agency in Amsterdam. Over 20 years of experience
+              serving expats and locals with a personal, dedicated approach.
             </p>
-            <p className="text-gray-400">
-              <strong>Address:</strong> Leliegracht 21, Amsterdam
+            <p className="text-stone-300">
+              <span className="text-stone-200">Leliegracht 21</span>
+              <br />
+              Amsterdam, Netherlands
             </p>
           </div>
 
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-white transition">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-400 hover:text-white transition">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/properties" className="text-gray-400 hover:text-white transition">
-                  Properties
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition">
-                  Contact
-                </Link>
-              </li>
+          <div className="md:col-span-3 md:col-start-7">
+            <h4 className="font-body text-xs uppercase tracking-widest text-stone-400 mb-6">
+              Navigation
+            </h4>
+            <ul className="space-y-3">
+              {[
+                { href: '/', label: 'Home' },
+                { href: '/about', label: 'About' },
+                { href: '/services', label: 'Services' },
+                { href: '/properties', label: 'Properties' },
+                { href: '/contact', label: 'Contact' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-stone-300 hover:text-brass-light transition-colors duration-300"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
-              <li className="text-gray-400">Buying</li>
-              <li className="text-gray-400">Selling</li>
-              <li className="text-gray-400">Renting</li>
-              <li className="text-gray-400">Leasing</li>
-              <li className="text-gray-400">Property Management</li>
+          <div className="md:col-span-3">
+            <h4 className="font-body text-xs uppercase tracking-widest text-stone-400 mb-6">
+              Services
+            </h4>
+            <ul className="space-y-3">
+              {['Buying', 'Selling', 'Renting', 'Leasing', 'Property Management'].map(
+                (service) => (
+                  <li key={service} className="text-stone-300">
+                    {service}
+                  </li>
+                )
+              )}
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Hakkenbroek Housing Company. All rights reserved.</p>
+        <div className="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-stone-400 text-sm">
+            &copy; {new Date().getFullYear()} Hakkenbroek Housing Company
+          </p>
+          <div className="flex gap-6 text-sm text-stone-400">
+            <a href="mailto:info@hakkenbroek.com" className="hover:text-brass-light transition-colors">
+              info@hakkenbroek.com
+            </a>
+            <a href="tel:+31201234567" className="hover:text-brass-light transition-colors">
+              +31 20 123 4567
+            </a>
+          </div>
         </div>
       </div>
     </footer>

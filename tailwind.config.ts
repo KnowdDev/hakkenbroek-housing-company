@@ -9,29 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+        stone: {
+          50: '#f8f6f3',
+          100: '#ede9e4',
+          200: '#dcd6ce',
+          300: '#bcb3a7',
+          400: '#9e9488',
+          500: '#827a70',
         },
-        secondary: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
+        charcoal: '#1a1a1a',
+        ink: '#2d2d2d',
+        'warm-gray': '#6b6560',
+        brass: {
+          DEFAULT: '#a67c52',
+          light: '#c49a6c',
+          dark: '#8a6340',
         },
       },
     },
