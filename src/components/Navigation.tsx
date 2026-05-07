@@ -33,13 +33,13 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center">
-              <span
-                className={`font-display text-xl md:text-2xl tracking-tight transition-colors duration-500 ${
-                  scrolled ? 'text-charcoal' : 'text-white'
+              <img
+                src="/logo.svg"
+                alt="Hakkenbroek Housing Company"
+                className={`h-14 md:h-16 w-auto transition-all duration-500 ${
+                  scrolled ? '' : 'brightness-0 invert'
                 }`}
-              >
-                Hakkenbroek
-              </span>
+              />
             </Link>
 
             <div className="hidden md:flex items-center space-x-10">
