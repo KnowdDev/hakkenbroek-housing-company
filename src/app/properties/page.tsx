@@ -120,8 +120,8 @@ export default function PropertiesPage() {
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1512470876302-972faa2aa4a2?auto=format&fit=crop&w=1920&q=80"
-            alt="Amsterdam canal houses"
+            src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1920&q=80"
+            alt="Amsterdam canals"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-charcoal/40" />
