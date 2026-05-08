@@ -45,23 +45,23 @@ export default function Navigation() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href={`/${locale}`} className="flex items-center">
+          <div className="flex justify-between items-center h-24">
+            <Link href={`/${locale}`} className="flex items-center py-4">
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
-                className={`h-14 md:h-16 w-auto transition-all duration-500 ${
+                className={`h-16 md:h-20 w-auto transition-all duration-500 ${
                   scrolled ? '' : 'brightness-0 invert'
                 }`}
               />
             </Link>
 
-            <div className="hidden md:flex items-center space-x-10">
+            <div className="hidden md:flex items-center space-x-14">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={`/${locale}${link.href}`}
-                  className={`font-body text-sm tracking-wide uppercase transition-colors duration-300 relative group ${
+                  className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group ${
                     scrolled ? 'text-ink hover:text-brass' : 'text-white/90 hover:text-white'
                   }`}
                 >
@@ -73,7 +73,7 @@ export default function Navigation() {
                   />
                 </Link>
               ))}
-              <LanguageToggle />
+              <LanguageToggle scrolled={scrolled} />
             </div>
 
             <div className="md:hidden">

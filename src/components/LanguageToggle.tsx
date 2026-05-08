@@ -11,7 +11,11 @@ const languageNames: Record<string, string> = {
 
 type Language = 'en' | 'nl' | 'es';
 
-export default function LanguageToggle() {
+interface LanguageToggleProps {
+  scrolled?: boolean;
+}
+
+export default function LanguageToggle({ scrolled = false }: LanguageToggleProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [locale, setLocale] = useState<Language>('en');
   const router = useRouter();
@@ -46,7 +50,9 @@ export default function LanguageToggle() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 text-xs font-body uppercase tracking-wider text-stone-600 hover:text-brass transition-colors duration-300"
+        className={`flex items-center space-x-2 px-4 py-2 text-xs font-body uppercase tracking-wider transition-colors duration-300 ${
+          scrolled ? 'text-stone-600 hover:text-brass' : 'text-white/90 hover:text-white'
+        }`}
         aria-label="Select language"
       >
         <span>{languageNames[locale]}</span>
