@@ -1,114 +1,71 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const properties = [
-  {
-    id: 1,
-    title: 'Jacob Catskade 51 H',
-    location: 'Amsterdam',
-    price: 600000,
-    size: 68,
-    bedrooms: 3,
-    status: 'available',
-    energyLabel: 'A',
-    pricePerSqm: 8824,
-    image:
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 2,
-    title: 'Van Woustraat 22 1',
-    location: 'Amsterdam',
-    price: 745000,
-    size: 103,
-    bedrooms: 3,
-    status: 'under-consideration',
-    energyLabel: 'D',
-    pricePerSqm: 7233,
-    image:
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 3,
-    title: 'Singel 204 C',
-    location: 'Amsterdam',
-    price: 625000,
-    size: 73,
-    bedrooms: 1,
-    status: 'sold',
-    energyLabel: 'A',
-    pricePerSqm: 8562,
-    image:
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 4,
-    title: 'Prinsengracht 412',
-    location: 'Amsterdam',
-    price: 895000,
-    size: 120,
-    bedrooms: 4,
-    status: 'available',
-    energyLabel: 'B',
-    pricePerSqm: 7458,
-    image:
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 5,
-    title: 'Keizersgracht 78 II',
-    location: 'Amsterdam',
-    price: 550000,
-    size: 55,
-    bedrooms: 2,
-    status: 'available',
-    energyLabel: 'C',
-    pricePerSqm: 10000,
-    image:
-      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 6,
-    title: 'Herengracht 156',
-    location: 'Amsterdam',
-    price: 1200000,
-    size: 165,
-    bedrooms: 5,
-    status: 'under-consideration',
-    energyLabel: 'A',
-    pricePerSqm: 7273,
-    image:
-      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80',
-  },
-];
+interface Listing {
+  id: number;
+  title: string;
+  description?: string;
+  price?: number;
+  bedrooms?: number;
+  bathrooms?: number;
+  area?: number;
+  address?: string;
+  city?: string;
+  postal_code?: string;
+  property_type?: string;
+  status: string;
+  image_url?: string;
+  featured: boolean;
+  created_at: string;
+}
 
 const statusStyles: Record<string, string> = {
   available: 'bg-emerald-50 text-emerald-700',
   'under-consideration': 'bg-amber-50 text-amber-700',
   sold: 'bg-stone-100 text-warm-gray',
+  rented: 'bg-blue-50 text-blue-700',
 };
 
 const statusLabels: Record<string, string> = {
   available: 'Available',
   'under-consideration': 'Under Consideration',
   sold: 'Sold',
+  rented: 'Rented',
 };
 
 export default function PropertiesPage() {
+  const [listings, setListings] = useState<Listing[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [priceRange, setPriceRange] = useState('all');
 
-  const filteredProperties = properties.filter((property) => {
+  useEffect(() => {
+    fetchListings();
+  }, []);
+
+  const fetchListings = async () => {
+    try {
+      const response = await fetch('/api/listings');
+      const data = await response.json();
+      setListings(data);
+    } catch (error) {
+      console.error('Error fetching listings:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredProperties = listings.filter((property) => {
     const statusMatch = filter === 'all' || property.status === filter;
     let priceMatch = true;
 
     if (priceRange === 'under-600k') {
-      priceMatch = property.price < 600000;
+      priceMatch = property.price !== undefined && property.price < 600000;
     } else if (priceRange === '600k-700k') {
-      priceMatch = property.price >= 600000 && property.price < 700000;
+      priceMatch = property.price !== undefined && property.price >= 600000 && property.price < 700000;
     } else if (priceRange === '700k-plus') {
-      priceMatch = property.price >= 700000;
+      priceMatch = property.price !== undefined && property.price >= 700000;
     }
 
     return statusMatch && priceMatch;
@@ -186,49 +143,61 @@ export default function PropertiesPage() {
       {/* Properties Grid */}
       <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {filteredProperties.length > 0 ? (
+          {loading ? (
+            <div className="text-center py-20">
+              <p className="text-warm-gray text-lg">Loading properties...</p>
+            </div>
+          ) : filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProperties.map((property) => (
                 <div
                   key={property.id}
                   className="group bg-white border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={property.image}
-                      alt={property.title}
-                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                    />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-stone-200">
+                    {property.image_url ? (
+                      <img
+                        src={property.image_url}
+                        alt={property.title}
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-stone-400">
+                        No image
+                      </div>
+                    )}
                     <span
-                      className={`absolute top-4 left-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[property.status]}`}
+                      className={`absolute top-4 left-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[property.status] || statusStyles.available}`}
                     >
-                      {statusLabels[property.status]}
+                      {statusLabels[property.status] || property.status}
                     </span>
+                    {property.featured && (
+                      <span className="absolute top-4 right-4 text-2xl">⭐</span>
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="font-display text-xl text-charcoal mb-1">
                       {property.title}
                     </h3>
                     <p className="text-warm-gray text-sm mb-4">
-                      {property.location}
+                      {property.city || 'Amsterdam'}
                     </p>
                     <div className="flex justify-between items-end mb-4">
                       <span className="font-display text-2xl text-brass">
-                        €{property.price.toLocaleString()}
+                        {property.price ? `€${property.price.toLocaleString()}` : 'Price on request'}
                       </span>
                       <span className="text-warm-gray text-sm">
-                        {property.size} m² · {property.bedrooms} bed
+                        {property.area ? `${property.area} m²` : ''} · {property.bedrooms ? `${property.bedrooms} bed` : ''}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm text-warm-gray pt-4 border-t border-stone-100">
-                      <span>€{property.pricePerSqm.toLocaleString()}/m²</span>
-                      <span>
-                        Label{' '}
-                        <span className="font-medium text-charcoal">
-                          {property.energyLabel}
-                        </span>
-                      </span>
-                    </div>
+                    {property.property_type && (
+                      <div className="flex justify-between items-center text-sm text-warm-gray pt-4 border-t border-stone-100">
+                        <span className="capitalize">{property.property_type}</span>
+                        {property.bedrooms && property.bathrooms && (
+                          <span>{property.bedrooms} bed · {property.bathrooms} bath</span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

@@ -19,11 +19,16 @@
     "autoprefixer": "^10.5.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.6",
+    "lucide-react": "^1.14.0",
     "next": "^16.2.6",
+    "pg": "^8.20.0",
     "postcss": "^8.5.14",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwindcss": "^3.4.19",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0"
   }
 }

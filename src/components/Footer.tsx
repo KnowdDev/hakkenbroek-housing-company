@@ -6,7 +6,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           <div className="md:col-span-5">
-            <h3 className="font-display text-2xl mb-4">Hakkenbroek</h3>
+            <img
+              src="/logo.svg"
+              alt="Hakkenbroek Housing Company"
+              className="h-16 w-auto mb-6 brightness-0 invert"
+            />
             <p className="text-stone-300 leading-relaxed mb-6 max-w-sm">
               Boutique real estate agency in Amsterdam. Over 20 years of experience
               serving expats and locals with a personal, dedicated approach.
