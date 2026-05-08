@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from '@/hooks/useTranslations';
 import { usePathname } from 'next/navigation';
 
 interface Listing {
@@ -30,7 +29,6 @@ const statusStyles: Record<string, string> = {
 };
 
 export default function PropertiesPage() {
-  const { t } = useTranslations();
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
   const [listings, setListings] = useState<Listing[]>([]);
@@ -38,11 +36,109 @@ export default function PropertiesPage() {
   const [filter, setFilter] = useState('all');
   const [priceRange, setPriceRange] = useState('all');
 
+  const content = {
+    en: {
+      heroSubtitle: 'Properties',
+      heroTitle: 'Current Listings',
+      heroDescription: 'Discover our curated selection of properties in Amsterdam and the surrounding areas.',
+      filterAll: 'All Properties',
+      filterAvailable: 'Available',
+      filterUnderConsideration: 'Under Consideration',
+      filterSold: 'Sold',
+      filterRented: 'Rented',
+      priceAll: 'All Prices',
+      priceUnder500k: 'Under €500k',
+      price500kTo1m: '€500k - €1M',
+      priceOver1m: 'Over €1M',
+      priceOnRequest: 'Price on request',
+      loading: 'Loading properties...',
+      noImage: 'No image available',
+      noMatch: 'No properties match your filters.',
+      clearFilters: 'Clear All Filters',
+      showing: 'Showing',
+      property: 'property',
+      properties: 'properties',
+      ctaTitle: 'Interested in a property?',
+      ctaText: 'Contact us to schedule a viewing or get more information about any of our listings.',
+      ctaButton: 'Get in Touch',
+      status: {
+        available: 'Available',
+        underConsideration: 'Under Consideration',
+        sold: 'Sold',
+        rented: 'Rented'
+      }
+    },
+    nl: {
+      heroSubtitle: 'Woningen',
+      heroTitle: 'Huidige Aanbiedingen',
+      heroDescription: 'Ontdek onze geselecteerde collectie woningen in Amsterdam en omgeving.',
+      filterAll: 'Alle Woningen',
+      filterAvailable: 'Beschikbaar',
+      filterUnderConsideration: 'In Onderhandeling',
+      filterSold: 'Verkocht',
+      filterRented: 'Verhuurd',
+      priceAll: 'Alle Prijzen',
+      priceUnder500k: 'Onder €500k',
+      price500kTo1m: '€500k - €1M',
+      priceOver1m: 'Over €1M',
+      priceOnRequest: 'Prijs op aanvraag',
+      loading: 'Woningen laden...',
+      noImage: 'Geen afbeelding beschikbaar',
+      noMatch: 'Geen woningen komen overeen met uw filters.',
+      clearFilters: 'Wis Alle Filters',
+      showing: 'Toont',
+      property: 'woning',
+      properties: 'woningen',
+      ctaTitle: 'Geïnteresseerd in een woning?',
+      ctaText: 'Neem contact op om een bezichtiging te plannen of meer informatie te krijgen over een van onze aanbiedingen.',
+      ctaButton: 'Neem Contact Op',
+      status: {
+        available: 'Beschikbaar',
+        underConsideration: 'In Onderhandeling',
+        sold: 'Verkocht',
+        rented: 'Verhuurd'
+      }
+    },
+    es: {
+      heroSubtitle: 'Propiedades',
+      heroTitle: 'Listados Actuales',
+      heroDescription: 'Descubra nuestra selección curada de propiedades en Ámsterdam y alrededores.',
+      filterAll: 'Todas las Propiedades',
+      filterAvailable: 'Disponible',
+      filterUnderConsideration: 'En Consideración',
+      filterSold: 'Vendido',
+      filterRented: 'Alquilado',
+      priceAll: 'Todos los Precios',
+      priceUnder500k: 'Menos de €500k',
+      price500kTo1m: '€500k - €1M',
+      priceOver1m: 'Más de €1M',
+      priceOnRequest: 'Precio bajo consulta',
+      loading: 'Cargando propiedades...',
+      noImage: 'Sin imagen disponible',
+      noMatch: 'Ninguna propiedad coincide con sus filtros.',
+      clearFilters: 'Limpiar Todos los Filtros',
+      showing: 'Mostrando',
+      property: 'propiedad',
+      properties: 'propiedades',
+      ctaTitle: '¿Interesado en una propiedad?',
+      ctaText: 'Contáctenos para programar una visita u obtener más información sobre cualquiera de nuestros listados.',
+      ctaButton: 'Póngase en Contacto',
+      status: {
+        available: 'Disponible',
+        underConsideration: 'En Consideración',
+        sold: 'Vendido',
+        rented: 'Alquilado'
+      }
+    }
+  };
+
+  const t = content[locale as keyof typeof content] || content.en;
+
   const statusLabels: Record<string, string> = {
-    available: t('properties.status.available'),
-    'under-consideration': t('properties.status.underConsideration'),
-    sold: t('properties.status.sold'),
-    rented: t('properties.status.rented'),
+    available: t.status.available,
+    'under-consideration': t.status.underConsideration,
+    sold: t.status.sold,
+    rented: t.status.rented,
   };
 
   useEffect(() => {
@@ -90,10 +186,10 @@ export default function PropertiesPage() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
-            {t('properties.heroSubtitle')}
+            {t.heroSubtitle}
           </p>
           <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
-            {t('properties.heroTitle')}
+            {t.heroTitle}
           </h1>
         </div>
       </section>
@@ -105,41 +201,41 @@ export default function PropertiesPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <div>
                 <label className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                  {t('properties.filters.status')}
+                  {t.filterAvailable}
                 </label>
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
                   className="w-full sm:w-56 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
                 >
-                  <option value="all">{t('properties.filters.all')}</option>
-                  <option value="available">{t('properties.filters.available')}</option>
-                  <option value="under-consideration">{t('properties.filters.underConsideration')}</option>
-                  <option value="sold">{t('properties.filters.sold')}</option>
+                  <option value="all">{t.filterAll}</option>
+                  <option value="available">{t.filterAvailable}</option>
+                  <option value="under-consideration">{t.filterUnderConsideration}</option>
+                  <option value="sold">{t.filterSold}</option>
                 </select>
               </div>
               <div>
                 <label className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                  {t('properties.filters.priceRange')}
+                  {t.priceAll}
                 </label>
                 <select
                   value={priceRange}
                   onChange={(e) => setPriceRange(e.target.value)}
                   className="w-full sm:w-56 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
                 >
-                  <option value="all">{t('properties.filters.allPrices')}</option>
-                  <option value="under-600k">{t('properties.filters.under600k')}</option>
-                  <option value="600k-700k">{t('properties.filters.between600k700k')}</option>
-                  <option value="700k-plus">{t('properties.filters.over700k')}</option>
+                  <option value="all">{t.priceAll}</option>
+                  <option value="under-600k">{t.priceUnder500k}</option>
+                  <option value="600k-700k">{t.price500kTo1m}</option>
+                  <option value="700k-plus">{t.priceOver1m}</option>
                 </select>
               </div>
             </div>
             <p className="text-warm-gray text-sm">
-              {t('properties.filters.showing')}{' '}
+              {t.showing}{' '}
               <span className="text-charcoal font-medium">
                 {filteredProperties.length}
               </span>{' '}
-              {filteredProperties.length === 1 ? t('properties.filters.property') : t('properties.filters.properties')}
+              {filteredProperties.length === 1 ? t.property : t.properties}
             </p>
           </div>
         </div>
@@ -150,7 +246,7 @@ export default function PropertiesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="text-center py-20">
-              <p className="text-warm-gray text-lg">{t('properties.loading')}</p>
+              <p className="text-warm-gray text-lg">{t.loading}</p>
             </div>
           ) : filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -168,7 +264,7 @@ export default function PropertiesPage() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-stone-400">
-                        {t('properties.noImage')}
+                        {t.noImage}
                       </div>
                     )}
                     <span
@@ -189,7 +285,7 @@ export default function PropertiesPage() {
                     </p>
                     <div className="flex justify-between items-end mb-4">
                       <span className="font-display text-2xl text-brass">
-                        {property.price ? `€${property.price.toLocaleString()}` : t('properties.priceOnRequest')}
+                        {property.price ? `€${property.price.toLocaleString()}` : t.priceOnRequest}
                       </span>
                       <span className="text-warm-gray text-sm">
                         {property.area ? `${property.area} m²` : ''} · {property.bedrooms ? `${property.bedrooms} bed` : ''}
@@ -210,7 +306,7 @@ export default function PropertiesPage() {
           ) : (
             <div className="text-center py-20">
               <p className="text-warm-gray text-lg mb-6">
-                {t('properties.noMatch')}
+                {t.noMatch}
               </p>
               <button
                 onClick={() => {
@@ -219,7 +315,7 @@ export default function PropertiesPage() {
                 }}
                 className="inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300"
               >
-                {t('properties.clearFilters')}
+                {t.clearFilters}
               </button>
             </div>
           )}
@@ -230,16 +326,16 @@ export default function PropertiesPage() {
       <section className="py-24 bg-charcoal text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-4xl mb-6">
-            {t('properties.ctaTitle')}
+            {t.ctaTitle}
           </h2>
           <p className="text-stone-300 text-lg mb-10 leading-relaxed">
-            {t('properties.ctaText')}
+            {t.ctaText}
           </p>
           <a
             href={`/${locale}/contact`}
             className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
           >
-            {t('properties.ctaButton')}
+            {t.ctaButton}
           </a>
         </div>
       </section>

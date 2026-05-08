@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from '@/hooks/useTranslations';
+import { usePathname } from 'next/navigation';
 
 export default function ContactPage() {
-  const { t, tArray } = useTranslations();
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1] || 'en';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,6 +14,101 @@ export default function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+
+  const content = {
+    en: {
+      heroSubtitle: 'Contact',
+      heroTitle: 'Get in Touch',
+      formSubtitle: 'Send a Message',
+      formTitle: 'We would love to hear from you',
+      successMessage: 'Thank you for your message! We will get back to you soon.',
+      fullName: 'Full Name',
+      email: 'Email Address',
+      phone: 'Phone Number',
+      service: 'Service',
+      selectService: 'Select a service',
+      buying: 'Buying',
+      selling: 'Selling',
+      renting: 'Renting',
+      leasing: 'Leasing',
+      management: 'Property Management',
+      other: 'Other',
+      message: 'Message',
+      submit: 'Send Message',
+      infoSubtitle: 'Our Office',
+      infoTitle: 'Visit Us',
+      address: 'Address',
+      addressText: 'Leliegracht 21\n1015 DE Amsterdam\nNetherlands',
+      emailAddress: 'Email',
+      phoneNumber: 'Phone',
+      officeHours: 'Office Hours',
+      officeHoursText: 'Monday - Friday: 9:00 - 17:00\nSaturday: By appointment\nSunday: Closed',
+      languages: 'Languages',
+      languagesList: ['English', 'Dutch', 'Spanish']
+    },
+    nl: {
+      heroSubtitle: 'Contact',
+      heroTitle: 'Neem Contact Op',
+      formSubtitle: 'Stuur een Bericht',
+      formTitle: 'Wij horen graag van u',
+      successMessage: 'Bedankt voor uw bericht! Wij nemen spoedig contact met u op.',
+      fullName: 'Volledige Naam',
+      email: 'E-mailadres',
+      phone: 'Telefoonnummer',
+      service: 'Dienst',
+      selectService: 'Selecteer een dienst',
+      buying: 'Kopen',
+      selling: 'Verkopen',
+      renting: 'Huren',
+      leasing: 'Verhuur',
+      management: 'Vastgoedbeheer',
+      other: 'Anders',
+      message: 'Bericht',
+      submit: 'Bericht Versturen',
+      infoSubtitle: 'Ons Kantoor',
+      infoTitle: 'Bezoek Ons',
+      address: 'Adres',
+      addressText: 'Leliegracht 21\n1015 DE Amsterdam\nNederland',
+      emailAddress: 'E-mail',
+      phoneNumber: 'Telefoon',
+      officeHours: 'Kantooruren',
+      officeHoursText: 'Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak\nZondag: Gesloten',
+      languages: 'Talen',
+      languagesList: ['Engels', 'Nederlands', 'Spaans']
+    },
+    es: {
+      heroSubtitle: 'Contacto',
+      heroTitle: 'Póngase en Contacto',
+      formSubtitle: 'Envíe un Mensaje',
+      formTitle: 'Nos encantaría saber de usted',
+      successMessage: '¡Gracias por su mensaje! Nos pondremos en contacto con usted pronto.',
+      fullName: 'Nombre Completo',
+      email: 'Dirección de Correo',
+      phone: 'Número de Teléfono',
+      service: 'Servicio',
+      selectService: 'Seleccione un servicio',
+      buying: 'Comprar',
+      selling: 'Vender',
+      renting: 'Alquilar',
+      leasing: 'Arrendamiento',
+      management: 'Administración de Propiedades',
+      other: 'Otro',
+      message: 'Mensaje',
+      submit: 'Enviar Mensaje',
+      infoSubtitle: 'Nuestra Oficina',
+      infoTitle: 'Visítenos',
+      address: 'Dirección',
+      addressText: 'Leliegracht 21\n1015 DE Amsterdam\nPaíses Bajos',
+      emailAddress: 'Correo',
+      phoneNumber: 'Teléfono',
+      officeHours: 'Horario de Oficina',
+      officeHoursText: 'Lunes - Viernes: 9:00 - 17:00\nSábado: Con cita\nDomingo: Cerrado',
+      languages: 'Idiomas',
+      languagesList: ['Inglés', 'Neerlandés', 'Español']
+    }
+  };
+
+  const t = content[locale as keyof typeof content] || content.en;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,10 +142,10 @@ export default function ContactPage() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
-            {t('contact.heroSubtitle')}
+            {t.heroSubtitle}
           </p>
           <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
-            {t('contact.heroTitle')}
+            {t.heroTitle}
           </h1>
         </div>
       </section>
@@ -61,16 +157,16 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-7">
               <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-                {t('contact.formSubtitle')}
+                {t.formSubtitle}
               </p>
               <h2 className="font-display text-3xl text-charcoal mb-10">
-                {t('contact.formTitle')}
+                {t.formTitle}
               </h2>
 
               {submitted ? (
                 <div className="border border-emerald-200 bg-emerald-50 p-8">
                   <p className="text-emerald-800 font-body">
-                    {t('contact.successMessage')}
+                    {t.successMessage}
                   </p>
                 </div>
               ) : (
@@ -87,7 +183,7 @@ export default function ContactPage() {
                         htmlFor="name"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        {t('contact.fullName')} *
+                        {t.fullName} *
                       </label>
                       <input
                         type="text"
@@ -105,7 +201,7 @@ export default function ContactPage() {
                         htmlFor="email"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        {t('contact.email')} *
+                        {t.email} *
                       </label>
                       <input
                         type="email"
@@ -126,7 +222,7 @@ export default function ContactPage() {
                         htmlFor="phone"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        {t('contact.phone')}
+                        {t.phone}
                       </label>
                       <input
                         type="tel"
@@ -143,7 +239,7 @@ export default function ContactPage() {
                         htmlFor="service"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        {t('contact.service')} *
+                        {t.service} *
                       </label>
                       <select
                         id="service"
@@ -153,13 +249,13 @@ export default function ContactPage() {
                         onChange={handleChange}
                         className="w-full px-0 py-3 bg-transparent border-b border-stone-200 text-ink font-body focus:outline-none focus:border-brass transition-colors"
                       >
-                        <option value="">{t('contact.selectService')}</option>
-                        <option value="buying">{t('contact.buying')}</option>
-                        <option value="selling">{t('contact.selling')}</option>
-                        <option value="renting">{t('contact.renting')}</option>
-                        <option value="leasing">{t('contact.leasing')}</option>
-                        <option value="management">{t('contact.management')}</option>
-                        <option value="other">{t('contact.other')}</option>
+                        <option value="">{t.selectService}</option>
+                        <option value="buying">{t.buying}</option>
+                        <option value="selling">{t.selling}</option>
+                        <option value="renting">{t.renting}</option>
+                        <option value="leasing">{t.leasing}</option>
+                        <option value="management">{t.management}</option>
+                        <option value="other">{t.other}</option>
                       </select>
                     </div>
                   </div>
@@ -169,7 +265,7 @@ export default function ContactPage() {
                       htmlFor="message"
                       className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                     >
-                      {t('contact.message')} *
+                      {t.message} *
                     </label>
                     <textarea
                       id="message"
@@ -187,7 +283,7 @@ export default function ContactPage() {
                     type="submit"
                     className="bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
                   >
-                    {t('contact.submit')}
+                    {t.submit}
                   </button>
                 </form>
               )}
@@ -196,25 +292,25 @@ export default function ContactPage() {
             {/* Info */}
             <div className="lg:col-span-4 lg:col-start-9">
               <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-                {t('contact.infoSubtitle')}
+                {t.infoSubtitle}
               </p>
               <h2 className="font-display text-3xl text-charcoal mb-10">
-                {t('contact.infoTitle')}
+                {t.infoTitle}
               </h2>
 
               <div className="space-y-10">
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    {t('contact.address')}
+                    {t.address}
                   </h3>
                   <p className="text-ink leading-relaxed whitespace-pre-line">
-                    {t('contact.addressText')}
+                    {t.addressText}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    {t('contact.emailAddress')}
+                    {t.emailAddress}
                   </h3>
                   <a
                     href="mailto:info@hakkenbroek.com"
@@ -226,7 +322,7 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    {t('contact.phoneNumber')}
+                    {t.phoneNumber}
                   </h3>
                   <a
                     href="tel:+31201234567"
@@ -238,19 +334,19 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    {t('contact.officeHours')}
+                    {t.officeHours}
                   </h3>
                   <p className="text-ink leading-relaxed whitespace-pre-line">
-                    {t('contact.officeHoursText')}
+                    {t.officeHoursText}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-3">
-                    {t('contact.languages')}
+                    {t.languages}
                   </h3>
                   <div className="flex gap-3">
-                    {tArray('contact.languagesList').map((lang: string) => (
+                    {t.languagesList.map((lang) => (
                       <span
                         key={lang}
                         className="px-3 py-1.5 bg-stone-100 text-warm-gray text-sm font-body"
