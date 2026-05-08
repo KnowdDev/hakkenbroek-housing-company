@@ -1,67 +1,46 @@
+'use client';
+
 import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Services - Hakkenbroek Housing Company',
-  description:
-    'Comprehensive real estate services including buying, selling, renting, leasing, and property management in Amsterdam.',
-};
-
-const services = [
-  {
-    title: 'Buying',
-    description:
-      'Expert guidance through the entire buying process, from property search to transfer. We help you find the perfect home that matches your needs and budget.',
-    image:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-    features: [
-      'Personal property search',
-      'Market analysis and valuation',
-      'Negotiation support',
-      'Legal and financial guidance',
-    ],
-  },
-  {
-    title: 'Selling',
-    description:
-      'Professional valuation and marketing to get the best price for your property. We handle everything from listing to closing.',
-    image:
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
-    features: [
-      'Free property valuation',
-      'Professional photography',
-      'Multi-platform marketing',
-      'Home styling advice',
-    ],
-  },
-  {
-    title: 'Renting',
-    description:
-      'Find quality rental properties, perfect for expats and locals alike. We have access to the best rental listings in Amsterdam.',
-    image:
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
-    features: [
-      'Extensive rental database',
-      'Expat rental specialists',
-      'Lease agreement assistance',
-      'Move-in support',
-    ],
-  },
-  {
-    title: 'Leasing',
-    description:
-      'Long-term lease options with comprehensive management services. Ideal for investors and landlords seeking hassle-free property management.',
-    image:
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
-    features: [
-      'Tenant screening',
-      'Rent collection',
-      'Property maintenance',
-      'Legal compliance',
-    ],
-  },
-];
+import { useTranslations } from '@/hooks/useTranslations';
+import { usePathname } from 'next/navigation';
 
 export default function ServicesPage() {
+  const { t, tArray } = useTranslations();
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1] || 'en';
+
+  const services = [
+    {
+      title: t('services.buying.title'),
+      description: t('services.buying.description'),
+      image:
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      features: tArray('services.buying.features'),
+    },
+    {
+      title: t('services.selling.title'),
+      description: t('services.selling.description'),
+      image:
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
+      features: tArray('services.selling.features'),
+    },
+    {
+      title: t('services.renting.title'),
+      description: t('services.renting.description'),
+      image:
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+      features: tArray('services.renting.features'),
+    },
+    {
+      title: t('services.leasing.title'),
+      description: t('services.leasing.description'),
+      image:
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
+      features: tArray('services.leasing.features'),
+    },
+  ];
+
+  const managementFeatures = tArray('services.management.features');
   return (
     <div className="min-h-screen">
       {/* Hero */}
@@ -76,10 +55,10 @@ export default function ServicesPage() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
-            What We Offer
+            {t('services.heroSubtitle')}
           </p>
           <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
-            Services tailored to your journey
+            {t('services.heroTitle')}
           </h1>
         </div>
       </section>
@@ -88,12 +67,10 @@ export default function ServicesPage() {
       <section className="py-24 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-6">
-            Comprehensive Solutions
+            {t('services.introLabel')}
           </p>
           <p className="text-warm-gray leading-relaxed text-lg">
-            Whether you are looking for a residence that gives roots to your identity or want to
-            make an investment that will pay off in the future, we listen, advise, and anticipate —
-            finding the right properties, often before they even come onto the market.
+            {t('services.introText')}
           </p>
         </div>
       </section>
@@ -159,21 +136,13 @@ export default function ServicesPage() {
                 05
               </p>
               <h2 className="font-display text-3xl md:text-4xl mb-6">
-                Property Management
+                {t('services.management.title')}
               </h2>
               <p className="text-stone-300 leading-relaxed mb-10">
-                Complete property management services for landlords and investors.
-                We handle all aspects of property ownership so you can enjoy passive income.
+                {t('services.management.description')}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[
-                  'Regular inspections',
-                  'Financial reporting',
-                  'Emergency repairs',
-                  'Tax documentation',
-                  'Insurance coordination',
-                  '24/7 support',
-                ].map((item) => (
+                {managementFeatures.map((item) => (
                   <div key={item} className="flex items-start text-stone-300">
                     <span className="text-brass-light mr-3">—</span>
                     {item}
@@ -196,16 +165,16 @@ export default function ServicesPage() {
       <section className="py-24 bg-stone-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-6">
-            Need help with your real estate needs?
+            {t('services.ctaTitle')}
           </h2>
           <p className="text-warm-gray text-lg mb-10 leading-relaxed">
-            Contact us today for a free, no-obligation consultation.
+            {t('services.ctaText')}
           </p>
           <a
-            href="/contact"
+            href={`/${locale}/contact`}
             className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
           >
-            Get in Touch
+            {t('services.ctaButton')}
           </a>
         </div>
       </section>

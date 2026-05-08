@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from '@/hooks/useTranslations';
+import { usePathname } from 'next/navigation';
 
 interface Listing {
   id: number;
@@ -27,18 +29,21 @@ const statusStyles: Record<string, string> = {
   rented: 'bg-blue-50 text-blue-700',
 };
 
-const statusLabels: Record<string, string> = {
-  available: 'Available',
-  'under-consideration': 'Under Consideration',
-  sold: 'Sold',
-  rented: 'Rented',
-};
-
 export default function PropertiesPage() {
+  const { t } = useTranslations();
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1] || 'en';
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [priceRange, setPriceRange] = useState('all');
+
+  const statusLabels: Record<string, string> = {
+    available: t('properties.status.available'),
+    'under-consideration': t('properties.status.underConsideration'),
+    sold: t('properties.status.sold'),
+    rented: t('properties.status.rented'),
+  };
 
   useEffect(() => {
     fetchListings();
@@ -85,10 +90,10 @@ export default function PropertiesPage() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
-            Our Portfolio
+            {t('properties.heroSubtitle')}
           </p>
           <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
-            Premium properties in Amsterdam
+            {t('properties.heroTitle')}
           </h1>
         </div>
       </section>
@@ -100,41 +105,41 @@ export default function PropertiesPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <div>
                 <label className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                  Status
+                  {t('properties.filters.status')}
                 </label>
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
                   className="w-full sm:w-56 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
                 >
-                  <option value="all">All Properties</option>
-                  <option value="available">Available</option>
-                  <option value="under-consideration">Under Consideration</option>
-                  <option value="sold">Sold</option>
+                  <option value="all">{t('properties.filters.all')}</option>
+                  <option value="available">{t('properties.filters.available')}</option>
+                  <option value="under-consideration">{t('properties.filters.underConsideration')}</option>
+                  <option value="sold">{t('properties.filters.sold')}</option>
                 </select>
               </div>
               <div>
                 <label className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                  Price Range
+                  {t('properties.filters.priceRange')}
                 </label>
                 <select
                   value={priceRange}
                   onChange={(e) => setPriceRange(e.target.value)}
                   className="w-full sm:w-56 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
                 >
-                  <option value="all">All Prices</option>
-                  <option value="under-600k">Under €600,000</option>
-                  <option value="600k-700k">€600,000 – €700,000</option>
-                  <option value="700k-plus">€700,000+</option>
+                  <option value="all">{t('properties.filters.allPrices')}</option>
+                  <option value="under-600k">{t('properties.filters.under600k')}</option>
+                  <option value="600k-700k">{t('properties.filters.between600k700k')}</option>
+                  <option value="700k-plus">{t('properties.filters.over700k')}</option>
                 </select>
               </div>
             </div>
             <p className="text-warm-gray text-sm">
-              Showing{' '}
+              {t('properties.filters.showing')}{' '}
               <span className="text-charcoal font-medium">
                 {filteredProperties.length}
               </span>{' '}
-              {filteredProperties.length === 1 ? 'property' : 'properties'}
+              {filteredProperties.length === 1 ? t('properties.filters.property') : t('properties.filters.properties')}
             </p>
           </div>
         </div>
@@ -145,7 +150,7 @@ export default function PropertiesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="text-center py-20">
-              <p className="text-warm-gray text-lg">Loading properties...</p>
+              <p className="text-warm-gray text-lg">{t('properties.loading')}</p>
             </div>
           ) : filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -163,7 +168,7 @@ export default function PropertiesPage() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-stone-400">
-                        No image
+                        {t('properties.noImage')}
                       </div>
                     )}
                     <span
@@ -184,7 +189,7 @@ export default function PropertiesPage() {
                     </p>
                     <div className="flex justify-between items-end mb-4">
                       <span className="font-display text-2xl text-brass">
-                        {property.price ? `€${property.price.toLocaleString()}` : 'Price on request'}
+                        {property.price ? `€${property.price.toLocaleString()}` : t('properties.priceOnRequest')}
                       </span>
                       <span className="text-warm-gray text-sm">
                         {property.area ? `${property.area} m²` : ''} · {property.bedrooms ? `${property.bedrooms} bed` : ''}
@@ -205,7 +210,7 @@ export default function PropertiesPage() {
           ) : (
             <div className="text-center py-20">
               <p className="text-warm-gray text-lg mb-6">
-                No properties match your filters.
+                {t('properties.noMatch')}
               </p>
               <button
                 onClick={() => {
@@ -214,7 +219,7 @@ export default function PropertiesPage() {
                 }}
                 className="inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300"
               >
-                Clear All Filters
+                {t('properties.clearFilters')}
               </button>
             </div>
           )}
@@ -225,16 +230,16 @@ export default function PropertiesPage() {
       <section className="py-24 bg-charcoal text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-4xl mb-6">
-            Interested in a property?
+            {t('properties.ctaTitle')}
           </h2>
           <p className="text-stone-300 text-lg mb-10 leading-relaxed">
-            Contact us to schedule a viewing or get more information about any of our listings.
+            {t('properties.ctaText')}
           </p>
           <a
-            href="/contact"
+            href={`/${locale}/contact`}
             className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
           >
-            Get in Touch
+            {t('properties.ctaButton')}
           </a>
         </div>
       </section>

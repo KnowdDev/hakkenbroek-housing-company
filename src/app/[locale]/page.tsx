@@ -1,6 +1,55 @@
+'use client';
+
 import Link from 'next/link';
+import { useTranslations } from '@/hooks/useTranslations';
+import { usePathname } from 'next/navigation';
 
 export default function Home() {
+  const { t } = useTranslations();
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1] || 'en';
+
+  const services = [
+    {
+      title: t('home.services.buying.title'),
+      desc: t('home.services.buying.desc'),
+    },
+    {
+      title: t('home.services.selling.title'),
+      desc: t('home.services.selling.desc'),
+    },
+    {
+      title: t('home.services.renting.title'),
+      desc: t('home.services.renting.desc'),
+    },
+    {
+      title: t('home.services.leasing.title'),
+      desc: t('home.services.leasing.desc'),
+    },
+    {
+      title: t('home.services.management.title'),
+      desc: t('home.services.management.desc'),
+    },
+    {
+      title: t('home.services.expat.title'),
+      desc: t('home.services.expat.desc'),
+    },
+  ];
+
+  const whyItems = [
+    {
+      title: t('home.why.experience.title'),
+      desc: t('home.why.experience.desc'),
+    },
+    {
+      title: t('home.why.expat.title'),
+      desc: t('home.why.expat.desc'),
+    },
+    {
+      title: t('home.why.personal.title'),
+      desc: t('home.why.personal.desc'),
+    },
+  ];
   return (
     <div className="min-h-screen">
       {/* Hero Section — Full-bleed imagery */}
@@ -15,27 +64,26 @@ export default function Home() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <p className="font-body text-sm uppercase tracking-[0.25em] text-stone-200 mb-6">
-            Amsterdam Real Estate Since 2003
+            {t('home.heroSubtitle')}
           </p>
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-tight mb-8 max-w-4xl mx-auto">
-            Where living becomes an experience
+            {t('home.heroTitle')}
           </h1>
           <p className="font-body text-lg md:text-xl text-stone-200 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Boutique agency with 20+ years of expertise. We connect discerning clients
-            with the most elegant properties Amsterdam has to offer.
+            {t('home.heroDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/properties"
+              href={`/${locale}/properties`}
               className="bg-brass text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
             >
-              View Properties
+              {t('home.viewProperties')}
             </Link>
             <Link
-              href="/contact"
+              href={`/${locale}/contact`}
               className="border border-white/80 text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-white hover:text-charcoal transition-colors duration-300"
             >
-              Get in Touch
+              {t('home.getInTouch')}
             </Link>
           </div>
         </div>
@@ -46,40 +94,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-              What We Do
+              {t('home.servicesSubtitle')}
             </p>
             <h2 className="font-display text-3xl md:text-4xl text-charcoal">
-              Comprehensive real estate solutions
+              {t('home.servicesTitle')}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {[
-              {
-                title: 'Buying',
-                desc: 'Expert guidance through the entire buying process, from search to transfer. We listen, we observe, we advise.',
-              },
-              {
-                title: 'Selling',
-                desc: 'Professional valuation and marketing to get the best price for your property. Presentation is everything.',
-              },
-              {
-                title: 'Renting',
-                desc: 'Find quality rental properties, perfect for expats and locals alike. Access to the best listings in Amsterdam.',
-              },
-              {
-                title: 'Leasing',
-                desc: 'Long-term lease options with comprehensive management services for landlords and tenants.',
-              },
-              {
-                title: 'Property Management',
-                desc: 'Complete property management services for landlords and investors. Hassle-free ownership.',
-              },
-              {
-                title: 'Expat Services',
-                desc: 'Specialized support for international clients relocating to the Netherlands. We understand the journey.',
-              },
-            ].map((service) => (
+            {services.map((service) => (
               <div
                 key={service.title}
                 className="group border-t border-stone-200 pt-8 hover:border-brass transition-colors duration-500"
@@ -107,31 +130,29 @@ export default function Home() {
             </div>
             <div>
               <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-                Our Heritage
+                {t('home.heritageSubtitle')}
               </p>
               <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-8 leading-snug">
-                Over two decades of excellence in Amsterdam real estate
+                {t('home.heritageTitle')}
               </h2>
               <p className="text-warm-gray leading-relaxed mb-8">
-                Hakkenbroek Housing Company has been serving the Amsterdam real estate market
-                for over 20 years. As a boutique agency, we pride ourselves on providing
-                personalized service and access to the best properties in the region.
+                {t('home.heritageDescription')}
               </p>
               <div className="grid grid-cols-2 gap-8 mb-10">
                 <div>
                   <p className="font-display text-4xl text-brass mb-1">20+</p>
-                  <p className="font-body text-sm text-warm-gray uppercase tracking-wide">Years Experience</p>
+                  <p className="font-body text-sm text-warm-gray uppercase tracking-wide">{t('home.yearsExperience')}</p>
                 </div>
                 <div>
                   <p className="font-display text-4xl text-brass mb-1">8.0</p>
-                  <p className="font-body text-sm text-warm-gray uppercase tracking-wide">Client Rating</p>
+                  <p className="font-body text-sm text-warm-gray uppercase tracking-wide">{t('home.clientRating')}</p>
                 </div>
               </div>
               <Link
-                href="/about"
+                href={`/${locale}/about`}
                 className="inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300"
               >
-                Read Our Story
+                {t('home.readStory')}
               </Link>
             </div>
           </div>
@@ -144,17 +165,17 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
             <div>
               <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-                Current Listings
+                {t('home.featuredSubtitle')}
               </p>
               <h2 className="font-display text-3xl md:text-4xl text-charcoal">
-                Featured Properties
+                {t('home.featuredTitle')}
               </h2>
             </div>
             <Link
-              href="/properties"
+              href={`/${locale}/properties`}
               className="mt-6 md:mt-0 inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300"
             >
-              View All Properties
+              {t('home.viewAllProperties')}
             </Link>
           </div>
 
@@ -234,31 +255,17 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
               <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-400 mb-4">
-                Why Hakkenbroek
+                {t('home.whySubtitle')}
               </p>
               <h2 className="font-display text-3xl md:text-4xl mb-8 leading-snug">
-                A boutique approach to real estate
+                {t('home.whyTitle')}
               </h2>
               <p className="text-stone-300 leading-relaxed">
-                We believe in quality over quantity. Every client receives our full attention,
-                and every property in our portfolio has been carefully selected for its unique character.
+                {t('home.whyDescription')}
               </p>
             </div>
             <div className="space-y-10">
-              {[
-                {
-                  title: '20+ Years Experience',
-                  desc: 'Deep-rooted expertise in the Amsterdam real estate market, from historic monuments to modern developments.',
-                },
-                {
-                  title: 'Expat Specialists',
-                  desc: 'Dedicated multilingual support for international clients navigating the Dutch property landscape.',
-                },
-                {
-                  title: 'Personal Service',
-                  desc: 'Boutique agency approach with dedicated attention to each client. Your goals become our mission.',
-                },
-              ].map((item) => (
+              {whyItems.map((item) => (
                 <div key={item.title} className="border-l border-stone-600 pl-6">
                   <h3 className="font-display text-xl mb-2">{item.title}</h3>
                   <p className="text-stone-400 leading-relaxed">{item.desc}</p>
@@ -273,17 +280,16 @@ export default function Home() {
       <section className="py-24 bg-stone-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-6">
-            Ready to find your Amsterdam home?
+            {t('home.ctaTitle')}
           </h2>
           <p className="text-warm-gray text-lg mb-10 leading-relaxed">
-            Contact us for a personalized consultation. We listen, we observe, we advise —
-            all with one goal in mind: to find the perfect connection between you and your new space.
+            {t('home.ctaDescription')}
           </p>
           <Link
-            href="/contact"
+            href={`/${locale}/contact`}
             className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
           >
-            Start a Conversation
+            {t('home.startConversation')}
           </Link>
         </div>
       </section>

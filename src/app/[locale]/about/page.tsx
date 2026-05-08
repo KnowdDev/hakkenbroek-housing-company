@@ -1,12 +1,50 @@
-import { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'About Us - Hakkenbroek Housing Company',
-  description:
-    'Learn about Hakkenbroek Housing Company, your trusted real estate partner in Amsterdam with over 20 years of experience.',
-};
+import { Metadata } from 'next';
+import { useTranslations } from '@/hooks/useTranslations';
 
 export default function AboutPage() {
+  const { t } = useTranslations();
+
+  const values = [
+    {
+      num: '01',
+      title: t('about.trust'),
+      desc: t('about.trustDesc'),
+    },
+    {
+      num: '02',
+      title: t('about.personal'),
+      desc: t('about.personalDesc'),
+    },
+    {
+      num: '03',
+      title: t('about.expertise'),
+      desc: t('about.expertiseDesc'),
+    },
+    {
+      num: '04',
+      title: t('about.global'),
+      desc: t('about.globalDesc'),
+    },
+    {
+      num: '05',
+      title: t('about.quality'),
+      desc: t('about.qualityDesc'),
+    },
+    {
+      num: '06',
+      title: t('about.relationships'),
+      desc: t('about.relationshipsDesc'),
+    },
+  ];
+
+  const stats = [
+    { value: '20+', label: t('about.stats.years') },
+    { value: '8.0', label: t('about.stats.rating') },
+    { value: '19+', label: t('about.stats.clients') },
+    { value: '15+', label: t('about.stats.areas') },
+  ];
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -21,10 +59,10 @@ export default function AboutPage() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
-            Our Story
+            {t('about.story')}
           </p>
           <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
-            Two decades of Amsterdam real estate expertise
+            {t('about.headline')}
           </h1>
         </div>
       </section>
@@ -44,28 +82,15 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-                Who We Are
+                {t('about.who')}
               </p>
               <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-8 leading-snug">
-                A boutique agency with a personal touch
+                {t('about.headline')}
               </h2>
               <div className="space-y-6 text-warm-gray leading-relaxed">
-                <p>
-                  Hakkenbroek Housing Company has been serving the Amsterdam real estate market
-                  for over 20 years. As a boutique agency, we pride ourselves on providing
-                  personalized service and access to the best properties in the region.
-                </p>
-                <p>
-                  Our team of experienced professionals specializes in serving both domestic
-                  and international clients, with a particular focus on the expat housing market.
-                  We understand the unique challenges of relocating to a new country and are
-                  dedicated to making your transition as smooth as possible.
-                </p>
-                <p>
-                  Whether you&apos;re buying, selling, renting, or looking for property management
-                  services, our expertise in monuments, foreign real estate, and home styling
-                  sets us apart from other agencies.
-                </p>
+                <p>{t('about.description1')}</p>
+                <p>{t('about.description2')}</p>
+                <p>{t('about.description3')}</p>
               </div>
             </div>
           </div>
@@ -77,46 +102,15 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-              What Drives Us
+              {t('about.valuesTitle')}
             </p>
             <h2 className="font-display text-3xl md:text-4xl text-charcoal">
-              Our Values
+              {t('about.values')}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
-            {[
-              {
-                num: '01',
-                title: 'Trust & Integrity',
-                desc: 'We believe in transparent, honest dealings with all our clients. Your trust is our most valuable asset.',
-              },
-              {
-                num: '02',
-                title: 'Personal Service',
-                desc: 'Every client receives dedicated, personalized attention. We take the time to understand your unique needs.',
-              },
-              {
-                num: '03',
-                title: 'Expertise',
-                desc: 'Deep knowledge of the Amsterdam market, from historic monuments to modern developments.',
-              },
-              {
-                num: '04',
-                title: 'Global Perspective',
-                desc: 'Specialized in serving expats and international clients with multilingual support (Dutch & English).',
-              },
-              {
-                num: '05',
-                title: 'Quality Focus',
-                desc: 'We only work with the best properties in the region, ensuring our clients have access to premium listings.',
-              },
-              {
-                num: '06',
-                title: 'Long-term Relationships',
-                desc: "We're not just about transactions — we build lasting relationships with our clients for all their real estate needs.",
-              },
-            ].map((value) => (
+            {values.map((value) => (
               <div key={value.num} className="group">
                 <span className="font-body text-xs text-stone-400 tracking-wider mb-3 block">
                   {value.num}
@@ -135,12 +129,7 @@ export default function AboutPage() {
       <section className="py-24 bg-charcoal text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-            {[
-              { value: '20+', label: 'Years Experience' },
-              { value: '8.0', label: 'Client Rating' },
-              { value: '19+', label: 'Happy Clients' },
-              { value: '15+', label: 'Areas Served' },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label}>
                 <p className="font-display text-4xl md:text-5xl text-brass mb-2">
                   {stat.value}
@@ -158,16 +147,16 @@ export default function AboutPage() {
       <section className="py-24 bg-stone-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-6">
-            Ready to Work With Us?
+            {t('about.cta')}
           </h2>
           <p className="text-warm-gray text-lg mb-10 leading-relaxed">
-            Get in touch to discuss your real estate needs. We&apos;re here to listen, advise, and guide.
+            {t('about.ctaDesc')}
           </p>
           <a
             href="mailto:info@hakkenbroek.com"
             className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
           >
-            Contact Us Today
+            {t('about.contactBtn')}
           </a>
         </div>
       </section>

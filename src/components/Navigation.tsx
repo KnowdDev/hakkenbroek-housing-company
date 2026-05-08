@@ -2,24 +2,38 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import LanguageToggle from './LanguageToggle';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/properties', label: 'Properties' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: { en: 'Home', nl: 'Home', es: 'Inicio' } },
+  { href: '/about', label: { en: 'About', nl: 'Over ons', es: 'Nosotros' } },
+  { href: '/services', label: { en: 'Services', nl: 'Diensten', es: 'Servicios' } },
+  { href: '/properties', label: { en: 'Properties', nl: 'Woningen', es: 'Propiedades' } },
+  { href: '/contact', label: { en: 'Contact', nl: 'Contact', es: 'Contacto' } },
 ];
+
+type Language = 'en' | 'nl' | 'es';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [locale, setLocale] = useState<Language>('en');
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Extract locale from pathname
+    const segments = pathname.split('/').filter(Boolean);
+    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl' || segments[0] === 'es')) {
+      setLocale(segments[0] as Language);
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -32,7 +46,7 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center">
+            <Link href={`/${locale}`} className="flex items-center">
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
@@ -46,12 +60,12 @@ export default function Navigation() {
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={`/${locale}${link.href}`}
                   className={`font-body text-sm tracking-wide uppercase transition-colors duration-300 relative group ${
                     scrolled ? 'text-ink hover:text-brass' : 'text-white/90 hover:text-white'
                   }`}
                 >
-                  {link.label}
+                  {link.label[locale]}
                   <span
                     className={`absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300 ${
                       scrolled ? 'bg-brass' : 'bg-white'
@@ -59,6 +73,7 @@ export default function Navigation() {
                   />
                 </Link>
               ))}
+              <LanguageToggle />
             </div>
 
             <div className="md:hidden">
@@ -92,14 +107,17 @@ export default function Navigation() {
           {navLinks.map((link, i) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={`/${locale}${link.href}`}
               onClick={() => setIsOpen(false)}
               className="font-display text-3xl text-white hover:text-brass-light transition-colors duration-300"
               style={{ transitionDelay: isOpen ? `${i * 50}ms` : '0ms' }}
             >
-              {link.label}
+              {link.label[locale]}
             </Link>
           ))}
+          <div className="pt-4">
+            <LanguageToggle />
+          </div>
         </div>
       </div>
     </>

@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Over ons",
+    "services": "Diensten",
+    "properties": "Woningen",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Boutique Makelaardij in Amsterdam",
+    "cta": "Bekijk Woningen"
+  },
+  "about": {
+    "title": "Over ons",
+    "story": "Ons Verhaal",
+    "who": "Wie Wij Zijn",
+    "headline": "Een boutique makelaar met een persoonlijke touch",
+    "description1": "Hakkenbroek Housing Company al meer dan 20 jaar actief op de Amsterdamse vastgoedmarkt. Als boutique makelaar zijn wij trots op onze persoonlijke service en toegang tot de beste woningen in de regio.",
+    "description2": "Ons team van ervaren professionals is gespecialiseerd in zowel nationale als internationale cliënten, met een focus op de expat-huisvestingsmarkt. Wij begrijpen de unieke uitdagingen van verhuizing naar een nieuw land en zijn toegewijd om uw overgang zo soepel mogelijk te maken.",
+    "description3": "Of u nu koopt, verkoopt, huurt of op zoek bent naar vastgoedbeheer, onze expertise in monumenten, buitenlands vastgoed en home styling onderscheidt ons van andere makelaars.",
+    "values": "Onze Waarden",
+    "valuesTitle": "Wat ons Drijft",
+    "trust": "Vertrouwen & Integriteit",
+    "trustDesc": "Wij geloven in transparante, eerlijke relaties met al onze cliënten. Uw vertrouwen is ons meest waardevolle bezit.",
+    "personal": "Persoonlijke Service",
+    "personalDesc": "Elke cliënt krijgt toegewijde, persoonlijke aandacht. Wij nemen de tijd om uw unieke behoeften te begrijpen.",
+    "expertise": "Expertise",
+    "expertiseDesc": "Diepe kennis van de Amsterdamse markt, van historische monumenten tot moderne ontwikkelingen.",
+    "global": "Globaal Perspectief",
+    "globalDesc": "Gespecialiseerd in het bedienen van expats en internationale cliënten met meertalige ondersteuning (Nederlands & Engels).",
+    "quality": "Kwaliteitsfocus",
+    "qualityDesc": "Wij werken alleen met de beste woningen in de regio, zodat onze cliënten toegang hebben tot premium aanbod.",
+    "relationships": "Lange-termijn Relaties",
+    "relationshipsDesc": "Wij zijn niet alleen gericht op transacties — wij bouwen langdurige relaties met onze cliënten voor al hun vastgoedbehoeften.",
+    "stats": {
+      "years": "Jaar Ervaring",
+      "rating": "Cliëntbeoordeling",
+      "clients": "Tevreden Cliënten",
+      "areas": "Gebieden"
+    },
+    "cta": "Klaar om Samen te Werken?",
+    "ctaDesc": "Neem contact op om uw vastgoedbehoeften te bespreken. Wij zijn er om te luisteren, adviseren en begeleiden.",
+    "contactBtn": "Neem Vandaag Nog Contact Op"
+  }
+}

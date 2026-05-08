@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "properties": "Propiedades",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "tagline": "Inmobiliaria Boutique en Ámsterdam",
+    "cta": "Ver Propiedades"
+  },
+  "about": {
+    "title": "Nosotros",
+    "story": "Nuestra Historia",
+    "who": "Quiénes Somos",
+    "headline": "Una agencia boutique con toque personal",
+    "description1": "Hakkenbroek Housing Company ha servido el mercado inmobiliario de Ámsterdam durante más de 20 años. Como agencia boutique, nos enorgullecemos de brindar servicio personalizado y acceso a las mejores propiedades de la región.",
+    "description2": "Nuestro equipo de profesionales experimentados se especializa en atender tanto a clientes nacionales como internacionales, con un enfoque particular en el mercado de vivienda para expatriados. Entendemos los desafíos únicos de mudarse a un nuevo país y estamos dedicados a hacer su transición lo más suave posible.",
+    "description3": "Ya sea que esté comprando, vendiendo, alquilando o buscando servicios de administración de propiedades, nuestra experiencia en monumentos, bienes raíces extranjeros y home styling nos distingue de otras agencias.",
+    "values": "Nuestros Valores",
+    "valuesTitle": "Lo que Nos Impulsa",
+    "trust": "Confianza e Integridad",
+    "trustDesc": "Creemos en tratos transparentes y honestos con todos nuestros clientes. Su confianza es nuestro activo más valioso.",
+    "personal": "Servicio Personal",
+    "personalDesc": "Cada cliente recibe atención dedicada y personalizada. Tomamos el tiempo para entender sus necesidades únicas.",
+    "expertise": "Experiencia",
+    "expertiseDesc": "Conocimiento profundo del mercado de Ámsterdam, desde monumentos históricos hasta desarrollos modernos.",
+    "global": "Perspectiva Global",
+    "globalDesc": "Especializados en servir expatriados y clientes internacionales con soporte multilingüe (holandés e inglés).",
+    "quality": "Enfoque en Calidad",
+    "qualityDesc": "Solo trabajamos con las mejores propiedades de la región, asegurando que nuestros clientes tengan acceso a listados premium.",
+    "relationships": "Relaciones a Largo Plazo",
+    "relationshipsDesc": "No solo se trata de transacciones — construimos relaciones duraderas con nuestros clientes para todas sus necesidades inmobiliarias.",
+    "stats": {
+      "years": "Años de Experiencia",
+      "rating": "Calificación de Clientes",
+      "clients": "Clientes Satisfechos",
+      "areas": "Áreas Atendidas"
+    },
+    "cta": "¿Listo para Trabajar con Nosotros?",
+    "ctaDesc": "Póngase en contacto para discutir sus necesidades inmobiliarias. Estamos aquí para escuchar, asesorar y guiar.",
+    "contactBtn": "Contáctenos Hoy"
+  }
+}

@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from '@/hooks/useTranslations';
 
 export default function ContactPage() {
+  const { t, tArray } = useTranslations();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,10 +46,10 @@ export default function ContactPage() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
-            Get in Touch
+            {t('contact.heroSubtitle')}
           </p>
           <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
-            Start a conversation
+            {t('contact.heroTitle')}
           </h1>
         </div>
       </section>
@@ -59,16 +61,16 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-7">
               <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-                Send a Message
+                {t('contact.formSubtitle')}
               </p>
               <h2 className="font-display text-3xl text-charcoal mb-10">
-                We&apos;d love to hear from you
+                {t('contact.formTitle')}
               </h2>
 
               {submitted ? (
                 <div className="border border-emerald-200 bg-emerald-50 p-8">
                   <p className="text-emerald-800 font-body">
-                    Thank you for your message. We will get back to you within one business day.
+                    {t('contact.successMessage')}
                   </p>
                 </div>
               ) : (
@@ -85,7 +87,7 @@ export default function ContactPage() {
                         htmlFor="name"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        Full Name *
+                        {t('contact.fullName')} *
                       </label>
                       <input
                         type="text"
@@ -103,7 +105,7 @@ export default function ContactPage() {
                         htmlFor="email"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        Email *
+                        {t('contact.email')} *
                       </label>
                       <input
                         type="email"
@@ -124,7 +126,7 @@ export default function ContactPage() {
                         htmlFor="phone"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        Phone
+                        {t('contact.phone')}
                       </label>
                       <input
                         type="tel"
@@ -141,7 +143,7 @@ export default function ContactPage() {
                         htmlFor="service"
                         className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                       >
-                        Service *
+                        {t('contact.service')} *
                       </label>
                       <select
                         id="service"
@@ -151,13 +153,13 @@ export default function ContactPage() {
                         onChange={handleChange}
                         className="w-full px-0 py-3 bg-transparent border-b border-stone-200 text-ink font-body focus:outline-none focus:border-brass transition-colors"
                       >
-                        <option value="">Select a service</option>
-                        <option value="buying">Buying</option>
-                        <option value="selling">Selling</option>
-                        <option value="renting">Renting</option>
-                        <option value="leasing">Leasing</option>
-                        <option value="management">Property Management</option>
-                        <option value="other">Other</option>
+                        <option value="">{t('contact.selectService')}</option>
+                        <option value="buying">{t('contact.buying')}</option>
+                        <option value="selling">{t('contact.selling')}</option>
+                        <option value="renting">{t('contact.renting')}</option>
+                        <option value="leasing">{t('contact.leasing')}</option>
+                        <option value="management">{t('contact.management')}</option>
+                        <option value="other">{t('contact.other')}</option>
                       </select>
                     </div>
                   </div>
@@ -167,7 +169,7 @@ export default function ContactPage() {
                       htmlFor="message"
                       className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2"
                     >
-                      Message *
+                      {t('contact.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -185,7 +187,7 @@ export default function ContactPage() {
                     type="submit"
                     className="bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
                   >
-                    Send Message
+                    {t('contact.submit')}
                   </button>
                 </form>
               )}
@@ -194,27 +196,25 @@ export default function ContactPage() {
             {/* Info */}
             <div className="lg:col-span-4 lg:col-start-9">
               <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
-                Contact Details
+                {t('contact.infoSubtitle')}
               </p>
               <h2 className="font-display text-3xl text-charcoal mb-10">
-                Visit our office
+                {t('contact.infoTitle')}
               </h2>
 
               <div className="space-y-10">
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    Address
+                    {t('contact.address')}
                   </h3>
-                  <p className="text-ink leading-relaxed">
-                    Leliegracht 21
-                    <br />
-                    Amsterdam, Netherlands
+                  <p className="text-ink leading-relaxed whitespace-pre-line">
+                    {t('contact.addressText')}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    Email
+                    {t('contact.emailAddress')}
                   </h3>
                   <a
                     href="mailto:info@hakkenbroek.com"
@@ -226,7 +226,7 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    Phone
+                    {t('contact.phoneNumber')}
                   </h3>
                   <a
                     href="tel:+31201234567"
@@ -238,23 +238,19 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
-                    Office Hours
+                    {t('contact.officeHours')}
                   </h3>
-                  <p className="text-ink leading-relaxed">
-                    Monday – Friday: 9:00 – 18:00
-                    <br />
-                    Saturday: 10:00 – 16:00
-                    <br />
-                    Sunday: Closed
+                  <p className="text-ink leading-relaxed whitespace-pre-line">
+                    {t('contact.officeHoursText')}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-3">
-                    Languages
+                    {t('contact.languages')}
                   </h3>
                   <div className="flex gap-3">
-                    {['Dutch', 'English'].map((lang) => (
+                    {tArray('contact.languagesList').map((lang: string) => (
                       <span
                         key={lang}
                         className="px-3 py-1.5 bg-stone-100 text-warm-gray text-sm font-body"

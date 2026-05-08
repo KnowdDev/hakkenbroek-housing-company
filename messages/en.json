@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "properties": "Properties",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Boutique Real Estate in Amsterdam",
+    "cta": "View Properties"
+  },
+  "about": {
+    "title": "About Us",
+    "story": "Our Story",
+    "who": "Who We Are",
+    "headline": "A boutique agency with a personal touch",
+    "description1": "Hakkenbroek Housing Company has been serving the Amsterdam real estate market for over 20 years. As a boutique agency, we pride ourselves on providing personalized service and access to the best properties in the region.",
+    "description2": "Our team of experienced professionals specializes in serving both domestic and international clients, with a particular focus on the expat housing market. We understand the unique challenges of relocating to a new country and are dedicated to making your transition as smooth as possible.",
+    "description3": "Whether you're buying, selling, renting, or looking for property management services, our expertise in monuments, foreign real estate, and home styling sets us apart from other agencies.",
+    "values": "Our Values",
+    "valuesTitle": "What Drives Us",
+    "trust": "Trust & Integrity",
+    "trustDesc": "We believe in transparent, honest dealings with all our clients. Your trust is our most valuable asset.",
+    "personal": "Personal Service",
+    "personalDesc": "Every client receives dedicated, personalized attention. We take the time to understand your unique needs.",
+    "expertise": "Expertise",
+    "expertiseDesc": "Deep knowledge of the Amsterdam market, from historic monuments to modern developments.",
+    "global": "Global Perspective",
+    "globalDesc": "Specialized in serving expats and international clients with multilingual support (Dutch & English).",
+    "quality": "Quality Focus",
+    "qualityDesc": "We only work with the best properties in the region, ensuring our clients have access to premium listings.",
+    "relationships": "Long-term Relationships",
+    "relationshipsDesc": "We're not just about transactions — we build lasting relationships with our clients for all their real estate needs.",
+    "stats": {
+      "years": "Years Experience",
+      "rating": "Client Rating",
+      "clients": "Happy Clients",
+      "areas": "Areas Served"
+    },
+    "cta": "Ready to Work With Us?",
+    "ctaDesc": "Get in touch to discuss your real estate needs. We're here to listen, advise, and guide.",
+    "contactBtn": "Contact Us Today"
+  }
+}

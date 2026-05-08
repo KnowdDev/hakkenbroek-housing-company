@@ -130,6 +130,7 @@ export default function ListingsDashboard() {
             </div>
             <button
               onClick={() => {
+                console.log('Add Listing clicked');
                 setShowAddForm(true);
                 setEditingListing(null);
                 setFormData({
@@ -156,7 +157,7 @@ export default function ListingsDashboard() {
         </div>
 
         {showAddForm && (
-          <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
+          <div className="bg-white rounded-lg shadow-sm p-8 mb-8 border-2 border-brass">
             <h2 className="font-display text-2xl text-charcoal mb-6">
               {editingListing ? 'Edit Listing' : 'Add New Listing'}
             </h2>
