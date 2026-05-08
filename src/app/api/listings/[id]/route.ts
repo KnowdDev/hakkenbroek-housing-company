@@ -5,12 +5,13 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const result = await query(
       'SELECT * FROM listings WHERE id = $1',
-      [params.id]
+      [id]
     );
 
     if (result.rows.length === 0) {
@@ -26,15 +27,16 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const { title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, image_url, featured } = body;
 
     const result = await query(
       'UPDATE listings SET title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5, area = $6, address = $7, city = $8, postal_code = $9, property_type = $10, status = $11, image_url = $12, featured = $13, updated_at = CURRENT_TIMESTAMP WHERE id = $14 RETURNING *',
-      [title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, image_url, featured, params.id]
+      [title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, image_url, featured, id]
     );
 
     if (result.rows.length === 0) {
@@ -50,12 +52,13 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const result = await query(
       'DELETE FROM listings WHERE id = $1 RETURNING *',
-      [params.id]
+      [id]
     );
 
     if (result.rows.length === 0) {
