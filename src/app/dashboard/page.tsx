@@ -119,7 +119,7 @@ export default function Dashboard() {
         {stats.totalValue > 0 && (
           <div className="bg-brass text-white rounded-lg p-6 mb-8">
             <p className="text-sm font-body uppercase tracking-wider mb-2">Portfolio Value</p>
-            <p className="font-display text-4xl">€{stats.totalValue.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}</p>
+            <p className="font-display text-4xl">€{stats.totalValue.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}</p>
             <p className="text-sm opacity-90 mt-1">Combined asking price of all listings</p>
           </div>
         )}
