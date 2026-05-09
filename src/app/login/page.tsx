@@ -14,7 +14,7 @@ export default function LoginPage() {
     
     if (password === correctToken) {
       // Set cookie for authentication
-      document.cookie = `dashboard_token=${password}; path=/; max-age=86400`;
+      document.cookie = `dashboard_token=${password}; path=/; max-age=86400; SameSite=Strict`;
       router.push('/dashboard');
     } else {
       setError('Incorrect password');
@@ -22,28 +22,36 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 flex items-center justify-center">
-      <div className="bg-stone-50 p-8 rounded-lg shadow-sm max-w-md w-full">
-        <h1 className="font-display text-2xl text-charcoal mb-6">Dashboard Login</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen bg-stone-50 flex items-center justify-center p-4">
+      <div className="bg-white p-12 rounded-lg shadow-sm max-w-md w-full">
+        <div className="text-center mb-8">
+          <img
+            src="/logo.svg"
+            alt="Hakkenbroek Housing Company"
+            className="h-16 mx-auto mb-6"
+          />
+          <h1 className="font-display text-3xl text-charcoal mb-2">Dashboard</h1>
+          <p className="text-stone-600 text-sm tracking-wide uppercase">Secure Access</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-2">
+            <label className="block text-xs font-body uppercase tracking-wider text-stone-700 mb-3">
               Password
             </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
-              placeholder="Enter password"
+              className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-brass transition-all duration-300 text-sm"
+              placeholder="Enter your password"
             />
           </div>
           {error && (
-            <p className="text-red-600 text-sm">{error}</p>
+            <p className="text-red-600 text-sm text-center">{error}</p>
           )}
           <button
             type="submit"
-            className="w-full bg-charcoal text-white px-6 py-3 font-body text-sm uppercase tracking-wider hover:bg-brass transition-colors"
+            className="w-full bg-charcoal text-white px-6 py-4 font-body text-xs uppercase tracking-widest hover:bg-brass transition-colors duration-300 rounded-lg"
           >
             Login
           </button>

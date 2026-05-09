@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/DashboardLayout';
 
 interface Enquiry {
@@ -16,10 +17,22 @@ interface Enquiry {
 export default function Dashboard() {
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
+    // Check authentication
+    const token = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('dashboard_token='))
+      ?.split('=')[1];
+    
+    if (!token || token !== 'hakkenbroek-admin-2024') {
+      router.push('/login');
+      return;
+    }
+
     fetchEnquiries();
-  }, []);
+  }, [router]);
 
   const fetchEnquiries = async () => {
     try {

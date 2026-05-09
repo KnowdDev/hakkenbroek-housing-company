@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const navItems = [
   { href: '/dashboard', label: 'Enquiries' },
@@ -14,6 +14,12 @@ const navItems = [
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    document.cookie = 'dashboard_token=; path=/; max-age=0';
+    router.push('/login');
+  };
 
   return (
     <div className="min-h-screen bg-stone-50 flex">
@@ -36,7 +42,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
         </div>
 
-        <nav className="p-4">
+        <nav className="p-4 flex-1">
           <ul className="space-y-2">
             {navItems.map((item) => (
               <li key={item.href}>
@@ -59,6 +65,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             ))}
           </ul>
         </nav>
+
+        <div className="p-4 border-t border-white/10">
+          <button
+            onClick={handleLogout}
+            className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-colors text-stone-300 hover:bg-red-500/20 hover:text-red-300 ${
+              sidebarOpen ? '' : 'justify-center'
+            }`}
+          >
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            {sidebarOpen && (
+              <span className="font-body text-xs uppercase tracking-wider">Logout</span>
+            )}
+          </button>
+        </div>
 
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
