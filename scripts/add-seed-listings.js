@@ -1,6 +1,6 @@
 // Native fetch is available in Node.js 18+
 
-const API_KEY = 'hakkenbroek-admin-2024';
+const API_KEY = process.env.MCP_API_KEY || process.env.DASHBOARD_PASSWORD;
 const API_URL = 'http://localhost:3000/api/listings';
 
 const listings = [
