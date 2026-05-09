@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-jost)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-cormorant)', 'ui-serif', 'Georgia', 'serif'],
+        display: ['var(--font-cormorant)', 'ui-serif', 'Georgia', 'serif'],
+        body: ['var(--font-jost)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       colors: {
         stone: {
           50: '#f8f6f3',
@@ -17,9 +23,9 @@ const config: Config = {
           400: '#9e9488',
           500: '#827a70',
         },
-        charcoal: '#1a1a1a',
-        ink: '#2d2d2d',
-        'warm-gray': '#6b6560',
+        charcoal: '#0f0f0f',
+        ink: '#1a1a1a',
+        'warm-gray': '#5a5450',
         brass: {
           DEFAULT: '#a67c52',
           light: '#c49a6c',

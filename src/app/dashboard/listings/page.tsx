@@ -157,7 +157,7 @@ export default function ListingsDashboard() {
         </div>
 
         {showAddForm && (
-          <div className="bg-white rounded-lg shadow-sm p-8 mb-8 border-2 border-brass">
+          <div className="bg-stone-50 rounded-lg shadow-sm p-8 mb-8 border-2 border-brass">
             <h2 className="font-display text-2xl text-charcoal mb-6">
               {editingListing ? 'Edit Listing' : 'Add New Listing'}
             </h2>
@@ -339,7 +339,7 @@ export default function ListingsDashboard() {
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-stone-50 rounded-lg shadow-sm overflow-hidden">
           {loading ? (
             <div className="p-8 text-center text-stone-500">Loading listings...</div>
           ) : listings.length === 0 ? (

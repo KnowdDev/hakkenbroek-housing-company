@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "../globals.css";
 import RootWrapper from "@/components/RootWrapper";
 
-const inter = Inter({
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-jost",
   display: "swap",
+  weight: ["300", "400", "500"],
 });
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -59,7 +62,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   return (
-    <html lang={locale} className={`${inter.variable} ${playfair.variable}`}>
+    <html lang={locale} className={`${jost.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased bg-stone-50 text-ink">
         <RootWrapper>{children}</RootWrapper>
       </body>

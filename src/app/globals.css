@@ -5,18 +5,20 @@
 @layer base {
   body {
     @apply bg-stone-50 text-ink;
-    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-playfair), ui-serif, Georgia, serif;
+    font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+    font-weight: 600;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-playfair), ui-serif, Georgia, serif;
+    font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+    font-weight: 600;
   }
   .font-body {
-    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
   }
 }

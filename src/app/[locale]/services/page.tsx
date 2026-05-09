@@ -166,7 +166,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Intro */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-stone-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-6">
             {t.heroSubtitle}

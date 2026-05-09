@@ -42,7 +42,7 @@ export default function Navigation() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm'
+            ? 'bg-stone-50/95 backdrop-blur-md shadow-sm'
             : 'bg-transparent'
         }`}
       >
@@ -70,7 +70,7 @@ export default function Navigation() {
                   {link.label[locale]}
                   <span
                     className={`absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300 ${
-                      scrolled || isLightPage ? 'bg-brass' : 'bg-white'
+                      scrolled || isLightPage ? 'bg-brass' : 'bg-stone-50'
                     }`}
                   />
                 </Link>

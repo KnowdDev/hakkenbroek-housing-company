@@ -2,6 +2,35 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { demoListings } from '@/lib/listings-data';
+
+const statusStyles: Record<string, string> = {
+  available: 'bg-emerald-50 text-emerald-700',
+  'under-consideration': 'bg-amber-50 text-amber-700',
+  sold: 'bg-stone-100 text-warm-gray',
+  rented: 'bg-blue-50 text-blue-700',
+};
+
+const statusLabels: Record<string, Record<string, string>> = {
+  en: {
+    available: 'Available',
+    'under-consideration': 'Under Consideration',
+    sold: 'Sold',
+    rented: 'Rented',
+  },
+  nl: {
+    available: 'Beschikbaar',
+    'under-consideration': 'In Onderhandeling',
+    sold: 'Verkocht',
+    rented: 'Verhuurd',
+  },
+  es: {
+    available: 'Disponible',
+    'under-consideration': 'En Consideracion',
+    sold: 'Vendido',
+    rented: 'Alquilado',
+  },
+};
 
 export default function Home() {
   const pathname = usePathname();
@@ -17,12 +46,12 @@ export default function Home() {
       servicesSubtitle: 'Our Expertise',
       servicesTitle: 'Buying and selling at the highest level',
       services: [
-        { title: 'Buying', desc: 'We represent buyers with discretion and precision. From canal house to penthouse, we source properties that never appear on public portals — and negotiate terms that reflect their true value.' },
-        { title: 'Selling', desc: 'We position your property for the market it deserves. Bespoke marketing, private viewings, and access to qualified international buyers who understand rarity.' },
-        { title: 'Renting', desc: 'Curated rental properties for expats and locals who expect more. Every listing in our portfolio meets our standards for location, light, and character.' },
-        { title: 'Leasing', desc: 'Long-term lease management for landlords who value peace of mind. Tenant selection, rent collection, and full legal compliance — handled with care.' },
-        { title: 'Property Management', desc: 'Comprehensive management for investors and absentee owners. From maintenance to financial reporting, we protect your asset as if it were our own.' },
-        { title: 'Expat Services', desc: 'A complete relocation concierge for international clients. We understand the journey — and we make Amsterdam feel like home from day one.' }
+        { title: 'Buying', desc: 'We represent buyers with discretion and precision. From canal house to penthouse, we source properties that never appear on public portals — and negotiate terms that reflect their true value.', slug: 'buying' },
+        { title: 'Selling', desc: 'We position your property for the market it deserves. Bespoke marketing, private viewings, and access to qualified international buyers who understand rarity.', slug: 'selling' },
+        { title: 'Renting', desc: 'Curated rental properties for expats and locals who expect more. Every listing in our portfolio meets our standards for location, light, and character.', slug: 'renting' },
+        { title: 'Leasing', desc: 'Long-term lease management for landlords who value peace of mind. Tenant selection, rent collection, and full legal compliance — handled with care.', slug: 'leasing' },
+        { title: 'Property Management', desc: 'Comprehensive management for investors and absentee owners. From maintenance to financial reporting, we protect your asset as if it were our own.', slug: 'property-management' },
+        { title: 'Expat Services', desc: 'A complete relocation concierge for international clients. We understand the journey — and we make Amsterdam feel like home from day one.', slug: 'expat-services' }
       ],
       heritageSubtitle: 'Two Decades of Discretion',
       heritageTitle: 'Amsterdam\'s most trusted name in exceptional properties',
@@ -54,12 +83,12 @@ export default function Home() {
       servicesSubtitle: 'Onze Expertise',
       servicesTitle: 'Kopen en verkopen op het hoogste niveau',
       services: [
-        { title: 'Kopen', desc: 'Wij vertegenwoordigen kopers met discretie en precisie. Van grachtenpand tot penthouse — wij vinden woningen die nooit op publieke portals verschijnen.' },
-        { title: 'Verkopen', desc: 'Wij positioneren uw woning voor de markt die het verdient. Maatwerk marketing, privébezichtigingen, en toegang tot gekwalificeerde internationale kopers.' },
-        { title: 'Huren', desc: 'Gecureerde huurwoningen voor expats en locals die meer verwachten. Elke woning in ons portfolio voldoet aan onze normen voor locatie, licht en karakter.' },
-        { title: 'Verhuur', desc: 'Lange-termijn verhuurbeheer voor verhuurders die gemoedsrust waarderen. Huurdersselectie, incasso, en volledige juridische naleving.' },
-        { title: 'Vastgoedbeheer', desc: 'Uitgebreid beheer voor investeerders en eigenaren in het buitenland. Van onderhoud tot financiële rapportage — wij beschermen uw bezit.' },
-        { title: 'Expat Diensten', desc: 'Een complete verhuisservice voor internationale cliënten. Wij begrijpen de reis — en laten Amsterdam vanaf dag één als thuis voelen.' }
+        { title: 'Kopen', desc: 'Wij vertegenwoordigen kopers met discretie en precisie. Van grachtenpand tot penthouse — wij vinden woningen die nooit op publieke portals verschijnen.', slug: 'buying' },
+        { title: 'Verkopen', desc: 'Wij positioneren uw woning voor de markt die het verdient. Maatwerk marketing, privébezichtigingen, en toegang tot gekwalificeerde internationale kopers.', slug: 'selling' },
+        { title: 'Huren', desc: 'Gecureerde huurwoningen voor expats en locals die meer verwachten. Elke woning in ons portfolio voldoet aan onze normen voor locatie, licht en karakter.', slug: 'renting' },
+        { title: 'Verhuur', desc: 'Lange-termijn verhuurbeheer voor verhuurders die gemoedsrust waarderen. Huurdersselectie, incasso, en volledige juridische naleving.', slug: 'leasing' },
+        { title: 'Vastgoedbeheer', desc: 'Uitgebreid beheer voor investeerders en eigenaren in het buitenland. Van onderhoud tot financiële rapportage — wij beschermen uw bezit.', slug: 'property-management' },
+        { title: 'Expat Diensten', desc: 'Een complete verhuisservice voor internationale cliënten. Wij begrijpen de reis — en laten Amsterdam vanaf dag één als thuis voelen.', slug: 'expat-services' }
       ],
       heritageSubtitle: 'Twee Decennia van Discretie',
       heritageTitle: 'Amsterdams meest vertrouwde naam in uitzonderlijk vastgoed',
@@ -91,12 +120,12 @@ export default function Home() {
       servicesSubtitle: 'Nuestra Experiencia',
       servicesTitle: 'Comprar y vender al más alto nivel',
       services: [
-        { title: 'Comprar', desc: 'Representamos a compradores con discreción y precisión. Desde casas de canal hasta áticos — encontramos propiedades que nunca aparecen en portales públicos.' },
-        { title: 'Vender', desc: 'Posicionamos su propiedad para el mercado que merece. Marketing a medida, visitas privadas, y acceso a compradores internacionales cualificados que entienden la rareza.' },
-        { title: 'Alquilar', desc: 'Propiedades de alquiler curadas para expatriados y locales que esperan más. Cada listado cumple con nuestros estándares de ubicación, luz y carácter.' },
-        { title: 'Arrendamiento', desc: 'Gestión de arrendamiento a largo plazo para propietarios que valoran la tranquilidad. Selección de inquilinos, cobro de rentas, y cumplimiento legal completo.' },
-        { title: 'Administración de Propiedades', desc: 'Gestión integral para inversores y propietarios ausentes. Desde mantenimiento hasta informes financieros — protegemos su activo como si fuera nuestro.' },
-        { title: 'Servicios para Expatriados', desc: 'Un servicio completo de reubicación para clientes internacionales. Entendemos el viaje — y hacemos que Ámsterdam se sienta como hogar desde el primer día.' }
+        { title: 'Comprar', desc: 'Representamos a compradores con discreción y precisión. Desde casas de canal hasta áticos — encontramos propiedades que nunca aparecen en portales públicos.', slug: 'buying' },
+        { title: 'Vender', desc: 'Posicionamos su propiedad para el mercado que merece. Marketing a medida, visitas privadas, y acceso a compradores internacionales cualificados que entienden la rareza.', slug: 'selling' },
+        { title: 'Alquilar', desc: 'Propiedades de alquiler curadas para expatriados y locales que esperan más. Cada listado cumple con nuestros estándares de ubicación, luz y carácter.', slug: 'renting' },
+        { title: 'Arrendamiento', desc: 'Gestión de arrendamiento a largo plazo para propietarios que valoran la tranquilidad. Selección de inquilinos, cobro de rentas, y cumplimiento legal completo.', slug: 'leasing' },
+        { title: 'Administración de Propiedades', desc: 'Gestión integral para inversores y propietarios ausentes. Desde mantenimiento hasta informes financieros — protegemos su activo como si fuera nuestro.', slug: 'property-management' },
+        { title: 'Servicios para Expatriados', desc: 'Un servicio completo de reubicación para clientes internacionales. Entendemos el viaje — y hacemos que Ámsterdam se sienta como hogar desde el primer día.', slug: 'expat-services' }
       ],
       heritageSubtitle: 'Dos Décadas de Discreción',
       heritageTitle: 'El nombre más confiable de Ámsterdam en propiedades excepcionales',
@@ -122,6 +151,11 @@ export default function Home() {
   };
 
   const t = content[locale as keyof typeof content] || content.en;
+  const statusLabelsLocale = statusLabels[locale as keyof typeof statusLabels] || statusLabels.en;
+
+  // Get first 3 featured properties
+  const featuredProperties = demoListings.filter(p => p.featured).slice(0, 3);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section — Full-bleed imagery */}
@@ -153,7 +187,7 @@ export default function Home() {
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="border border-white/80 text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-white hover:text-charcoal transition-colors duration-300"
+              className="border border-white/80 text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-stone-50 hover:text-charcoal transition-colors duration-300"
             >
               {t.getInTouch}
             </Link>
@@ -162,7 +196,7 @@ export default function Home() {
       </section>
 
       {/* Services Overview — Editorial grid */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
@@ -175,15 +209,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {t.services.map((service) => (
-              <div
+              <Link
                 key={service.title}
-                className="group border-t border-stone-200 pt-8 hover:border-brass transition-colors duration-500"
+                href={`/${locale}/services/${service.slug}`}
+                className="group border-t border-stone-200 pt-8 hover:border-brass transition-colors duration-500 block"
               >
                 <h3 className="font-display text-2xl text-charcoal mb-4 group-hover:text-brass transition-colors duration-300">
                   {service.title}
                 </h3>
                 <p className="text-warm-gray leading-relaxed">{service.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -232,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* Featured Properties */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
             <div>
@@ -252,70 +287,39 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Jacob Catskade 51 H',
-                location: 'Amsterdam',
-                price: '€600,000',
-                size: '68 m²',
-                beds: '3 bed',
-                status: 'Available',
-                statusColor: 'bg-emerald-50 text-emerald-700',
-                image:
-                  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80',
-              },
-              {
-                title: 'Van Woustraat 22 1',
-                location: 'Amsterdam',
-                price: '€745,000',
-                size: '103 m²',
-                beds: '3 bed',
-                status: 'Under Consideration',
-                statusColor: 'bg-amber-50 text-amber-700',
-                image:
-                  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80',
-              },
-              {
-                title: 'Singel 204 C',
-                location: 'Amsterdam',
-                price: '€625,000',
-                size: '73 m²',
-                beds: '1 bed',
-                status: 'Sold',
-                statusColor: 'bg-stone-100 text-warm-gray',
-                image:
-                  'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=600&q=80',
-              },
-            ].map((property) => (
-              <div
-                key={property.title}
-                className="group bg-white border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500"
+            {featuredProperties.map((property) => (
+              <Link
+                key={property.id}
+                href={`/${locale}/properties/${property.id}`}
+                className="group bg-stone-50 border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500 block"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src={property.image}
+                    src={property.image_url}
                     alt={property.title}
                     className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                   />
                   <span
-                    className={`absolute top-4 left-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 ${property.statusColor}`}
+                    className={`absolute top-4 left-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[property.status] || statusStyles.available}`}
                   >
-                    {property.status}
+                    {statusLabelsLocale[property.status] || property.status}
                   </span>
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-xl text-charcoal mb-1">
                     {property.title}
                   </h3>
-                  <p className="text-warm-gray text-sm mb-4">{property.location}</p>
+                  <p className="text-warm-gray text-sm mb-4">{property.address}, {property.city}</p>
                   <div className="flex justify-between items-end">
-                    <span className="font-display text-2xl text-brass">{property.price}</span>
+                    <span className="font-display text-2xl text-brass">
+                      {property.price ? `€${property.price.toLocaleString()}` : 'Price on request'}
+                    </span>
                     <span className="text-warm-gray text-sm">
-                      {property.size} · {property.beds}
+                      {property.area} m² · {property.bedrooms} bed
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

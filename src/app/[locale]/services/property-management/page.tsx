@@ -77,7 +77,7 @@ export default function PropertyManagementPage() {
           </div>
         </section>
 
-        <section className='py-24 bg-white'>
+        <section className='py-24 bg-stone-50'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <div className='max-w-3xl'>
               <h2 className='font-display text-3xl md:text-4xl text-charcoal mb-8'>{t.introTitle}</h2>
@@ -105,7 +105,7 @@ export default function PropertyManagementPage() {
           </div>
         </section>
 
-        <section className='py-24 bg-white'>
+        <section className='py-24 bg-stone-50'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <h2 className='font-display text-3xl md:text-4xl text-charcoal mb-16 text-center'>{t.benefitsTitle}</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto'>
@@ -129,10 +129,14 @@ export default function PropertyManagementPage() {
           </div>
         </section>
 
-        <section className='py-12 bg-stone-50'>
+        <section className='py-16 bg-stone-50'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <Link href={`/${locale}/services`} className='text-warm-gray hover:text-brass transition-colors font-body text-sm uppercase tracking-wider'>
-              {t.backToServices}
+            <Link 
+              href={`/${locale}/services`} 
+              className='inline-flex items-center gap-3 text-charcoal hover:text-brass transition-colors duration-300 font-body text-sm uppercase tracking-[0.15em] group'
+            >
+              <span className='transform group-hover:-translate-x-1 transition-transform duration-300'>←</span>
+              <span className='border-b border-charcoal/30 group-hover:border-brass transition-colors duration-300 pb-0.5'>{t.backToServices}</span>
             </Link>
           </div>
         </section>

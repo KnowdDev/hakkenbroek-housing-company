@@ -152,16 +152,20 @@ export default function PropertyDetailPage() {
   return (
     <div className="min-h-screen bg-stone-50 pt-24">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-stone-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link href={`/${locale}/properties`} className="text-sm text-warm-gray hover:text-brass transition-colors font-body uppercase tracking-wider">
-            {backText}
+      <div className="bg-stone-50 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link 
+            href={`/${locale}/properties`} 
+            className='inline-flex items-center gap-3 text-charcoal hover:text-brass transition-colors duration-300 font-body text-sm uppercase tracking-[0.15em] group'
+          >
+            <span className='transform group-hover:-translate-x-1 transition-transform duration-300'>←</span>
+            <span className='border-b border-charcoal/30 group-hover:border-brass transition-colors duration-300 pb-0.5'>{backText}</span>
           </Link>
         </div>
       </div>
 
       {/* Gallery */}
-      <section className="bg-white">
+      <section className="bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-2">
@@ -272,7 +276,7 @@ export default function PropertyDetailPage() {
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
-              <div className="bg-white border border-stone-200 p-8 sticky top-24">
+              <div className="bg-stone-50 border border-stone-200 p-8 sticky top-24">
                 <div className="mb-6">
                   <p className="font-display text-3xl text-brass mb-2">
                     {listing.price ? `€${listing.price.toLocaleString()}` : priceOnRequest}

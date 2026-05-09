@@ -41,7 +41,7 @@ export default function Dashboard() {
           <p className="text-stone-600">Manage incoming enquiries</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-stone-50 rounded-lg shadow-sm overflow-hidden">
           {loading ? (
             <div className="p-8 text-center text-stone-500">Loading enquiries...</div>
           ) : enquiries.length === 0 ? (

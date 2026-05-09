@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 interface Listing {
   id: number;
@@ -204,7 +205,7 @@ export default function PropertiesPage() {
       </section>
 
       {/* Filters */}
-      <section className="py-10 bg-white border-b border-stone-200">
+      <section className="py-10 bg-stone-50 border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
             <div className="flex flex-col sm:flex-row gap-4">
@@ -255,16 +256,14 @@ export default function PropertiesPage() {
       <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
-            <div className="text-center py-20">
-              <p className="text-warm-gray text-lg">{t.loading}</p>
-            </div>
+            <LoadingSpinner />
           ) : filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProperties.map((property) => (
                 <Link
                   key={property.id}
                   href={`/${locale}/properties/${property.id}`}
-                  className="group bg-white border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500 block cursor-pointer"
+                  className="group bg-stone-50 border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500 block cursor-pointer"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone-200">
                     {property.image_url ? (

@@ -56,9 +56,19 @@ export default function LanguageToggle({ scrolled = false }: LanguageToggleProps
         aria-label="Select language"
       >
         <span>{languageNames[locale]}</span>
-        <span className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
-          {isOpen ? '^' : 'v'}
-        </span>
+        <svg 
+          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M19 9l-7 7-7-7" 
+          />
+        </svg>
       </button>
 
       {isOpen && (
@@ -67,7 +77,7 @@ export default function LanguageToggle({ scrolled = false }: LanguageToggleProps
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-stone-200 z-50 overflow-hidden">
+          <div className="absolute right-0 mt-2 w-40 bg-stone-50 rounded-lg shadow-lg border border-stone-200 z-50 overflow-hidden">
             {(Object.keys(languageNames) as Language[]).map((loc) => (
               <button
                 key={loc}

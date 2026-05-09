@@ -69,7 +69,7 @@ export default function McpDashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Connection Info */}
-          <div className="bg-white rounded-lg shadow-sm p-8 border border-stone-200">
+          <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200">
             <h2 className="font-display text-2xl text-charcoal mb-6">Connection Details</h2>
 
             <div className="space-y-6">
@@ -105,7 +105,7 @@ export default function McpDashboard() {
           </div>
 
           {/* Available Endpoints */}
-          <div className="bg-white rounded-lg shadow-sm p-8 border border-stone-200">
+          <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200">
             <h2 className="font-display text-2xl text-charcoal mb-6">Available Endpoints</h2>
 
             <div className="space-y-4">
@@ -141,7 +141,7 @@ export default function McpDashboard() {
         </div>
 
         {/* Code Examples */}
-        <div className="bg-white rounded-lg shadow-sm p-8 border border-stone-200 mb-8">
+        <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200 mb-8">
           <h2 className="font-display text-2xl text-charcoal mb-6">Code Examples</h2>
 
           <div className="space-y-6">
@@ -153,7 +153,7 @@ export default function McpDashboard() {
                 </pre>
                 <button
                   onClick={() => handleCopy(curlExample)}
-                  className="absolute top-3 right-3 bg-white/10 text-white px-3 py-1 font-body text-xs uppercase tracking-wider hover:bg-white/20 transition-colors rounded"
+                  className="absolute top-3 right-3 bg-stone-50/10 text-white px-3 py-1 font-body text-xs uppercase tracking-wider hover:bg-stone-50/20 transition-colors rounded"
                 >
                   {copied ? 'Copied' : 'Copy'}
                 </button>
@@ -168,7 +168,7 @@ export default function McpDashboard() {
                 </pre>
                 <button
                   onClick={() => handleCopy(postExample)}
-                  className="absolute top-3 right-3 bg-white/10 text-white px-3 py-1 font-body text-xs uppercase tracking-wider hover:bg-white/20 transition-colors rounded"
+                  className="absolute top-3 right-3 bg-stone-50/10 text-white px-3 py-1 font-body text-xs uppercase tracking-wider hover:bg-stone-50/20 transition-colors rounded"
                 >
                   {copied ? 'Copied' : 'Copy'}
                 </button>
@@ -178,7 +178,7 @@ export default function McpDashboard() {
         </div>
 
         {/* AI Integration Guide */}
-        <div className="bg-white rounded-lg shadow-sm p-8 border border-stone-200">
+        <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200">
           <h2 className="font-display text-2xl text-charcoal mb-6">AI Integration Guide</h2>
 
           <div className="space-y-6 text-stone-600">

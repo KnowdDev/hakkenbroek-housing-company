@@ -45,7 +45,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                     pathname === item.href
                       ? 'bg-brass text-white'
-                      : 'text-stone-300 hover:bg-white/10'
+                      : 'text-stone-300 hover:bg-stone-50/10'
                   }`}
                 >
                   <span className="w-2 h-2 rounded-full bg-current opacity-60 flex-shrink-0" />

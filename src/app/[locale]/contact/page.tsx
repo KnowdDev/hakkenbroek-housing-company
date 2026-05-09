@@ -42,9 +42,7 @@ export default function ContactPage() {
       emailAddress: 'Email',
       phoneNumber: 'Phone',
       officeHours: 'Office Hours',
-      officeHoursText: 'Monday - Friday: 9:00 - 17:00\nSaturday: By appointment\nSunday: Closed',
-      languages: 'Languages',
-      languagesList: ['English', 'Dutch', 'Spanish']
+      officeHoursText: 'Monday - Friday: 9:00 - 17:00\nSaturday: By appointment\nSunday: Closed'
     },
     nl: {
       heroSubtitle: 'Contact',
@@ -72,9 +70,7 @@ export default function ContactPage() {
       emailAddress: 'E-mail',
       phoneNumber: 'Telefoon',
       officeHours: 'Kantooruren',
-      officeHoursText: 'Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak\nZondag: Gesloten',
-      languages: 'Talen',
-      languagesList: ['Engels', 'Nederlands', 'Spaans']
+      officeHoursText: 'Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak\nZondag: Gesloten'
     },
     es: {
       heroSubtitle: 'Contacto',
@@ -102,9 +98,7 @@ export default function ContactPage() {
       emailAddress: 'Correo',
       phoneNumber: 'Teléfono',
       officeHours: 'Horario de Oficina',
-      officeHoursText: 'Lunes - Viernes: 9:00 - 17:00\nSábado: Con cita\nDomingo: Cerrado',
-      languages: 'Idiomas',
-      languagesList: ['Inglés', 'Neerlandés', 'Español']
+      officeHoursText: 'Lunes - Viernes: 9:00 - 17:00\nSábado: Con cita\nDomingo: Cerrado'
     }
   };
 
@@ -151,7 +145,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Form */}
@@ -341,21 +335,6 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <div>
-                  <h3 className="font-body text-xs uppercase tracking-wider text-warm-gray mb-3">
-                    {t.languages}
-                  </h3>
-                  <div className="flex gap-3">
-                    {t.languagesList.map((lang) => (
-                      <span
-                        key={lang}
-                        className="px-3 py-1.5 bg-stone-100 text-warm-gray text-sm font-body"
-                      >
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           </div>

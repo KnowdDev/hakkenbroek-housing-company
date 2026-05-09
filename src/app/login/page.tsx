@@ -23,7 +23,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-stone-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-sm max-w-md w-full">
+      <div className="bg-stone-50 p-8 rounded-lg shadow-sm max-w-md w-full">
         <h1 className="font-display text-2xl text-charcoal mb-6">Dashboard Login</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
