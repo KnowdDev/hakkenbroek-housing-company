@@ -39,6 +39,7 @@ export default function ListingsDashboard() {
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingListing, setEditingListing] = useState<Listing | null>(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState<Partial<Listing>>({
     title: '',
     description: '',
@@ -86,6 +87,7 @@ export default function ListingsDashboard() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
     try {
       const url = editingListing
         ? `/api/listings/${editingListing.id}`
@@ -117,9 +119,13 @@ export default function ListingsDashboard() {
           image_url: '',
           featured: false,
         });
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setErrorMessage(data?.error || 'Failed to save listing');
       }
     } catch (error) {
       console.error('Error saving listing:', error);
+      setErrorMessage('Network error while saving listing');
     }
   };
 
@@ -131,6 +137,7 @@ export default function ListingsDashboard() {
 
   const handleDelete = async (id: number) => {
     if (!confirm('Are you sure you want to delete this listing?')) return;
+    setErrorMessage('');
 
     try {
       const response = await fetch(`/api/listings/${id}`, {
@@ -139,9 +146,13 @@ export default function ListingsDashboard() {
 
       if (response.ok) {
         await fetchListings();
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setErrorMessage(data?.error || 'Failed to delete listing');
       }
     } catch (error) {
       console.error('Error deleting listing:', error);
+      setErrorMessage('Network error while deleting listing');
     }
   };
 
@@ -181,6 +192,12 @@ export default function ListingsDashboard() {
             </button>
           </div>
         </div>
+
+        {errorMessage && (
+          <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {errorMessage}
+          </div>
+        )}
 
         {showAddForm && (
           <div className="bg-stone-50 rounded-lg shadow-sm p-8 mb-8 border-2 border-brass">
