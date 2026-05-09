@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { demoListings } from '@/lib/listings-data';
 
 const statusStyles: Record<string, string> = {
@@ -35,6 +36,9 @@ const statusLabels: Record<string, Record<string, string>> = {
 export default function Home() {
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
+  const [featuredProperties, setFeaturedProperties] = useState(
+    demoListings.filter((p) => p.featured).slice(0, 3)
+  );
 
   const content = {
     en: {
@@ -153,8 +157,27 @@ export default function Home() {
   const t = content[locale as keyof typeof content] || content.en;
   const statusLabelsLocale = statusLabels[locale as keyof typeof statusLabels] || statusLabels.en;
 
-  // Get first 3 featured properties
-  const featuredProperties = demoListings.filter(p => p.featured).slice(0, 3);
+  useEffect(() => {
+    const fetchFeaturedProperties = async () => {
+      try {
+        const response = await fetch('/api/listings');
+        const data = await response.json();
+        if (!response.ok || !Array.isArray(data)) return;
+
+        const featured = data
+          .filter((property: typeof demoListings[number]) => property.featured)
+          .slice(0, 3);
+
+        if (featured.length > 0) {
+          setFeaturedProperties(featured);
+        }
+      } catch (error) {
+        console.error('Error fetching featured properties:', error);
+      }
+    };
+
+    fetchFeaturedProperties();
+  }, []);
 
   return (
     <div className="min-h-screen">
