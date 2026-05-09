@@ -297,7 +297,7 @@ export default function PropertiesPage() {
                     </p>
                     <div className="flex justify-between items-end mb-4">
                       <span className="font-display text-2xl text-brass">
-                        {property.price ? `€${property.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : t.priceOnRequest}
+                        {property.price ? `€${property.price.toLocaleString('en-US', { maximumFractionDigits: 0, useGrouping: true })}` : t.priceOnRequest}
                       </span>
                       <span className="text-warm-gray text-sm">
                         {property.area ? `${property.area} m²` : ''} · {property.bedrooms ? `${property.bedrooms} bed` : ''}
