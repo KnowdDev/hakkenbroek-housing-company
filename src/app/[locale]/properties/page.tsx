@@ -39,9 +39,9 @@ export default function PropertiesPage() {
 
   const content = {
     en: {
-      heroSubtitle: 'Properties',
-      heroTitle: 'Current Listings',
-      heroDescription: 'Discover our curated selection of properties in Amsterdam and the surrounding areas.',
+      heroSubtitle: 'Portfolio',
+      heroTitle: 'Exceptional Properties',
+      heroDescription: 'A curated selection of Amsterdam\'s finest properties. For discreet inquiries about unlisted properties, please contact us directly.',
       filterAll: 'All Properties',
       filterAvailable: 'Available',
       filterUnderConsideration: 'Under Consideration',
@@ -49,8 +49,9 @@ export default function PropertiesPage() {
       filterRented: 'Rented',
       priceAll: 'All Prices',
       priceUnder500k: 'Under €500k',
-      price500kTo1m: '€500k - €1M',
-      priceOver1m: 'Over €1M',
+      price500kTo1m: '€500k – €1M',
+      price1mTo2m: '€1M – €2M',
+      priceOver2m: '€2M+',
       priceOnRequest: 'Price on request',
       loading: 'Loading properties...',
       noImage: 'No image available',
@@ -59,9 +60,9 @@ export default function PropertiesPage() {
       showing: 'Showing',
       property: 'property',
       properties: 'properties',
-      ctaTitle: 'Interested in a property?',
-      ctaText: 'Contact us to schedule a viewing or get more information about any of our listings.',
-      ctaButton: 'Get in Touch',
+      ctaTitle: 'Seeking something unlisted?',
+      ctaText: 'Many of our most exceptional properties never appear on public platforms. Contact us for a discreet conversation about off-market opportunities.',
+      ctaButton: 'Private Inquiry',
       featured: 'Featured',
       status: {
         available: 'Available',
@@ -71,9 +72,9 @@ export default function PropertiesPage() {
       }
     },
     nl: {
-      heroSubtitle: 'Woningen',
-      heroTitle: 'Huidige Aanbiedingen',
-      heroDescription: 'Ontdek onze geselecteerde collectie woningen in Amsterdam en omgeving.',
+      heroSubtitle: 'Portfolio',
+      heroTitle: 'Uitzonderlijke Woningen',
+      heroDescription: 'Een gecureerde selectie van Amsterdams mooiste woningen. Voor discrete vragen over niet-genoteerde woningen, neem direct contact met ons op.',
       filterAll: 'Alle Woningen',
       filterAvailable: 'Beschikbaar',
       filterUnderConsideration: 'In Onderhandeling',
@@ -81,8 +82,9 @@ export default function PropertiesPage() {
       filterRented: 'Verhuurd',
       priceAll: 'Alle Prijzen',
       priceUnder500k: 'Onder €500k',
-      price500kTo1m: '€500k - €1M',
-      priceOver1m: 'Over €1M',
+      price500kTo1m: '€500k – €1M',
+      price1mTo2m: '€1M – €2M',
+      priceOver2m: '€2M+',
       priceOnRequest: 'Prijs op aanvraag',
       loading: 'Woningen laden...',
       noImage: 'Geen afbeelding beschikbaar',
@@ -91,9 +93,9 @@ export default function PropertiesPage() {
       showing: 'Toont',
       property: 'woning',
       properties: 'woningen',
-      ctaTitle: 'Geïnteresseerd in een woning?',
-      ctaText: 'Neem contact op om een bezichtiging te plannen of meer informatie te krijgen over een van onze aanbiedingen.',
-      ctaButton: 'Neem Contact Op',
+      ctaTitle: 'Op zoek naar iets dat niet genoteerd staat?',
+      ctaText: 'Veel van onze meest uitzonderlijke woningen verschijnen nooit op publieke platforms. Neem contact op voor een discreet gesprek over off-market mogelijkheden.',
+      ctaButton: 'Privé Aanvraag',
       featured: 'Uitgelicht',
       status: {
         available: 'Beschikbaar',
@@ -103,9 +105,9 @@ export default function PropertiesPage() {
       }
     },
     es: {
-      heroSubtitle: 'Propiedades',
-      heroTitle: 'Listados Actuales',
-      heroDescription: 'Descubra nuestra selección curada de propiedades en Ámsterdam y alrededores.',
+      heroSubtitle: 'Portfolio',
+      heroTitle: 'Propiedades Excepcionales',
+      heroDescription: 'Una selección curada de las mejores propiedades de Ámsterdam. Para consultas discretas sobre propiedades no listadas, contáctenos directamente.',
       filterAll: 'Todas las Propiedades',
       filterAvailable: 'Disponible',
       filterUnderConsideration: 'En Consideración',
@@ -113,8 +115,9 @@ export default function PropertiesPage() {
       filterRented: 'Alquilado',
       priceAll: 'Todos los Precios',
       priceUnder500k: 'Menos de €500k',
-      price500kTo1m: '€500k - €1M',
-      priceOver1m: 'Más de €1M',
+      price500kTo1m: '€500k – €1M',
+      price1mTo2m: '€1M – €2M',
+      priceOver2m: '€2M+',
       priceOnRequest: 'Precio bajo consulta',
       loading: 'Cargando propiedades...',
       noImage: 'Sin imagen disponible',
@@ -123,9 +126,9 @@ export default function PropertiesPage() {
       showing: 'Mostrando',
       property: 'propiedad',
       properties: 'propiedades',
-      ctaTitle: '¿Interesado en una propiedad?',
-      ctaText: 'Contáctenos para programar una visita u obtener más información sobre cualquiera de nuestros listados.',
-      ctaButton: 'Póngase en Contacto',
+      ctaTitle: '¿Busca algo no listado?',
+      ctaText: 'Muchas de nuestras propiedades más excepcionales nunca aparecen en plataformas públicas. Contáctenos para una conversación discreta sobre oportunidades fuera de mercado.',
+      ctaButton: 'Consulta Privada',
       featured: 'Destacado',
       status: {
         available: 'Disponible',
@@ -165,12 +168,14 @@ export default function PropertiesPage() {
     const statusMatch = filter === 'all' || property.status === filter;
     let priceMatch = true;
 
-    if (priceRange === 'under-600k') {
-      priceMatch = property.price !== undefined && property.price < 600000;
-    } else if (priceRange === '600k-700k') {
-      priceMatch = property.price !== undefined && property.price >= 600000 && property.price < 700000;
-    } else if (priceRange === '700k-plus') {
-      priceMatch = property.price !== undefined && property.price >= 700000;
+    if (priceRange === 'under-500k') {
+      priceMatch = property.price !== undefined && property.price < 500000;
+    } else if (priceRange === '500k-1m') {
+      priceMatch = property.price !== undefined && property.price >= 500000 && property.price < 1000000;
+    } else if (priceRange === '1m-2m') {
+      priceMatch = property.price !== undefined && property.price >= 1000000 && property.price < 2000000;
+    } else if (priceRange === '2m-plus') {
+      priceMatch = property.price !== undefined && property.price >= 2000000;
     }
 
     return statusMatch && priceMatch;
@@ -228,9 +233,10 @@ export default function PropertiesPage() {
                   className="w-full sm:w-56 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
                 >
                   <option value="all">{t.priceAll}</option>
-                  <option value="under-600k">{t.priceUnder500k}</option>
-                  <option value="600k-700k">{t.price500kTo1m}</option>
-                  <option value="700k-plus">{t.priceOver1m}</option>
+                  <option value="under-500k">{t.priceUnder500k}</option>
+                  <option value="500k-1m">{t.price500kTo1m}</option>
+                  <option value="1m-2m">{t.price1mTo2m}</option>
+                  <option value="2m-plus">{t.priceOver2m}</option>
                 </select>
               </div>
             </div>

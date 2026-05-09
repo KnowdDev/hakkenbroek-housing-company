@@ -40,8 +40,9 @@ export default function Footer() {
               />
             </Link>
             <p className="text-stone-300 leading-relaxed mb-6 max-w-sm">
-              Boutique real estate agency in Amsterdam. Over 20 years of experience
-              serving expats and locals with a personal, dedicated approach.
+              Boutique real estate agency in Amsterdam. Over 20 years of discretion
+              and excellence — connecting discerning clients with the city's most
+              exceptional properties.
             </p>
             <p className="text-stone-300">
               <span className="text-stone-200">Leliegracht 21</span>

@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 export default function ServicesPage() {
   const pathname = usePathname();
@@ -8,103 +9,103 @@ export default function ServicesPage() {
 
   const content = {
     en: {
-      heroSubtitle: 'Our Services',
-      heroTitle: 'Comprehensive real estate solutions',
-      intro: 'We offer a full range of real estate services tailored to your needs. Whether you are buying, selling, renting, or looking for property management, our experienced team is here to guide you every step of the way.',
+      heroSubtitle: 'Our Expertise',
+      heroTitle: 'Buying and selling at the highest level',
+      intro: 'We offer a complete range of real estate services — with buying and selling at the core of everything we do. Whether you are acquiring a canal house, selling a family estate, or seeking investment property, our team brings two decades of Amsterdam market intelligence to your side of the table.',
       buying: {
         title: 'Buying',
-        description: 'Expert guidance through the entire buying process, from property search to transfer. We help you find the perfect home that matches your needs and budget.',
-        features: ['Personal property search', 'Market analysis and valuation', 'Negotiation support', 'Legal and financial guidance']
+        description: 'We represent buyers with discretion, precision, and access that no portal can offer. From initial consultation to key transfer, we source properties — many off-market — and negotiate terms that reflect true market value.',
+        features: ['Off-market property sourcing', 'Comprehensive market analysis', 'Strategic negotiation', 'Legal and notarial coordination', 'Post-purchase concierge']
       },
       selling: {
         title: 'Selling',
-        description: 'Professional valuation and marketing to get the best price for your property. We handle everything from listing to closing.',
-        features: ['Free property valuation', 'Professional photography', 'Multi-platform marketing', 'Home styling advice']
+        description: 'We position your property for the market it deserves. Bespoke marketing strategy, professional staging consultation, private viewings for qualified buyers, and access to our international network of high-net-worth individuals.',
+        features: ['Complimentary valuation', 'Bespoke marketing strategy', 'Professional photography and film', 'Private viewings for qualified buyers', 'International buyer network']
       },
       renting: {
         title: 'Renting',
-        description: 'Find quality rental properties, perfect for expats and locals alike. We have access to the best rental listings in Amsterdam.',
-        features: ['Extensive rental database', 'Expat rental specialists', 'Lease agreement assistance', 'Move-in support']
+        description: 'Curated rental properties for expats and locals who expect more. Every listing in our portfolio meets our standards for location, light, and character.',
+        features: ['Curated rental portfolio', 'Expat rental specialists', 'Lease negotiation', 'Move-in coordination']
       },
       leasing: {
         title: 'Leasing',
-        description: 'Long-term lease options with comprehensive management services. Ideal for investors and landlords seeking hassle-free property management.',
-        features: ['Tenant screening', 'Rent collection', 'Property maintenance', 'Legal compliance']
+        description: 'Long-term lease management for landlords who value peace of mind. We handle tenant selection, rent collection, and full legal compliance.',
+        features: ['Tenant selection and screening', 'Rent collection and administration', 'Property maintenance coordination', 'Legal and regulatory compliance']
       },
       management: {
         title: 'Property Management',
-        description: 'Complete property management services for landlords and investors. We handle all aspects of property ownership so you can enjoy passive income.',
-        features: ['Regular inspections', 'Financial reporting', 'Emergency repairs', 'Tax documentation', 'Insurance coordination', '24/7 support']
+        description: 'Comprehensive management for investors and absentee owners. From maintenance to financial reporting, we protect your asset as if it were our own.',
+        features: ['Scheduled property inspections', 'Financial reporting and budgeting', 'Emergency response coordination', 'Tax and insurance administration', 'Vendor and contractor management', '24/7 owner support']
       },
-      cta: 'Ready to get started?',
-      ctaDesc: 'Contact us to discuss your real estate needs. We are here to help you achieve your goals.',
-      contactBtn: 'Get in Touch'
+      cta: 'Ready to begin?',
+      ctaDesc: 'Contact us for a confidential conversation about your property ambitions. We are here to listen, advise, and deliver.',
+      contactBtn: 'Arrange a Consultation'
     },
     nl: {
-      heroSubtitle: 'Onze Diensten',
-      heroTitle: 'Uitgebreide vastgoedoplossingen',
-      intro: 'Wij bieden een volledig scala aan vastgoeddiensten afgestemd op uw behoeften. Of u nu koopt, verkoopt, huurt of op zoek bent naar vastgoedbeheer, ons ervaren team staat klaar om u elke stap te begeleiden.',
+      heroSubtitle: 'Onze Expertise',
+      heroTitle: 'Kopen en verkopen op het hoogste niveau',
+      intro: 'Wij bieden een compleet scala aan vastgoeddiensten — met kopen en verkopen als kern van alles wat wij doen. Of u nu een grachtenpand verwerft, een familiebezit verkoopt, of op zoek bent naar investeringsvastgoed, ons team brengt twee decennia Amsterdamse marktkennis aan uw zijde.',
       buying: {
         title: 'Kopen',
-        description: 'Deskundige begeleiding door het hele aankoopproces, van woningzoektocht tot overdracht. Wij helpen u de perfecte woning te vinden die past bij uw behoeften en budget.',
-        features: ['Persoonlijke woningzoektocht', 'Marktanalyse en waardering', 'Onderhandelingsondersteuning', 'Juridisch en financieel advies']
+        description: 'Wij vertegenwoordigen kopers met discretie, precisie, en toegang die geen enkel portaal kan bieden. Van eerste consult tot sleuteloverdracht — wij vinden woningen, vaak off-market, en onderhandelen voorwaarden die de werkelijke marktwaarde weerspiegelen.',
+        features: ['Off-market woningzoektocht', 'Uitgebreide marktanalyse', 'Strategische onderhandeling', 'Juridische en notariële coördinatie', 'Conciërge na aankoop']
       },
       selling: {
         title: 'Verkopen',
-        description: 'Professionele waardering en marketing om de beste prijs voor uw woning te krijgen. Wij verzorgen alles van listing tot sluiting.',
-        features: ['Gratis woningwaardering', 'Professionele fotografie', 'Multi-platform marketing', 'Home styling advies']
+        description: 'Wij positioneren uw woning voor de markt die het verdient. Maatwerk marketingstrategie, professioneel stylingadvies, privébezichtigingen voor gekwalificeerde kopers, en toegang tot ons internationale netwerk.',
+        features: ['Vrijblijvende waardering', 'Maatwerk marketingstrategie', 'Professionele fotografie en film', 'Privébezichtigingen voor gekwalificeerde kopers', 'Internationaal kopersnetwerk']
       },
       renting: {
         title: 'Huren',
-        description: 'Vind kwaliteits huurwoningen, perfect voor expats en lokale bewoners. Wij hebben toegang tot de beste huurlijsten in Amsterdam.',
-        features: ['Uitgebreide huurdatabase', 'Expat huurspecialisten', 'Huurcontract assistentie', 'Verhuisondersteuning']
+        description: 'Gecureerde huurwoningen voor expats en locals die meer verwachten. Elke woning in ons portfolio voldoet aan onze normen voor locatie, licht en karakter.',
+        features: ['Gecureerd huurportfolio', 'Expat huurspecialisten', 'Huurcontract onderhandeling', 'Verhuiscoördinatie']
       },
       leasing: {
         title: 'Verhuur',
-        description: 'Lange-termijn verhuuropties met uitgebreide beheerdiensten. Ideaal voor investeerders en verhuurders die zorgeloos vastgoedbeheer zoeken.',
-        features: ['Huurdersscreening', 'Huurincasso', 'Vastgoedonderhoud', 'Juridische naleving']
+        description: 'Lange-termijn verhuurbeheer voor verhuurders die gemoedsrust waarderen. Wij verzorgen huurdersselectie, incasso, en volledige juridische naleving.',
+        features: ['Huurdersselectie en screening', 'Huurincasso en administratie', 'Coördinatie van onderhoud', 'Juridische en regelgevende naleving']
       },
       management: {
         title: 'Vastgoedbeheer',
-        description: 'Volledig vastgoedbeheer voor verhuurders en investeerders. Wij verzorgen alle aspecten van eigendom zodat u kunt genieten van passief inkomen.',
-        features: ['Reguliere inspecties', 'Financiële rapportage', 'Noodreparaties', 'Belastingdocumentatie', 'Verzekeringscoördinatie', '24/7 ondersteuning']
+        description: 'Uitgebreid beheer voor investeerders en eigenaren in het buitenland. Van onderhoud tot financiële rapportage — wij beschermen uw bezit alsof het ons eigen is.',
+        features: ['Geplande woninginspecties', 'Financiële rapportage en budgettering', 'Coördinatie van noodsituaties', 'Belasting- en verzekeringsadministratie', 'Leveranciers- en aannemersbeheer', '24/7 eigenaar ondersteuning']
       },
       cta: 'Klaar om te beginnen?',
-      ctaDesc: 'Neem contact op om uw vastgoedbehoeften te bespreken. Wij zijn er om u te helpen uw doelen te bereiken.',
-      contactBtn: 'Neem Contact Op'
+      ctaDesc: 'Neem contact op voor een vertrouwelijk gesprek over uw vastgoedambities. Wij zijn er om te luisteren, adviseren, en leveren.',
+      contactBtn: 'Maak een Afspraak'
     },
     es: {
-      heroSubtitle: 'Nuestros Servicios',
-      heroTitle: 'Soluciones inmobiliarias integrales',
-      intro: 'Ofrecemos una gama completa de servicios inmobiliarios adaptados a sus necesidades. Ya sea que esté comprando, vendiendo, alquilando o buscando administración de propiedades, nuestro equipo experimentado está aquí para guiarlo en cada paso.',
+      heroSubtitle: 'Nuestra Experiencia',
+      heroTitle: 'Comprar y vender al más alto nivel',
+      intro: 'Ofrecemos una gama completa de servicios inmobiliarios — con la compra y venta como núcleo de todo lo que hacemos. Ya sea que esté adquiriendo una casa de canal, vendiendo una propiedad familiar, o buscando inversión inmobiliaria, nuestro equipo aporta dos décadas de inteligencia del mercado de Ámsterdam a su lado.',
       buying: {
         title: 'Comprar',
-        description: 'Orientación experta a través de todo el proceso de compra, desde la búsqueda de propiedades hasta la transferencia. Le ayudamos a encontrar la casa perfecta que se adapte a sus necesidades y presupuesto.',
-        features: ['Búsqueda de propiedades personalizada', 'Análisis y valoración de mercado', 'Apoyo en negociaciones', 'Asesoramiento legal y financiero']
+        description: 'Representamos a compradores con discreción, precisión y acceso que ningún portal puede ofrecer. Desde la consulta inicial hasta la entrega de llaves — encontramos propiedades, muchas fuera de mercado, y negociamos términos que reflejan el verdadero valor.',
+        features: ['Búsqueda de propiedades fuera de mercado', 'Análisis de mercado exhaustivo', 'Negociación estratégica', 'Coordinación legal y notarial', 'Conserjería post-compra']
       },
       selling: {
         title: 'Vender',
-        description: 'Valoración y marketing profesional para obtener el mejor precio para su propiedad. Manejamos todo desde el listado hasta el cierre.',
-        features: ['Valoración gratuita de propiedades', 'Fotografía profesional', 'Marketing en múltiples plataformas', 'Consejos de home styling']
+        description: 'Posicionamos su propiedad para el mercado que merece. Estrategia de marketing a medida, consultoría de estilismo profesional, visitas privadas para compradores cualificados, y acceso a nuestra red internacional.',
+        features: ['Valoración gratuita', 'Estrategia de marketing a medida', 'Fotografía y filmación profesional', 'Visitas privadas para compradores cualificados', 'Red internacional de compradores']
       },
       renting: {
         title: 'Alquilar',
-        description: 'Encuentre propiedades de alquiler de calidad, perfectas para expatriados y locales por igual. Tenemos acceso a los mejores listados de alquiler en Ámsterdam.',
-        features: ['Base de datos de alquiler extensa', 'Especialistas en alquiler para expatriados', 'Asistencia con contratos de arrendamiento', 'Apoyo para la mudanza']
+        description: 'Propiedades de alquiler curadas para expatriados y locales que esperan más. Cada listado en nuestro portfolio cumple con nuestros estándares de ubicación, luz y carácter.',
+        features: ['Portfolio de alquiler curado', 'Especialistas en alquiler para expatriados', 'Negociación de contrato', 'Coordinación de mudanza']
       },
       leasing: {
         title: 'Arrendamiento',
-        description: 'Opciones de arrendamiento a largo plazo con servicios de gestión integrales. Ideal para inversores y propietarios que buscan gestión de propiedades sin complicaciones.',
-        features: ['Selección de inquilinos', 'Cobro de alquiler', 'Mantenimiento de propiedades', 'Cumplimiento legal']
+        description: 'Gestión de arrendamiento a largo plazo para propietarios que valoran la tranquilidad. Manejamos la selección de inquilinos, el cobro de rentas, y el cumplimiento legal completo.',
+        features: ['Selección y evaluación de inquilinos', 'Cobro y administración de rentas', 'Coordinación de mantenimiento', 'Cumplimiento legal y normativo']
       },
       management: {
         title: 'Administración de Propiedades',
-        description: 'Servicios completos de administración de propiedades para propietarios e inversores. Manejamos todos los aspectos de la propiedad para que pueda disfrutar de ingresos pasivos.',
-        features: ['Inspecciones regulares', 'Informes financieros', 'Reparaciones de emergencia', 'Documentación fiscal', 'Coordinación de seguros', 'Soporte 24/7']
+        description: 'Gestión integral para inversores y propietarios ausentes. Desde mantenimiento hasta informes financieros — protegemos su activo como si fuera nuestro.',
+        features: ['Inspecciones programadas', 'Informes financieros y presupuestos', 'Coordinación de emergencias', 'Administración fiscal y de seguros', 'Gestión de proveedores y contratistas', 'Soporte al propietario 24/7']
       },
       cta: '¿Listo para comenzar?',
-      ctaDesc: 'Contáctenos para discutir sus necesidades inmobiliarias. Estamos aquí para ayudarle a lograr sus objetivos.',
-      contactBtn: 'Póngase en Contacto'
+      ctaDesc: 'Contáctenos para una conversación confidencial sobre sus ambiciones inmobiliarias. Estamos aquí para escuchar, asesorar y entregar resultados.',
+      contactBtn: 'Concierte una Consulta'
     }
   };
 
@@ -116,24 +117,28 @@ export default function ServicesPage() {
       description: t.buying.description,
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
       features: t.buying.features,
+      slug: 'buying',
     },
     {
       title: t.selling.title,
       description: t.selling.description,
       image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
       features: t.selling.features,
+      slug: 'selling',
     },
     {
       title: t.renting.title,
       description: t.renting.description,
       image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
       features: t.renting.features,
+      slug: 'renting',
     },
     {
       title: t.leasing.title,
       description: t.leasing.description,
       image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
       features: t.leasing.features,
+      slug: 'leasing',
     },
   ];
 
@@ -176,9 +181,10 @@ export default function ServicesPage() {
       <section className="py-24 bg-stone-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
           {services.map((service, index) => (
-            <div
+            <Link
               key={service.title}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${
+              href={`/${locale}/services/${service.slug}`}
+              className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center group cursor-pointer ${
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}
             >
@@ -189,7 +195,7 @@ export default function ServicesPage() {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
               </div>
@@ -201,7 +207,7 @@ export default function ServicesPage() {
                 <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-3">
                   0{index + 1}
                 </p>
-                <h2 className="font-display text-3xl text-charcoal mb-6">
+                <h2 className="font-display text-3xl text-charcoal mb-6 group-hover:text-brass transition-colors duration-300">
                   {service.title}
                 </h2>
                 <p className="text-warm-gray leading-relaxed mb-8">
@@ -218,45 +224,102 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-6 text-brass font-body text-sm uppercase tracking-wider group-hover:text-brass-light transition-colors">
+                  Learn more →
+                </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
 
       {/* Property Management — Full width */}
-      <section className="py-24 bg-charcoal text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-400 mb-4">
-                05
-              </p>
-              <h2 className="font-display text-3xl md:text-4xl mb-6">
-                {t.management.title}
-              </h2>
-              <p className="text-stone-300 leading-relaxed mb-10">
-                {t.management.description}
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {managementFeatures.map((item) => (
-                  <div key={item} className="flex items-start text-stone-300">
-                    <span className="text-brass-light mr-3">—</span>
-                    {item}
-                  </div>
-                ))}
+      <Link href={`/${locale}/services/property-management`} className="block">
+        <section className="py-24 bg-charcoal text-white group cursor-pointer">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-400 mb-4">
+                  05
+                </p>
+                <h2 className="font-display text-3xl md:text-4xl mb-6 group-hover:text-brass-light transition-colors">
+                  {t.management.title}
+                </h2>
+                <p className="text-stone-300 leading-relaxed mb-10">
+                  {t.management.description}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {managementFeatures.map((item) => (
+                    <div key={item} className="flex items-start text-stone-300">
+                      <span className="text-brass-light mr-3">—</span>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-8 text-brass-light font-body text-sm uppercase tracking-wider">
+                  Learn more →
+                </p>
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+                  alt="Property management"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
-                alt="Property management"
-                className="w-full h-full object-cover"
-              />
+          </div>
+        </section>
+      </Link>
+
+      {/* Expat Services — Full width */}
+      <Link href={`/${locale}/services/expat-services`} className="block">
+        <section className="py-24 bg-stone-50 group cursor-pointer">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="relative aspect-[4/3] overflow-hidden lg:order-2">
+                <img
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+                  alt="International professionals in Amsterdam"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="lg:order-1">
+                <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-4">
+                  06
+                </p>
+                <h2 className="font-display text-3xl md:text-4xl text-charcoal mb-6 group-hover:text-brass transition-colors">
+                  Expat Services
+                </h2>
+                <p className="text-warm-gray leading-relaxed mb-10">
+                  A complete relocation concierge for international clients. We understand the journey and we make Amsterdam feel like home from day one.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-start text-warm-gray">
+                    <span className="text-brass mr-3">—</span>
+                    Pre-arrival consultation and briefing
+                  </div>
+                  <div className="flex items-start text-warm-gray">
+                    <span className="text-brass mr-3">—</span>
+                    Curated property search and viewings
+                  </div>
+                  <div className="flex items-start text-warm-gray">
+                    <span className="text-brass mr-3">—</span>
+                    Contract and legal support
+                  </div>
+                  <div className="flex items-start text-warm-gray">
+                    <span className="text-brass mr-3">—</span>
+                    Settling-in assistance and ongoing support
+                  </div>
+                </div>
+                <p className="mt-8 text-brass font-body text-sm uppercase tracking-wider group-hover:text-brass-light transition-colors">
+                  Learn more →
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Link>
 
       {/* CTA */}
       <section className="py-24 bg-stone-100">
