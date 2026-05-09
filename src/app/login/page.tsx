@@ -6,18 +6,32 @@ import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const correctToken = 'hakkenbroek-admin-2024';
-    
-    if (password === correctToken) {
-      // Set cookie for authentication
-      document.cookie = `dashboard_token=${password}; path=/; max-age=86400; SameSite=Strict`;
-      router.push('/dashboard');
-    } else {
-      setError('Incorrect password');
+    setError('');
+    setSubmitting(true);
+
+    try {
+      const response = await fetch('/api/dashboard/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (response.ok) {
+        router.push('/dashboard');
+      } else {
+        setError(data?.error || 'Incorrect password');
+      }
+    } catch (submitError) {
+      console.error('Login error:', submitError);
+      setError('Unable to login right now');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -51,9 +65,10 @@ export default function LoginPage() {
           )}
           <button
             type="submit"
-            className="w-full bg-charcoal text-white px-6 py-4 font-body text-xs uppercase tracking-widest hover:bg-brass transition-colors duration-300 rounded-lg"
+            disabled={submitting}
+            className="w-full bg-charcoal text-white px-6 py-4 font-body text-xs uppercase tracking-widest hover:bg-brass transition-colors duration-300 rounded-lg disabled:opacity-60"
           >
-            Login
+            {submitting ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>
