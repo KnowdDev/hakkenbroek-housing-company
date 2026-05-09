@@ -222,7 +222,7 @@ export default function PropertyDetailPage() {
                 </div>
                 <div className="text-right hidden sm:block">
                   <p className="font-display text-3xl text-brass">
-                    {listing.price ? `€${listing.price.toLocaleString()}` : priceOnRequest}
+                    {listing.price ? `€${listing.price.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}` : priceOnRequest}
                   </p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function PropertyDetailPage() {
               <div className="bg-stone-50 border border-stone-200 p-8 sticky top-24">
                 <div className="mb-6">
                   <p className="font-display text-3xl text-brass mb-2">
-                    {listing.price ? `€${listing.price.toLocaleString()}` : priceOnRequest}
+                    {listing.price ? `€${listing.price.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}` : priceOnRequest}
                   </p>
                   <p className="text-sm text-warm-gray">
                     {listing.price ? (locale === 'nl' ? 'Vraagprijs' : locale === 'es' ? 'Precio de venta' : 'Asking Price') : ''}

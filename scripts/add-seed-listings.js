@@ -15,7 +15,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1016 BP",
     property_type: "house",
-    status: "available",
+    status: "sold",
     image_url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
@@ -46,7 +46,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1017 EN",
     property_type: "penthouse",
-    status: "available",
+    status: "under consideration",
     image_url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
@@ -108,7 +108,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1077 XW",
     property_type: "apartment",
-    status: "available",
+    status: "sold",
     image_url: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
@@ -139,7 +139,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1053 AE",
     property_type: "villa",
-    status: "available",
+    status: "under consideration",
     image_url: "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&w=1200&q=80",
@@ -201,7 +201,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1072 LA",
     property_type: "apartment",
-    status: "available",
+    status: "sold",
     image_url: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
@@ -231,7 +231,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1016 DT",
     property_type: "house",
-    status: "available",
+    status: "under consideration",
     image_url: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80",
@@ -293,7 +293,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1087 KJ",
     property_type: "villa",
-    status: "available",
+    status: "sold",
     image_url: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80",
@@ -355,7 +355,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1091 AB",
     property_type: "villa",
-    status: "available",
+    status: "under consideration",
     image_url: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
@@ -418,7 +418,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1017 SG",
     property_type: "studio",
-    status: "available",
+    status: "sold",
     image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
@@ -447,7 +447,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1074 HL",
     property_type: "penthouse",
-    status: "available",
+    status: "under consideration",
     image_url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
@@ -510,7 +510,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1015 AB",
     property_type: "house",
-    status: "available",
+    status: "sold",
     image_url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
@@ -540,7 +540,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1082 LA",
     property_type: "house",
-    status: "available",
+    status: "under consideration",
     image_url: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80",
@@ -602,7 +602,7 @@ const listings = [
     city: "Amsterdam",
     postal_code: "1013 HL",
     property_type: "house",
-    status: "available",
+    status: "under consideration",
     image_url: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
