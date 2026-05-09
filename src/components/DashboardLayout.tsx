@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Mail, Home, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const navItems = [
-  { href: '/dashboard', label: 'Enquiries', icon: Mail },
-  { href: '/dashboard/listings', label: 'Listings', icon: Home },
-  { href: '/', label: 'Back to Website', icon: Globe },
+  { href: '/dashboard', label: 'Enquiries' },
+  { href: '/dashboard/listings', label: 'Listings' },
+  { href: '/dashboard/mcp', label: 'MCP Server' },
+  { href: '/', label: 'Back to Website' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -38,36 +38,33 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         <nav className="p-4">
           <ul className="space-y-2">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                      pathname === item.href
-                        ? 'bg-brass text-white'
-                        : 'text-stone-300 hover:bg-white/10'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    {sidebarOpen && (
-                      <span className="font-body text-sm uppercase tracking-wider">
-                        {item.label}
-                      </span>
-                    )}
-                  </Link>
-                </li>
-              );
-            })}
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                    pathname === item.href
+                      ? 'bg-brass text-white'
+                      : 'text-stone-300 hover:bg-white/10'
+                  }`}
+                >
+                  <span className="w-2 h-2 rounded-full bg-current opacity-60 flex-shrink-0" />
+                  {sidebarOpen && (
+                    <span className="font-body text-sm uppercase tracking-wider">
+                      {item.label}
+                    </span>
+                  )}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 text-stone-400 hover:text-white transition-colors"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 text-stone-400 hover:text-white transition-colors font-body text-xs uppercase tracking-wider"
         >
-          {sidebarOpen ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+          {sidebarOpen ? 'Collapse' : 'Expand'}
         </button>
       </aside>
 

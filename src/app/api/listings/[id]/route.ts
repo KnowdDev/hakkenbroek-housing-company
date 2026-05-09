@@ -1,26 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
+import { demoListings } from '@/lib/listings-data';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
-    const { id } = await params;
     const result = await query(
       'SELECT * FROM listings WHERE id = $1',
       [id]
     );
 
-    if (result.rows.length === 0) {
-      return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+    if (result.rows.length > 0) {
+      return NextResponse.json(result.rows[0]);
     }
-
-    return NextResponse.json(result.rows[0]);
   } catch (error) {
-    console.error('Error fetching listing:', error);
-    return NextResponse.json({ error: 'Failed to fetch listing' }, { status: 500 });
+    console.error('Error fetching listing from DB, using demo data:', error);
   }
+
+  const listing = demoListings.find((l) => l.id === parseInt(id));
+  if (!listing) {
+    return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+  }
+  return NextResponse.json(listing);
 }
 
 export async function PUT(

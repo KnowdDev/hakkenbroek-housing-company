@@ -27,6 +27,8 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isLightPage = pathname.includes('/properties/');
+
   useEffect(() => {
     // Extract locale from pathname
     const segments = pathname.split('/').filter(Boolean);
@@ -51,7 +53,7 @@ export default function Navigation() {
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
                 className={`h-16 md:h-20 w-auto transition-all duration-500 ${
-                  scrolled ? '' : 'brightness-0 invert'
+                  scrolled || isLightPage ? '' : 'brightness-0 invert'
                 }`}
               />
             </Link>
@@ -62,35 +64,29 @@ export default function Navigation() {
                   key={link.href}
                   href={`/${locale}${link.href}`}
                   className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group ${
-                    scrolled ? 'text-ink hover:text-brass' : 'text-white/90 hover:text-white'
+                    scrolled || isLightPage ? 'text-ink hover:text-brass' : 'text-white/90 hover:text-white'
                   }`}
                 >
                   {link.label[locale]}
                   <span
                     className={`absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300 ${
-                      scrolled ? 'bg-brass' : 'bg-white'
+                      scrolled || isLightPage ? 'bg-brass' : 'bg-white'
                     }`}
                   />
                 </Link>
               ))}
-              <LanguageToggle scrolled={scrolled} />
+              <LanguageToggle scrolled={scrolled || isLightPage} />
             </div>
 
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`focus:outline-none transition-colors duration-500 ${
-                  scrolled ? 'text-charcoal' : 'text-white'
+                className={`focus:outline-none transition-colors duration-500 font-body text-xs uppercase tracking-wider ${
+                  scrolled || isLightPage ? 'text-charcoal' : 'text-white'
                 }`}
                 aria-label="Toggle menu"
               >
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  {isOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
+                {isOpen ? 'Close' : 'Menu'}
               </button>
             </div>
           </div>

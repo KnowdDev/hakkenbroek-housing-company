@@ -1,16 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
+import { demoListings } from '@/lib/listings-data';
 
 export async function GET() {
   try {
     const result = await query(
       'SELECT * FROM listings ORDER BY created_at DESC'
     );
-    return NextResponse.json(result.rows);
+    if (result.rows.length > 0) {
+      return NextResponse.json(result.rows);
+    }
   } catch (error) {
-    console.error('Error fetching listings:', error);
-    return NextResponse.json({ error: 'Failed to fetch listings' }, { status: 500 });
+    console.error('Error fetching listings from DB, using demo data:', error);
   }
+  return NextResponse.json(demoListings);
 }
 
 export async function POST(request: NextRequest) {

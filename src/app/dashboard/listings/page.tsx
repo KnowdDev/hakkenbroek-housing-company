@@ -394,7 +394,13 @@ export default function ListingsDashboard() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-sm">
-                      {listing.featured ? '⭐' : '-'}
+                      {listing.featured ? (
+                        <span className="px-2 py-1 bg-brass text-white text-xs font-body uppercase tracking-wider rounded">
+                          Featured
+                        </span>
+                      ) : (
+                        '-'
+                      )}
                     </td>
                     <td className="px-6 py-4 text-sm">
                       <div className="flex gap-2">

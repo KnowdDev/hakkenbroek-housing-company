@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 interface Listing {
   id: number;
@@ -61,6 +62,7 @@ export default function PropertiesPage() {
       ctaTitle: 'Interested in a property?',
       ctaText: 'Contact us to schedule a viewing or get more information about any of our listings.',
       ctaButton: 'Get in Touch',
+      featured: 'Featured',
       status: {
         available: 'Available',
         underConsideration: 'Under Consideration',
@@ -92,6 +94,7 @@ export default function PropertiesPage() {
       ctaTitle: 'Geïnteresseerd in een woning?',
       ctaText: 'Neem contact op om een bezichtiging te plannen of meer informatie te krijgen over een van onze aanbiedingen.',
       ctaButton: 'Neem Contact Op',
+      featured: 'Uitgelicht',
       status: {
         available: 'Beschikbaar',
         underConsideration: 'In Onderhandeling',
@@ -123,6 +126,7 @@ export default function PropertiesPage() {
       ctaTitle: '¿Interesado en una propiedad?',
       ctaText: 'Contáctenos para programar una visita u obtener más información sobre cualquiera de nuestros listados.',
       ctaButton: 'Póngase en Contacto',
+      featured: 'Destacado',
       status: {
         available: 'Disponible',
         underConsideration: 'En Consideración',
@@ -251,9 +255,10 @@ export default function PropertiesPage() {
           ) : filteredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProperties.map((property) => (
-                <div
+                <Link
                   key={property.id}
-                  className="group bg-white border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500"
+                  href={`/${locale}/properties/${property.id}`}
+                  className="group bg-white border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500 block cursor-pointer"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone-200">
                     {property.image_url ? (
@@ -273,7 +278,9 @@ export default function PropertiesPage() {
                       {statusLabels[property.status] || property.status}
                     </span>
                     {property.featured && (
-                      <span className="absolute top-4 right-4 text-2xl">⭐</span>
+                      <span className="absolute top-4 right-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 bg-brass text-white">
+                        {t.featured || 'Featured'}
+                      </span>
                     )}
                   </div>
                   <div className="p-6">
@@ -300,7 +307,7 @@ export default function PropertiesPage() {
                       </div>
                     )}
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           ) : (

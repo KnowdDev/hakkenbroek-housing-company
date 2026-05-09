@@ -1,0 +1,460 @@
+export const translations = {
+  en: {
+    hero: {
+      tagline: 'Boutique Real Estate in Amsterdam',
+      cta: 'View Properties'
+    },
+    about: {
+      title: 'About Us',
+      story: 'Our Story',
+      who: 'Who We Are',
+      headline: 'A boutique agency with a personal touch',
+      description1: 'Hakkenbroek Housing Company has been serving the Amsterdam real estate market for over 20 years. As a boutique agency, we pride ourselves on providing personalized service and access to the best properties in the region.',
+      description2: 'Our team of experienced professionals specializes in serving both domestic and international clients, with a particular focus on the expat housing market. We understand the unique challenges of relocating to a new country and are dedicated to making your transition as smooth as possible.',
+      description3: "Whether you're buying, selling, renting, or looking for property management services, our expertise in monuments, foreign real estate, and home styling sets us apart from other agencies.",
+      values: 'Our Values',
+      valuesTitle: 'What Drives Us',
+      trust: 'Trust & Integrity',
+      trustDesc: 'We believe in transparent, honest dealings with all our clients. Your trust is our most valuable asset.',
+      personal: 'Personal Service',
+      personalDesc: 'Every client receives dedicated, personalized attention. We take the time to understand your unique needs.',
+      expertise: 'Expertise',
+      expertiseDesc: 'Deep knowledge of the Amsterdam market, from historic monuments to modern developments.',
+      global: 'Global Perspective',
+      globalDesc: 'Specialized in serving expats and international clients with multilingual support (Dutch & English).',
+      quality: 'Quality Focus',
+      qualityDesc: 'We only work with the best properties in the region, ensuring our clients have access to premium listings.',
+      relationships: 'Long-term Relationships',
+      relationshipsDesc: "We're not just about transactions — we build lasting relationships with our clients for all their real estate needs.",
+      stats: {
+        years: 'Years Experience',
+        rating: 'Client Rating',
+        clients: 'Happy Clients',
+        areas: 'Areas Served'
+      },
+      cta: 'Ready to Work With Us?',
+      ctaDesc: 'Get in touch to discuss your real estate needs. We\'re here to listen, advise, and guide.',
+      contactBtn: 'Contact Us Today'
+    },
+    services: {
+      title: 'Our Services',
+      subtitle: 'Comprehensive real estate solutions',
+      heroSubtitle: 'What We Offer',
+      heroTitle: 'Services tailored to your journey',
+      introLabel: 'Comprehensive Solutions',
+      introText: 'Whether you are looking for a residence that gives roots to your identity or want to make an investment that will pay off in the future, we listen, advise, and anticipate — finding the right properties, often before they even come onto the market.',
+      buying: {
+        title: 'Buying',
+        description: 'Expert guidance through the entire buying process, from property search to transfer. We help you find the perfect home that matches your needs and budget.',
+        features: ['Personal property search', 'Market analysis and valuation', 'Negotiation support', 'Legal and financial guidance']
+      },
+      selling: {
+        title: 'Selling',
+        description: 'Professional valuation and marketing to get the best price for your property. We handle everything from listing to closing.',
+        features: ['Free property valuation', 'Professional photography', 'Multi-platform marketing', 'Home styling advice']
+      },
+      renting: {
+        title: 'Renting',
+        description: 'Find quality rental properties, perfect for expats and locals alike. We have access to the best rental listings in Amsterdam.',
+        features: ['Extensive rental database', 'Expat rental specialists', 'Lease agreement assistance', 'Move-in support']
+      },
+      leasing: {
+        title: 'Leasing',
+        description: 'Long-term lease options with comprehensive management services. Ideal for investors and landlords seeking hassle-free property management.',
+        features: ['Tenant screening', 'Rent collection', 'Property maintenance', 'Legal compliance']
+      },
+      management: {
+        title: 'Property Management',
+        description: 'Complete property management services for landlords and investors. We handle all aspects of property ownership so you can enjoy passive income.',
+        features: ['Regular inspections', 'Financial reporting', 'Emergency repairs', 'Tax documentation', 'Insurance coordination', '24/7 support']
+      },
+      ctaTitle: 'Need help with your real estate needs?',
+      ctaText: 'Contact us today for a free, no-obligation consultation.',
+      ctaButton: 'Get in Touch'
+    },
+    properties: {
+      title: 'Properties',
+      subtitle: 'Discover your perfect home',
+      heroSubtitle: 'Our Portfolio',
+      heroTitle: 'Premium properties in Amsterdam',
+      filters: {
+        status: 'Status',
+        all: 'All Properties',
+        available: 'Available',
+        underConsideration: 'Under Consideration',
+        sold: 'Sold',
+        priceRange: 'Price Range',
+        allPrices: 'All Prices',
+        under600k: 'Under €600,000',
+        between600k700k: '€600,000 – €700,000',
+        over700k: '€700,000+',
+        showing: 'Showing',
+        property: 'property',
+        properties: 'properties'
+      },
+      status: {
+        available: 'Available',
+        underConsideration: 'Under Consideration',
+        sold: 'Sold',
+        rented: 'Rented'
+      },
+      loading: 'Loading properties...',
+      noImage: 'No image',
+      priceOnRequest: 'Price on request',
+      noMatch: 'No properties match your filters.',
+      clearFilters: 'Clear All Filters',
+      ctaTitle: 'Interested in a property?',
+      ctaText: 'Contact us to schedule a viewing or get more information about any of our listings.',
+      ctaButton: 'Get in Touch'
+    },
+    contact: {
+      title: 'Contact Us',
+      subtitle: 'Get in touch',
+      home: {
+        heroSubtitle: 'Amsterdam Real Estate Since 2003',
+        heroTitle: 'Where living becomes an experience',
+        heroDescription: 'Boutique agency with 20+ years of expertise. We connect discerning clients with the most elegant properties Amsterdam has to offer.',
+        viewProperties: 'View Properties',
+        getInTouch: 'Get in Touch',
+        servicesSubtitle: 'What We Do',
+        servicesTitle: 'Comprehensive real estate solutions',
+        services: {
+          buying: {
+            title: 'Buying',
+            desc: 'Expert guidance through the entire buying process, from search to transfer. We listen, we observe, we advise.'
+          },
+          selling: {
+            title: 'Selling',
+            desc: 'Professional valuation and marketing to get the best price for your property. Presentation is everything.'
+          },
+          renting: {
+            title: 'Renting',
+            desc: 'Find quality rental properties, perfect for expats and locals alike. Access to the best listings in Amsterdam.'
+          },
+          leasing: {
+            title: 'Leasing',
+            desc: 'Long-term lease options with comprehensive management services for landlords and tenants.'
+          },
+          management: {
+            title: 'Property Management',
+            desc: 'Complete property management services for landlords and investors. Hassle-free ownership.'
+          },
+          expat: {
+            title: 'Expat Services',
+            desc: 'Specialized support for international clients relocating to the Netherlands. We understand the journey.'
+          }
+        },
+        heritageSubtitle: 'Our Heritage',
+        heritageTitle: 'Over two decades of excellence in Amsterdam real estate',
+        heritageDescription: 'Hakkenbroek Housing Company has been serving the Amsterdam real estate market for over 20 years. As a boutique agency, we pride ourselves on providing personalized service and access to the best properties in the region.',
+        yearsExperience: 'Years Experience',
+        clientRating: 'Client Rating',
+        readStory: 'Read Our Story',
+        featuredSubtitle: 'Current Listings',
+        featuredTitle: 'Featured Properties',
+        viewAllProperties: 'View All Properties',
+        whySubtitle: 'Why Hakkenbroek',
+        whyTitle: 'A boutique approach to real estate',
+        whyDescription: 'We believe in quality over quantity. Every client receives our full attention, and every property in our portfolio has been carefully selected for its unique character.',
+        why: {
+          experience: {
+            title: '20+ Years Experience',
+            desc: 'Deep-rooted expertise in the Amsterdam real estate market, from historic monuments to modern developments.'
+          },
+          expat: {
+            title: 'Expat Specialists',
+            desc: 'Dedicated multilingual support for international clients navigating the Dutch property landscape.'
+          },
+          personal: {
+            title: 'Personal Service',
+            desc: 'Boutique agency approach with dedicated attention to each client. Your goals become our mission.'
+          }
+        },
+        ctaTitle: 'Ready to find your Amsterdam home?',
+        ctaDescription: 'Contact us for a personalized consultation. We listen, we observe, we advise — all with one goal in mind: to find the perfect connection between you and your new space.',
+        startConversation: 'Start a Conversation'
+      },
+      info: {
+        address: 'Leliegracht 21, Amsterdam, Netherlands',
+        email: 'info@hakkenbroek.com',
+        phone: '+31 20 123 4567'
+      },
+      form: {
+        name: 'Name',
+        email: 'Email',
+        phone: 'Phone',
+        message: 'Message',
+        submit: 'Send Message'
+      }
+    }
+  },
+  nl: {
+    hero: {
+      tagline: 'Boutique Makelaardij in Amsterdam',
+      cta: 'Bekijk Woningen'
+    },
+    about: {
+      title: 'Over ons',
+      story: 'Ons Verhaal',
+      who: 'Wie Wij Zijn',
+      headline: 'Een boutique makelaar met een persoonlijke touch',
+      description1: 'Hakkenbroek Housing Company al meer dan 20 jaar actief op de Amsterdamse vastgoedmarkt. Als boutique makelaar zijn wij trots op onze persoonlijke service en toegang tot de beste woningen in de regio.',
+      description2: 'Ons team van ervaren professionals is gespecialiseerd in zowel nationale als internationale cliënten, met een focus op de expat-huisvestingsmarkt. Wij begrijpen de unieke uitdagingen van verhuizing naar een nieuw land en zijn toegewijd om uw overgang zo soepel mogelijk te maken.',
+      description3: 'Of u nu koopt, verkoopt, huurt of op zoek bent naar vastgoedbeheer, onze expertise in monumenten, buitenlands vastgoed en home styling onderscheidt ons van andere makelaars.',
+      values: 'Onze Waarden',
+      valuesTitle: 'Wat ons Drijft',
+      trust: 'Vertrouwen & Integriteit',
+      trustDesc: 'Wij geloven in transparante, eerlijke relaties met al onze cliënten. Uw vertrouwen is ons meest waardevolle bezit.',
+      personal: 'Persoonlijke Service',
+      personalDesc: 'Elke cliënt krijgt toegewijde, persoonlijke aandacht. Wij nemen de tijd om uw unieke behoeften te begrijpen.',
+      expertise: 'Expertise',
+      expertiseDesc: 'Diepe kennis van de Amsterdamse markt, van historische monumenten tot moderne ontwikkelingen.',
+      global: 'Globaal Perspectief',
+      globalDesc: 'Gespecialiseerd in het bedienen van expats en internationale cliënten met meertalige ondersteuning (Nederlands & Engels).',
+      quality: 'Kwaliteitsfocus',
+      qualityDesc: 'Wij werken alleen met de beste woningen in de regio, zodat onze cliënten toegang hebben tot premium aanbod.',
+      relationships: 'Lange-termijn Relaties',
+      relationshipsDesc: 'Wij zijn niet alleen gericht op transacties — wij bouwen langdurige relaties met onze cliënten voor al hun vastgoedbehoeften.',
+      stats: {
+        years: 'Jaar Ervaring',
+        rating: 'Cliëntbeoordeling',
+        clients: 'Tevreden Cliënten',
+        areas: 'Gebieden'
+      },
+      cta: 'Klaar om Samen te Werken?',
+      ctaDesc: 'Neem contact op om uw vastgoedbehoeften te bespreken. Wij zijn er om te luisteren, adviseren en begeleiden.',
+      contactBtn: 'Neem Vandaag Nog Contact Op'
+    },
+    services: {
+      title: 'Onze Diensten',
+      subtitle: 'Uitgebreide vastgoedoplossingen',
+      heroSubtitle: 'Wat Wij Bieden',
+      heroTitle: 'Diensten op maat voor uw reis',
+      introLabel: 'Uitgebreide Oplossingen',
+      introText: 'Of u nu zoekt naar een woning die wortel geeft aan uw identiteit of wilt investeren voor de toekomst, wij luisteren, adviseren en anticiperen — wij vinden de juiste woningen, vaak voordat ze zelfs op de markt komen.',
+      buying: {
+        title: 'Kopen',
+        description: 'Deskundige begeleiding door het hele aankoopproces, van woningzoektocht tot overdracht. Wij helpen u de perfecte woning te vinden die past bij uw behoeften en budget.',
+        features: ['Persoonlijke woningzoektocht', 'Marktanalyse en waardering', 'Onderhandelingsondersteuning', 'Juridisch en financieel advies']
+      },
+      selling: {
+        title: 'Verkopen',
+        description: 'Professionele waardering en marketing om de beste prijs voor uw woning te krijgen. Wij verzorgen alles van listing tot sluiting.',
+        features: ['Gratis woningwaardering', 'Professionele fotografie', 'Multi-platform marketing', 'Home styling advies']
+      },
+      renting: {
+        title: 'Huren',
+        description: 'Vind kwaliteits huurwoningen, perfect voor expats en lokale bewoners. Wij hebben toegang tot de beste huurlijsten in Amsterdam.',
+        features: ['Uitgebreide huurdatabase', 'Expat huurspecialisten', 'Huurcontract assistentie', 'Verhuisondersteuning']
+      },
+      leasing: {
+        title: 'Verhuur',
+        description: 'Lange-termijn verhuuropties met uitgebreide beheerdiensten. Ideaal voor investeerders en verhuurders die zorgeloos vastgoedbeheer zoeken.',
+        features: ['Huurdersscreening', 'Huurincasso', 'Vastgoedonderhoud', 'Juridische naleving']
+      },
+      management: {
+        title: 'Vastgoedbeheer',
+        description: 'Volledig vastgoedbeheer voor verhuurders en investeerders. Wij verzorgen alle aspecten van eigendom zodat u kunt genieten van passief inkomen.',
+        features: ['Reguliere inspecties', 'Financiële rapportage', 'Noodreparaties', 'Belastingdocumentatie', 'Verzekeringscoördinatie', '24/7 ondersteuning']
+      },
+      ctaTitle: 'Hulp nodig bij uw vastgoedbehoeften?',
+      ctaText: 'Neem vandaag nog contact op voor een gratis, vrijblijvend consult.',
+      ctaButton: 'Neem Contact Op'
+    },
+    properties: {
+      title: 'Woningen',
+      subtitle: 'Ontdek uw perfecte woning',
+      heroSubtitle: 'Ons Portfolio',
+      heroTitle: 'Premium woningen in Amsterdam',
+      filters: {
+        status: 'Status',
+        all: 'Alle Woningen',
+        available: 'Beschikbaar',
+        underConsideration: 'In Behandeling',
+        sold: 'Verkocht',
+        priceRange: 'Prijsbereik',
+        allPrices: 'Alle Prijzen',
+        under600k: 'Onder €600.000',
+        between600k700k: '€600.000 – €700.000',
+        over700k: '€700.000+',
+        showing: 'Weergeven',
+        property: 'woning',
+        properties: 'woningen'
+      },
+      status: {
+        available: 'Beschikbaar',
+        underConsideration: 'In Behandeling',
+        sold: 'Verkocht',
+        rented: 'Verhuurd'
+      },
+      loading: 'Woningen laden...',
+      noImage: 'Geen afbeelding',
+      priceOnRequest: 'Prijs op aanvraag',
+      noMatch: 'Geen woningen komen overeen met uw filters.',
+      clearFilters: 'Wis Alle Filters',
+      ctaTitle: 'Geïnteresseerd in een woning?',
+      ctaText: 'Neem contact op om een bezichtiging te plannen of meer informatie te krijgen over onze aanbiedingen.',
+      ctaButton: 'Neem Contact Op'
+    },
+    contact: {
+      title: 'Contact',
+      subtitle: 'Neem contact op',
+      form: {
+        name: 'Naam',
+        email: 'E-mail',
+        phone: 'Telefoon',
+        message: 'Bericht',
+        submit: 'Verstuur Bericht'
+      },
+      info: {
+        address: 'Leliegracht 21, Amsterdam, Nederland',
+        email: 'info@hakkenbroek.com',
+        phone: '+31 20 123 4567'
+      }
+    }
+  },
+  es: {
+    hero: {
+      tagline: 'Inmobiliaria Boutique en Ámsterdam',
+      cta: 'Ver Propiedades'
+    },
+    about: {
+      title: 'Nosotros',
+      story: 'Nuestra Historia',
+      who: 'Quiénes Somos',
+      headline: 'Una agencia boutique con toque personal',
+      description1: 'Hakkenbroek Housing Company ha servido el mercado inmobiliario de Ámsterdam durante más de 20 años. Como agencia boutique, nos enorgullecemos de brindar servicio personalizado y acceso a las mejores propiedades de la región.',
+      description2: 'Nuestro equipo de profesionales experimentados se especializa en atender tanto a clientes nacionales como internacionales, con un enfoque particular en el mercado de vivienda para expatriados. Entendemos los desafíos únicos de mudarse a un nuevo país y estamos dedicados a hacer su transición lo más suave posible.',
+      description3: 'Ya sea que esté comprando, vendiendo, alquilando o buscando servicios de administración de propiedades, nuestra experiencia en monumentos, bienes raíces extranjeros y home styling nos distingue de otras agencias.',
+      values: 'Nuestros Valores',
+      valuesTitle: 'Lo que Nos Impulsa',
+      trust: 'Confianza e Integridad',
+      trustDesc: 'Creemos en tratos transparentes y honestos con todos nuestros clientes. Su confianza es nuestro activo más valioso.',
+      personal: 'Servicio Personal',
+      personalDesc: 'Cada cliente recibe atención dedicada y personalizada. Tomamos el tiempo para entender sus necesidades únicas.',
+      expertise: 'Experiencia',
+      expertiseDesc: 'Conocimiento profundo del mercado de Ámsterdam, desde monumentos históricos hasta desarrollos modernos.',
+      global: 'Perspectiva Global',
+      globalDesc: 'Especializados en servir expatriados y clientes internacionales con soporte multilingüe (holandés e inglés).',
+      quality: 'Enfoque en Calidad',
+      qualityDesc: 'Solo trabajamos con las mejores propiedades de la región, asegurando que nuestros clientes tengan acceso a listados premium.',
+      relationships: 'Relaciones a Largo Plazo',
+      relationshipsDesc: 'No solo se trata de transacciones — construimos relaciones duraderas con nuestros clientes para todas sus necesidades inmobiliarias.',
+      stats: {
+        years: 'Años de Experiencia',
+        rating: 'Calificación de Clientes',
+        clients: 'Clientes Satisfechos',
+        areas: 'Áreas Atendidas'
+      },
+      cta: '¿Listo para Trabajar con Nosotros?',
+      ctaDesc: 'Póngase en contacto para discutir sus necesidades inmobiliarias. Estamos aquí para escuchar, asesorar y guiar.',
+      contactBtn: 'Contáctenos Hoy'
+    },
+    services: {
+      title: 'Nuestros Servicios',
+      subtitle: 'Soluciones inmobiliarias integrales',
+      heroSubtitle: 'Lo Que Ofrecemos',
+      heroTitle: 'Servicios adaptados a su viaje',
+      introLabel: 'Soluciones Integrales',
+      introText: 'Ya sea que esté buscando una residencia que dé raíces a su identidad o quiera hacer una inversión que dará frutos en el futuro, escuchamos, asesoramos y anticipamos — encontramos las propiedades correctas, a menudo antes de que lleguen al mercado.',
+      buying: {
+        title: 'Comprar',
+        description: 'Orientación experta a través de todo el proceso de compra, desde la búsqueda de propiedades hasta la transferencia. Le ayudamos a encontrar la casa perfecta que se adapte a sus necesidades y presupuesto.',
+        features: ['Búsqueda de propiedades personalizada', 'Análisis y valoración de mercado', 'Apoyo en negociaciones', 'Asesoramiento legal y financiero']
+      },
+      selling: {
+        title: 'Vender',
+        description: 'Valoración y marketing profesional para obtener el mejor precio para su propiedad. Manejamos todo desde el listado hasta el cierre.',
+        features: ['Valoración gratuita de propiedades', 'Fotografía profesional', 'Marketing en múltiples plataformas', 'Consejos de home styling']
+      },
+      renting: {
+        title: 'Alquilar',
+        description: 'Encuentre propiedades de alquiler de calidad, perfectas para expatriados y locales por igual. Tenemos acceso a los mejores listados de alquiler en Ámsterdam.',
+        features: ['Base de datos de alquiler extensa', 'Especialistas en alquiler para expatriados', 'Asistencia con contratos de arrendamiento', 'Apoyo para la mudanza']
+      },
+      leasing: {
+        title: 'Arrendamiento',
+        description: 'Opciones de arrendamiento a largo plazo con servicios de gestión integrales. Ideal para inversores y propietarios que buscan gestión de propiedades sin complicaciones.',
+        features: ['Selección de inquilinos', 'Cobro de alquiler', 'Mantenimiento de propiedades', 'Cumplimiento legal']
+      },
+      management: {
+        title: 'Administración de Propiedades',
+        description: 'Servicios completos de administración de propiedades para propietarios e inversores. Manejamos todos los aspectos de la propiedad para que pueda disfrutar de ingresos pasivos.',
+        features: ['Inspecciones regulares', 'Informes financieros', 'Reparaciones de emergencia', 'Documentación fiscal', 'Coordinación de seguros', 'Soporte 24/7']
+      },
+      ctaTitle: '¿Necesita ayuda con sus necesidades inmobiliarias?',
+      ctaText: 'Contáctenos hoy para una consulta gratuita y sin compromiso.',
+      ctaButton: 'Póngase en Contacto'
+    },
+    properties: {
+      title: 'Propiedades',
+      subtitle: 'Descubra su hogar perfecto',
+      heroSubtitle: 'Nuestro Portafolio',
+      heroTitle: 'Propiedades premium en Ámsterdam',
+      filters: {
+        status: 'Estado',
+        all: 'Todas las Propiedades',
+        available: 'Disponible',
+        underConsideration: 'En Consideración',
+        sold: 'Vendida',
+        priceRange: 'Rango de Precio',
+        allPrices: 'Todos los Precios',
+        under600k: 'Menos de €600,000',
+        between600k700k: '€600,000 – €700,000',
+        over700k: '€700,000+',
+        showing: 'Mostrando',
+        property: 'propiedad',
+        properties: 'propiedades'
+      },
+      status: {
+        available: 'Disponible',
+        underConsideration: 'En Consideración',
+        sold: 'Vendida',
+        rented: 'Alquilada'
+      },
+      loading: 'Cargando propiedades...',
+      noImage: 'Sin imagen',
+      priceOnRequest: 'Precio bajo consulta',
+      noMatch: 'No hay propiedades que coincidan con sus filtros.',
+      clearFilters: 'Limpiar Todos los Filtros',
+      ctaTitle: '¿Interesado en una propiedad?',
+      ctaText: 'Contáctenos para programar una visita u obtener más información sobre cualquiera de nuestros listados.',
+      ctaButton: 'Póngase en Contacto'
+    },
+    contact: {
+      title: 'Contáctenos',
+      subtitle: 'Póngase en contacto',
+      heroSubtitle: 'Póngase en Contacto',
+      heroTitle: 'Inicie una conversación',
+      formSubtitle: 'Envíe un Mensaje',
+      formTitle: 'Nos encantaría escuchar de usted',
+      successMessage: 'Gracias por su mensaje. Nos pondremos en contacto con usted dentro de un día hábil.',
+      fullName: 'Nombre Completo',
+      email: 'Correo Electrónico',
+      phone: 'Teléfono',
+      service: 'Servicio',
+      message: 'Mensaje',
+      selectService: 'Seleccione un servicio',
+      buying: 'Comprar',
+      selling: 'Vender',
+      renting: 'Alquilar',
+      leasing: 'Arrendamiento',
+      management: 'Administración de Propiedades',
+      other: 'Otro',
+      submit: 'Enviar Mensaje',
+      infoSubtitle: 'Detalles de Contacto',
+      infoTitle: 'Visite nuestra oficina',
+      address: 'Dirección',
+      addressText: 'Leliegracht 21\nÁmsterdam, Países Bajos',
+      emailAddress: 'Correo Electrónico',
+      phoneNumber: 'Teléfono',
+      officeHours: 'Horario de Oficina',
+      officeHoursText: 'Lunes – Viernes: 9:00 – 18:00\nSábado: 10:00 – 16:00\nDomingo: Cerrado',
+      languages: 'Idiomas',
+      languagesList: ['Dutch', 'English']
+    },
+  }
+};
+
+export type Language = 'en' | 'nl' | 'es';
+export type TranslationKey = keyof typeof translations.en;
