@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { demoListings } from '@/lib/listings-data';
+import { requireApiKey } from '@/lib/api-auth';
 
 export async function GET(
   request: NextRequest,
@@ -31,6 +32,11 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const unauthorizedResponse = await requireApiKey(request);
+  if (unauthorizedResponse) {
+    return unauthorizedResponse;
+  }
+
   try {
     const { id } = await params;
     const body = await request.json();
@@ -74,6 +80,11 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const unauthorizedResponse = await requireApiKey(request);
+  if (unauthorizedResponse) {
+    return unauthorizedResponse;
+  }
+
   try {
     const { id } = await params;
     const result = await query(

@@ -37,9 +37,13 @@ export default function Dashboard() {
     try {
       const response = await fetch('/api/enquiries');
       const data = await response.json();
-      setEnquiries(data);
+      if (!response.ok) {
+        throw new Error((data as { error?: string })?.error || 'Failed to fetch enquiries');
+      }
+      setEnquiries(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching enquiries:', error);
+      setEnquiries([]);
     }
   };
 
@@ -47,9 +51,13 @@ export default function Dashboard() {
     try {
       const response = await fetch('/api/listings');
       const data = await response.json();
-      setListings(data);
+      if (!response.ok) {
+        throw new Error((data as { error?: string })?.error || 'Failed to fetch listings');
+      }
+      setListings(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching listings:', error);
+      setListings([]);
     } finally {
       setLoading(false);
     }

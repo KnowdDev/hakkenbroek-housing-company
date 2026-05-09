@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { demoListings } from '@/lib/listings-data';
+import { requireApiKey } from '@/lib/api-auth';
 
 export async function GET() {
   try {
@@ -17,6 +18,11 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorizedResponse = await requireApiKey(request);
+  if (unauthorizedResponse) {
+    return unauthorizedResponse;
+  }
+
   try {
     const body = await request.json();
     const { 

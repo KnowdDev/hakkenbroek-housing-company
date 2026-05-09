@@ -1,10 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
+
+interface ApiKeyRecord {
+  key_id: string;
+  name: string;
+  key_preview: string;
+  created_at: string;
+  last_used_at?: string | null;
+  revoked_at?: string | null;
+}
 
 export default function McpDashboard() {
   const [copied, setCopied] = useState(false);
+  const [apiKeyName, setApiKeyName] = useState('Cursor MCP Key');
+  const [liveApiKey, setLiveApiKey] = useState('');
+  const [createdKey, setCreatedKey] = useState<string | null>(null);
+  const [keys, setKeys] = useState<ApiKeyRecord[]>([]);
+  const [loadingKeys, setLoadingKeys] = useState(true);
+  const [creatingKey, setCreatingKey] = useState(false);
+  const [revokingKeyId, setRevokingKeyId] = useState<string | null>(null);
+  const [testing, setTesting] = useState(false);
+  const [testResult, setTestResult] = useState<string | null>(null);
+  const [baseUrl, setBaseUrl] = useState('');
 
   const mcpConfig = {
     name: 'hakkenbroek-housing',
@@ -33,16 +52,109 @@ export default function McpDashboard() {
     ],
   };
 
+  useEffect(() => {
+    setBaseUrl(window.location.origin);
+    fetchKeys();
+  }, []);
+
+  const fetchKeys = async () => {
+    setLoadingKeys(true);
+    try {
+      const response = await fetch('/api/mcp/keys');
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to fetch API keys');
+      }
+      setKeys(Array.isArray(data) ? data : []);
+    } catch (error) {
+      setTestResult(`Unable to load API keys: ${(error as Error).message}`);
+      setKeys([]);
+    } finally {
+      setLoadingKeys(false);
+    }
+  };
+
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const curlExample = `curl -X GET "${mcpConfig.baseUrl}/listings" -H "Content-Type: application/json"`;
+  const createKey = async () => {
+    setCreatingKey(true);
+    setCreatedKey(null);
+    try {
+      const response = await fetch('/api/mcp/keys', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: apiKeyName }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to create API key');
+      }
+      setCreatedKey(data.key);
+      setLiveApiKey(data.key);
+      await fetchKeys();
+    } catch (error) {
+      setTestResult(`Failed to create API key: ${(error as Error).message}`);
+    } finally {
+      setCreatingKey(false);
+    }
+  };
 
-  const postExample = `curl -X POST "${mcpConfig.baseUrl}/listings" \\
+  const revokeKey = async (keyId: string) => {
+    setRevokingKeyId(keyId);
+    try {
+      const response = await fetch(`/api/mcp/keys/${keyId}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to revoke API key');
+      }
+      await fetchKeys();
+    } catch (error) {
+      setTestResult(`Failed to revoke API key: ${(error as Error).message}`);
+    } finally {
+      setRevokingKeyId(null);
+    }
+  };
+
+  const cursorConfig = useMemo(
+    () =>
+      JSON.stringify(
+        {
+          name: mcpConfig.name,
+          baseUrl: `${baseUrl || mcpConfig.baseUrl}/api`,
+          headers: {
+            'x-api-key': '${HBK_MCP_API_KEY}',
+          },
+          endpoints: mcpConfig.endpoints.map((endpoint) => endpoint.path),
+        },
+        null,
+        2
+      ),
+    [baseUrl]
+  );
+
+  const downloadConfig = () => {
+    const blob = new Blob([cursorConfig], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'hakkenbroek-mcp-config.json';
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const curlExample = `curl -X GET "${baseUrl || mcpConfig.baseUrl}/api/listings" \\
   -H "Content-Type: application/json" \\
+  -H "x-api-key: $HBK_MCP_API_KEY"`;
+
+  const postExample = `curl -X POST "${baseUrl || mcpConfig.baseUrl}/api/listings" \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: $HBK_MCP_API_KEY" \\
   -d '{
     "title": "New Property",
     "description": "Beautiful home in Amsterdam",
@@ -59,12 +171,40 @@ export default function McpDashboard() {
     "featured": false
   }'`;
 
+  const testConnection = async () => {
+    setTesting(true);
+    setTestResult(null);
+
+    try {
+      const response = await fetch('/api/listings', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(liveApiKey ? { 'x-api-key': liveApiKey } : {}),
+        },
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        setTestResult(`Request failed (${response.status}): ${data?.error || 'Unknown error'}`);
+        return;
+      }
+
+      const listingCount = Array.isArray(data) ? data.length : 0;
+      setTestResult(`Success: API reachable. Returned ${listingCount} listing(s).`);
+    } catch (error) {
+      setTestResult(`Network error: ${(error as Error).message}`);
+    } finally {
+      setTesting(false);
+    }
+  };
+
   return (
     <DashboardLayout>
       <div className="p-8">
         <div className="mb-8">
           <h1 className="font-display text-4xl text-charcoal mb-2">MCP Server</h1>
-          <p className="text-stone-600">Connect AI agents to manage listings and enquiries</p>
+          <p className="text-stone-600">Generate API keys and share config for Cursor using regular HTTP</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -77,10 +217,10 @@ export default function McpDashboard() {
                 <label className="block text-sm font-medium text-stone-700 mb-2">Base URL</label>
                 <div className="flex gap-2">
                   <code className="flex-1 bg-stone-50 px-4 py-3 rounded-lg text-sm text-charcoal font-mono border border-stone-200">
-                    {mcpConfig.baseUrl}
+                    {`${baseUrl || mcpConfig.baseUrl}/api`}
                   </code>
                   <button
-                    onClick={() => handleCopy(mcpConfig.baseUrl)}
+                    onClick={() => handleCopy(`${baseUrl || mcpConfig.baseUrl}/api`)}
                     className="bg-charcoal text-white px-4 py-2 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg"
                   >
                     {copied ? 'Copied' : 'Copy'}
@@ -140,6 +280,80 @@ export default function McpDashboard() {
           </div>
         </div>
 
+        {/* API Key Management */}
+        <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200 mb-8">
+          <h2 className="font-display text-2xl text-charcoal mb-6">API Keys</h2>
+
+          <div className="flex flex-col md:flex-row gap-3 md:items-center mb-6">
+            <input
+              type="text"
+              value={apiKeyName}
+              onChange={(e) => setApiKeyName(e.target.value)}
+              placeholder="Key name"
+              className="w-full md:max-w-sm px-4 py-3 border border-stone-300 rounded-lg text-sm"
+            />
+            <button
+              onClick={createKey}
+              disabled={creatingKey}
+              className="bg-charcoal text-white px-4 py-3 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg disabled:opacity-50"
+            >
+              {creatingKey ? 'Creating...' : 'Generate API Key'}
+            </button>
+          </div>
+
+          {createdKey && (
+            <div className="mb-6 p-4 border border-amber-300 bg-amber-50 rounded-lg">
+              <p className="text-sm text-charcoal mb-2 font-medium">Copy this key now. You will not see it again.</p>
+              <div className="flex gap-2">
+                <code className="flex-1 bg-white px-3 py-2 rounded border border-amber-200 text-xs md:text-sm break-all">
+                  {createdKey}
+                </code>
+                <button
+                  onClick={() => handleCopy(createdKey)}
+                  className="bg-charcoal text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg"
+                >
+                  {copied ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {loadingKeys ? (
+            <p className="text-sm text-stone-500">Loading API keys...</p>
+          ) : keys.length === 0 ? (
+            <p className="text-sm text-stone-500">No API keys yet.</p>
+          ) : (
+            <div className="space-y-3">
+              {keys.map((key) => (
+                <div key={key.key_id} className="border border-stone-200 bg-white rounded-lg p-4">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                    <div>
+                      <p className="font-medium text-charcoal">{key.name}</p>
+                      <code className="text-xs text-stone-600">{key.key_preview}</code>
+                      <p className="text-xs text-stone-500 mt-1">
+                        Created: {new Date(key.created_at).toLocaleString()}
+                        {key.last_used_at ? ` • Last used: ${new Date(key.last_used_at).toLocaleString()}` : ''}
+                      </p>
+                      {key.revoked_at && (
+                        <p className="text-xs text-red-600 mt-1">Revoked: {new Date(key.revoked_at).toLocaleString()}</p>
+                      )}
+                    </div>
+                    {!key.revoked_at && (
+                      <button
+                        onClick={() => revokeKey(key.key_id)}
+                        disabled={revokingKeyId === key.key_id}
+                        className="bg-red-600 text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-red-700 transition-colors rounded-lg disabled:opacity-50"
+                      >
+                        {revokingKeyId === key.key_id ? 'Revoking...' : 'Revoke'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Code Examples */}
         <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200 mb-8">
           <h2 className="font-display text-2xl text-charcoal mb-6">Code Examples</h2>
@@ -193,8 +407,10 @@ export default function McpDashboard() {
             <div>
               <h3 className="font-medium text-charcoal mb-2">2. Authentication</h3>
               <p className="text-sm leading-relaxed">
-                Currently, the API is open for local development. For production use, implement API key authentication
-                by adding an Authorization header to all requests.
+                Configure <code className="bg-stone-100 px-1 rounded">MCP_API_KEY</code> on the server to enforce
+                API-key authentication for write operations (POST/PUT/DELETE). Use either
+                <code className="bg-stone-100 px-1 rounded ml-1">x-api-key</code> or
+                <code className="bg-stone-100 px-1 rounded ml-1">Authorization: Bearer &lt;key&gt;</code>.
               </p>
             </div>
 
@@ -221,11 +437,52 @@ export default function McpDashboard() {
             </div>
 
             <div>
-              <h3 className="font-medium text-charcoal mb-2">4. Rate Limits</h3>
-              <p className="text-sm leading-relaxed">
-                No rate limits are enforced in development. For production deployments,
-                consider adding rate limiting to prevent abuse.
+              <h3 className="font-medium text-charcoal mb-2">4. Quick Connectivity Test</h3>
+              <div className="flex flex-col md:flex-row gap-3 md:items-center">
+                <input
+                  type="password"
+                  value={liveApiKey}
+                  onChange={(e) => setLiveApiKey(e.target.value)}
+                  placeholder="Paste API key for test request"
+                  className="w-full md:max-w-md px-4 py-3 border border-stone-300 rounded-lg text-sm"
+                />
+                <button
+                  onClick={testConnection}
+                  disabled={testing}
+                  className="bg-charcoal text-white px-4 py-3 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg disabled:opacity-50"
+                >
+                  {testing ? 'Testing...' : 'Test GET /api/listings'}
+                </button>
+              </div>
+              {testResult && (
+                <p className="text-sm leading-relaxed mt-3">{testResult}</p>
+              )}
+            </div>
+
+            <div>
+              <h3 className="font-medium text-charcoal mb-2">5. Cursor Config File</h3>
+              <p className="text-sm leading-relaxed mb-3">
+                Share this config with Cursor and set <code className="bg-stone-100 px-1 rounded">HBK_MCP_API_KEY</code>.
               </p>
+              <div className="relative">
+                <pre className="bg-stone-900 text-stone-200 px-4 py-4 rounded-lg text-sm font-mono overflow-x-auto">
+                  {cursorConfig}
+                </pre>
+                <div className="absolute top-3 right-3 flex gap-2">
+                  <button
+                    onClick={() => handleCopy(cursorConfig)}
+                    className="bg-stone-50/10 text-white px-3 py-1 font-body text-xs uppercase tracking-wider hover:bg-stone-50/20 transition-colors rounded"
+                  >
+                    {copied ? 'Copied' : 'Copy'}
+                  </button>
+                  <button
+                    onClick={downloadConfig}
+                    className="bg-stone-50/10 text-white px-3 py-1 font-body text-xs uppercase tracking-wider hover:bg-stone-50/20 transition-colors rounded"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

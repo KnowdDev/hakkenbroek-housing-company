@@ -38,10 +38,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const result = await query(
-      'INSERT INTO enquiries (name, email, phone, message, property_id, property_title) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [name, email, phone, message, property_id || null, property_title]
-    );
+    let result;
+    try {
+      result = await query(
+        'INSERT INTO enquiries (name, email, phone, message, property_id, property_title) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+        [name, email, phone, message, property_id || null, property_title]
+      );
+    } catch (insertError) {
+      // Backward compatibility with older DB schema missing property_title column.
+      result = await query(
+        'INSERT INTO enquiries (name, email, phone, message, property_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [name, email, phone, message, property_id || null]
+      );
+      console.warn('Enquiries table has no property_title column; inserted without it.', insertError);
+    }
 
     return NextResponse.json(result.rows[0], { status: 201 });
   } catch (error) {

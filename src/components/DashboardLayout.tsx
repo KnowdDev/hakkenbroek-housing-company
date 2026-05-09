@@ -36,9 +36,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               alt="Hakkenbroek"
               className="h-10 w-auto brightness-0 invert"
             />
-            {sidebarOpen && (
-              <span className="font-display text-xl">Dashboard</span>
-            )}
           </div>
         </div>
 
