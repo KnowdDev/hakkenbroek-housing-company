@@ -15,6 +15,25 @@ export interface Listing {
   images?: string[];
   featured: boolean;
   created_at: string;
+  // Luxury real estate fields
+  year_built?: number;
+  energy_label?: string;
+  garden?: boolean;
+  garden_area?: number;
+  parking?: boolean;
+  parking_spaces?: number;
+  balcony?: boolean;
+  terrace?: boolean;
+  furnished?: boolean;
+  basement?: boolean;
+  elevator?: boolean;
+  floors?: number;
+  renovation_year?: number;
+  price_per_sqm?: number;
+  asking_price?: string;
+  availability_date?: string;
+  hoa_fees?: number;
+  property_tax?: number;
 }
 
 export const demoListings: Listing[] = [

@@ -19,15 +19,34 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, image_url, featured } = body;
+    const { 
+      title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
+      property_type, status, image_url, featured, images, year_built, energy_label, 
+      garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
+      basement, elevator, floors 
+    } = body;
 
     if (!title) {
       return NextResponse.json({ error: 'Title is required' }, { status: 400 });
     }
 
     const result = await query(
-      'INSERT INTO listings (title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, image_url, featured) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *',
-      [title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status || 'available', image_url, featured || false]
+      `INSERT INTO listings (
+        title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
+        property_type, status, image_url, featured, images, year_built, energy_label, 
+        garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
+        basement, elevator, floors
+      ) VALUES (
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, 
+        $17, $18, $19, $20, $21, $22, $23, $24, $25
+      ) RETURNING *`,
+      [
+        title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
+        property_type, status || 'available', image_url, featured || false, 
+        images ? JSON.stringify(images) : null, year_built, energy_label, 
+        garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
+        basement, elevator, floors
+      ]
     );
 
     return NextResponse.json(result.rows[0], { status: 201 });

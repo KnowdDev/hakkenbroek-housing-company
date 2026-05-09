@@ -34,11 +34,29 @@ export async function PUT(
   try {
     const { id } = await params;
     const body = await request.json();
-    const { title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, image_url, featured } = body;
+    const { 
+      title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
+      property_type, status, image_url, featured, images, year_built, energy_label, 
+      garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
+      basement, elevator, floors 
+    } = body;
 
     const result = await query(
-      'UPDATE listings SET title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5, area = $6, address = $7, city = $8, postal_code = $9, property_type = $10, status = $11, image_url = $12, featured = $13, updated_at = CURRENT_TIMESTAMP WHERE id = $14 RETURNING *',
-      [title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, image_url, featured, id]
+      `UPDATE listings SET 
+        title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5, 
+        area = $6, address = $7, city = $8, postal_code = $9, property_type = $10, 
+        status = $11, image_url = $12, featured = $13, images = $14, year_built = $15, 
+        energy_label = $16, garden = $17, garden_area = $18, parking = $19, 
+        parking_spaces = $20, balcony = $21, terrace = $22, furnished = $23, 
+        basement = $24, elevator = $25, floors = $26, updated_at = CURRENT_TIMESTAMP 
+        WHERE id = $27 RETURNING *`,
+      [
+        title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
+        property_type, status, image_url, featured, 
+        images ? JSON.stringify(images) : null, year_built, energy_label, 
+        garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
+        basement, elevator, floors, id
+      ]
     );
 
     if (result.rows.length === 0) {

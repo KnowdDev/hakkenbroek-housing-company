@@ -17,8 +17,21 @@ interface Listing {
   property_type?: string;
   status: string;
   image_url?: string;
+  images?: string[];
   featured: boolean;
   created_at: string;
+  year_built?: number;
+  energy_label?: string;
+  garden?: boolean;
+  garden_area?: number;
+  parking?: boolean;
+  parking_spaces?: number;
+  balcony?: boolean;
+  terrace?: boolean;
+  furnished?: boolean;
+  basement?: boolean;
+  elevator?: boolean;
+  floors?: number;
 }
 
 export default function ListingsDashboard() {
@@ -39,7 +52,20 @@ export default function ListingsDashboard() {
     property_type: 'apartment',
     status: 'available',
     image_url: '',
+    images: [],
     featured: false,
+    year_built: undefined,
+    energy_label: '',
+    garden: false,
+    garden_area: undefined,
+    parking: false,
+    parking_spaces: undefined,
+    balcony: false,
+    terrace: false,
+    furnished: false,
+    basement: false,
+    elevator: false,
+    floors: undefined,
   });
 
   useEffect(() => {
@@ -306,6 +332,204 @@ export default function ListingsDashboard() {
                   </label>
                 </div>
               </div>
+
+              {/* Luxury Property Features */}
+              <div className="border-t border-stone-200 pt-6">
+                <h3 className="font-display text-xl text-charcoal mb-4">Luxury Features</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-stone-700 mb-2">
+                      Year Built
+                    </label>
+                    <input
+                      type="number"
+                      value={formData.year_built || ''}
+                      onChange={(e) => setFormData({ ...formData, year_built: parseInt(e.target.value) || undefined })}
+                      className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                      placeholder="e.g. 1890"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-stone-700 mb-2">
+                      Energy Label
+                    </label>
+                    <select
+                      value={formData.energy_label || ''}
+                      onChange={(e) => setFormData({ ...formData, energy_label: e.target.value })}
+                      className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                    >
+                      <option value="">Select</option>
+                      <option value="A++">A++</option>
+                      <option value="A+">A+</option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>
+                      <option value="F">F</option>
+                      <option value="G">G</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-stone-700 mb-2">
+                      Floors
+                    </label>
+                    <input
+                      type="number"
+                      value={formData.floors || ''}
+                      onChange={(e) => setFormData({ ...formData, floors: parseInt(e.target.value) || undefined })}
+                      className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                      placeholder="e.g. 3"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Outdoor Features */}
+              <div className="border-t border-stone-200 pt-6">
+                <h3 className="font-display text-xl text-charcoal mb-4">Outdoor Features</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="garden"
+                      checked={formData.garden}
+                      onChange={(e) => setFormData({ ...formData, garden: e.target.checked })}
+                      className="w-5 h-5 text-brass border-stone-300 rounded focus:ring-brass"
+                    />
+                    <label htmlFor="garden" className="ml-2 text-sm font-medium text-stone-700">
+                      Garden
+                    </label>
+                  </div>
+                  {formData.garden && (
+                    <div>
+                      <label className="block text-sm font-medium text-stone-700 mb-2">
+                        Garden Area (m²)
+                      </label>
+                      <input
+                        type="number"
+                        value={formData.garden_area || ''}
+                        onChange={(e) => setFormData({ ...formData, garden_area: parseInt(e.target.value) || undefined })}
+                        className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                      />
+                    </div>
+                  )}
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="balcony"
+                      checked={formData.balcony}
+                      onChange={(e) => setFormData({ ...formData, balcony: e.target.checked })}
+                      className="w-5 h-5 text-brass border-stone-300 rounded focus:ring-brass"
+                    />
+                    <label htmlFor="balcony" className="ml-2 text-sm font-medium text-stone-700">
+                      Balcony
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="terrace"
+                      checked={formData.terrace}
+                      onChange={(e) => setFormData({ ...formData, terrace: e.target.checked })}
+                      className="w-5 h-5 text-brass border-stone-300 rounded focus:ring-brass"
+                    />
+                    <label htmlFor="terrace" className="ml-2 text-sm font-medium text-stone-700">
+                      Terrace
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Parking & Building Features */}
+              <div className="border-t border-stone-200 pt-6">
+                <h3 className="font-display text-xl text-charcoal mb-4">Parking & Building</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="parking"
+                      checked={formData.parking}
+                      onChange={(e) => setFormData({ ...formData, parking: e.target.checked })}
+                      className="w-5 h-5 text-brass border-stone-300 rounded focus:ring-brass"
+                    />
+                    <label htmlFor="parking" className="ml-2 text-sm font-medium text-stone-700">
+                      Parking
+                    </label>
+                  </div>
+                  {formData.parking && (
+                    <div>
+                      <label className="block text-sm font-medium text-stone-700 mb-2">
+                        Parking Spaces
+                      </label>
+                      <input
+                        type="number"
+                        value={formData.parking_spaces || ''}
+                        onChange={(e) => setFormData({ ...formData, parking_spaces: parseInt(e.target.value) || undefined })}
+                        className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                      />
+                    </div>
+                  )}
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="elevator"
+                      checked={formData.elevator}
+                      onChange={(e) => setFormData({ ...formData, elevator: e.target.checked })}
+                      className="w-5 h-5 text-brass border-stone-300 rounded focus:ring-brass"
+                    />
+                    <label htmlFor="elevator" className="ml-2 text-sm font-medium text-stone-700">
+                      Elevator
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="basement"
+                      checked={formData.basement}
+                      onChange={(e) => setFormData({ ...formData, basement: e.target.checked })}
+                      className="w-5 h-5 text-brass border-stone-300 rounded focus:ring-brass"
+                    />
+                    <label htmlFor="basement" className="ml-2 text-sm font-medium text-stone-700">
+                      Basement
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="furnished"
+                      checked={formData.furnished}
+                      onChange={(e) => setFormData({ ...formData, furnished: e.target.checked })}
+                      className="w-5 h-5 text-brass border-stone-300 rounded focus:ring-brass"
+                    />
+                    <label htmlFor="furnished" className="ml-2 text-sm font-medium text-stone-700">
+                      Furnished
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Image Gallery */}
+              <div className="border-t border-stone-200 pt-6">
+                <h3 className="font-display text-xl text-charcoal mb-4">Image Gallery</h3>
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-2">
+                    Additional Image URLs (one per line)
+                  </label>
+                  <textarea
+                    rows={4}
+                    value={(formData.images || []).join('\n')}
+                    onChange={(e) => setFormData({ 
+                      ...formData, 
+                      images: e.target.value.split('\n').filter(url => url.trim()) 
+                    })}
+                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                    placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"
+                  />
+                  <p className="text-sm text-stone-500 mt-2">Enter each image URL on a new line</p>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-stone-700 mb-2">
                   Description
