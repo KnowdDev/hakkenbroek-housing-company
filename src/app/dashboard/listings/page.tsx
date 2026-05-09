@@ -616,7 +616,7 @@ export default function ListingsDashboard() {
                       {listing.title}
                     </td>
                     <td className="px-6 py-4 text-sm text-stone-600">
-                      {listing.price ? `€${listing.price.toLocaleString('nl-NL', { maximumFractionDigits: 0 })}` : '-'}
+                      {listing.price ? `€${listing.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : '-'}
                     </td>
                     <td className="px-6 py-4 text-sm text-stone-600 capitalize">
                       {listing.property_type || '-'}

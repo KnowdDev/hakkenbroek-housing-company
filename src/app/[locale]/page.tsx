@@ -335,7 +335,7 @@ export default function Home() {
                   <p className="text-warm-gray text-sm mb-4">{property.address}, {property.city}</p>
                   <div className="flex justify-between items-end">
                     <span className="font-display text-2xl text-brass">
-                      {property.price ? `€${property.price.toLocaleString()}` : 'Price on request'}
+                      {property.price ? `€${property.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : 'Price on request'}
                     </span>
                     <span className="text-warm-gray text-sm">
                       {property.area} m² · {property.bedrooms} bed
