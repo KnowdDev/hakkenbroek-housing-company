@@ -90,10 +90,16 @@ function parseSseEvent(raw) {
   return event;
 }
 
+const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD;
+if (!DASHBOARD_PASSWORD) {
+  console.error('Error: DASHBOARD_PASSWORD env var is required');
+  process.exit(1);
+}
+
 async function main() {
   console.log('=== 1. Creating API key ===');
   const keyRes = await request('/api/mcp/keys', 'POST', { name: 'MCP Test Key' }, {
-    'Cookie': 'dashboard_token=hakkenbroek2026',
+    'Cookie': `dashboard_token=${DASHBOARD_PASSWORD}`,
   });
   console.log('Status:', keyRes.status);
   if (keyRes.status !== 201) {
@@ -143,7 +149,7 @@ async function main() {
 
   console.log('\n=== 6. Cleaning up ===');
   await request(`/api/mcp/keys/${keyRes.body.key_id}`, 'DELETE', null, {
-    'Cookie': 'dashboard_token=hakkenbroek2026',
+    'Cookie': `dashboard_token=${DASHBOARD_PASSWORD}`,
   });
   console.log('Key revoked');
 
