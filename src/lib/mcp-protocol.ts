@@ -1,4 +1,14 @@
+import { z } from 'zod';
 import { query } from './db';
+import { logger } from './logger';
+import { ValidationError, NotFoundError } from './errors';
+import {
+  getListingSchema,
+  createListingSchema,
+  updateListingSchema,
+  deleteListingSchema,
+  createEnquirySchema,
+} from './validation';
 
 export interface JsonRpcRequest {
   jsonrpc: '2.0';
@@ -14,9 +24,19 @@ export interface JsonRpcResponse {
   error?: { code: number; message: string; data?: unknown };
 }
 
+type ToolHandler = (args: Record<string, unknown>, id: number | string) => Promise<JsonRpcResponse>;
+
+interface ToolDefinition {
+  name: string;
+  description: string;
+  inputSchema: Record<string, unknown>;
+  handler: ToolHandler;
+}
+
 const SERVER_NAME = 'hakkenbroek-housing';
-const SERVER_VERSION = '1.0.0';
+const SERVER_VERSION = '1.1.0';
 const PROTOCOL_VERSION = '2024-11-05';
+const TOOL_TIMEOUT_MS = 25000;
 
 const tools = [
   {
@@ -269,6 +289,20 @@ function listingUpdateArgs(body: Record<string, unknown>): unknown[] {
   ];
 }
 
+function validateArgs<T>(schema: z.ZodSchema<T>, args: unknown, toolName: string): T {
+  const result = schema.safeParse(args);
+  if (!result.success) {
+    const fieldErrors: Record<string, string[]> = {};
+    for (const issue of result.error.issues) {
+      const path = issue.path.join('.') || '_root';
+      if (!fieldErrors[path]) fieldErrors[path] = [];
+      fieldErrors[path].push(issue.message);
+    }
+    throw new ValidationError(`Invalid arguments for ${toolName}`, fieldErrors);
+  }
+  return result.data;
+}
+
 export async function handleToolCall(request: JsonRpcRequest): Promise<JsonRpcResponse> {
   const { id, params = {} } = request;
   const toolName = params.name as string;
@@ -278,81 +312,99 @@ export async function handleToolCall(request: JsonRpcRequest): Promise<JsonRpcRe
     return buildError(0, -32600, 'Invalid Request: tool call requires an id');
   }
 
+  const startTime = Date.now();
+
   try {
+    let result: JsonRpcResponse;
+
     switch (toolName) {
       case 'list_listings': {
-        const result = await query('SELECT * FROM listings ORDER BY created_at DESC');
-        return buildToolResult(id, stringifyResult(result.rows));
+        const data = await query('SELECT * FROM listings ORDER BY created_at DESC');
+        result = buildToolResult(id, stringifyResult(data.rows));
+        break;
       }
 
       case 'get_listing': {
-        const listingId = Number(args.id);
-        if (!listingId || isNaN(listingId)) {
-          return buildError(id, -32602, 'Invalid params: id must be a number');
+        const { id: listingId } = validateArgs(getListingSchema, args, 'get_listing');
+        const data = await query('SELECT * FROM listings WHERE id = $1 LIMIT 1', [listingId]);
+        if (data.rows.length === 0) {
+          throw new NotFoundError('Listing', listingId);
         }
-        const result = await query('SELECT * FROM listings WHERE id = $1 LIMIT 1', [listingId]);
-        if (result.rows.length === 0) {
-          return buildToolResult(id, 'Listing not found');
-        }
-        return buildToolResult(id, JSON.stringify(result.rows[0], null, 2));
+        result = buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
+        break;
       }
 
       case 'create_listing': {
-        const insertResult = await query(
+        const validated = validateArgs(createListingSchema, args, 'create_listing');
+        const data = await query(
           `INSERT INTO listings (${listingInsertFields()}) VALUES (${listingInsertValues()}) RETURNING *`,
-          listingInsertArgs(args)
+          listingInsertArgs(validated as unknown as Record<string, unknown>)
         );
-        return buildToolResult(id, JSON.stringify(insertResult.rows[0], null, 2));
+        result = buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
+        break;
       }
 
       case 'update_listing': {
-        const updateId = Number(args.id);
-        if (!updateId || isNaN(updateId)) {
-          return buildError(id, -32602, 'Invalid params: id must be a number');
-        }
-        const updateResult = await query(
+        const { id: updateId, ...rest } = validateArgs(updateListingSchema, args, 'update_listing');
+        const data = await query(
           `UPDATE listings SET ${listingUpdateSet()}, updated_at = CURRENT_TIMESTAMP WHERE id = $27 RETURNING *`,
-          [...listingUpdateArgs(args), updateId]
+          [...listingUpdateArgs(rest as unknown as Record<string, unknown>), updateId]
         );
-        if (updateResult.rows.length === 0) {
-          return buildToolResult(id, 'Listing not found');
+        if (data.rows.length === 0) {
+          throw new NotFoundError('Listing', updateId);
         }
-        return buildToolResult(id, JSON.stringify(updateResult.rows[0], null, 2));
+        result = buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
+        break;
       }
 
       case 'delete_listing': {
-        const deleteId = Number(args.id);
-        if (!deleteId || isNaN(deleteId)) {
-          return buildError(id, -32602, 'Invalid params: id must be a number');
+        const { id: deleteId } = validateArgs(deleteListingSchema, args, 'delete_listing');
+        const data = await query('DELETE FROM listings WHERE id = $1 RETURNING id', [deleteId]);
+        if (data.rows.length === 0) {
+          throw new NotFoundError('Listing', deleteId);
         }
-        const deleteResult = await query('DELETE FROM listings WHERE id = $1 RETURNING id', [deleteId]);
-        if (deleteResult.rows.length === 0) {
-          return buildToolResult(id, 'Listing not found');
-        }
-        return buildToolResult(id, `Listing ${deleteId} deleted successfully`);
+        result = buildToolResult(id, `Listing ${deleteId} deleted successfully`);
+        break;
       }
 
       case 'list_enquiries': {
-        const enquiries = await query('SELECT * FROM enquiries ORDER BY created_at DESC');
-        return buildToolResult(id, stringifyResult(enquiries.rows));
+        const data = await query('SELECT * FROM enquiries ORDER BY created_at DESC');
+        result = buildToolResult(id, stringifyResult(data.rows));
+        break;
       }
 
       case 'create_enquiry': {
-        const { name, email, phone, message, property_id } = args;
-        if (!name || !email || !message) {
-          return buildError(id, -32602, 'Invalid params: name, email, and message are required');
-        }
-        const enquiryResult = await query(
+        const validated = validateArgs(createEnquirySchema, args, 'create_enquiry');
+        const data = await query(
           `INSERT INTO enquiries (name, email, phone, message, property_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-          [name, email, phone ?? null, message, property_id ?? null]
+          [validated.name, validated.email, validated.phone ?? null, validated.message, validated.property_id ?? null]
         );
-        return buildToolResult(id, JSON.stringify(enquiryResult.rows[0], null, 2));
+        result = buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
+        break;
       }
 
       default:
         return buildError(id, -32601, `Method not found: ${toolName}`);
     }
+
+    const duration = Date.now() - startTime;
+    logger.debug(`Tool '${toolName}' completed`, { toolName, duration });
+
+    return result;
   } catch (error) {
+    const duration = Date.now() - startTime;
+
+    if (error instanceof ValidationError) {
+      logger.warn(`Validation error in '${toolName}'`, { toolName, duration, errors: error.fieldErrors });
+      return buildError(id, -32602, error.message);
+    }
+
+    if (error instanceof NotFoundError) {
+      logger.warn(`Not found in '${toolName}'`, { toolName, duration });
+      return buildToolResult(id, error.message);
+    }
+
+    logger.error(`Tool '${toolName}' failed`, error instanceof Error ? error : undefined, { toolName, duration });
     const message = error instanceof Error ? error.message : 'Unknown error';
     return buildError(id, -32603, `Internal error: ${message}`);
   }
