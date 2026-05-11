@@ -14,6 +14,8 @@ export async function ensureApiKeysTable() {
       key_preview VARCHAR(64) NOT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       last_used_at TIMESTAMP,
+      last_used_ip VARCHAR(45),
+      request_count INTEGER DEFAULT 0,
       revoked_at TIMESTAMP
     )
   `);
@@ -50,18 +52,18 @@ function extractApiKey(request: NextRequest): string | null {
   return null;
 }
 
-export async function validateApiKey(request: NextRequest): Promise<boolean> {
+export async function validateApiKey(request: NextRequest): Promise<{ valid: boolean; keyId?: string }> {
   const providedApiKey = extractApiKey(request);
-  if (!providedApiKey) return false;
+  if (!providedApiKey) return { valid: false };
 
   // Backward-compatible single static key support.
   const staticApiKey = process.env.MCP_API_KEY;
   if (staticApiKey && providedApiKey === staticApiKey) {
-    return true;
+    return { valid: true };
   }
 
   const parsed = parseManagedKey(providedApiKey);
-  if (!parsed) return false;
+  if (!parsed) return { valid: false };
 
   await ensureApiKeysTable();
 
@@ -70,14 +72,24 @@ export async function validateApiKey(request: NextRequest): Promise<boolean> {
     [parsed.keyId]
   );
 
-  if (result.rows.length === 0) return false;
+  if (result.rows.length === 0) return { valid: false };
 
   const providedHash = hashSecret(parsed.secret);
   const storedHash = result.rows[0].key_hash as string;
-  if (providedHash !== storedHash) return false;
+  // Constant-time comparison to prevent timing attacks
+  if (!crypto.timingSafeEqual(Buffer.from(providedHash, 'hex'), Buffer.from(storedHash, 'hex'))) {
+    return { valid: false };
+  }
 
-  await query('UPDATE api_keys SET last_used_at = CURRENT_TIMESTAMP WHERE key_id = $1', [parsed.keyId]);
-  return true;
+  const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+                   request.headers.get('x-real-ip') ||
+                   'unknown';
+
+  await query(
+    'UPDATE api_keys SET last_used_at = CURRENT_TIMESTAMP, last_used_ip = $1, request_count = request_count + 1 WHERE key_id = $2',
+    [clientIp, parsed.keyId]
+  );
+  return { valid: true, keyId: parsed.keyId };
 }
 
 export function generateApiKeyMaterial() {

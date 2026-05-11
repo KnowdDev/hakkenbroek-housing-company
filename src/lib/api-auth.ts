@@ -3,8 +3,8 @@ import { validateApiKey } from '@/lib/mcp-api-keys';
 import { hasDashboardAuth } from '@/lib/dashboard-auth';
 
 export async function requireApiKey(request: NextRequest): Promise<NextResponse | null> {
-  const isValid = await validateApiKey(request);
-  if (!isValid) {
+  const result = await validateApiKey(request);
+  if (!result.valid) {
     return NextResponse.json({ error: 'Unauthorized: invalid API key' }, { status: 401 });
   }
   return null;

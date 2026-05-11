@@ -22,6 +22,19 @@ interface Listing {
   images?: string[];
   featured: boolean;
   created_at: string;
+  // Luxury real estate fields
+  year_built?: number;
+  energy_label?: string;
+  floors?: number;
+  furnished?: boolean;
+  garden?: boolean;
+  garden_area?: number;
+  balcony?: boolean;
+  terrace?: boolean;
+  parking?: boolean;
+  parking_spaces?: number;
+  elevator?: boolean;
+  basement?: boolean;
 }
 
 const statusStyles: Record<string, string> = {
@@ -119,6 +132,70 @@ export default function PropertyDetailPage() {
   const areaText = locale === 'nl' ? 'm²' : locale === 'es' ? 'm²' : 'm²';
   const priceOnRequest = locale === 'nl' ? 'Prijs op aanvraag' : locale === 'es' ? 'Precio bajo consulta' : 'Price on request';
   const featuredText = locale === 'nl' ? 'Uitgelicht' : locale === 'es' ? 'Destacado' : 'Featured';
+
+  const featureLabels = {
+    en: {
+      yearBuilt: 'Year Built',
+      energyLabel: 'Energy Label',
+      floors: 'Floors',
+      furnished: 'Furnished',
+      garden: 'Garden',
+      gardenArea: 'Garden Area',
+      balcony: 'Balcony',
+      terrace: 'Terrace',
+      parking: 'Parking',
+      parkingSpaces: 'Parking Spaces',
+      elevator: 'Elevator',
+      basement: 'Basement',
+      yes: 'Yes',
+      no: 'No',
+      buildingSpecs: 'Building & Specifications',
+      outdoorFeatures: 'Outdoor Features',
+      parkingAmenities: 'Parking & Amenities',
+      sqm: 'm²',
+    },
+    nl: {
+      yearBuilt: 'Bouwjaar',
+      energyLabel: 'Energielabel',
+      floors: 'Verdiepingen',
+      furnished: 'Gemeubileerd',
+      garden: 'Tuin',
+      gardenArea: 'Tuinoppervlak',
+      balcony: 'Balkon',
+      terrace: 'Terras',
+      parking: 'Parkeerplaats',
+      parkingSpaces: 'Parkeerplaatsen',
+      elevator: 'Lift',
+      basement: 'Kelder',
+      yes: 'Ja',
+      no: 'Nee',
+      buildingSpecs: 'Bouw & Specificaties',
+      outdoorFeatures: 'Buitenruimte',
+      parkingAmenities: 'Parkeerplaats & Voorzieningen',
+      sqm: 'm²',
+    },
+    es: {
+      yearBuilt: 'Año de Construcción',
+      energyLabel: 'Etiqueta Energética',
+      floors: 'Plantas',
+      furnished: 'Amueblado',
+      garden: 'Jardín',
+      gardenArea: 'Superficie Jardín',
+      balcony: 'Balcón',
+      terrace: 'Terraza',
+      parking: 'Aparcamiento',
+      parkingSpaces: 'Plazas Aparcamiento',
+      elevator: 'Ascensor',
+      basement: 'Sótano',
+      yes: 'Sí',
+      no: 'No',
+      buildingSpecs: 'Construcción y Especificaciones',
+      outdoorFeatures: 'Exterior',
+      parkingAmenities: 'Aparcamiento y Comodidades',
+      sqm: 'm²',
+    },
+  };
+  const f = featureLabels[locale as keyof typeof featureLabels] || featureLabels.en;
 
   if (loading) {
     return (
@@ -293,6 +370,107 @@ export default function PropertyDetailPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Building & Specifications */}
+              {(listing.year_built || listing.energy_label || listing.floors || listing.furnished !== undefined) && (
+                <div className="mb-8">
+                  <h2 className="font-display text-2xl text-charcoal mb-4">{f.buildingSpecs}</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    {listing.year_built !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.yearBuilt}</span>
+                        <span className="text-charcoal">{listing.year_built}</span>
+                      </div>
+                    )}
+                    {listing.energy_label && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between items-center">
+                        <span className="text-warm-gray">{f.energyLabel}</span>
+                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-sm bg-brass text-white text-sm font-body font-medium">
+                          {listing.energy_label}
+                        </span>
+                      </div>
+                    )}
+                    {listing.floors !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.floors}</span>
+                        <span className="text-charcoal">{listing.floors}</span>
+                      </div>
+                    )}
+                    {listing.furnished !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.furnished}</span>
+                        <span className="text-charcoal">{listing.furnished ? f.yes : f.no}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Outdoor Features */}
+              {(listing.garden || listing.balcony || listing.terrace || listing.garden_area !== undefined) && (
+                <div className="mb-8">
+                  <h2 className="font-display text-2xl text-charcoal mb-4">{f.outdoorFeatures}</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    {listing.garden !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.garden}</span>
+                        <span className="text-charcoal">{listing.garden ? f.yes : f.no}</span>
+                      </div>
+                    )}
+                    {listing.garden && listing.garden_area !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.gardenArea}</span>
+                        <span className="text-charcoal">{listing.garden_area} {f.sqm}</span>
+                      </div>
+                    )}
+                    {listing.balcony !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.balcony}</span>
+                        <span className="text-charcoal">{listing.balcony ? f.yes : f.no}</span>
+                      </div>
+                    )}
+                    {listing.terrace !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.terrace}</span>
+                        <span className="text-charcoal">{listing.terrace ? f.yes : f.no}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Parking & Amenities */}
+              {(listing.parking || listing.elevator || listing.basement || listing.parking_spaces !== undefined) && (
+                <div className="mb-8">
+                  <h2 className="font-display text-2xl text-charcoal mb-4">{f.parkingAmenities}</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    {listing.parking !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.parking}</span>
+                        <span className="text-charcoal">{listing.parking ? f.yes : f.no}</span>
+                      </div>
+                    )}
+                    {listing.parking && listing.parking_spaces !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.parkingSpaces}</span>
+                        <span className="text-charcoal">{listing.parking_spaces}</span>
+                      </div>
+                    )}
+                    {listing.elevator !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.elevator}</span>
+                        <span className="text-charcoal">{listing.elevator ? f.yes : f.no}</span>
+                      </div>
+                    )}
+                    {listing.basement !== undefined && (
+                      <div className="py-3 border-b border-stone-100 flex justify-between">
+                        <span className="text-warm-gray">{f.basement}</span>
+                        <span className="text-charcoal">{listing.basement ? f.yes : f.no}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Sidebar CTA */}
