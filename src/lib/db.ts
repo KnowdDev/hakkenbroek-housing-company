@@ -1,4 +1,9 @@
-import { Pool } from 'pg';
+import { Pool, types } from 'pg';
+
+// Parse DECIMAL / NUMERIC as numbers instead of strings
+// OID 1700 = numeric/decimal in PostgreSQL
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+types.setTypeParser(1700 as any, (val: string) => parseFloat(val));
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
