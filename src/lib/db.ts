@@ -1,25 +1,196 @@
-import { Pool, types } from 'pg';
+import { Pool, types, PoolConfig, QueryResult, QueryResultRow } from 'pg';
+import { logger } from './logger';
+import { DatabaseError, TimeoutError } from './errors';
 
 // Parse DECIMAL / NUMERIC as numbers instead of strings
 // OID 1700 = numeric/decimal in PostgreSQL
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-types.setTypeParser(1700 as any, (val: string) => parseFloat(val));
+types.setTypeParser(1700, (val: string) => parseFloat(val));
 
-const pool = new Pool({
+const MAX_POOL_SIZE = parseInt(process.env.DB_POOL_MAX || '20', 10);
+const IDLE_TIMEOUT_MS = parseInt(process.env.DB_POOL_IDLE_TIMEOUT || '30000', 10);
+const CONNECTION_TIMEOUT_MS = parseInt(process.env.DB_CONNECTION_TIMEOUT || '10000', 10);
+const QUERY_TIMEOUT_MS = parseInt(process.env.DB_QUERY_TIMEOUT || '15000', 10);
+const MAX_RETRIES = parseInt(process.env.DB_MAX_RETRIES || '3', 10);
+const RETRY_BASE_DELAY_MS = parseInt(process.env.DB_RETRY_BASE_DELAY || '100', 10);
+
+const poolConfig: PoolConfig = {
   connectionString: process.env.DATABASE_URL,
+  max: MAX_POOL_SIZE,
+  idleTimeoutMillis: IDLE_TIMEOUT_MS,
+  connectionTimeoutMillis: CONNECTION_TIMEOUT_MS,
+  // Only use SSL in production or when explicitly configured
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+};
+
+const pool = new Pool(poolConfig);
+
+pool.on('error', (err: Error) => {
+  logger.error('Unexpected pool error', err, { poolTotal: pool.totalCount, poolIdle: pool.idleCount });
 });
 
-export async function query(text: string, params?: any[]) {
+pool.on('connect', () => {
+  logger.debug('New client connected to pool', { poolTotal: pool.totalCount, poolIdle: pool.idleCount });
+});
+
+pool.on('remove', () => {
+  logger.debug('Client removed from pool', { poolTotal: pool.totalCount, poolIdle: pool.idleCount });
+});
+
+function isRetryableError(error: unknown): boolean {
+  if (!(error instanceof Error)) return false;
+  const msg = error.message.toLowerCase();
+  return (
+    msg.includes('connection') ||
+    msg.includes('timeout') ||
+    msg.includes('deadlock') ||
+    msg.includes('could not serialize') ||
+    msg.includes('connection terminated') ||
+    msg.includes('connection reset') ||
+    msg.includes('econnreset') ||
+    msg.includes('econnrefused') ||
+    msg.includes('etimedout')
+  );
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function withRetry<T>(
+  operation: () => Promise<T>,
+  context: string,
+  maxRetries: number = MAX_RETRIES
+): Promise<T> {
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error;
+
+      if (attempt < maxRetries && isRetryableError(error)) {
+        const delay = RETRY_BASE_DELAY_MS * Math.pow(2, attempt) + Math.random() * 100;
+        logger.warn(`DB retry ${attempt + 1}/${maxRetries} for '${context}'`, {
+          delay,
+          error: error instanceof Error ? error.message : String(error),
+        });
+        await sleep(delay);
+        continue;
+      }
+
+      throw error;
+    }
+  }
+
+  throw lastError;
+}
+
+async function withTimeout<T>(
+  operation: () => Promise<T>,
+  timeoutMs: number,
+  context: string
+): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(new TimeoutError(context, timeoutMs));
+    }, timeoutMs);
+
+    operation()
+      .then((result) => {
+        clearTimeout(timer);
+        resolve(result);
+      })
+      .catch((error) => {
+        clearTimeout(timer);
+        reject(error);
+      });
+  });
+}
+
+export async function query<R extends QueryResultRow = any>(
+  text: string,
+  params?: unknown[]
+): Promise<QueryResult<R>> {
+  const start = Date.now();
+
+  try {
+    const result = await withTimeout(
+      () =>
+        withRetry(
+          () => pool.query<R>(text, params),
+          text.substring(0, 80)
+        ),
+      QUERY_TIMEOUT_MS,
+      `query: ${text.substring(0, 60)}`
+    );
+
+    const duration = Date.now() - start;
+
+    if (duration > 1000) {
+      logger.warn('Slow query', {
+        text: text.substring(0, 120),
+        duration,
+        rows: result.rowCount,
+      });
+    } else {
+      logger.debug('Query executed', {
+        text: text.substring(0, 80),
+        duration,
+        rows: result.rowCount,
+      });
+    }
+
+    return result;
+  } catch (error) {
+    const duration = Date.now() - start;
+
+    if (error instanceof TimeoutError) {
+      logger.error('Query timeout', error, {
+        text: text.substring(0, 120),
+        duration,
+      });
+      throw error;
+    }
+
+    logger.error('Database query failed', error instanceof Error ? error : undefined, {
+      text: text.substring(0, 120),
+      duration,
+    });
+
+    throw new DatabaseError(
+      error instanceof Error ? error.message : 'Unknown database error',
+      error instanceof Error ? error : undefined
+    );
+  }
+}
+
+export async function healthCheck(): Promise<{ healthy: boolean; latencyMs: number }> {
   const start = Date.now();
   try {
-    const res = await pool.query(text, params);
-    const duration = Date.now() - start;
-    console.log('Executed query', { text, duration, rows: res.rowCount });
-    return res;
-  } catch (error) {
-    console.error('Database query error:', error);
-    throw error;
+    await withTimeout(
+      () => pool.query('SELECT 1'),
+      5000,
+      'health check'
+    );
+    return { healthy: true, latencyMs: Date.now() - start };
+  } catch {
+    return { healthy: false, latencyMs: Date.now() - start };
   }
+}
+
+export async function getPoolStats() {
+  return {
+    totalConnections: pool.totalCount,
+    idleConnections: pool.idleCount,
+    waitingClients: pool.waitingCount,
+  };
+}
+
+export async function shutdown(): Promise<void> {
+  logger.info('Draining database pool...');
+  await pool.end();
+  logger.info('Database pool drained');
 }
 
 export default pool;

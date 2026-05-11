@@ -1,9 +1,11 @@
 import { NextRequest } from 'next/server';
 import crypto from 'crypto';
+import { logger } from '@/lib/logger';
 import { validateApiKey } from '@/lib/mcp-api-keys';
 import {
   createDbSession,
   getDbSession,
+  touchSession,
   getUndeliveredMessages,
   markMessagesDelivered,
   cleanupExpiredSessions,
@@ -29,8 +31,12 @@ export async function GET(request: NextRequest) {
   const sessionId = crypto.randomUUID();
   await createDbSession(sessionId, apiKey);
 
+  logger.info('SSE connection established', { sessionId: sessionId.substring(0, 8) });
+
   // Periodic cleanup (best-effort, runs in background)
-  cleanupExpiredSessions().catch(() => {});
+  cleanupExpiredSessions().catch((err) =>
+    logger.error('Background cleanup failed', err)
+  );
 
   const encoder = new TextEncoder();
 
@@ -52,6 +58,8 @@ export async function GET(request: NextRequest) {
             break;
           }
 
+          await touchSession(sessionId);
+
           const messages = await getUndeliveredMessages(sessionId);
           if (messages.length > 0) {
             for (const msg of messages) {
@@ -65,8 +73,10 @@ export async function GET(request: NextRequest) {
 
           // Wait 400ms before next poll
           await new Promise((resolve) => setTimeout(resolve, 400));
-        } catch {
-          // On error, close stream gracefully
+        } catch (err) {
+          logger.error('SSE polling error', err instanceof Error ? err : undefined, {
+            sessionId: sessionId.substring(0, 8),
+          });
           controller.close();
           break;
         }
