@@ -8,6 +8,7 @@ const navItems = [
   { href: '/dashboard', label: 'Enquiries' },
   { href: '/dashboard/listings', label: 'Listings' },
   { href: '/dashboard/mcp', label: 'MCP Server' },
+  { href: '/dashboard/vault', label: 'Vault' },
   { href: '/', label: 'Back to Website' },
 ];
 

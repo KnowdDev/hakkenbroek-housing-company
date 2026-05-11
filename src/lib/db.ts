@@ -193,4 +193,16 @@ export async function shutdown(): Promise<void> {
   logger.info('Database pool drained');
 }
 
+export async function resolveConfig(key: string): Promise<string | undefined> {
+  const envVal = process.env[key];
+  if (envVal) return envVal;
+
+  try {
+    const { resolveSecret } = await import('./vault');
+    return await resolveSecret(key);
+  } catch {
+    return undefined;
+  }
+}
+
 export default pool;
