@@ -12,6 +12,17 @@ const statusStyles: Record<string, string> = {
   rented: 'bg-blue-50 text-blue-700',
 };
 
+const listingTypeStyles: Record<string, string> = {
+  sale: 'bg-emerald-100 text-emerald-800',
+  rent: 'bg-blue-100 text-blue-800',
+};
+
+const listingTypeLabels: Record<string, Record<string, string>> = {
+  en: { sale: 'For Sale', rent: 'For Rent' },
+  nl: { sale: 'Te Koop', rent: 'Te Huur' },
+  es: { sale: 'En Venta', rent: 'En Alquiler' },
+};
+
 const statusLabels: Record<string, Record<string, string>> = {
   en: {
     available: 'Available',
@@ -322,11 +333,20 @@ export default function Home() {
                     alt={property.title}
                     className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                   />
-                  <span
-                    className={`absolute top-4 left-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[property.status] || statusStyles.available}`}
-                  >
-                    {statusLabelsLocale[property.status] || property.status}
-                  </span>
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    <span
+                      className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[property.status] || statusStyles.available}`}
+                    >
+                      {statusLabelsLocale[property.status] || property.status}
+                    </span>
+                    {property.listing_type && (
+                      <span
+                        className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${listingTypeStyles[property.listing_type] || ''}`}
+                      >
+                        {(listingTypeLabels[locale] || listingTypeLabels.en)[property.listing_type]}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-xl text-charcoal mb-1">
@@ -335,7 +355,7 @@ export default function Home() {
                   <p className="text-warm-gray text-sm mb-4">{property.address}, {property.city}</p>
                   <div className="flex justify-between items-end">
                     <span className="font-display text-2xl text-brass">
-                      {property.price ? `€${property.price.toLocaleString('en-US', { maximumFractionDigits: 0, useGrouping: true })}` : 'Price on request'}
+                      {property.price ? `€${property.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : 'Price on request'}
                     </span>
                     <span className="text-warm-gray text-sm">
                       {property.area} m² · {property.bedrooms} bed
