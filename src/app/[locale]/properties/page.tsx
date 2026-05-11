@@ -18,6 +18,7 @@ interface Listing {
   postal_code?: string;
   property_type?: string;
   status: string;
+  listing_type?: 'sale' | 'rent';
   image_url?: string;
   featured: boolean;
   created_at: string;
@@ -30,12 +31,18 @@ const statusStyles: Record<string, string> = {
   rented: 'bg-blue-50 text-blue-700',
 };
 
+const listingTypeStyles: Record<string, string> = {
+  sale: 'bg-emerald-100 text-emerald-800',
+  rent: 'bg-blue-100 text-blue-800',
+};
+
 export default function PropertiesPage() {
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [listingTypeFilter, setListingTypeFilter] = useState<'all' | 'sale' | 'rent'>('all');
   const [priceRange, setPriceRange] = useState('all');
 
   const content = {
@@ -48,6 +55,9 @@ export default function PropertiesPage() {
       filterUnderConsideration: 'Under Consideration',
       filterSold: 'Sold',
       filterRented: 'Rented',
+      filterSale: 'For Sale',
+      filterRent: 'For Rent',
+      listingTypeAll: 'All Types',
       priceAll: 'All Prices',
       priceUnder500k: 'Under €500k',
       price500kTo1m: '€500k – €1M',
@@ -81,6 +91,9 @@ export default function PropertiesPage() {
       filterUnderConsideration: 'In Onderhandeling',
       filterSold: 'Verkocht',
       filterRented: 'Verhuurd',
+      filterSale: 'Te Koop',
+      filterRent: 'Te Huur',
+      listingTypeAll: 'Alle Types',
       priceAll: 'Alle Prijzen',
       priceUnder500k: 'Onder €500k',
       price500kTo1m: '€500k – €1M',
@@ -114,6 +127,9 @@ export default function PropertiesPage() {
       filterUnderConsideration: 'En Consideración',
       filterSold: 'Vendido',
       filterRented: 'Alquilado',
+      filterSale: 'En Venta',
+      filterRent: 'En Alquiler',
+      listingTypeAll: 'Todos los Tipos',
       priceAll: 'Todos los Precios',
       priceUnder500k: 'Menos de €500k',
       price500kTo1m: '€500k – €1M',
@@ -167,6 +183,7 @@ export default function PropertiesPage() {
 
   const filteredProperties = listings.filter((property) => {
     const statusMatch = filter === 'all' || property.status === filter;
+    const typeMatch = listingTypeFilter === 'all' || property.listing_type === listingTypeFilter;
     let priceMatch = true;
 
     if (priceRange === 'under-500k') {
@@ -179,7 +196,7 @@ export default function PropertiesPage() {
       priceMatch = property.price !== undefined && property.price >= 2000000;
     }
 
-    return statusMatch && priceMatch;
+    return statusMatch && typeMatch && priceMatch;
   });
 
   return (
@@ -216,12 +233,26 @@ export default function PropertiesPage() {
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
-                  className="w-full sm:w-56 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
+                  className="w-full sm:w-48 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
                 >
                   <option value="all">{t.filterAll}</option>
                   <option value="available">{t.filterAvailable}</option>
                   <option value="under-consideration">{t.filterUnderConsideration}</option>
                   <option value="sold">{t.filterSold}</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-body text-xs uppercase tracking-wider text-warm-gray mb-2">
+                  {t.listingTypeAll}
+                </label>
+                <select
+                  value={listingTypeFilter}
+                  onChange={(e) => setListingTypeFilter(e.target.value as 'all' | 'sale' | 'rent')}
+                  className="w-full sm:w-48 px-4 py-2.5 bg-stone-50 border border-stone-200 text-ink font-body text-sm focus:outline-none focus:border-brass transition-colors"
+                >
+                  <option value="all">{t.listingTypeAll}</option>
+                  <option value="sale">{t.filterSale}</option>
+                  <option value="rent">{t.filterRent}</option>
                 </select>
               </div>
               <div>
@@ -277,11 +308,20 @@ export default function PropertiesPage() {
                         {t.noImage}
                       </div>
                     )}
-                    <span
-                      className={`absolute top-4 left-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[property.status] || statusStyles.available}`}
-                    >
-                      {statusLabels[property.status] || property.status}
-                    </span>
+                    <div className="absolute top-4 left-4 flex gap-2">
+                      <span
+                        className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[property.status] || statusStyles.available}`}
+                      >
+                        {statusLabels[property.status] || property.status}
+                      </span>
+                      {property.listing_type && (
+                        <span
+                          className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${listingTypeStyles[property.listing_type] || ''}`}
+                        >
+                          {property.listing_type === 'rent' ? t.filterRent : t.filterSale}
+                        </span>
+                      )}
+                    </div>
                     {property.featured && (
                       <span className="absolute top-4 right-4 text-xs font-body uppercase tracking-wider px-3 py-1.5 bg-brass text-white">
                         {t.featured || 'Featured'}
@@ -297,7 +337,7 @@ export default function PropertiesPage() {
                     </p>
                     <div className="flex justify-between items-end mb-4">
                       <span className="font-display text-2xl text-brass">
-                        {property.price ? `€${property.price.toLocaleString('en-US', { maximumFractionDigits: 0, useGrouping: true })}` : t.priceOnRequest}
+                        {property.price ? `€${property.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : t.priceOnRequest}
                       </span>
                       <span className="text-warm-gray text-sm">
                         {property.area ? `${property.area} m²` : ''} · {property.bedrooms ? `${property.bedrooms} bed` : ''}
@@ -323,6 +363,7 @@ export default function PropertiesPage() {
               <button
                 onClick={() => {
                   setFilter('all');
+                  setListingTypeFilter('all');
                   setPriceRange('all');
                 }}
                 className="inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300"

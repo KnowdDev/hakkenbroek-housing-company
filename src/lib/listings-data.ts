@@ -11,6 +11,7 @@ export interface Listing {
   postal_code?: string;
   property_type?: string;
   status: string;
+  listing_type?: 'sale' | 'rent';
   image_url?: string;
   images?: string[];
   featured: boolean;
@@ -50,6 +51,7 @@ export const demoListings: Listing[] = [
     postal_code: "1016 HR",
     property_type: "house",
     status: "available",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
@@ -73,6 +75,7 @@ export const demoListings: Listing[] = [
     postal_code: "1082 MA",
     property_type: "penthouse",
     status: "available",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
@@ -95,6 +98,7 @@ export const demoListings: Listing[] = [
     postal_code: "1016 SG",
     property_type: "apartment",
     status: "available",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
@@ -117,6 +121,7 @@ export const demoListings: Listing[] = [
     postal_code: "1087 KJ",
     property_type: "villa",
     status: "available",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
@@ -140,6 +145,7 @@ export const demoListings: Listing[] = [
     postal_code: "1072 VW",
     property_type: "house",
     status: "available",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&w=1200&q=80",
@@ -162,6 +168,7 @@ export const demoListings: Listing[] = [
     postal_code: "1053 LA",
     property_type: "apartment",
     status: "under-consideration",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93687?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93687?auto=format&fit=crop&w=1200&q=80",
@@ -184,6 +191,7 @@ export const demoListings: Listing[] = [
     postal_code: "1091 AB",
     property_type: "villa",
     status: "available",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
@@ -207,6 +215,7 @@ export const demoListings: Listing[] = [
     postal_code: "1018 CZ",
     property_type: "studio",
     status: "available",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
@@ -228,6 +237,7 @@ export const demoListings: Listing[] = [
     postal_code: "1013 AZ",
     property_type: "house",
     status: "sold",
+    listing_type: "sale",
     image_url: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80",
     images: [
       "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80",

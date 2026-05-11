@@ -21,6 +21,7 @@ interface Listing {
   price?: number;
   status: string;
   property_type?: string;
+  listing_type?: 'sale' | 'rent';
   featured: boolean;
 }
 
@@ -65,6 +66,8 @@ export default function Dashboard() {
 
   const stats = {
     totalListings: listings.length,
+    saleListings: listings.filter(l => l.listing_type === 'sale').length,
+    rentListings: listings.filter(l => l.listing_type === 'rent').length,
     availableListings: listings.filter(l => l.status === 'available').length,
     featuredListings: listings.filter(l => l.featured).length,
     totalEnquiries: enquiries.length,
@@ -91,17 +94,19 @@ export default function Dashboard() {
           </div>
 
           <div className="bg-white rounded-lg border border-stone-200 p-6">
-            <p className="text-sm font-body uppercase tracking-wider text-stone-600 mb-2">Available</p>
-            <p className="font-display text-3xl text-emerald-700">{stats.availableListings}</p>
+            <p className="text-sm font-body uppercase tracking-wider text-stone-600 mb-2">For Sale</p>
+            <p className="font-display text-3xl text-emerald-700">{stats.saleListings}</p>
             <p className="text-sm text-stone-500 mt-2">
-              {stats.availableListings > 0 && `${Math.round((stats.availableListings / stats.totalListings) * 100)}% of portfolio`}
+              {stats.totalListings > 0 && `${Math.round((stats.saleListings / stats.totalListings) * 100)}% of portfolio`}
             </p>
           </div>
 
           <div className="bg-white rounded-lg border border-stone-200 p-6">
-            <p className="text-sm font-body uppercase tracking-wider text-stone-600 mb-2">Featured</p>
-            <p className="font-display text-3xl text-brass">{stats.featuredListings}</p>
-            <p className="text-sm text-stone-500 mt-2">Highlighted properties</p>
+            <p className="text-sm font-body uppercase tracking-wider text-stone-600 mb-2">For Rent</p>
+            <p className="font-display text-3xl text-blue-700">{stats.rentListings}</p>
+            <p className="text-sm text-stone-500 mt-2">
+              {stats.totalListings > 0 && `${Math.round((stats.rentListings / stats.totalListings) * 100)}% of portfolio`}
+            </p>
           </div>
 
           <div className="bg-white rounded-lg border border-stone-200 p-6">
@@ -119,7 +124,7 @@ export default function Dashboard() {
         {stats.totalValue > 0 && (
           <div className="bg-brass text-white rounded-lg p-6 mb-8">
             <p className="text-sm font-body uppercase tracking-wider mb-2">Portfolio Value</p>
-            <p className="font-display text-4xl">€{stats.totalValue.toLocaleString('en-US', { maximumFractionDigits: 0, useGrouping: true })}</p>
+            <p className="font-display text-4xl">€{stats.totalValue.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}</p>
             <p className="text-sm opacity-90 mt-1">Combined asking price of all listings</p>
           </div>
         )}

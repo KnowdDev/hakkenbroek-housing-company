@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS listings (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   description TEXT,
-  price DECIMAL(15, 2),
+  price DECIMAL(15, 0),
   bedrooms INTEGER,
   bathrooms INTEGER,
   area INTEGER, -- in square meters
@@ -24,8 +24,22 @@ CREATE TABLE IF NOT EXISTS listings (
   postal_code VARCHAR(20),
   property_type VARCHAR(50), -- apartment, house, villa, etc.
   status VARCHAR(50) DEFAULT 'available', -- available, sold, rented
+  listing_type VARCHAR(20) DEFAULT 'sale', -- sale, rent
   image_url TEXT,
+  images JSONB,
   featured BOOLEAN DEFAULT FALSE,
+  year_built INTEGER,
+  energy_label VARCHAR(10),
+  garden BOOLEAN DEFAULT FALSE,
+  garden_area INTEGER,
+  parking BOOLEAN DEFAULT FALSE,
+  parking_spaces INTEGER,
+  balcony BOOLEAN DEFAULT FALSE,
+  terrace BOOLEAN DEFAULT FALSE,
+  furnished BOOLEAN DEFAULT FALSE,
+  basement BOOLEAN DEFAULT FALSE,
+  elevator BOOLEAN DEFAULT FALSE,
+  floors INTEGER,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -35,6 +49,9 @@ CREATE INDEX IF NOT EXISTS idx_enquiries_property_id ON enquiries(property_id);
 
 -- Create index on status for listings
 CREATE INDEX IF NOT EXISTS idx_listings_status ON listings(status);
+
+-- Create index on listing_type for listings
+CREATE INDEX IF NOT EXISTS idx_listings_type ON listings(listing_type);
 
 -- Create API keys table for MCP/agent access
 CREATE TABLE IF NOT EXISTS api_keys (

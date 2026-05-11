@@ -17,6 +17,7 @@ interface Listing {
   postal_code?: string;
   property_type?: string;
   status: string;
+  listing_type?: 'sale' | 'rent';
   image_url?: string;
   images?: string[];
   featured: boolean;
@@ -28,6 +29,17 @@ const statusStyles: Record<string, string> = {
   'under-consideration': 'bg-amber-50 text-amber-700',
   sold: 'bg-stone-100 text-warm-gray',
   rented: 'bg-blue-50 text-blue-700',
+};
+
+const listingTypeStyles: Record<string, string> = {
+  sale: 'bg-emerald-100 text-emerald-800',
+  rent: 'bg-blue-100 text-blue-800',
+};
+
+const listingTypeLabels: Record<string, Record<string, string>> = {
+  en: { sale: 'For Sale', rent: 'For Rent' },
+  nl: { sale: 'Te Koop', rent: 'Te Huur' },
+  es: { sale: 'En Venta', rent: 'En Alquiler' },
 };
 
 const statusLabels: Record<string, Record<string, string>> = {
@@ -211,6 +223,11 @@ export default function PropertyDetailPage() {
                     <span className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[listing.status] || statusStyles.available}`}>
                       {t[listing.status] || listing.status}
                     </span>
+                    {listing.listing_type && (
+                      <span className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${listingTypeStyles[listing.listing_type] || ''}`}>
+                        {(listingTypeLabels[locale] || listingTypeLabels.en)[listing.listing_type]}
+                      </span>
+                    )}
                     {listing.featured && (
                       <span className="text-xs font-body uppercase tracking-wider px-3 py-1.5 bg-brass text-white">
                         {featuredText}
@@ -222,7 +239,7 @@ export default function PropertyDetailPage() {
                 </div>
                 <div className="text-right hidden sm:block">
                   <p className="font-display text-3xl text-brass">
-                    {listing.price ? `€${listing.price.toLocaleString('en-US', { maximumFractionDigits: 0, useGrouping: true })}` : priceOnRequest}
+                    {listing.price ? `€${listing.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : priceOnRequest}
                   </p>
                 </div>
               </div>
@@ -259,6 +276,10 @@ export default function PropertyDetailPage() {
                     <span className="text-charcoal capitalize">{listing.property_type}</span>
                   </div>
                   <div className="py-3 border-b border-stone-100 flex justify-between">
+                    <span className="text-warm-gray">{locale === 'nl' ? 'Aanbod' : locale === 'es' ? 'Oferta' : 'Listing'}</span>
+                    <span className="text-charcoal">{(listingTypeLabels[locale] || listingTypeLabels.en)[listing.listing_type || 'sale']}</span>
+                  </div>
+                  <div className="py-3 border-b border-stone-100 flex justify-between">
                     <span className="text-warm-gray">{locale === 'nl' ? 'Stad' : locale === 'es' ? 'Ciudad' : 'City'}</span>
                     <span className="text-charcoal">{listing.city}</span>
                   </div>
@@ -279,10 +300,14 @@ export default function PropertyDetailPage() {
               <div className="bg-stone-50 border border-stone-200 p-8 sticky top-24">
                 <div className="mb-6">
                   <p className="font-display text-3xl text-brass mb-2">
-                    {listing.price ? `€${listing.price.toLocaleString('en-US', { maximumFractionDigits: 0, useGrouping: true })}` : priceOnRequest}
+                    {listing.price ? `€${listing.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : priceOnRequest}
                   </p>
                   <p className="text-sm text-warm-gray">
-                    {listing.price ? (locale === 'nl' ? 'Vraagprijs' : locale === 'es' ? 'Precio de venta' : 'Asking Price') : ''}
+                    {listing.price
+                      ? listing.listing_type === 'rent'
+                        ? (locale === 'nl' ? 'Huurprijs per maand' : locale === 'es' ? 'Precio de alquiler mensual' : 'Monthly Rent')
+                        : (locale === 'nl' ? 'Vraagprijs' : locale === 'es' ? 'Precio de venta' : 'Asking Price')
+                      : ''}
                   </p>
                 </div>
 

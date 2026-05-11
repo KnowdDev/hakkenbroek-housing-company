@@ -16,6 +16,7 @@ interface Listing {
   postal_code?: string;
   property_type?: string;
   status: string;
+  listing_type?: 'sale' | 'rent';
   image_url?: string;
   images?: string[];
   featured: boolean;
@@ -40,6 +41,7 @@ export default function ListingsDashboard() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingListing, setEditingListing] = useState<Listing | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [filterType, setFilterType] = useState<'all' | 'sale' | 'rent'>('all');
   const [formData, setFormData] = useState<Partial<Listing>>({
     title: '',
     description: '',
@@ -52,6 +54,7 @@ export default function ListingsDashboard() {
     postal_code: '',
     property_type: 'apartment',
     status: 'available',
+    listing_type: 'sale',
     image_url: '',
     images: [],
     featured: false,
@@ -116,6 +119,7 @@ export default function ListingsDashboard() {
           postal_code: '',
           property_type: 'apartment',
           status: 'available',
+          listing_type: 'sale',
           image_url: '',
           featured: false,
         });
@@ -182,6 +186,7 @@ export default function ListingsDashboard() {
                   postal_code: '',
                   property_type: 'apartment',
                   status: 'available',
+                  listing_type: 'sale',
                   image_url: '',
                   featured: false,
                 });
@@ -290,6 +295,19 @@ export default function ListingsDashboard() {
                     <option value="available">Available</option>
                     <option value="sold">Sold</option>
                     <option value="rented">Rented</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-2">
+                    Listing Type
+                  </label>
+                  <select
+                    value={formData.listing_type}
+                    onChange={(e) => setFormData({ ...formData, listing_type: e.target.value as 'sale' | 'rent' })}
+                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                  >
+                    <option value="sale">For Sale</option>
+                    <option value="rent">For Rent</option>
                   </select>
                 </div>
                 <div>
@@ -580,6 +598,25 @@ export default function ListingsDashboard() {
           </div>
         )}
 
+        <div className="mb-6 flex gap-2">
+          {(['all', 'sale', 'rent'] as const).map((type) => (
+            <button
+              key={type}
+              onClick={() => setFilterType(type)}
+              className={`px-4 py-2 font-body text-sm uppercase tracking-wider transition-colors ${
+                filterType === type
+                  ? 'bg-charcoal text-white'
+                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+              }`}
+            >
+              {type === 'all' ? 'All' : type === 'sale' ? 'For Sale' : 'For Rent'}
+              <span className="ml-2 text-xs opacity-70">
+                ({type === 'all' ? listings.length : listings.filter(l => l.listing_type === type).length})
+              </span>
+            </button>
+          ))}
+        </div>
+
         <div className="bg-stone-50 rounded-lg shadow-sm overflow-hidden">
           {loading ? (
             <div className="p-8 text-center text-stone-500">Loading listings...</div>
@@ -596,6 +633,9 @@ export default function ListingsDashboard() {
                     Price
                   </th>
                   <th className="px-6 py-4 text-left font-body text-xs uppercase tracking-wider text-stone-600">
+                    Property
+                  </th>
+                  <th className="px-6 py-4 text-left font-body text-xs uppercase tracking-wider text-stone-600">
                     Type
                   </th>
                   <th className="px-6 py-4 text-left font-body text-xs uppercase tracking-wider text-stone-600">
@@ -610,16 +650,29 @@ export default function ListingsDashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
-                {listings.map((listing) => (
+                {listings
+                  .filter((listing) => filterType === 'all' || listing.listing_type === filterType)
+                  .map((listing) => (
                   <tr key={listing.id} className="hover:bg-stone-50">
                     <td className="px-6 py-4 text-sm font-medium text-charcoal">
                       {listing.title}
                     </td>
                     <td className="px-6 py-4 text-sm text-stone-600">
-                      {listing.price ? `€${listing.price.toLocaleString('en-US', { maximumFractionDigits: 0, useGrouping: true })}` : '-'}
+                      {listing.price ? `€${listing.price.toLocaleString('nl-NL', { maximumFractionDigits: 0, useGrouping: true })}` : '-'}
                     </td>
                     <td className="px-6 py-4 text-sm text-stone-600 capitalize">
                       {listing.property_type || '-'}
+                    </td>
+                    <td className="px-6 py-4 text-sm">
+                      <span
+                        className={`px-2 py-1 rounded text-xs font-medium ${
+                          listing.listing_type === 'rent'
+                            ? 'bg-blue-100 text-blue-800'
+                            : 'bg-emerald-100 text-emerald-800'
+                        }`}
+                      >
+                        {listing.listing_type === 'rent' ? 'For Rent' : 'For Sale'}
+                      </span>
                     </td>
                     <td className="px-6 py-4 text-sm">
                       <span

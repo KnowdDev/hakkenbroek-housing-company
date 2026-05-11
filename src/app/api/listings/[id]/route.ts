@@ -42,7 +42,7 @@ export async function PUT(
     const body = await request.json();
     const { 
       title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
-      property_type, status, image_url, featured, images, year_built, energy_label, 
+      property_type, status, listing_type, image_url, featured, images, year_built, energy_label, 
       garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
       basement, elevator, floors 
     } = body;
@@ -53,14 +53,14 @@ export async function PUT(
         `UPDATE listings SET 
           title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5, 
           area = $6, address = $7, city = $8, postal_code = $9, property_type = $10, 
-          status = $11, image_url = $12, featured = $13, images = $14, year_built = $15, 
-          energy_label = $16, garden = $17, garden_area = $18, parking = $19, 
-          parking_spaces = $20, balcony = $21, terrace = $22, furnished = $23, 
-          basement = $24, elevator = $25, floors = $26, updated_at = CURRENT_TIMESTAMP 
-          WHERE id = $27 RETURNING *`,
+          status = $11, listing_type = $12, image_url = $13, featured = $14, images = $15, year_built = $16, 
+          energy_label = $17, garden = $18, garden_area = $19, parking = $20, 
+          parking_spaces = $21, balcony = $22, terrace = $23, furnished = $24, 
+          basement = $25, elevator = $26, floors = $27, updated_at = CURRENT_TIMESTAMP 
+          WHERE id = $28 RETURNING *`,
         [
           title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
-          property_type, status, image_url, featured, 
+          property_type, status, listing_type || 'sale', image_url, featured, 
           images ? JSON.stringify(images) : null, year_built, energy_label, 
           garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
           basement, elevator, floors, id
@@ -72,11 +72,11 @@ export async function PUT(
         `UPDATE listings SET
           title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5,
           area = $6, address = $7, city = $8, postal_code = $9, property_type = $10,
-          status = $11, image_url = $12, featured = $13, updated_at = CURRENT_TIMESTAMP
-          WHERE id = $14 RETURNING *`,
+          status = $11, listing_type = $12, image_url = $13, featured = $14, updated_at = CURRENT_TIMESTAMP
+          WHERE id = $15 RETURNING *`,
         [
           title, description, price, bedrooms, bathrooms, area, address, city, postal_code,
-          property_type, status, image_url, featured, id
+          property_type, status, listing_type || 'sale', image_url, featured, id
         ]
       );
       console.warn('Listings table missing luxury fields; updated using legacy schema.', updateError);
