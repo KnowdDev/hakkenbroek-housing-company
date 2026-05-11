@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   try {
     await ensureApiKeysTable();
     const result = await query(
-      `SELECT key_id, name, key_preview, created_at, last_used_at, revoked_at
+      `SELECT key_id, name, key_preview, created_at, last_used_at, last_used_ip, request_count, revoked_at
        FROM api_keys
        ORDER BY created_at DESC`
     );
@@ -37,8 +37,8 @@ export async function POST(request: NextRequest) {
     const { keyId, plainKey, keyHash, keyPreview } = generateApiKeyMaterial();
 
     await query(
-      `INSERT INTO api_keys (key_id, name, key_hash, key_preview)
-       VALUES ($1, $2, $3, $4)`,
+      `INSERT INTO api_keys (key_id, name, key_hash, key_preview, last_used_ip, request_count)
+       VALUES ($1, $2, $3, $4, NULL, 0)`,
       [keyId, name, keyHash, keyPreview]
     );
 
