@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
@@ -38,12 +38,23 @@ const listingTypeStyles: Record<string, string> = {
 
 export default function PropertiesPage() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const locale = pathname.split('/')[1] || 'en';
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [listingTypeFilter, setListingTypeFilter] = useState<'all' | 'sale' | 'rent'>('all');
   const [priceRange, setPriceRange] = useState('all');
+
+  // Reactively read type query param for nav dropdown pre-filtering
+  useEffect(() => {
+    const typeParam = searchParams.get('type');
+    if (typeParam === 'sale' || typeParam === 'rent') {
+      setListingTypeFilter(typeParam);
+    } else {
+      setListingTypeFilter('all');
+    }
+  }, [searchParams]);
 
   const content = {
     en: {

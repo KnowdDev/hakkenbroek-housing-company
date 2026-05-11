@@ -192,38 +192,34 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section — Full-bleed imagery */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+      {/* Hero Section — Split-layout editorial (Broersma-inspired) */}
+      <section className="flex flex-col lg:flex-row pt-24 h-auto lg:h-[calc(100vh-6rem)] lg:min-h-[600px] overflow-hidden">
+        {/* Left: Editorial imagery — no text overlay */}
+        <div className="relative w-full lg:w-[58%] h-[55vh] lg:h-full">
           <img
-            src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1920&q=80"
-            alt="Amsterdam canals"
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80"
+            alt="Luxury Amsterdam interior"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/50" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <p className="font-body text-sm uppercase tracking-[0.25em] text-stone-200 mb-6">
-            {t.heroSubtitle}
-          </p>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-tight mb-8 max-w-4xl mx-auto">
-            {t.heroTitle}
-          </h1>
-          <p className="font-body text-lg md:text-xl text-stone-200 max-w-2xl mx-auto mb-10 leading-relaxed">
-            {t.heroDescription}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+        {/* Right: Editorial content on warm stone */}
+        <div className="w-full lg:w-[42%] bg-stone-50 flex items-center">
+          <div className="px-8 py-16 lg:px-16 lg:py-12 max-w-xl">
+            <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-8">
+              {t.heroSubtitle}
+            </p>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.15] text-charcoal mb-8">
+              {t.heroTitle}
+            </h1>
+            <p className="font-body text-base lg:text-lg text-warm-gray leading-relaxed mb-10">
+              {t.heroDescription}
+            </p>
             <Link
               href={`/${locale}/properties`}
-              className="bg-brass text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
+              className="inline-block bg-brass text-white px-10 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
             >
               {t.viewProperties}
-            </Link>
-            <Link
-              href={`/${locale}/contact`}
-              className="border border-white/80 text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-stone-50 hover:text-charcoal transition-colors duration-300"
-            >
-              {t.getInTouch}
             </Link>
           </div>
         </div>
