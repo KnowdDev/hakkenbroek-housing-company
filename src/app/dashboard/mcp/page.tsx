@@ -3,9 +3,26 @@
 import { useEffect, useMemo, useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 
+interface ApiKeyRecord {
+  key_id: string;
+  name: string;
+  key_preview: string;
+  created_at: string;
+  last_used_at?: string | null;
+  last_used_ip?: string | null;
+  request_count?: number;
+  revoked_at?: string | null;
+}
+
 export default function McpDashboard() {
   const [copiedMap, setCopiedMap] = useState<Record<string, boolean>>({});
+  const [apiKeyName, setApiKeyName] = useState('Hakkenbroek MCP Key');
   const [liveApiKey, setLiveApiKey] = useState('');
+  const [createdKey, setCreatedKey] = useState<string | null>(null);
+  const [keys, setKeys] = useState<ApiKeyRecord[]>([]);
+  const [loadingKeys, setLoadingKeys] = useState(true);
+  const [creatingKey, setCreatingKey] = useState(false);
+  const [revokingKeyId, setRevokingKeyId] = useState<string | null>(null);
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState<string | null>(null);
   const [baseUrl, setBaseUrl] = useState('');
@@ -14,12 +31,71 @@ export default function McpDashboard() {
 
   useEffect(() => {
     setBaseUrl(window.location.origin);
+    fetchKeys();
   }, []);
 
   const handleCopy = (text: string, key: string = 'default') => {
     navigator.clipboard.writeText(text);
     setCopiedMap((prev) => ({ ...prev, [key]: true }));
     setTimeout(() => setCopiedMap((prev) => ({ ...prev, [key]: false })), 2000);
+  };
+
+  const fetchKeys = async () => {
+    setLoadingKeys(true);
+    try {
+      const response = await fetch('/api/mcp/keys');
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to fetch API keys');
+      }
+      setKeys(Array.isArray(data) ? data : []);
+    } catch (error) {
+      setTestResult(`Unable to load API keys: ${(error as Error).message}`);
+      setKeys([]);
+    } finally {
+      setLoadingKeys(false);
+    }
+  };
+
+  const createKey = async () => {
+    setCreatingKey(true);
+    setCreatedKey(null);
+    try {
+      const response = await fetch('/api/mcp/keys', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: apiKeyName }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to create API key');
+      }
+      setCreatedKey(data.key);
+      setLiveApiKey(data.key);
+      await fetchKeys();
+    } catch (error) {
+      setTestResult(`Failed to create API key: ${(error as Error).message}`);
+    } finally {
+      setCreatingKey(false);
+    }
+  };
+
+  const revokeKey = async (keyId: string) => {
+    setRevokingKeyId(keyId);
+    try {
+      const response = await fetch(`/api/mcp/keys/${keyId}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to revoke API key');
+      }
+      await fetchKeys();
+    } catch (error) {
+      setTestResult(`Failed to revoke API key: ${(error as Error).message}`);
+    } finally {
+      setRevokingKeyId(null);
+    }
   };
 
   const testConnection = async () => {
@@ -115,33 +191,126 @@ export default function McpDashboard() {
           </div>
         </div>
 
-        {/* API Key Setup */}
+        {/* API Key Management */}
         <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200 mb-8">
-          <h2 className="font-display text-2xl text-charcoal mb-6">API Key</h2>
-          <p className="text-sm text-stone-600 mb-4">
-            Set the <code className="bg-white px-1 py-0.5 rounded border border-stone-200 text-xs">MCP_API_KEY</code> environment variable on your server. All MCP requests must include this key via the <code className="bg-white px-1 py-0.5 rounded border border-stone-200 text-xs">x-api-key</code> header or Bearer token.
-          </p>
-          <div className="flex flex-col md:flex-row gap-3 md:items-center mb-4">
+          <h2 className="font-display text-2xl text-charcoal mb-6">API Keys</h2>
+
+          <div className="flex flex-col md:flex-row gap-3 md:items-center mb-6">
             <input
-              type="password"
-              value={liveApiKey}
-              onChange={(e) => setLiveApiKey(e.target.value)}
-              placeholder="Paste MCP_API_KEY to test"
-              className="w-full md:max-w-md px-4 py-3 border border-stone-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brass/50"
+              type="text"
+              value={apiKeyName}
+              onChange={(e) => setApiKeyName(e.target.value)}
+              placeholder="Key name (e.g. Cursor Work Laptop)"
+              className="w-full md:max-w-sm px-4 py-3 border border-stone-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brass/50"
             />
             <button
-              onClick={testConnection}
-              disabled={testing}
+              onClick={createKey}
+              disabled={creatingKey}
               className="bg-charcoal text-white px-4 py-3 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg disabled:opacity-50"
             >
-              {testing ? 'Testing...' : 'Test Connection'}
+              {creatingKey ? 'Creating...' : 'Generate API Key'}
             </button>
           </div>
-          {testResult && (
-            <p className={`text-sm leading-relaxed ${testResult.startsWith('Success') ? 'text-emerald-600' : 'text-red-600'}`}>
-              {testResult}
-            </p>
+
+          {createdKey && (
+            <div className="mb-6 p-4 border border-amber-300 bg-amber-50 rounded-lg">
+              <div className="flex items-start gap-2 mb-2">
+                <svg className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <p className="text-sm text-charcoal font-medium">
+                  Copy this key now. You will not see it again.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <code className="flex-1 bg-white px-3 py-2 rounded border border-amber-200 text-xs md:text-sm break-all">
+                  {createdKey}
+                </code>
+                <button
+                  onClick={() => handleCopy(createdKey, 'created')}
+                  className="bg-charcoal text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg flex-shrink-0"
+                >
+                  {copiedMap['created'] ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+            </div>
           )}
+
+          {loadingKeys ? (
+            <p className="text-sm text-stone-500">Loading API keys...</p>
+          ) : keys.length === 0 ? (
+            <p className="text-sm text-stone-500">No API keys yet. Generate one to get started.</p>
+          ) : (
+            <div className="space-y-3">
+              {keys.map((key) => (
+                <div key={key.key_id} className="border border-stone-200 bg-white rounded-lg p-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-charcoal">{key.name}</p>
+                        {key.revoked_at ? (
+                          <span className="text-xs bg-red-50 text-red-600 px-2 py-0.5 rounded-full font-medium">
+                            Revoked
+                          </span>
+                        ) : (
+                          <span className="text-xs bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-medium">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      <code className="text-xs text-stone-600 block mt-1">{key.key_preview}</code>
+                      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-stone-500">
+                        <span>Created: {new Date(key.created_at).toLocaleString()}</span>
+                        {key.last_used_at && (
+                          <span>Last used: {new Date(key.last_used_at).toLocaleString()}</span>
+                        )}
+                        {typeof key.request_count === 'number' && (
+                          <span>Requests: {key.request_count}</span>
+                        )}
+                        {key.last_used_ip && key.last_used_ip !== 'unknown' && (
+                          <span>IP: {key.last_used_ip}</span>
+                        )}
+                      </div>
+                    </div>
+                    {!key.revoked_at && (
+                      <button
+                        onClick={() => revokeKey(key.key_id)}
+                        disabled={revokingKeyId === key.key_id}
+                        className="bg-red-600 text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-red-700 transition-colors rounded-lg disabled:opacity-50 flex-shrink-0"
+                      >
+                        {revokingKeyId === key.key_id ? 'Revoking...' : 'Revoke'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-6 pt-6 border-t border-stone-200">
+            <h3 className="text-sm font-medium text-stone-700 mb-3">Quick Test</h3>
+            <div className="flex flex-col md:flex-row gap-3 md:items-center mb-3">
+              <input
+                type="password"
+                value={liveApiKey}
+                onChange={(e) => setLiveApiKey(e.target.value)}
+                placeholder="Paste any API key to test"
+                className="w-full md:max-w-md px-4 py-3 border border-stone-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brass/50"
+              />
+              <button
+                onClick={testConnection}
+                disabled={testing}
+                className="bg-charcoal text-white px-4 py-3 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg disabled:opacity-50"
+              >
+                {testing ? 'Testing...' : 'Test Connection'}
+              </button>
+            </div>
+            {testResult && (
+              <p className={`text-sm leading-relaxed ${testResult.startsWith('Success') ? 'text-emerald-600' : 'text-red-600'}`}>
+                {testResult}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* cURL Examples */}
@@ -210,7 +379,7 @@ export default function McpDashboard() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <p>
-                <strong className="text-charcoal">Simple auth</strong> — Single API key via the <code>MCP_API_KEY</code> environment variable. No database tables for key management.
+                <strong className="text-charcoal">Flexible auth</strong> — Use a static <code>MCP_API_KEY</code> env var, or generate revocable managed keys from this dashboard. Both work with the same endpoint.
               </p>
             </div>
             <div className="flex items-start gap-3">
