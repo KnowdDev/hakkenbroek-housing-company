@@ -23,6 +23,7 @@ export default function McpDashboard() {
   const [loadingKeys, setLoadingKeys] = useState(true);
   const [creatingKey, setCreatingKey] = useState(false);
   const [revokingKeyId, setRevokingKeyId] = useState<string | null>(null);
+  const [deletingKeyId, setDeletingKeyId] = useState<string | null>(null);
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState<string | null>(null);
   const [baseUrl, setBaseUrl] = useState('');
@@ -95,6 +96,25 @@ export default function McpDashboard() {
       setTestResult(`Failed to revoke API key: ${(error as Error).message}`);
     } finally {
       setRevokingKeyId(null);
+    }
+  };
+
+  const deleteKey = async (keyId: string) => {
+    if (!confirm('Permanently delete this key? This cannot be undone.')) return;
+    setDeletingKeyId(keyId);
+    try {
+      const response = await fetch(`/api/mcp/keys/${keyId}?permanent=true`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to delete API key');
+      }
+      await fetchKeys();
+    } catch (error) {
+      setTestResult(`Failed to delete API key: ${(error as Error).message}`);
+    } finally {
+      setDeletingKeyId(null);
     }
   };
 
@@ -272,15 +292,24 @@ export default function McpDashboard() {
                         )}
                       </div>
                     </div>
-                    {!key.revoked_at && (
+                    <div className="flex gap-2 flex-shrink-0">
+                      {!key.revoked_at && (
+                        <button
+                          onClick={() => revokeKey(key.key_id)}
+                          disabled={revokingKeyId === key.key_id}
+                          className="bg-red-600 text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-red-700 transition-colors rounded-lg disabled:opacity-50"
+                        >
+                          {revokingKeyId === key.key_id ? 'Revoking...' : 'Revoke'}
+                        </button>
+                      )}
                       <button
-                        onClick={() => revokeKey(key.key_id)}
-                        disabled={revokingKeyId === key.key_id}
-                        className="bg-red-600 text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-red-700 transition-colors rounded-lg disabled:opacity-50 flex-shrink-0"
+                        onClick={() => deleteKey(key.key_id)}
+                        disabled={deletingKeyId === key.key_id}
+                        className="bg-stone-600 text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-stone-700 transition-colors rounded-lg disabled:opacity-50"
                       >
-                        {revokingKeyId === key.key_id ? 'Revoking...' : 'Revoke'}
+                        {deletingKeyId === key.key_id ? 'Deleting...' : 'Delete'}
                       </button>
-                    )}
+                    </div>
                   </div>
                 </div>
               ))}
