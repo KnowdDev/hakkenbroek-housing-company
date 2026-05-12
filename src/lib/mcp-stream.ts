@@ -15,6 +15,18 @@ function forbiddenOriginResponse(): NextResponse {
   );
 }
 
+/** Cursor / VS Code family HTTP MCP clients sometimes send an Origin that is not the API host. */
+function isTrustedIdeMcpOrigin(originHost: string): boolean {
+  const h = originHost.toLowerCase();
+  return (
+    h === 'cursor.com' ||
+    h.endsWith('.cursor.com') ||
+    h.endsWith('.cursor.sh') ||
+    h.endsWith('.vscode-cdn.net') ||
+    h.endsWith('.github.dev')
+  );
+}
+
 /**
  * MCP Streamable HTTP: reject unexpected Origin headers (required when Origin is sent).
  * Allows missing Origin (desktop MCP clients, curl).
@@ -32,6 +44,8 @@ export function validateMcpOrigin(request: NextRequest): NextResponse | null {
 
   const host = request.headers.get('host');
   if (host && originHost === host) return null;
+
+  if (isTrustedIdeMcpOrigin(originHost)) return null;
 
   const allowedRaw =
     process.env.MCP_ALLOWED_ORIGINS?.split(',').map((s) => s.trim()).filter(Boolean) ?? [];
