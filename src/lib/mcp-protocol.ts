@@ -81,6 +81,7 @@ const tools: ToolDefinition[] = [
         status: { type: 'string', description: 'available, sold, rented, under-consideration' },
         listing_type: { type: 'string', description: 'sale or rent' },
         image_url: { type: 'string', description: 'Primary image URL' },
+        images: { type: 'array', description: 'Array of gallery image URLs', items: { type: 'string' } },
         featured: { type: 'boolean', description: 'Highlight on homepage' },
         year_built: { type: 'number', description: 'Year the property was built' },
         energy_label: { type: 'string', description: 'Energy efficiency label (A++, A+, A, B, C, D, E, F, G)' },
@@ -100,8 +101,8 @@ const tools: ToolDefinition[] = [
     handler: async (args, id) => {
       const validated = validateArgs(createListingSchema, args, 'create_listing');
       const data = await query(
-        `INSERT INTO listings (title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, featured, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26) RETURNING *`,
+        `INSERT INTO listings (title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, images, featured, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27) RETURNING *`,
         [
           validated.title,
           validated.description ?? null,
@@ -116,6 +117,7 @@ const tools: ToolDefinition[] = [
           validated.status ?? 'available',
           validated.listing_type ?? 'sale',
           validated.image_url ?? null,
+          validated.images ? JSON.stringify(validated.images) : null,
           validated.featured ?? false,
           validated.year_built ?? null,
           validated.energy_label ?? null,
@@ -154,6 +156,7 @@ const tools: ToolDefinition[] = [
         status: { type: 'string' },
         listing_type: { type: 'string' },
         image_url: { type: 'string' },
+        images: { type: 'array', description: 'Array of gallery image URLs', items: { type: 'string' } },
         featured: { type: 'boolean' },
         year_built: { type: 'number' },
         energy_label: { type: 'string' },
@@ -172,37 +175,36 @@ const tools: ToolDefinition[] = [
     },
     handler: async (args, id) => {
       const { id: updateId, ...rest } = validateArgs(updateListingSchema, args, 'update_listing');
+
+      const fields = Object.keys(rest);
+      if (fields.length === 0) {
+        const data = await query('SELECT * FROM listings WHERE id = $1 LIMIT 1', [updateId]);
+        if (data.rows.length === 0) throw new NotFoundError('Listing', updateId);
+        return buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
+      }
+
+      const setClauses: string[] = [];
+      const values: unknown[] = [];
+      let paramIndex = 1;
+
+      for (const field of fields) {
+        const value = rest[field as keyof typeof rest];
+        if (field === 'images') {
+          setClauses.push(`${field} = $${paramIndex}`);
+          values.push(value ? JSON.stringify(value) : null);
+        } else {
+          setClauses.push(`${field} = $${paramIndex}`);
+          values.push(value ?? null);
+        }
+        paramIndex++;
+      }
+
+      setClauses.push(`updated_at = CURRENT_TIMESTAMP`);
+      values.push(updateId);
+
       const data = await query(
-        `UPDATE listings SET title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5, area = $6, address = $7, city = $8, postal_code = $9, property_type = $10, status = $11, listing_type = $12, image_url = $13, featured = $14, year_built = $15, energy_label = $16, garden = $17, garden_area = $18, parking = $19, parking_spaces = $20, balcony = $21, terrace = $22, furnished = $23, basement = $24, elevator = $25, floors = $26, updated_at = CURRENT_TIMESTAMP WHERE id = $27 RETURNING *`,
-        [
-          rest.title ?? null,
-          rest.description ?? null,
-          rest.price ?? null,
-          rest.bedrooms ?? null,
-          rest.bathrooms ?? null,
-          rest.area ?? null,
-          rest.address ?? null,
-          rest.city ?? null,
-          rest.postal_code ?? null,
-          rest.property_type ?? 'apartment',
-          rest.status ?? 'available',
-          rest.listing_type ?? 'sale',
-          rest.image_url ?? null,
-          rest.featured ?? false,
-          rest.year_built ?? null,
-          rest.energy_label ?? null,
-          rest.garden ?? false,
-          rest.garden_area ?? null,
-          rest.parking ?? false,
-          rest.parking_spaces ?? null,
-          rest.balcony ?? false,
-          rest.terrace ?? false,
-          rest.furnished ?? false,
-          rest.basement ?? false,
-          rest.elevator ?? false,
-          rest.floors ?? null,
-          updateId,
-        ]
+        `UPDATE listings SET ${setClauses.join(', ')} WHERE id = $${paramIndex} RETURNING *`,
+        values
       );
       if (data.rows.length === 0) throw new NotFoundError('Listing', updateId);
       return buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
