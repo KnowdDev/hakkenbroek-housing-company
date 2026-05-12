@@ -45,7 +45,7 @@ interface ToolDefinition {
 }
 
 const SERVER_NAME = 'hakkenbroek-housing';
-const SERVER_VERSION = '1.3.2';
+const SERVER_VERSION = '1.3.3';
 const PROTOCOL_VERSION = '2024-11-05';
 
 export const MCP_SERVER_PROTOCOL_VERSIONS = ['2025-11-25', '2025-03-26', '2024-11-05'] as const;
@@ -374,8 +374,14 @@ export async function handleJsonRpcMessage(
   switch (method) {
     case 'initialize':
       return buildInitializeResponse(id);
+    case 'notifications/initialized':
     case 'initialized':
       return null;
+    case 'ping':
+      if (id === undefined || id === null) {
+        return buildError(0, -32600, 'Invalid Request: ping requires id');
+      }
+      return { jsonrpc: '2.0', id, result: {} };
     case 'tools/list':
       return buildToolsListResponse(id);
     case 'tools/call':

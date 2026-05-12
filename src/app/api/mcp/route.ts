@@ -9,6 +9,7 @@ import {
 } from '@/lib/mcp-protocol';
 import {
   acceptsEventStream,
+  acceptsJson,
   emptyAcceptedResponse,
   isJsonRpcClientRequest,
   isJsonRpcNotification,
@@ -58,13 +59,13 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     name: 'hakkenbroek-housing',
-    version: '1.3.2',
+    version: '1.3.3',
     protocol: 'mcp',
     transport: 'streamable-http',
     endpoint: '/api/mcp',
     health: '/api/mcp/health',
     auth: 'x-api-key header or Bearer token',
-    note: 'POST JSON-RPC with Accept including application/json and text/event-stream per MCP Streamable HTTP.',
+    note: 'POST JSON-RPC. Clients sending both application/json and text/event-stream receive application/json responses (SSE only when JSON is not accepted).',
   });
 }
 
@@ -144,7 +145,8 @@ export async function POST(request: NextRequest) {
   }
 
   const responses: unknown[] = [];
-  const preferSse = acceptsEventStream(request);
+  /** MCP clients (e.g. Cursor) send Accept: application/json, text/event-stream; JSON-RPC fits JSON bodies better than SSE framing. */
+  const preferSse = acceptsEventStream(request) && !acceptsJson(request);
 
   const mcpCtx: McpRequestContext = {
     dedupeNamespace: authResult.keyId ? `mk:${authResult.keyId}` : 'env-static',
