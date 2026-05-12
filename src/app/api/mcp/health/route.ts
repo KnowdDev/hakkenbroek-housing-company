@@ -24,7 +24,7 @@ export async function GET() {
     {
       status: overallHealthy ? 'healthy' : 'unhealthy',
       timestamp: new Date().toISOString(),
-      version: '1.1.0',
+      version: '1.2.0',
       uptime: process.uptime(),
       checks: {
         database: {
