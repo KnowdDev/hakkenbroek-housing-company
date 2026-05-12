@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { demoListings } from '@/lib/listings-data';
 import { requireWriteAccess } from '@/lib/api-auth';
+import { mergeListingPutBody } from '@/lib/listing-put-merge';
 
 export async function GET(
   request: NextRequest,
@@ -39,13 +40,47 @@ export async function PUT(
 
   try {
     const { id } = await params;
-    const body = await request.json();
-    const { 
-      title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
-      property_type, status, listing_type, image_url, featured, images, year_built, energy_label, 
-      garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
-      basement, elevator, floors 
-    } = body;
+    const body = (await request.json()) as Record<string, unknown>;
+
+    const existing = await query('SELECT * FROM listings WHERE id = $1 LIMIT 1', [id]);
+    if (existing.rows.length === 0) {
+      return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+    }
+
+    const merged = mergeListingPutBody(existing.rows[0] as Record<string, unknown>, body);
+
+    const {
+      title,
+      description,
+      price,
+      bedrooms,
+      bathrooms,
+      area,
+      address,
+      city,
+      postal_code,
+      property_type,
+      status,
+      listing_type,
+      image_url,
+      featured,
+      images,
+      year_built,
+      energy_label,
+      garden,
+      garden_area,
+      parking,
+      parking_spaces,
+      balcony,
+      terrace,
+      furnished,
+      basement,
+      elevator,
+      floors,
+    } = merged;
+
+    const imagesPayload =
+      images === undefined || images === null ? null : JSON.stringify(images);
 
     let result;
     try {
@@ -59,11 +94,34 @@ export async function PUT(
           basement = $25, elevator = $26, floors = $27, updated_at = CURRENT_TIMESTAMP 
           WHERE id = $28 RETURNING *`,
         [
-          title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
-          property_type, status, listing_type || 'sale', image_url, featured, 
-          images ? JSON.stringify(images) : null, year_built, energy_label, 
-          garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
-          basement, elevator, floors, id
+          title,
+          description,
+          price,
+          bedrooms,
+          bathrooms,
+          area,
+          address,
+          city,
+          postal_code,
+          property_type,
+          status,
+          (listing_type as string) || 'sale',
+          image_url,
+          featured,
+          imagesPayload,
+          year_built,
+          energy_label,
+          garden,
+          garden_area,
+          parking,
+          parking_spaces,
+          balcony,
+          terrace,
+          furnished,
+          basement,
+          elevator,
+          floors,
+          id,
         ]
       );
     } catch (updateError) {
@@ -75,8 +133,21 @@ export async function PUT(
           status = $11, listing_type = $12, image_url = $13, featured = $14, updated_at = CURRENT_TIMESTAMP
           WHERE id = $15 RETURNING *`,
         [
-          title, description, price, bedrooms, bathrooms, area, address, city, postal_code,
-          property_type, status, listing_type || 'sale', image_url, featured, id
+          title,
+          description,
+          price,
+          bedrooms,
+          bathrooms,
+          area,
+          address,
+          city,
+          postal_code,
+          property_type,
+          status,
+          (listing_type as string) || 'sale',
+          image_url,
+          featured,
+          id,
         ]
       );
       console.warn('Listings table missing luxury fields; updated using legacy schema.', updateError);
