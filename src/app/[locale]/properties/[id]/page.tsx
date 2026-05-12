@@ -88,6 +88,26 @@ export default function PropertyDetailPage() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const images = listing?.images && listing.images.length > 0 ? listing.images : [listing?.image_url || ''];
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false);
+      if (e.key === 'ArrowLeft') {
+        setActiveImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+      }
+      if (e.key === 'ArrowRight') {
+        setActiveImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [lightboxOpen, images.length]);
+
+  const goNext = () => setActiveImage((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  const goPrev = () => setActiveImage((prev) => (prev > 0 ? prev - 1 : images.length - 1));
 
   const t = statusLabels[locale as keyof typeof statusLabels] || statusLabels.en;
 
@@ -236,8 +256,6 @@ export default function PropertyDetailPage() {
     );
   }
 
-  const images = listing.images && listing.images.length > 0 ? listing.images : [listing.image_url];
-
   return (
     <div className="min-h-screen bg-stone-50 pt-24">
       {/* Breadcrumb */}
@@ -256,38 +274,173 @@ export default function PropertyDetailPage() {
       {/* Gallery */}
       <section className="bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div className="lg:col-span-2">
-              <div className="aspect-[16/10] overflow-hidden bg-stone-200">
-                {images && images[activeImage] ? (
-                  <img
-                    src={images[activeImage]}
-                    alt={listing.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-stone-400">
-                    No image available
-                  </div>
-                )}
+          {/* Main image + preview grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+            {/* Main image */}
+            <div className="lg:col-span-8 relative aspect-[16/10] overflow-hidden bg-stone-200 group cursor-pointer" onClick={() => setLightboxOpen(true)}>
+              {images && images[activeImage] ? (
+                <img
+                  src={images[activeImage]}
+                  alt={listing.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-stone-400 font-body uppercase tracking-wider text-sm">
+                  No image available
+                </div>
+              )}
+
+              {/* Hover arrows */}
+              <button
+                onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm text-charcoal hover:bg-brass hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+                aria-label="Previous image"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); goNext(); }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/90 backdrop-blur-sm text-charcoal hover:bg-brass hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+                aria-label="Next image"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+
+              {/* Counter */}
+              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 font-body text-xs uppercase tracking-wider text-charcoal">
+                {activeImage + 1} / {images.length}
               </div>
+
+              {/* Expand button */}
+              <button
+                onClick={(e) => { e.stopPropagation(); setLightboxOpen(true); }}
+                className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm w-10 h-10 flex items-center justify-center text-charcoal hover:bg-brass hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100"
+                aria-label="View fullscreen"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" /></svg>
+              </button>
             </div>
-            <div className="lg:col-span-1 flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible">
-              {images?.map((img, i) => (
+
+            {/* Desktop preview grid (2x2) */}
+            <div className="hidden lg:grid lg:col-span-4 grid-cols-2 grid-rows-2 gap-3">
+              {images.slice(1, 4).map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImage(i + 1)}
+                  className="relative overflow-hidden bg-stone-200 group"
+                >
+                  <img src={img} alt={`${listing.title} - ${i + 2}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </button>
+              ))}
+              {images.length > 4 && (
+                <button
+                  onClick={() => setLightboxOpen(true)}
+                  className="relative overflow-hidden bg-stone-200 group"
+                >
+                  <img src={images[4]} alt={`${listing.title} - 5`} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-charcoal/50 flex flex-col items-center justify-center text-white transition-colors duration-300 group-hover:bg-charcoal/60">
+                    <span className="font-display text-2xl">+{images.length - 4}</span>
+                    <span className="font-body text-xs uppercase tracking-wider mt-1">View all</span>
+                  </div>
+                </button>
+              )}
+              {images.length <= 4 && images[3] && (
+                <button
+                  onClick={() => setActiveImage(3)}
+                  className="relative overflow-hidden bg-stone-200 group"
+                >
+                  <img src={images[3]} alt={`${listing.title} - 4`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Thumbnail strip */}
+          {images.length > 1 && (
+            <div className="mt-3 flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+              {images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveImage(i)}
-                  className={`flex-shrink-0 w-24 h-24 lg:w-full lg:h-auto lg:aspect-[4/3] overflow-hidden border-2 transition-colors ${
-                    activeImage === i ? 'border-brass' : 'border-transparent'
+                  className={`flex-shrink-0 w-20 h-14 overflow-hidden border-2 transition-all duration-200 ${
+                    activeImage === i
+                      ? 'border-brass opacity-100'
+                      : 'border-transparent opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt={`${listing.title} - ${i + 1}`} className="w-full h-full object-cover" />
+                  <img src={img} alt="" className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-charcoal/95 backdrop-blur-sm flex flex-col"
+          onClick={() => setLightboxOpen(false)}
+        >
+          {/* Top bar */}
+          <div className="flex items-center justify-between px-6 py-4">
+            <span className="font-body text-xs uppercase tracking-wider text-stone-300">
+              {activeImage + 1} / {images.length}
+            </span>
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="w-10 h-10 flex items-center justify-center text-white hover:text-brass transition-colors"
+              aria-label="Close"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+            </button>
+          </div>
+
+          {/* Main image area */}
+          <div className="flex-1 flex items-center justify-center px-4 sm:px-12 relative" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={goPrev}
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm text-white hover:bg-brass transition-all duration-300"
+              aria-label="Previous"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+            </button>
+
+            <img
+              src={images[activeImage]}
+              alt={listing.title}
+              className="max-w-full max-h-full object-contain"
+            />
+
+            <button
+              onClick={goNext}
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm text-white hover:bg-brass transition-all duration-300"
+              aria-label="Next"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+            </button>
+          </div>
+
+          {/* Bottom thumbnail strip */}
+          <div className="px-6 py-4">
+            <div className="flex gap-2 overflow-x-auto pb-2 justify-center">
+              {images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImage(i)}
+                  className={`flex-shrink-0 w-16 h-11 overflow-hidden border-2 transition-all duration-200 ${
+                    activeImage === i
+                      ? 'border-brass opacity-100'
+                      : 'border-transparent opacity-50 hover:opacity-80'
+                  }`}
+                >
+                  <img src={img} alt="" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      )}
 
       {/* Details */}
       <section className="py-16">
