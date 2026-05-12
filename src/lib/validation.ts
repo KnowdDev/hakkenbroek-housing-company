@@ -91,8 +91,13 @@ export const createEnquirySchema = z.object({
   property_id: z.number().int().positive().optional(),
 });
 
+export const extractMarkdownSchema = z.object({
+  markdown: z.string().min(1, 'Markdown is required').max(512 * 1024),
+});
+
 export type GetListingInput = z.infer<typeof getListingSchema>;
 export type CreateListingInput = z.infer<typeof createListingSchema>;
 export type UpdateListingInput = z.infer<typeof updateListingSchema>;
 export type DeleteListingInput = z.infer<typeof deleteListingSchema>;
 export type CreateEnquiryInput = z.infer<typeof createEnquirySchema>;
+export type ExtractMarkdownInput = z.infer<typeof extractMarkdownSchema>;
