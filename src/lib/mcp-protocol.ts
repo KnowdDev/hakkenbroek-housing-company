@@ -9,7 +9,11 @@ import {
   deleteListingSchema,
   createEnquirySchema,
 } from './validation';
-import { buildUpdateListingToolPayload, type McpRequestContext } from '@/lib/listing-mcp-update';
+import {
+  buildUpdateListingToolPayload,
+  rawArgsFromListingPatchJson,
+  type McpRequestContext,
+} from '@/lib/listing-mcp-update';
 
 export type { McpRequestContext };
 
@@ -41,7 +45,7 @@ interface ToolDefinition {
 }
 
 const SERVER_NAME = 'hakkenbroek-housing';
-const SERVER_VERSION = '1.3.1';
+const SERVER_VERSION = '1.3.2';
 const PROTOCOL_VERSION = '2024-11-05';
 
 export const MCP_SERVER_PROTOCOL_VERSIONS = ['2025-11-25', '2025-03-26', '2024-11-05'] as const;
@@ -156,7 +160,7 @@ const tools: ToolDefinition[] = [
   {
     name: 'update_listing',
     description:
-      'PATCH fields on an existing listing by id. Only keys you include are written — omitted keys keep their current DB values (nothing is zeroed). Send every field you intend to change in one call (description, beds, baths, area, price, images, etc.). Use dry_run:true to preview merged listing + diff without saving. Response JSON includes listing, meta.diff (before→after), meta.warnings, and meta.fields_requested.',
+      'PATCH fields on an existing listing by id. Only keys you include are written — omitted keys keep their current DB values (nothing is zeroed). Send every field you intend to change in one call (description, beds, baths, area, price, images, etc.). Use dry_run:true to preview merged listing + diff without saving. Response JSON includes listing, meta.diff (before→after), meta.warnings, and meta.fields_requested. If your MCP client keeps truncating structured arguments to a few keys, use update_listing_json instead and put the whole patch inside patch_json.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -202,6 +206,32 @@ const tools: ToolDefinition[] = [
     },
     handler: async (args, jsonRpcId, ctx) => {
       const text = await buildUpdateListingToolPayload(args, ctx);
+      return buildToolResult(jsonRpcId, text);
+    },
+  },
+  {
+    name: 'update_listing_json',
+    description:
+      'Same PATCH semantics as update_listing, but listing fields live inside one string field patch_json (a JSON object). Use when your IDE/agent truncates multi-property tool arguments — paste or generate the full object as compact JSON here. Optional dry_run applies to the whole patch. Unknown keys in patch_json are ignored.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        id: { type: 'number', description: 'Listing ID to update' },
+        patch_json: {
+          type: 'string',
+          description:
+            'JSON object string only (no markdown fences). Keys are listing fields only: title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, images (URL array), featured, year_built, energy_label, floors, furnished, garden, garden_area, balcony, terrace, parking, parking_spaces, elevator, basement. Example: {"title":"…","description":"…","bedrooms":2}',
+        },
+        dry_run: {
+          type: 'boolean',
+          description: 'When true, preview merged listing + diff without writing (same as update_listing dry_run).',
+        },
+      },
+      required: ['id', 'patch_json'],
+    },
+    handler: async (args, jsonRpcId, ctx) => {
+      const expanded = rawArgsFromListingPatchJson(args);
+      const text = await buildUpdateListingToolPayload(expanded, ctx);
       return buildToolResult(jsonRpcId, text);
     },
   },

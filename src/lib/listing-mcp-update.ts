@@ -2,13 +2,14 @@ import { query } from '@/lib/db';
 import { ValidationError, NotFoundError } from '@/lib/errors';
 import { peekDedupe, rememberDedupe } from '@/lib/mcp-tool-dedupe';
 import {
+  LISTING_PATCH_COLUMNS,
   listingRequestedPatchKeys,
   normalizeListingRow,
   shallowEqualListingValue,
   fieldDisplayEmpty,
   type ListingPatchColumn,
 } from '@/lib/listing-update-patch';
-import { updateListingToolSchema } from '@/lib/validation';
+import { updateListingToolSchema, updateListingJsonSchema } from '@/lib/validation';
 import { z } from 'zod';
 
 export interface McpRequestContext {
@@ -37,6 +38,43 @@ function validateArgs<T>(schema: z.ZodSchema<T>, args: unknown, toolName: string
     throw new ValidationError(`Invalid arguments for ${toolName}`, fieldErrors);
   }
   return result.data;
+}
+
+const PATCH_KEY_WHITELIST = new Set<string>(LISTING_PATCH_COLUMNS);
+
+/**
+ * Expands update_listing_json tool args into the same shape as update_listing.
+ * patch_json must be a JSON object; only updatable listing columns are merged (unknown keys ignored).
+ */
+export function rawArgsFromListingPatchJson(args: Record<string, unknown>): Record<string, unknown> {
+  const validated = validateArgs(updateListingJsonSchema, args, 'update_listing_json');
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(validated.patch_json);
+  } catch {
+    throw new ValidationError('Invalid arguments for update_listing_json', {
+      patch_json: ['patch_json must be valid JSON'],
+    });
+  }
+
+  if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new ValidationError('Invalid arguments for update_listing_json', {
+      patch_json: ['patch_json must be a JSON object (not an array or primitive)'],
+    });
+  }
+
+  const inner = parsed as Record<string, unknown>;
+  const merged: Record<string, unknown> = { id: validated.id };
+  if (validated.dry_run !== undefined) merged.dry_run = validated.dry_run;
+
+  for (const key of Object.keys(inner)) {
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') continue;
+    if (!PATCH_KEY_WHITELIST.has(key)) continue;
+    merged[key] = inner[key];
+  }
+
+  return merged;
 }
 
 function mergePreview(current: Record<string, unknown>, patch: Partial<Record<ListingPatchColumn, unknown>>): Record<string, unknown> {

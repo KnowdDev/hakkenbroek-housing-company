@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     name: 'hakkenbroek-housing',
-    version: '1.3.1',
+    version: '1.3.2',
     protocol: 'mcp',
     transport: 'streamable-http',
     endpoint: '/api/mcp',
