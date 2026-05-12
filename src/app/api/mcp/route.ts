@@ -5,6 +5,7 @@ import {
   handleJsonRpcMessage,
   JsonRpcRequest,
   validateMcpProtocolHeader,
+  type McpRequestContext,
 } from '@/lib/mcp-protocol';
 import {
   acceptsEventStream,
@@ -57,7 +58,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     name: 'hakkenbroek-housing',
-    version: '1.3.0',
+    version: '1.3.1',
     protocol: 'mcp',
     transport: 'streamable-http',
     endpoint: '/api/mcp',
@@ -145,6 +146,10 @@ export async function POST(request: NextRequest) {
   const responses: unknown[] = [];
   const preferSse = acceptsEventStream(request);
 
+  const mcpCtx: McpRequestContext = {
+    dedupeNamespace: authResult.keyId ? `mk:${authResult.keyId}` : 'env-static',
+  };
+
   for (const msg of wires) {
     if (typeof msg !== 'object' || msg === null || msg.jsonrpc !== '2.0') continue;
     if (isJsonRpcNotification(msg) || isJsonRpcResponseMessage(msg)) continue;
@@ -153,7 +158,7 @@ export async function POST(request: NextRequest) {
     if (rpcMessage.method === undefined) continue;
 
     const startTime = Date.now();
-    const response = await handleJsonRpcMessage(rpcMessage);
+    const response = await handleJsonRpcMessage(rpcMessage, mcpCtx);
     const duration = Date.now() - startTime;
 
     if (rpcMessage.method === 'tools/call') {

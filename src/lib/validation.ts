@@ -79,6 +79,11 @@ export const updateListingSchema = z.object({
   basement: z.boolean().optional(),
 });
 
+/** MCP update_listing only — preview mode without writing to DB */
+export const updateListingToolSchema = updateListingSchema.extend({
+  dry_run: z.boolean().optional(),
+});
+
 export const deleteListingSchema = z.object({
   id: z.number().int().positive('Listing ID must be a positive integer'),
 });
@@ -98,6 +103,7 @@ export const extractMarkdownSchema = z.object({
 export type GetListingInput = z.infer<typeof getListingSchema>;
 export type CreateListingInput = z.infer<typeof createListingSchema>;
 export type UpdateListingInput = z.infer<typeof updateListingSchema>;
+export type UpdateListingToolInput = z.infer<typeof updateListingToolSchema>;
 export type DeleteListingInput = z.infer<typeof deleteListingSchema>;
 export type CreateEnquiryInput = z.infer<typeof createEnquirySchema>;
 export type ExtractMarkdownInput = z.infer<typeof extractMarkdownSchema>;
