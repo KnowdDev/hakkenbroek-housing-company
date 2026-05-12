@@ -159,6 +159,95 @@ export default function McpDashboard() {
     return `curl -X POST "${mcpUrl}" \\\n  -H "Content-Type: application/json" \\\n  -H "x-api-key: ${apiKey}" \\\n  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_listings","arguments":{}}}'`;
   }, [mcpUrl, liveApiKey]);
 
+  const [activeEditorTab, setActiveEditorTab] = useState<'claude' | 'cursor' | 'windsurf' | 'vscode' | 'generic'>('windsurf');
+
+  const editorConfigs = useMemo(() => {
+    const apiKey = liveApiKey || '$HBK_API_KEY';
+    return {
+      claude: JSON.stringify(
+        {
+          mcpServers: {
+            'hakkenbroek-housing': {
+              url: mcpUrl,
+              headers: { 'x-api-key': apiKey },
+            },
+          },
+        },
+        null,
+        2
+      ),
+      cursor: JSON.stringify(
+        {
+          mcpServers: {
+            'hakkenbroek-housing': {
+              url: mcpUrl,
+              headers: { 'x-api-key': apiKey },
+            },
+          },
+        },
+        null,
+        2
+      ),
+      windsurf: JSON.stringify(
+        {
+          mcpServers: {
+            'hakkenbroek-housing': {
+              url: mcpUrl,
+              headers: { 'x-api-key': apiKey },
+            },
+          },
+        },
+        null,
+        2
+      ),
+      vscode: JSON.stringify(
+        {
+          mcp: {
+            servers: {
+              'hakkenbroek-housing': {
+                url: mcpUrl,
+                headers: { 'x-api-key': apiKey },
+              },
+            },
+          },
+        },
+        null,
+        2
+      ),
+      generic: JSON.stringify(
+        {
+          name: 'hakkenbroek-housing',
+          protocol: 'mcp',
+          transport: 'http',
+          url: mcpUrl,
+          headers: { 'x-api-key': apiKey },
+        },
+        null,
+        2
+      ),
+    };
+  }, [mcpUrl, liveApiKey]);
+
+  const editorTabs = [
+    { id: 'claude' as const, label: 'Claude Desktop', config: editorConfigs.claude, filePath: '~/Library/Application Support/Claude/claude_desktop_config.json' },
+    { id: 'cursor' as const, label: 'Cursor', config: editorConfigs.cursor, filePath: '~/.cursor/mcp.json' },
+    { id: 'windsurf' as const, label: 'Windsurf', config: editorConfigs.windsurf, filePath: '~/.windsurf/mcp_config.json' },
+    { id: 'vscode' as const, label: 'VS Code / Copilot', config: editorConfigs.vscode, filePath: 'VS Code Settings (JSON)' },
+    { id: 'generic' as const, label: 'Generic', config: editorConfigs.generic, filePath: 'Any MCP-compatible client' },
+  ];
+
+  const activeTab = editorTabs.find((t) => t.id === activeEditorTab) || editorTabs[0];
+
+  const downloadConfig = (configText: string, filename: string) => {
+    const blob = new Blob([configText], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <DashboardLayout>
       <div className="p-8 max-w-6xl">
@@ -341,6 +430,69 @@ export default function McpDashboard() {
             )}
           </div>
         </div>
+
+        {/* Connect Your Editor */}
+        {createdKey && (
+          <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200 mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-full bg-brass/10 flex items-center justify-center">
+                <svg className="w-5 h-5 text-brass" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="font-display text-2xl text-charcoal">Connect Your Editor</h2>
+                <p className="text-sm text-stone-500">
+                  Copy the config for your AI editor and paste it in the right place
+                </p>
+              </div>
+            </div>
+
+            {/* Editor Tabs */}
+            <div className="flex flex-wrap gap-2 mb-6 border-b border-stone-200 pb-2">
+              {editorTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveEditorTab(tab.id)}
+                  className={`px-4 py-2 font-body text-xs uppercase tracking-wider rounded-t-lg transition-colors ${
+                    activeEditorTab === tab.id
+                      ? 'bg-charcoal text-white'
+                      : 'text-stone-600 hover:bg-stone-100'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Config Display */}
+            <div className="mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <p className="text-sm font-medium text-stone-700">{activeTab.label} Config</p>
+                  <p className="text-xs text-stone-500">Paste this into {activeTab.filePath}</p>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleCopy(activeTab.config, activeTab.id)}
+                    className="bg-charcoal text-white px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-brass transition-colors rounded-lg"
+                  >
+                    {copiedMap[activeTab.id] ? 'Copied' : 'Copy Config'}
+                  </button>
+                  <button
+                    onClick={() => downloadConfig(activeTab.config, `hakkenbroek-mcp-${activeTab.id}.json`)}
+                    className="bg-stone-200 text-charcoal px-3 py-2 font-body text-xs uppercase tracking-wider hover:bg-stone-300 transition-colors rounded-lg"
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+              <pre className="bg-stone-900 text-stone-200 px-4 py-4 rounded-lg text-sm font-mono overflow-x-auto whitespace-pre">
+                {activeTab.config}
+              </pre>
+            </div>
+          </div>
+        )}
 
         {/* cURL Examples */}
         <div className="bg-stone-50 rounded-lg shadow-sm p-8 border border-stone-200 mb-8">
