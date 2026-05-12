@@ -70,14 +70,14 @@ export default function VaultDashboard() {
         <form onSubmit={save} className="bg-stone-50 rounded-lg p-6 border border-stone-200 mb-8 space-y-4">
           <h2 className="font-display text-xl text-charcoal">Store Secret</h2>
           <input value={key} onChange={e => setKey(e.target.value)} placeholder="Key (e.g. DATABASE_URL)" className="w-full px-4 py-3 border border-stone-300 rounded-lg text-sm" />
-          <textarea value={value} onChange={e => setValue(e.target.value)} rows={3} placeholder="Secret value" className="w-full px-4 py-3 border border-stone-300 rounded-lg text-sm font-mono" />
+          <textarea value={value} onChange={e => setValue(e.target.value)} rows={4} placeholder="Paste your secret value here" className="w-full px-4 py-3 border border-stone-300 rounded-lg text-sm font-mono resize-y" />
           <input value={desc} onChange={e => setDesc(e.target.value)} placeholder="Description (optional)" className="w-full px-4 py-3 border border-stone-300 rounded-lg text-sm" />
-          <button type="submit" disabled={saving} className="bg-charcoal text-white px-6 py-3 text-xs uppercase tracking-wider hover:bg-brass rounded-lg disabled:opacity-50">{saving ? 'Saving...' : 'Store'}</button>
+          <button type="submit" disabled={saving} className="bg-charcoal text-white px-6 py-3 text-xs uppercase tracking-wider hover:bg-brass rounded-lg disabled:opacity-50">{saving ? 'Saving...' : 'Store Secret'}</button>
         </form>
         <div className="bg-stone-50 rounded-lg p-6 border border-stone-200">
-          <h2 className="font-display text-xl text-charcoal mb-4">Secrets ({secrets.length})</h2>
+          <h2 className="font-display text-xl text-charcoal mb-4">Stored Secrets ({secrets.length})</h2>
           {loading ? <p className="text-sm text-stone-500">Loading...</p> :
-           secrets.length === 0 ? <p className="text-sm text-stone-500">None stored.</p> :
+           secrets.length === 0 ? <p className="text-sm text-stone-500">No secrets stored yet.</p> :
            secrets.map(s => (
             <div key={s.id} className="flex items-center justify-between border-b border-stone-200 py-3 last:border-0">
               <div><p className="font-mono text-sm font-medium text-charcoal">{s.key}</p>{s.description && <p className="text-xs text-stone-500">{s.description}</p>}</div>
