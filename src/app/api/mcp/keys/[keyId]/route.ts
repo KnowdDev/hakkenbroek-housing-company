@@ -15,6 +15,19 @@ export async function DELETE(
   try {
     await ensureApiKeysTable();
     const { keyId } = await params;
+    const permanent = request.nextUrl.searchParams.get('permanent') === 'true';
+
+    if (permanent) {
+      const result = await query(
+        'DELETE FROM api_keys WHERE key_id = $1 RETURNING key_id',
+        [keyId]
+      );
+      if (result.rows.length === 0) {
+        return NextResponse.json({ error: 'Key not found' }, { status: 404 });
+      }
+      return NextResponse.json({ message: 'API key deleted permanently' });
+    }
+
     const result = await query(
       `UPDATE api_keys
        SET revoked_at = CURRENT_TIMESTAMP
@@ -29,7 +42,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: 'API key revoked' });
   } catch (error) {
-    console.error('Error revoking API key:', error);
-    return NextResponse.json({ error: 'Failed to revoke API key' }, { status: 500 });
+    console.error('Error managing API key:', error);
+    return NextResponse.json({ error: 'Failed to manage API key' }, { status: 500 });
   }
 }
