@@ -151,12 +151,12 @@ export default function McpDashboard() {
 
   const mcpCurlExample = useMemo(() => {
     const apiKey = liveApiKey || '$MCP_API_KEY';
-    return `curl -X POST "${mcpUrl}" \\\n  -H "Content-Type: application/json" \\\n  -H "x-api-key: ${apiKey}" \\\n  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'`;
+    return `curl -X POST "${mcpUrl}" \\\n  -H "Content-Type: application/json" \\\n  -H "Accept: application/json, text/event-stream" \\\n  -H "MCP-Protocol-Version: 2025-11-25" \\\n  -H "x-api-key: ${apiKey}" \\\n  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'`;
   }, [mcpUrl, liveApiKey]);
 
   const mcpToolCurl = useMemo(() => {
     const apiKey = liveApiKey || '$MCP_API_KEY';
-    return `curl -X POST "${mcpUrl}" \\\n  -H "Content-Type: application/json" \\\n  -H "x-api-key: ${apiKey}" \\\n  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_listings","arguments":{}}}'`;
+    return `curl -X POST "${mcpUrl}" \\\n  -H "Content-Type: application/json" \\\n  -H "Accept: application/json, text/event-stream" \\\n  -H "MCP-Protocol-Version: 2025-11-25" \\\n  -H "x-api-key: ${apiKey}" \\\n  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_listings","arguments":{}}}'`;
   }, [mcpUrl, liveApiKey]);
 
   const [activeEditorTab, setActiveEditorTab] = useState<'claude' | 'cursor' | 'windsurf' | 'vscode' | 'generic'>('windsurf');
@@ -255,7 +255,7 @@ export default function McpDashboard() {
         <div className="mb-8">
           <h1 className="font-display text-4xl text-charcoal mb-2">MCP Server</h1>
           <p className="text-stone-600">
-            Direct HTTP JSON-RPC endpoint for AI editors and integrations
+            MCP Streamable HTTP — JSON-RPC over POST with Cursor, Claude Code, Windsurf, VS Code, and other MCP-capable clients
           </p>
         </div>
 
@@ -277,7 +277,8 @@ export default function McpDashboard() {
                 </button>
               </div>
               <p className="text-xs text-stone-500 mt-2">
-                POST JSON-RPC requests here. Responses return immediately.
+                POST JSON-RPC per MCP Streamable HTTP (see curl examples). Include{' '}
+                <code className="text-stone-600">Accept: application/json, text/event-stream</code> for IDE compatibility.
               </p>
             </div>
             <div>
@@ -552,7 +553,8 @@ export default function McpDashboard() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <p>
-                <strong className="text-charcoal">Direct HTTP</strong> — POST a JSON-RPC request, get the response immediately. No SSE streams, no message queues, no polling loops.
+                <strong className="text-charcoal">Streamable HTTP</strong> — Compatible with MCP 2025-03-26+ clients: POST JSON-RPC with{' '}
+                <code className="text-stone-700">Accept: application/json, text/event-stream</code>. Responses return as JSON or as an SSE-framed payload when clients request streaming.
               </p>
             </div>
             <div className="flex items-start gap-3">

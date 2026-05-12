@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { NextResponse } from 'next/server';
 import { query } from './db';
 import { logger } from './logger';
 import { ValidationError, NotFoundError } from './errors';
@@ -8,7 +9,10 @@ import {
   updateListingSchema,
   deleteListingSchema,
   createEnquirySchema,
+  extractMarkdownSchema,
 } from './validation';
+import { LISTING_EDITORIAL_GUIDELINES } from './listing-editorial-guidelines';
+import { extractListingDraftsFromMarkdown } from './listing-markdown-extract';
 
 export interface JsonRpcRequest {
   jsonrpc: '2.0';
@@ -34,8 +38,34 @@ interface ToolDefinition {
 }
 
 const SERVER_NAME = 'hakkenbroek-housing';
-const SERVER_VERSION = '1.2.0';
-const PROTOCOL_VERSION = '2024-11-05';
+const SERVER_VERSION = '1.3.0';
+
+export const MCP_SERVER_PROTOCOL_VERSIONS = ['2025-11-25', '2025-03-26', '2024-11-05'] as const;
+export type McpProtocolVersion = (typeof MCP_SERVER_PROTOCOL_VERSIONS)[number];
+
+export function negotiateProtocolVersion(clientRequested?: string): McpProtocolVersion {
+  if (clientRequested && (MCP_SERVER_PROTOCOL_VERSIONS as readonly string[]).includes(clientRequested)) {
+    return clientRequested as McpProtocolVersion;
+  }
+  return '2025-11-25';
+}
+
+export function validateMcpProtocolHeader(headerValue: string | null): NextResponse | null {
+  if (!headerValue?.trim()) return null;
+  const v = headerValue.trim();
+  if ((MCP_SERVER_PROTOCOL_VERSIONS as readonly string[]).includes(v)) return null;
+  return NextResponse.json(
+    { jsonrpc: '2.0', error: { code: -32600, message: `Unsupported MCP-Protocol-Version: ${v}` } },
+    { status: 400 }
+  );
+}
+
+const MCP_AGENT_INSTRUCTIONS = [
+  'Workflow: call listing_editorial_guidelines once per session when rewriting copy.',
+  'Use extract_listings_from_markdown on pasted exports, then list_listings/get_listing to match IDs.',
+  'Apply surgical edits with update_listing — send only fields that change.',
+  'Prefer create_listing only for genuinely new inventory.',
+].join('\n');
 
 const tools: ToolDefinition[] = [
   {
@@ -257,16 +287,47 @@ const tools: ToolDefinition[] = [
       return buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
     },
   },
+  {
+    name: 'listing_editorial_guidelines',
+    description:
+      'Hakkenbroek tone-of-voice and structure rules for titles and descriptions. Call before rewriting listing copy.',
+    inputSchema: { type: 'object', properties: {} },
+    handler: async (_args, id) => buildToolResult(id, LISTING_EDITORIAL_GUIDELINES),
+  },
+  {
+    name: 'extract_listings_from_markdown',
+    description:
+      'Best-effort parse of markdown property sheets into listing-shaped drafts (matches Hakkenbroek export style). Always reconcile IDs via list_listings/get_listing before update_listing.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        markdown: {
+          type: 'string',
+          description: 'Full markdown text — pasted export, scraped page markdown, or agent-authored bundle.',
+        },
+      },
+      required: ['markdown'],
+    },
+    handler: async (args, id) => {
+      const { markdown } = validateArgs(extractMarkdownSchema, args, 'extract_listings_from_markdown');
+      const drafts = extractListingDraftsFromMarkdown(markdown);
+      return buildToolResult(id, JSON.stringify({ drafts, count: drafts.length }, null, 2));
+    },
+  },
 ];
 
-export function buildInitializeResponse(id?: number | string): JsonRpcResponse {
+export function buildInitializeResponse(id?: number | string, params?: Record<string, unknown>): JsonRpcResponse {
+  const requested = typeof params?.protocolVersion === 'string' ? params.protocolVersion : undefined;
+  const protocolVersion = negotiateProtocolVersion(requested);
+
   return {
     jsonrpc: '2.0',
     id,
     result: {
-      protocolVersion: PROTOCOL_VERSION,
+      protocolVersion,
       capabilities: { tools: { listChanged: false } },
       serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
+      instructions: MCP_AGENT_INSTRUCTIONS,
     },
   };
 }
@@ -338,13 +399,19 @@ export async function handleToolCall(request: JsonRpcRequest): Promise<JsonRpcRe
 }
 
 export async function handleJsonRpcMessage(request: JsonRpcRequest): Promise<JsonRpcResponse | null> {
-  const { method, id } = request;
+  const { method, id, params } = request;
 
   switch (method) {
     case 'initialize':
-      return buildInitializeResponse(id);
+      return buildInitializeResponse(id, params as Record<string, unknown> | undefined);
+    case 'notifications/initialized':
     case 'initialized':
       return null;
+    case 'ping':
+      if (id === undefined || id === null) {
+        return buildError(0, -32600, 'Invalid Request: ping requires id');
+      }
+      return { jsonrpc: '2.0', id, result: {} };
     case 'tools/list':
       return buildToolsListResponse(id);
     case 'tools/call':
