@@ -6,14 +6,14 @@ import { usePathname } from 'next/navigation';
 import LanguageToggle from './LanguageToggle';
 
 const navLinks = [
-  { href: '/', label: { en: 'Home', nl: 'Home', es: 'Inicio' } },
-  { href: '/about', label: { en: 'About', nl: 'Over ons', es: 'Nosotros' } },
-  { href: '/services', label: { en: 'Services', nl: 'Diensten', es: 'Servicios' } },
-  { href: '/properties', label: { en: 'Properties', nl: 'Woningen', es: 'Propiedades' } },
-  { href: '/contact', label: { en: 'Contact', nl: 'Contact', es: 'Contacto' } },
+  { href: '/', label: { en: 'Home', nl: 'Home' } },
+  { href: '/about', label: { en: 'About', nl: 'Over ons' } },
+  { href: '/services', label: { en: 'Services', nl: 'Diensten' } },
+  { href: '/properties', label: { en: 'Properties', nl: 'Woningen' } },
+  { href: '/contact', label: { en: 'Contact', nl: 'Contact' } },
 ];
 
-type Language = 'en' | 'nl' | 'es';
+type Language = 'en' | 'nl';
 
 export default function Footer() {
   const [locale, setLocale] = useState<Language>('en');
@@ -22,7 +22,7 @@ export default function Footer() {
   useEffect(() => {
     // Extract locale from pathname
     const segments = pathname.split('/').filter(Boolean);
-    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl' || segments[0] === 'es')) {
+    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl')) {
       setLocale(segments[0] as Language);
     }
   }, [pathname]);

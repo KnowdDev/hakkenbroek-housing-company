@@ -129,42 +129,6 @@ export default function PropertiesPage() {
         rented: 'Verhuurd'
       }
     },
-    es: {
-      heroSubtitle: 'Portfolio',
-      heroTitle: 'Propiedades Excepcionales',
-      heroDescription: 'Una selección curada de las mejores propiedades de Ámsterdam. Para consultas discretas sobre propiedades no listadas, contáctenos directamente.',
-      filterAll: 'Todas las Propiedades',
-      filterAvailable: 'Disponible',
-      filterUnderConsideration: 'En Consideración',
-      filterSold: 'Vendido',
-      filterRented: 'Alquilado',
-      filterSale: 'En Venta',
-      filterRent: 'En Alquiler',
-      listingTypeAll: 'Todos los Tipos',
-      priceAll: 'Todos los Precios',
-      priceUnder500k: 'Menos de €500k',
-      price500kTo1m: '€500k – €1M',
-      price1mTo2m: '€1M – €2M',
-      priceOver2m: '€2M+',
-      priceOnRequest: 'Precio bajo consulta',
-      loading: 'Cargando propiedades...',
-      noImage: 'Sin imagen disponible',
-      noMatch: 'Ninguna propiedad coincide con sus filtros.',
-      clearFilters: 'Limpiar Todos los Filtros',
-      showing: 'Mostrando',
-      property: 'propiedad',
-      properties: 'propiedades',
-      ctaTitle: '¿Busca algo no listado?',
-      ctaText: 'Muchas de nuestras propiedades más excepcionales nunca aparecen en plataformas públicas. Contáctenos para una conversación discreta sobre oportunidades fuera de mercado.',
-      ctaButton: 'Consulta Privada',
-      featured: 'Destacado',
-      status: {
-        available: 'Disponible',
-        underConsideration: 'En Consideración',
-        sold: 'Vendido',
-        rented: 'Alquilado'
-      }
-    }
   };
 
   const t = content[locale as keyof typeof content] || content.en;

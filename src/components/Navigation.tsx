@@ -6,28 +6,28 @@ import { usePathname } from 'next/navigation';
 import LanguageToggle from './LanguageToggle';
 
 const navLinks = [
-  { href: '/buying', label: { en: 'Buy', nl: 'Kopen', es: 'Comprar' } },
-  { href: '/selling', label: { en: 'Sell', nl: 'Verkopen', es: 'Vender' } },
-  { href: '/about', label: { en: 'About', nl: 'Over ons', es: 'Nosotros' } },
-  { href: '/services', label: { en: 'Services', nl: 'Diensten', es: 'Servicios' } },
-  { href: '/contact', label: { en: 'Contact', nl: 'Contact', es: 'Contacto' } },
+  { href: '/buying', label: { en: 'Buy', nl: 'Kopen' } },
+  { href: '/selling', label: { en: 'Sell', nl: 'Verkopen' } },
+  { href: '/about', label: { en: 'About', nl: 'Over ons' } },
+  { href: '/services', label: { en: 'Services', nl: 'Diensten' } },
+  { href: '/contact', label: { en: 'Contact', nl: 'Contact' } },
 ];
 
 const propertiesDropdown = {
-  label: { en: 'Properties', nl: 'Woningen', es: 'Propiedades' },
+  label: { en: 'Properties', nl: 'Woningen' },
   items: [
     {
       href: '/properties?type=sale',
-      label: { en: 'For Sale', nl: 'Te Koop', es: 'En Venta' },
+      label: { en: 'For Sale', nl: 'Te Koop' },
     },
     {
       href: '/properties?type=rent',
-      label: { en: 'For Rent', nl: 'Te Huur', es: 'En Alquiler' },
+      label: { en: 'For Rent', nl: 'Te Huur' },
     },
   ],
 };
 
-type Language = 'en' | 'nl' | 'es';
+type Language = 'en' | 'nl';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const segments = pathname.split('/').filter(Boolean);
-    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl' || segments[0] === 'es')) {
+    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl')) {
       setLocale(segments[0] as Language);
     }
   }, [pathname]);

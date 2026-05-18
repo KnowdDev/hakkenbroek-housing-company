@@ -5,11 +5,10 @@ import { useRouter, usePathname } from 'next/navigation';
 
 const languageNames: Record<string, string> = {
   en: 'English',
-  nl: 'Nederlands',
-  es: 'Español'
+  nl: 'Nederlands'
 };
 
-type Language = 'en' | 'nl' | 'es';
+type Language = 'en' | 'nl';
 
 interface LanguageToggleProps {
   scrolled?: boolean;
@@ -24,7 +23,7 @@ export default function LanguageToggle({ scrolled = false }: LanguageToggleProps
   useEffect(() => {
     // Extract locale from pathname
     const segments = pathname.split('/').filter(Boolean);
-    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl' || segments[0] === 'es')) {
+    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl')) {
       setLocale(segments[0] as Language);
     }
   }, [pathname]);
@@ -35,7 +34,7 @@ export default function LanguageToggle({ scrolled = false }: LanguageToggleProps
     
     // Replace locale in pathname
     const segments = pathname.split('/').filter(Boolean);
-    const currentLocaleIndex = segments.findIndex(seg => seg === 'en' || seg === 'nl' || seg === 'es');
+    const currentLocaleIndex = segments.findIndex(seg => seg === 'en' || seg === 'nl');
     
     if (currentLocaleIndex !== -1) {
       segments[currentLocaleIndex] = newLocale;

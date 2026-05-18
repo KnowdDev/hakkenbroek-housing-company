@@ -11,7 +11,7 @@ export function useTranslations() {
   useEffect(() => {
     // Extract locale from pathname
     const segments = pathname.split('/').filter(Boolean);
-    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl' || segments[0] === 'es')) {
+    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl')) {
       setLocale(segments[0] as Language);
     }
   }, [pathname]);

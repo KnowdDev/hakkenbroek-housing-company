@@ -59,32 +59,6 @@ export default function AboutPage() {
       ctaDesc: 'Bezoek ons aan de Leliegracht 21. Geen verplichting. Volledige discretie. Gewoon een eerlijk gesprek over uw vastgoedambities.',
       contactBtn: 'Maak een Afspraak'
     },
-    es: {
-      story: 'Nuestra Herencia',
-      headline: 'Dos décadas de discreción en las mejores propiedades de Ámsterdam',
-      who: 'Quiénes Somos',
-      description1: 'Desde 2003, Hakkenbroek Housing Company ha moldeado silenciosamente el panorama inmobiliario de lujo de Ámsterdam. Desde nuestra oficina en Leliegracht, hemos guiado a cientos de clientes exigentes a través de las transacciones inmobiliarias más significativas de la ciudad — siempre con discreción, siempre con cuidado.',
-      description2: 'No somos una agencia de volumen. Somos un asesor de confianza. Nuestro equipo combina un profundo conocimiento del mercado de Ámsterdam con una perspectiva internacional, sirviendo a compradores y vendedores de los Países Bajos, Europa y más allá. Hablamos su idioma — literal y culturalmente.',
-      description3: 'Nuestra experiencia va más allá de la correduría estándar. Somos especialistas en monumentos históricos de Ámsterdam, restauraciones de casas de canal, y las regulaciones únicas que rigen los edificios protegidos. Asesoramos sobre estilismo del hogar que honra el patrimonio arquitectónico mientras crea espacios para la vida moderna.',
-      valuesTitle: 'Lo Que Nos Guía',
-      values: 'Nuestros Principios',
-      trust: 'Discreción y Confianza',
-      trustDesc: 'La confidencialidad es la base de cada relación. Lo que se discute en nuestra oficina permanece en nuestra oficina.',
-      personal: 'Dedicación Personal',
-      personalDesc: 'Aceptamos un número limitado de clientes a la vez. Esto garantiza que cada cliente reciba toda nuestra atención y lo mejor de nuestra red.',
-      expertise: 'Inteligencia de Mercado',
-      expertiseDesc: 'Dos décadas de transacciones en Ámsterdam nos dan una visión que ningún algoritmo puede replicar. Sabemos lo que vale una propiedad — y lo que podría valer.',
-      global: 'Alcance Internacional',
-      globalDesc: 'Representación multilingüe que conecta propiedades de Ámsterdam con compradores cualificados de Londres, Nueva York, Singapur y más allá.',
-      quality: 'Portfolio Curado',
-      qualityDesc: 'Somos selectivos con las propiedades que representamos. Si no se lo recomendaríamos a un amigo, no lo listamos.',
-      relationships: 'Relaciones de por Vida',
-      relationshipsDesc: 'La mayoría de nuestros clientes regresan. Muchos se convierten en amigos. Una transacción inmobiliaria nunca es solo una transacción — es el comienzo de una relación.',
-      stats: { years: 'Años de Experiencia', rating: 'Calificación del Cliente', clients: 'Clientes Satisfechos', areas: 'Áreas Atendidas' },
-      cta: 'Comience una conversación',
-      ctaDesc: 'Visítenos en Leliegracht 21. Sin obligación. Discreción total. Solo una conversación honesta sobre sus ambiciones inmobiliarias.',
-      contactBtn: 'Concierte una Cita'
-    }
   };
 
   const t = content[locale as keyof typeof content] || content.en;

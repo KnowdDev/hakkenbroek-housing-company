@@ -67,35 +67,6 @@ export default function BuyingPage() {
       ctaText: 'Bezoek ons kantoor aan de Leliegracht voor een privé consult. Geen verplichting. Volledige discretie. Gewoon een eerlijk gesprek over wat mogelijk is.',
       ctaButton: 'Maak een Afspraak',
     },
-    es: {
-      heroSubtitle: 'Representación de Compradores',
-      heroTitle: 'Adquiera lo que otros no pueden encontrar',
-      heroDescription: 'Dos décadas de dominio del mercado de Ámsterdam. Acceso fuera de mercado, negociación estratégica, y discreción total desde la primera consulta hasta la entrega de llaves.',
-      introTitle: 'El arte de comprar en Ámsterdam',
-      introText: 'En 2026, el 65–70% de las propiedades de Ámsterdam se venden por encima del precio de venta. Las mejores casas nunca llegan a Funda. Le damos una ventaja injusta — acceso, inteligencia, y poder de negociación cultivado durante veinte años en el centro del mercado.',
-      processTitle: 'Nuestro proceso de compra',
-      steps: [
-        { step: '01', title: 'Briefing Confidencial', desc: 'Nos reunimos en nuestra oficina de Leliegracht — o en la suya. Escuchamos, observamos, y definimos precisamente lo que busca. Presupuesto, cronograma, estilo de vida, arquitectura. Cada detalle importa.' },
-        { step: '02', title: 'Inteligencia y Búsqueda', desc: 'Activamos nuestra red. Muchas propiedades que presentamos no están listadas en ningún sitio. Contactamos propietarios, agentes y asesores de Ámsterdam antes de que el mercado sepa que existen.' },
-        { step: '03', title: 'Visitas Curadas', desc: 'Cada visita está pre-calificada según su briefing. Sin jornadas de puertas abiertas. Sin tardes perdidas. Cada propiedad ha sido evaluada por valor, potencial y adecuación antes de que entre.' },
-        { step: '04', title: 'Negociación Estratégica', desc: 'Negociamos con inteligencia de mercado completa — ventas comparables, posición del vendedor, apalancamiento de tiempo. Nuestros compradores consistentemente aseguran propiedades a o por debajo del valor real de mercado.' },
-        { step: '05', title: 'Cierre y Más Allá', desc: 'Desde inspección estructural hasta transferencia notarial, coordinamos cada detalle. Asesores hipotecarios, diseñadores de interiores, contratistas — nuestra red se convierte en la suya.' },
-      ],
-      casesTitle: 'Adquisiciones recientes',
-      cases: [
-        { address: 'Keizersgracht 482, Ámsterdam', type: 'Casa de Canal', story: 'Encontrada fuera de mercado a través de una introducción privada. Negociado 12% por debajo de ventas comparables. Murales originales del techo restaurados durante la renovación.', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
-        { address: 'Prinsengracht 263, Ámsterdam', type: 'Ático', story: 'Escenario de ofertas competitivas con tres otras partes. Asegurado a través de estrategia de tiempo y confianza preestablecida con el agente vendedor.', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80' },
-        { address: 'Herengracht 396, Ámsterdam', type: 'Monumento', story: 'Edificio listado con requisitos de renovación complejos. Coordinadas aprobaciones de patrimonio, selección de arquitecto, y licitación de contratistas antes de que se completara la compra.', image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80' },
-      ],
-      agentsTitle: 'Sus representantes de compra',
-      agents: [
-        { name: 'Dick Hakkenbroek', role: 'Fundador y Agente Principal de Compra', bio: '25 años de dominio del mercado de Ámsterdam. Especializado en casas de canal, monumentos, y transacciones fuera de mercado para clientes de alto patrimonio.', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80' },
-        { name: 'Sophie van Berg', role: 'Asesora Senior de Compra', bio: 'Ex banquera de inversión convertida en especialista inmobiliario. Experta en análisis de valoración, estrategia de negociación, y representación de clientes internacionales.', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80' },
-      ],
-      ctaTitle: 'Comience una conversación confidencial',
-      ctaText: 'Visite nuestra oficina en Leliegracht para una consulta privada. Sin obligación. Discreción total. Solo una conversación honesta sobre lo que es posible.',
-      ctaButton: 'Concierte una Cita',
-    },
   };
 
   const t = content[locale as keyof typeof content] || content.en;

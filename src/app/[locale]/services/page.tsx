@@ -74,39 +74,6 @@ export default function ServicesPage() {
       ctaDesc: 'Neem contact op voor een vertrouwelijk gesprek over uw vastgoedambities. Wij zijn er om te luisteren, adviseren, en leveren.',
       contactBtn: 'Maak een Afspraak'
     },
-    es: {
-      heroSubtitle: 'Nuestra Experiencia',
-      heroTitle: 'Comprar y vender al más alto nivel',
-      intro: 'Ofrecemos una gama completa de servicios inmobiliarios — con la compra y venta como núcleo de todo lo que hacemos. Ya sea que esté adquiriendo una casa de canal, vendiendo una propiedad familiar, o buscando inversión inmobiliaria, nuestro equipo aporta dos décadas de inteligencia del mercado de Ámsterdam a su lado.',
-      buying: {
-        title: 'Comprar',
-        description: 'Representamos a compradores con discreción, precisión y acceso que ningún portal puede ofrecer. Desde la consulta inicial hasta la entrega de llaves — encontramos propiedades, muchas fuera de mercado, y negociamos términos que reflejan el verdadero valor.',
-        features: ['Búsqueda de propiedades fuera de mercado', 'Análisis de mercado exhaustivo', 'Negociación estratégica', 'Coordinación legal y notarial', 'Conserjería post-compra']
-      },
-      selling: {
-        title: 'Vender',
-        description: 'Posicionamos su propiedad para el mercado que merece. Estrategia de marketing a medida, consultoría de estilismo profesional, visitas privadas para compradores cualificados, y acceso a nuestra red internacional.',
-        features: ['Valoración gratuita', 'Estrategia de marketing a medida', 'Fotografía y filmación profesional', 'Visitas privadas para compradores cualificados', 'Red internacional de compradores']
-      },
-      renting: {
-        title: 'Alquilar',
-        description: 'Propiedades de alquiler curadas para expatriados y locales que esperan más. Cada listado en nuestro portfolio cumple con nuestros estándares de ubicación, luz y carácter.',
-        features: ['Portfolio de alquiler curado', 'Especialistas en alquiler para expatriados', 'Negociación de contrato', 'Coordinación de mudanza']
-      },
-      leasing: {
-        title: 'Arrendamiento',
-        description: 'Gestión de arrendamiento a largo plazo para propietarios que valoran la tranquilidad. Manejamos la selección de inquilinos, el cobro de rentas, y el cumplimiento legal completo.',
-        features: ['Selección y evaluación de inquilinos', 'Cobro y administración de rentas', 'Coordinación de mantenimiento', 'Cumplimiento legal y normativo']
-      },
-      management: {
-        title: 'Administración de Propiedades',
-        description: 'Gestión integral para inversores y propietarios ausentes. Desde mantenimiento hasta informes financieros — protegemos su activo como si fuera nuestro.',
-        features: ['Inspecciones programadas', 'Informes financieros y presupuestos', 'Coordinación de emergencias', 'Administración fiscal y de seguros', 'Gestión de proveedores y contratistas', 'Soporte al propietario 24/7']
-      },
-      cta: '¿Listo para comenzar?',
-      ctaDesc: 'Contáctenos para una conversación confidencial sobre sus ambiciones inmobiliarias. Estamos aquí para escuchar, asesorar y entregar resultados.',
-      contactBtn: 'Concierte una Consulta'
-    }
   };
 
   const t = content[locale as keyof typeof content] || content.en;
