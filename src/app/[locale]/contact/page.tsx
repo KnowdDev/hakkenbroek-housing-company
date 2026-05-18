@@ -72,34 +72,6 @@ export default function ContactPage() {
       officeHours: 'Kantooruren',
       officeHoursText: 'Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak\nZondag: Gesloten'
     },
-    es: {
-      heroSubtitle: 'Contacto',
-      heroTitle: 'Comience una Conversación',
-      formSubtitle: 'Envíe una Consulta',
-      formTitle: 'Esperamos tener noticias suyas',
-      successMessage: 'Gracias por su consulta. Nos pondremos en contacto en breve — normalmente en unas horas durante los días laborables.',
-      fullName: 'Nombre Completo',
-      email: 'Dirección de Correo',
-      phone: 'Número de Teléfono',
-      service: 'Servicio',
-      selectService: 'Seleccione un servicio',
-      buying: 'Comprar',
-      selling: 'Vender',
-      renting: 'Alquilar',
-      leasing: 'Arrendamiento',
-      management: 'Administración de Propiedades',
-      other: 'Otro',
-      message: 'Mensaje',
-      submit: 'Enviar Mensaje',
-      infoSubtitle: 'Visite Nuestra Oficina',
-      infoTitle: 'Leliegracht 21',
-      address: 'Dirección',
-      addressText: 'Leliegracht 21\n1015 DE Amsterdam\nPaíses Bajos',
-      emailAddress: 'Correo',
-      phoneNumber: 'Teléfono',
-      officeHours: 'Horario de Oficina',
-      officeHoursText: 'Lunes - Viernes: 9:00 - 17:00\nSábado: Con cita\nDomingo: Cerrado'
-    }
   };
 
   const t = content[locale as keyof typeof content] || content.en;

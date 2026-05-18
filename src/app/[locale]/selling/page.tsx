@@ -67,35 +67,6 @@ export default function SellingPage() {
       ctaText: 'Neem contact op voor een vrijblijvende waardering en vertrouwelijk gesprek over uw woning en de huidige markt. Geen verplichting. Gewoon expert inzicht.',
       ctaButton: 'Vraag een Waardering aan',
     },
-    es: {
-      heroSubtitle: 'Representación de Vendedores',
-      heroTitle: 'Posicione su propiedad para el mercado que merece',
-      heroDescription: 'Marketing a medida, visitas privadas, y acceso a compradores internacionales cualificados que entienden la rareza. No listamos propiedades. Las presentamos.',
-      introTitle: 'El arte de vender en Ámsterdam',
-      introText: 'En 2026, el 65–70% de las propiedades de Ámsterdam se venden por encima del precio de venta — pero solo las correctamente posicionadas. Posicionamos su propiedad para el mercado que merece, no el mercado que casualmente encuentre. Estrategia a medida, presentación editorial, y una red de compradores que abarca cuatro continentes.',
-      processTitle: 'Nuestro proceso de venta',
-      steps: [
-        { step: '01', title: 'Valoración y Estrategia', desc: 'Comenzamos con una valoración exhaustiva basada en ventas comparables, tendencias del mercado, y las cualidades únicas de su propiedad. Desde esta base, desarrollamos una estrategia de marketing a medida adaptada a los compradores más propensos a apreciar lo que ofrece.' },
-        { step: '02', title: 'Presentación Editorial', desc: 'Las primeras impresiones lo son todo. Coordinamos fotografía profesional, recorridos en video cinematográfico, y consultoría de estilismo para presentar su propiedad en su mejor versión. Cada fotograma cuenta una historia que resuena con compradores exigentes.' },
-        { step: '03', title: 'Marketing Curado', desc: 'Su propiedad se presenta a compradores cualificados a través de nuestra red internacional, base de datos de clientes privados, y presencia digital selectiva. No transmitimos. Curamos. Los compradores adecuados ven su propiedad en el momento adecuado.' },
-        { step: '04', title: 'Visitas Privadas', desc: 'Organizamos visitas privadas para compradores pre-cualificados. Sin jornadas de puertas abiertas. Sin visitantes casuales. Cada visitante ha sido evaluado por interés genuino, capacidad financiera, y alineación con el perfil de su propiedad.' },
-        { step: '05', title: 'Negociación y Cierre', desc: 'Manejamos todas las negociaciones con total transparencia y sus mejores intereses en mente. Desde la oferta inicial hasta la transferencia notarial, gestionamos el proceso para asegurar términos óptimos protegiendo su posición y privacidad.' },
-      ],
-      casesTitle: 'Ventas recientes',
-      cases: [
-        { address: 'Leliegracht 34, Ámsterdam', type: 'Casa de Canal', story: 'Alcanzó 18% por encima de la valoración inicial a través de marketing dirigido a un comprador con sede en Londres. Vendida en tres semanas tras lanzamiento privado.', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80' },
-        { address: 'Weteringschans 89, Ámsterdam', type: 'Ático', story: 'Venta confidencial a una familia de Oriente Medio. Propiedad nunca listada públicamente. Precio completo alcanzado a través de introducción directa.', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80' },
-        { address: 'Reguliersgracht 12, Ámsterdam', type: 'Monumento', story: 'Propiedad de patrimonio que requería coordinación de renovación compleja. Emparejada con un inversor alemán especializado en restauraciones históricas de Ámsterdam.', image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80' },
-      ],
-      agentsTitle: 'Sus representantes de venta',
-      agents: [
-        { name: 'Dick Hakkenbroek', role: 'Fundador y Agente Principal de Venta', bio: '25 años posicionando las mejores propiedades de Ámsterdam. Experto en marketing de lujo, cultivo de compradores internacionales, y ventas discretas fuera de mercado para propietarios destacados.', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80' },
-        { name: 'Sophie van Berg', role: 'Asesora Senior de Venta', bio: 'Ex banquera de inversión con profunda experiencia en valoración. Especializada en estrategia de precios, negociación, y coordinación de transacciones complejas multiparte.', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80' },
-      ],
-      ctaTitle: '¿Listo para posicionar su propiedad?',
-      ctaText: 'Contáctenos para una valoración gratuita y una conversación confidencial sobre su propiedad y el mercado actual. Sin obligación. Solo conocimiento experto.',
-      ctaButton: 'Solicite una Valoración',
-    },
   };
 
   const t = content[locale as keyof typeof content] || content.en;

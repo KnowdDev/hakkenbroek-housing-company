@@ -20,7 +20,6 @@ const listingTypeStyles: Record<string, string> = {
 const listingTypeLabels: Record<string, Record<string, string>> = {
   en: { sale: 'For Sale', rent: 'For Rent' },
   nl: { sale: 'Te Koop', rent: 'Te Huur' },
-  es: { sale: 'En Venta', rent: 'En Alquiler' },
 };
 
 const statusLabels: Record<string, Record<string, string>> = {
@@ -36,12 +35,6 @@ const statusLabels: Record<string, Record<string, string>> = {
     sold: 'Verkocht',
     rented: 'Verhuurd',
   },
-  es: {
-    available: 'Disponible',
-    'under-consideration': 'En Consideracion',
-    sold: 'Vendido',
-    rented: 'Alquilado',
-  },
 };
 
 export default function Home() {
@@ -53,116 +46,79 @@ export default function Home() {
 
   const content = {
     en: {
-      heroSubtitle: 'Amsterdam · Since 2003',
-      heroTitle: 'Where rarity finds its home',
-      heroDescription: 'A discreet boutique agency with over two decades of Amsterdam market mastery. We connect discerning clients with the city\'s most exceptional properties — often before they reach the open market.',
+      heroSubtitle: 'Amsterdam, Gooi and Vecht · Since 2000',
+      heroTitle: 'A home that actually fits',
+      heroDescription: 'We\'ve been helping people find great homes in Amsterdam, Gooi and Vecht since 2000. Nice apartments, canal houses, family places — the kind of properties you actually want to live in. We know the city inside out and we\'re honest about what\'s worth your money.',
       viewProperties: 'View Portfolio',
-      getInTouch: 'Private Consultation',
+      getInTouch: 'Get in Touch',
       servicesSubtitle: 'Our Expertise',
-      servicesTitle: 'Buying and selling at the highest level',
+      servicesTitle: 'Buying and selling done properly',
       services: [
-        { title: 'Buying', desc: 'We represent buyers with discretion and precision. From canal house to penthouse, we source properties that never appear on public portals — and negotiate terms that reflect their true value.', slug: 'buying' },
-        { title: 'Selling', desc: 'We position your property for the market it deserves. Bespoke marketing, private viewings, and access to qualified international buyers who understand rarity.', slug: 'selling' },
-        { title: 'Renting', desc: 'Curated rental properties for expats and locals who expect more. Every listing in our portfolio meets our standards for location, light, and character.', slug: 'renting' },
-        { title: 'Leasing', desc: 'Long-term lease management for landlords who value peace of mind. Tenant selection, rent collection, and full legal compliance — handled with care.', slug: 'leasing' },
-        { title: 'Property Management', desc: 'Comprehensive management for investors and absentee owners. From maintenance to financial reporting, we protect your asset as if it were our own.', slug: 'property-management' },
-        { title: 'Expat Services', desc: 'A complete relocation concierge for international clients. We understand the journey — and we make Amsterdam feel like home from day one.', slug: 'expat-services' }
+        { title: 'Buying', desc: 'We help buyers find the right place without the stress. From canal houses to family apartments, we show you properties that match your life — not just your budget — and we negotiate fairly.', slug: 'buying' },
+        { title: 'Selling', desc: 'We sell your home properly. Good photos, honest pricing, and access to serious buyers who are actually looking. No inflated promises — just solid marketing that works.', slug: 'selling' },
+        { title: 'Renting', desc: 'Rental properties that are actually nice to live in. We check every place for location, light, and whether we\'d be happy living there ourselves.', slug: 'renting' },
+        { title: 'Leasing', desc: 'We manage your rental property properly. Good tenants, rent collected on time, and all the legal stuff handled — so you don\'t have to worry about it.', slug: 'leasing' },
+        { title: 'Property Management', desc: 'Full management for landlords and investors. Maintenance, finances, tenant relations — we treat your property like it\'s our own because we know how much it matters to you.', slug: 'property-management' },
+        { title: 'Expat Services', desc: 'Moving to Amsterdam from abroad? We\'ve helped hundreds of people settle in. We know the neighbourhoods, the paperwork, and where to get good coffee — we\'ll make sure you feel at home.', slug: 'expat-services' }
       ],
-      heritageSubtitle: 'Two Decades of Discretion',
-      heritageTitle: 'Amsterdam\'s most trusted name in exceptional properties',
-      heritageDescription: 'Since 2003, Hakkenbroek Housing Company has quietly shaped Amsterdam\'s luxury real estate landscape. We do not chase volume. We cultivate relationships — with owners, buyers, and the city itself. Our Leliegracht office has been the starting point for countless remarkable property stories.',
-      yearsExperience: 'Years of Market Mastery',
+      heritageSubtitle: 'Over Twenty Years in Amsterdam, Gooi and Vecht',
+      heritageTitle: 'We know property in Amsterdam, Gooi and Vecht because we\'ve been doing it for twenty years',
+      heritageDescription: 'Since 2000, we\'ve been helping people buy, sell, and rent homes in Amsterdam, Gooi and Vecht. We don\'t chase quick deals — we focus on getting it right. That means honest advice, fair pricing, and actually listening to what you need. Our office on Leliegracht has been the starting point for hundreds of people finding their place in this city.',
+      yearsExperience: 'Years of Experience',
       clientRating: 'Client Satisfaction',
       readStory: 'Discover Our Story',
       featuredSubtitle: 'Portfolio',
-      featuredTitle: 'Exceptional Properties',
+      featuredTitle: 'Properties We Like',
       viewAllProperties: 'View Full Portfolio',
       whySubtitle: 'The Hakkenbroek Difference',
-      whyTitle: 'Why the most discerning clients choose us',
-      whyDescription: 'In a market driven by speed and volume, we choose depth. Every client relationship is a partnership. Every property we represent has been selected for its architectural merit, its location, its story.',
+      whyTitle: 'Why people come back to us',
+      whyDescription: 'There are faster ways to sell property and cheaper agents to use. But we think buying or selling a home deserves more than a quick transaction. We take time to understand what you actually need, and we stick with you until it\'s sorted.',
       why: [
-        { title: 'Off-Market Access', desc: 'Our network spans two decades of Amsterdam\'s most significant property transactions. Many of our finest listings never appear on public platforms.' },
-        { title: 'International Reach', desc: 'Multilingual representation in English, Dutch, and Spanish. We connect Amsterdam properties with qualified buyers from London to Singapore.' },
-        { title: 'Monument & Heritage Expertise', desc: 'Specialized knowledge of Amsterdam\'s historic properties — from canal house restorations to listed building regulations.' }
+        { title: 'Access to More Properties', desc: 'Twenty years in Amsterdam means we know people. Many of the best properties change hands privately before they ever hit the public listings — and we can get you in the door.' },
+        { title: 'International Reach', desc: 'We speak English and Dutch, and we\'ve worked with buyers and sellers from all over the world. Amsterdam is an international city — your agent should be too.' },
+        { title: 'Historic Property Expertise', desc: 'Amsterdam\'s old buildings are beautiful but complicated. We know the rules around listed properties, canal house maintenance, and what to look out for when buying something with history.' },
       ],
-      ctaTitle: 'Begin a confidential conversation',
-      ctaDescription: 'Whether you are buying, selling, or simply exploring the market, we invite you to visit our Leliegracht office. No obligation. Complete discretion. Just an honest conversation about what is possible.',
-      startConversation: 'Arrange a Meeting'
+      ctaTitle: 'Let\'s talk about your next move',
+      ctaDescription: 'Buying, selling, or just curious about the market? Come by our office on Leliegracht for a coffee and a chat. No pressure, no obligation — just honest advice from people who know Amsterdam property properly.',
+      startConversation: 'Come Say Hello'
     },
     nl: {
-      heroSubtitle: 'Amsterdam · Sinds 2003',
-      heroTitle: 'Waar zeldzaamheid thuis vindt',
-      heroDescription: 'Een discreet bureau met meer dan twee decennia Amsterdamse marktkennis. Wij verbinden veeleisende cliënten met de meest uitzonderlijke woningen van de stad — vaak voordat ze op de open markt verschijnen.',
+      heroSubtitle: 'Amsterdam, Gooi en Vecht · Sinds 2000',
+      heroTitle: 'Een huis dat echt bij u past',
+      heroDescription: 'We helpen mensen sinds 2000 aan een fijn huis in Amsterdam, Gooi en Vecht. Mooie appartementen, grachtenpanden, gezinswoningen — het soort woningen waar u echt wilt wonen. We kennen de stad door en door en zijn eerlijk over wat uw geld waard is.',
       viewProperties: 'Bekijk Portfolio',
-      getInTouch: 'Privé Consult',
+      getInTouch: 'Neem Contact Op',
       servicesSubtitle: 'Onze Expertise',
-      servicesTitle: 'Kopen en verkopen op het hoogste niveau',
+      servicesTitle: 'Kopen en verkopen, maar dan goed',
       services: [
-        { title: 'Kopen', desc: 'Wij vertegenwoordigen kopers met discretie en precisie. Van grachtenpand tot penthouse — wij vinden woningen die nooit op publieke portals verschijnen.', slug: 'buying' },
-        { title: 'Verkopen', desc: 'Wij positioneren uw woning voor de markt die het verdient. Maatwerk marketing, privébezichtigingen, en toegang tot gekwalificeerde internationale kopers.', slug: 'selling' },
-        { title: 'Huren', desc: 'Gecureerde huurwoningen voor expats en locals die meer verwachten. Elke woning in ons portfolio voldoet aan onze normen voor locatie, licht en karakter.', slug: 'renting' },
-        { title: 'Verhuur', desc: 'Lange-termijn verhuurbeheer voor verhuurders die gemoedsrust waarderen. Huurdersselectie, incasso, en volledige juridische naleving.', slug: 'leasing' },
-        { title: 'Vastgoedbeheer', desc: 'Uitgebreid beheer voor investeerders en eigenaren in het buitenland. Van onderhoud tot financiële rapportage — wij beschermen uw bezit.', slug: 'property-management' },
-        { title: 'Expat Diensten', desc: 'Een complete verhuisservice voor internationale cliënten. Wij begrijpen de reis — en laten Amsterdam vanaf dag één als thuis voelen.', slug: 'expat-services' }
+        { title: 'Kopen', desc: 'We helpen kopers de juiste woning te vinden zonder gedoe. Van grachtenpanden tot gezinsappartementen — we laten u woningen zien die bij uw leven passen, niet alleen uw budget, en we onderhandelen eerlijk.', slug: 'buying' },
+        { title: 'Verkopen', desc: 'We verkopen uw huis goed. Mooie foto\'s, eerlijke prijzen, en toegang tot serieuze kopers die écht zoeken. Geen loze beloften — gewoon marketing die werkt.', slug: 'selling' },
+        { title: 'Huren', desc: 'Huurwoningen waar u echt fijn kunt wonen. We bekijken elke woning op locatie, licht, en of we er zelf zouden willen wonen.', slug: 'renting' },
+        { title: 'Verhuur', desc: 'We beheren uw huurwoning goed. Goede huurders, huur op tijd geïnd, en alle juridische zaken geregeld — zodat u zich geen zorgen hoeft te maken.', slug: 'leasing' },
+        { title: 'Vastgoedbeheer', desc: 'Volledig beheer voor verhuurders en investeerders. Onderhoud, financiën, contact met huurders — we behandelen uw woning alsof het onze eigen is, omdat we weten hoeveel het u betekent.', slug: 'property-management' },
+        { title: 'Expat Diensten', desc: 'Verhuist u vanuit het buitenland naar Amsterdam? We hebben honderden mensen geholpen hier te settelen. We kennen de buurten, de papierwinkel, en waar u goede koffie kunt krijgen — we zorgen dat u zich thuis voelt.', slug: 'expat-services' }
       ],
-      heritageSubtitle: 'Twee Decennia van Discretie',
-      heritageTitle: 'Amsterdams meest vertrouwde naam in uitzonderlijk vastgoed',
-      heritageDescription: 'Sinds 2003 geeft Hakkenbroek Housing Company stilletjes vorm aan het luxe vastgoedlandschap van Amsterdam. Wij jagen niet op volume. Wij cultiveren relaties — met eigenaren, kopers, en de stad zelf. Ons kantoor aan de Leliegracht is het startpunt geweest van talloze bijzondere vastgoedverhalen.',
-      yearsExperience: 'Jaren Marktkennis',
+      heritageSubtitle: 'Meer Dan Twintig Jaar in Amsterdam, Gooi en Vecht',
+      heritageTitle: 'We kennen Amsterdam, Gooi en Vecht omdat we het hier al twintig jaar doen',
+      heritageDescription: 'Sinds 2000 helpen we mensen met kopen, verkopen en huren in Amsterdam, Gooi en Vecht. We jagen geen snelle deals na — we willen het gewoon goed doen. Dat betekent eerlijk advies, eerlijke prijzen, en echt luisteren naar wat u nodig hebt. Ons kantoor aan de Leliegracht is het startpunt geweest voor honderden mensen die hun plek in deze stad vonden.',
+      yearsExperience: 'Jaren Ervaring',
       clientRating: 'Cliënttevredenheid',
       readStory: 'Ontdek Ons Verhaal',
       featuredSubtitle: 'Portfolio',
-      featuredTitle: 'Uitzonderlijke Woningen',
+      featuredTitle: 'Woningen Die We Mooi Vinden',
       viewAllProperties: 'Bekijk Volledig Portfolio',
       whySubtitle: 'Het Hakkenbroek Verschil',
-      whyTitle: 'Waarom de meest veeleisende cliënten voor ons kiezen',
-      whyDescription: 'In een markt gedreven door snelheid en volume, kiezen wij voor diepgang. Elke cliëntrelatie is een partnerschap. Elke woning die wij vertegenwoordigen is geselecteerd op architectonische kwaliteit, locatie, en verhaal.',
+      whyTitle: 'Waarom mensen bij ons terugkomen',
+      whyDescription: 'Er zijn snellere manieren om vastgoed te verkopen en goedkopere makelaars te vinden. Maar we denken dat een huis kopen of verkopen meer verdient dan een snelle transactie. We nemen de tijd om te begrijpen wat u écht nodig hebt, en we blijven erbij tot het geregeld is.',
       why: [
-        { title: 'Off-Market Toegang', desc: 'Ons netwerk omspant twee decennia van Amsterdams meest significante vastgoedtransacties. Veel van onze mooiste aanbiedingen verschijnen nooit op publieke platforms.' },
-        { title: 'Internationaal Bereik', desc: 'Meertalige vertegenwoordiging in Nederlands, Engels en Spaans. Wij verbinden Amsterdamse woningen met gekwalificeerde kopers van Londen tot Singapore.' },
-        { title: 'Monumenten Expertise', desc: 'Gespecialiseerde kennis van Amsterdams historische panden — van grachtenpandrestauraties tot regelgeving voor beschermde gebouwen.' }
+        { title: 'Toegang Tot Meer Woningen', desc: 'Twintig jaar in Amsterdam betekent dat we mensen kennen. Veel van de beste woningen wisselen van eigenaar voordat ze ooit op Funda staan — en wij kunnen u daarbinnen krijgen.' },
+        { title: 'Internationaal Bereik', desc: 'We spreken Nederlands en Engels, en hebben met kopers en verkopers uit de hele wereld gewerkt. Amsterdam is een internationale stad — uw makelaar zou dat ook moeten zijn.' },
+        { title: 'Expertise in Oude Panden', desc: 'De oude gebouwen van Amsterdam zijn prachtig maar ingewikkeld. We kennen de regels rond monumenten, grachtenpandonderhoud, en waar u op moet letten als u iets met historie koopt.' },
       ],
-      ctaTitle: 'Begin een vertrouwelijk gesprek',
-      ctaDescription: 'Of u nu koopt, verkoopt, of gewoon de markt verkent — wij nodigen u uit op ons kantoor aan de Leliegracht. Geen verplichting. Volledige discretie. Gewoon een eerlijk gesprek over wat mogelijk is.',
-      startConversation: 'Maak een Afspraak'
+      ctaTitle: 'Laten we praten over uw volgende stap',
+      ctaDescription: 'Kopen, verkopen, of gewoon benieuwd naar de markt? Kom langs bij ons kantoor aan de Leliegracht voor een kop koffie en een praatje. Geen druk, geen verplichting — gewoon eerlijk advies van mensen die Amsterdam vastgoed echt kennen.',
+      startConversation: 'Kom Eens Langs'
     },
-    es: {
-      heroSubtitle: 'Ámsterdam · Desde 2003',
-      heroTitle: 'Donde la rareza encuentra su hogar',
-      heroDescription: 'Una agencia boutique discreta con más de dos décadas de dominio del mercado de Ámsterdam. Conectamos a clientes exigentes con las propiedades más excepcionales de la ciudad — a menudo antes de que lleguen al mercado abierto.',
-      viewProperties: 'Ver Portfolio',
-      getInTouch: 'Consulta Privada',
-      servicesSubtitle: 'Nuestra Experiencia',
-      servicesTitle: 'Comprar y vender al más alto nivel',
-      services: [
-        { title: 'Comprar', desc: 'Representamos a compradores con discreción y precisión. Desde casas de canal hasta áticos — encontramos propiedades que nunca aparecen en portales públicos.', slug: 'buying' },
-        { title: 'Vender', desc: 'Posicionamos su propiedad para el mercado que merece. Marketing a medida, visitas privadas, y acceso a compradores internacionales cualificados que entienden la rareza.', slug: 'selling' },
-        { title: 'Alquilar', desc: 'Propiedades de alquiler curadas para expatriados y locales que esperan más. Cada listado cumple con nuestros estándares de ubicación, luz y carácter.', slug: 'renting' },
-        { title: 'Arrendamiento', desc: 'Gestión de arrendamiento a largo plazo para propietarios que valoran la tranquilidad. Selección de inquilinos, cobro de rentas, y cumplimiento legal completo.', slug: 'leasing' },
-        { title: 'Administración de Propiedades', desc: 'Gestión integral para inversores y propietarios ausentes. Desde mantenimiento hasta informes financieros — protegemos su activo como si fuera nuestro.', slug: 'property-management' },
-        { title: 'Servicios para Expatriados', desc: 'Un servicio completo de reubicación para clientes internacionales. Entendemos el viaje — y hacemos que Ámsterdam se sienta como hogar desde el primer día.', slug: 'expat-services' }
-      ],
-      heritageSubtitle: 'Dos Décadas de Discreción',
-      heritageTitle: 'El nombre más confiable de Ámsterdam en propiedades excepcionales',
-      heritageDescription: 'Desde 2003, Hakkenbroek Housing Company ha moldeado silenciosamente el panorama inmobiliario de lujo de Ámsterdam. No perseguimos volumen. Cultivamos relaciones — con propietarios, compradores, y la ciudad misma. Nuestra oficina en Leliegracht ha sido el punto de partida de innumerables historias inmobiliarias notables.',
-      yearsExperience: 'Años de Maestría',
-      clientRating: 'Satisfacción del Cliente',
-      readStory: 'Descubra Nuestra Historia',
-      featuredSubtitle: 'Portfolio',
-      featuredTitle: 'Propiedades Excepcionales',
-      viewAllProperties: 'Ver Portfolio Completo',
-      whySubtitle: 'La Diferencia Hakkenbroek',
-      whyTitle: 'Por qué los clientes más exigentes nos eligen',
-      whyDescription: 'En un mercado impulsado por la velocidad y el volumen, elegimos la profundidad. Cada relación con el cliente es una asociación. Cada propiedad que representamos ha sido seleccionada por su mérito arquitectónico, su ubicación, su historia.',
-      why: [
-        { title: 'Acceso Fuera de Mercado', desc: 'Nuestra red abarca dos décadas de las transacciones inmobiliarias más significativas de Ámsterdam. Muchas de nuestras mejores propiedades nunca aparecen en plataformas públicas.' },
-        { title: 'Alcance Internacional', desc: 'Representación multilingüe en inglés, neerlandés y español. Conectamos propiedades de Ámsterdam con compradores cualificados de Londres a Singapur.' },
-        { title: 'Experiencia en Monumentos', desc: 'Conocimiento especializado de las propiedades históricas de Ámsterdam — desde restauraciones de casas de canal hasta regulaciones de edificios protegidos.' }
-      ],
-      ctaTitle: 'Comience una conversación confidencial',
-      ctaDescription: 'Ya sea que esté comprando, vendiendo, o simplemente explorando el mercado, le invitamos a visitar nuestra oficina en Leliegracht. Sin obligación. Discreción total. Solo una conversación honesta sobre lo que es posible.',
-      startConversation: 'Concierte una Cita'
-    }
   };
 
   const t = content[locale as keyof typeof content] || content.en;
@@ -197,7 +153,7 @@ export default function Home() {
         {/* Left: Editorial imagery — no text overlay */}
         <div className="relative w-full lg:w-[58%] h-[55vh] lg:h-full">
           <img
-            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80"
+            src="/hero.jpg"
             alt="Luxury Amsterdam interior"
             className="w-full h-full object-cover"
           />

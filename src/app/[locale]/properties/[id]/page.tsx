@@ -52,7 +52,6 @@ const listingTypeStyles: Record<string, string> = {
 const listingTypeLabels: Record<string, Record<string, string>> = {
   en: { sale: 'For Sale', rent: 'For Rent' },
   nl: { sale: 'Te Koop', rent: 'Te Huur' },
-  es: { sale: 'En Venta', rent: 'En Alquiler' },
 };
 
 const statusLabels: Record<string, Record<string, string>> = {
@@ -67,12 +66,6 @@ const statusLabels: Record<string, Record<string, string>> = {
     'under-consideration': 'In Onderhandeling',
     sold: 'Verkocht',
     rented: 'Verhuurd',
-  },
-  es: {
-    available: 'Disponible',
-    'under-consideration': 'En Consideracion',
-    sold: 'Vendido',
-    rented: 'Alquilado',
   },
 };
 
@@ -192,26 +185,6 @@ export default function PropertyDetailPage() {
       buildingSpecs: 'Bouw & Specificaties',
       outdoorFeatures: 'Buitenruimte',
       parkingAmenities: 'Parkeerplaats & Voorzieningen',
-      sqm: 'm²',
-    },
-    es: {
-      yearBuilt: 'Año de Construcción',
-      energyLabel: 'Etiqueta Energética',
-      floors: 'Plantas',
-      furnished: 'Amueblado',
-      garden: 'Jardín',
-      gardenArea: 'Superficie Jardín',
-      balcony: 'Balcón',
-      terrace: 'Terraza',
-      parking: 'Aparcamiento',
-      parkingSpaces: 'Plazas Aparcamiento',
-      elevator: 'Ascensor',
-      basement: 'Sótano',
-      yes: 'Sí',
-      no: 'No',
-      buildingSpecs: 'Construcción y Especificaciones',
-      outdoorFeatures: 'Exterior',
-      parkingAmenities: 'Aparcamiento y Comodidades',
       sqm: 'm²',
     },
   };
