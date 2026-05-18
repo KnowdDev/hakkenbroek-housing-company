@@ -153,7 +153,7 @@ export default function Home() {
         {/* Left: Editorial imagery — no text overlay */}
         <div className="relative w-full lg:w-[58%] h-[55vh] lg:h-full">
           <img
-            src="/hero.jpg"
+            src="/hero1.jpeg"
             alt="Luxury Amsterdam interior"
             className="w-full h-full object-cover"
           />
