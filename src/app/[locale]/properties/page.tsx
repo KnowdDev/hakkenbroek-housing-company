@@ -45,14 +45,38 @@ export default function PropertiesPage() {
   const [filter, setFilter] = useState('all');
   const [listingTypeFilter, setListingTypeFilter] = useState<'all' | 'sale' | 'rent'>('all');
   const [priceRange, setPriceRange] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [propertyTypeFilter, setPropertyTypeFilter] = useState('all');
+  const [minBedrooms, setMinBedrooms] = useState<number | null>(null);
 
-  // Reactively read type query param for nav dropdown pre-filtering
+  // Reactively read all query params from homepage search
   useEffect(() => {
     const typeParam = searchParams.get('type');
     if (typeParam === 'sale' || typeParam === 'rent') {
       setListingTypeFilter(typeParam);
     } else {
       setListingTypeFilter('all');
+    }
+
+    const qParam = searchParams.get('q');
+    setSearchQuery(qParam || '');
+
+    const propertyParam = searchParams.get('property');
+    setPropertyTypeFilter(propertyParam || 'all');
+
+    const bedsParam = searchParams.get('beds');
+    setMinBedrooms(bedsParam ? parseInt(bedsParam, 10) : null);
+
+    const priceParam = searchParams.get('price');
+    if (priceParam) {
+      const priceVal = parseInt(priceParam, 10);
+      if (priceVal === 500000) setPriceRange('under-500k');
+      else if (priceVal === 1000000) setPriceRange('500k-1m');
+      else if (priceVal === 2000000) setPriceRange('1m-2m');
+      else if (priceVal === 3000000) setPriceRange('2m-plus');
+      else setPriceRange('all');
+    } else {
+      setPriceRange('all');
     }
   }, [searchParams]);
 
@@ -171,7 +195,22 @@ export default function PropertiesPage() {
       priceMatch = property.price !== undefined && property.price >= 2000000;
     }
 
-    return statusMatch && typeMatch && priceMatch;
+    // Search query: match title, address, city, postal code
+    const queryMatch = !searchQuery || [
+      property.title,
+      property.address,
+      property.city,
+      property.postal_code,
+      property.property_type,
+    ].some((field) => field?.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    // Property type filter
+    const propTypeMatch = propertyTypeFilter === 'all' || property.property_type?.toLowerCase() === propertyTypeFilter.toLowerCase();
+
+    // Bedroom filter
+    const bedMatch = minBedrooms === null || (property.bedrooms !== undefined && property.bedrooms >= minBedrooms);
+
+    return statusMatch && typeMatch && priceMatch && queryMatch && propTypeMatch && bedMatch;
   });
 
   return (
@@ -180,8 +219,8 @@ export default function PropertiesPage() {
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1920&q=80"
-            alt="Amsterdam canals"
+            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80"
+            alt="Amsterdam canal at golden hour"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-charcoal/40" />
