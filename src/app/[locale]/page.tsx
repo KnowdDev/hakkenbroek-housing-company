@@ -337,9 +337,14 @@ export default function Home() {
     <div className="min-h-screen">
       {/* ═══════════════════ HERO ═══════════════════ */}
       <section
+        id="nav-sentinel"
         ref={heroRef.ref}
         className="relative flex flex-col lg:flex-row h-auto lg:h-[92vh] lg:min-h-[800px] overflow-hidden lg:overflow-visible"
       >
+        {/* Full-width dark top scrim — ensures white nav text is readable on ANY hero image,
+            covering both the dark photo side and the light stone side uniformly */}
+        <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black/55 via-black/20 to-transparent z-[1] pointer-events-none" />
+
         {/* Left: full-bleed image with atmospheric gradient */}
         <div className="relative w-full lg:w-[55%] h-[50vh] lg:h-full">
           <img
@@ -347,6 +352,8 @@ export default function Home() {
             alt="Amsterdam canal houses in summer light"
             className="w-full h-full object-cover"
           />
+          {/* Dark top gradient ensures white nav text is readable on any hero image */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent lg:hidden" />
         </div>
@@ -361,7 +368,7 @@ export default function Home() {
               backgroundSize: '40px 40px',
             }}
           />
-          <div className="relative px-8 py-16 lg:px-14 lg:py-12 max-w-xl">
+          <div className="relative px-8 pt-28 pb-16 lg:px-14 lg:pt-32 lg:pb-12 max-w-xl">
             <p
               className={`font-body text-xs uppercase tracking-[0.2em] text-brass mb-6 ${revealClass(heroRef.inView)}`}
               style={{ transitionDelay: '100ms' }}
