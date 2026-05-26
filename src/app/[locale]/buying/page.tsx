@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import Script from 'next/script';
 
 export default function BuyingPage() {
@@ -12,9 +12,9 @@ export default function BuyingPage() {
     en: {
       heroSubtitle: 'Buyer Representation',
       heroTitle: 'Acquire what others cannot find',
-      heroDescription: 'Two decades of Amsterdam market mastery. Off-market access, strategic negotiation, and complete discretion from first consultation to key transfer.',
+      heroDescription: '25+ years of Amsterdam market mastery. Off-market access, strategic negotiation, and complete discretion from first consultation to key transfer.',
       introTitle: 'The art of buying in Amsterdam',
-      introText: 'In 2026, 65–70% of Amsterdam properties sell above asking price. The finest homes never reach Funda. We give you an unfair advantage — access, intelligence, and negotiation power cultivated over twenty years at the centre of the market.',
+      introText: 'In 2026, 65–70% of Amsterdam properties sell above asking price. The finest homes never reach Funda. We give you an unfair advantage — access, intelligence, and negotiation power cultivated over 25+ years at the centre of the market.',
       processTitle: 'Our buyer process',
       steps: [
         { step: '01', title: 'Confidential Briefing', desc: 'We meet at our Leliegracht office — or yours. We listen, observe, and define precisely what you seek. Budget, timeline, lifestyle, architecture. Every detail matters.' },
@@ -41,9 +41,9 @@ export default function BuyingPage() {
     nl: {
       heroSubtitle: 'Koperbegeleiding',
       heroTitle: 'Verwerf wat anderen niet kunnen vinden',
-      heroDescription: 'Twee decennia Amsterdamse marktkennis. Off-market toegang, strategische onderhandeling, en volledige discretie van eerste consult tot sleuteloverdracht.',
+      heroDescription: '25+ jaar Amsterdamse marktkennis. Off-market toegang, strategische onderhandeling, en volledige discretie van eerste consult tot sleuteloverdracht.',
       introTitle: 'De kunst van het kopen in Amsterdam',
-      introText: 'In 2026 wordt 65–70% van de Amsterdamse woningen boven de vraagprijs verkocht. De mooiste woningen komen nooit op Funda. Wij geven u een oneerlijk voordeel — toegang, inzicht, en onderhandelingskracht opgebouwd over twintig jaar in het centrum van de markt.',
+      introText: 'In 2026 wordt 65–70% van de Amsterdamse woningen boven de vraagprijs verkocht. De mooiste woningen komen nooit op Funda. Wij geven u een oneerlijk voordeel — toegang, inzicht, en onderhandelingskracht opgebouwd over 25+ jaar in het centrum van de markt.',
       processTitle: 'Ons koopproces',
       steps: [
         { step: '01', title: 'Vertrouwelijk Briefing', desc: 'Wij ontmoeten elkaar op ons kantoor aan de Leliegracht — of bij u thuis. Wij luisteren, observeren, en bepalen precies wat u zoekt. Budget, tijdlijn, levensstijl, architectuur. Elk detail telt.' },
@@ -100,7 +100,7 @@ export default function BuyingPage() {
         <section className='flex flex-col lg:flex-row h-auto lg:h-[92vh] lg:min-h-[600px] overflow-hidden'>
           <div className='relative w-full lg:w-[58%] h-[55vh] lg:h-full'>
             <img
-              src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80'
+              src='/buying-hero.webp'
               alt='Luxury Amsterdam canal house interior'
               className='w-full h-full object-cover'
             />
@@ -110,7 +110,7 @@ export default function BuyingPage() {
               <p className='font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-8'>{t.heroSubtitle}</p>
               <h1 className='font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.15] text-charcoal mb-8'>{t.heroTitle}</h1>
               <p className='font-body text-base lg:text-lg text-warm-gray leading-relaxed mb-10'>{t.heroDescription}</p>
-              <Link href={`/${locale}/contact`} className='inline-block bg-brass text-white px-10 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
+              <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
                 {t.ctaButton}
               </Link>
             </div>
@@ -199,7 +199,7 @@ export default function BuyingPage() {
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
             <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
-            <Link href={`/${locale}/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
+            <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>
           </div>

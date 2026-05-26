@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { demoListings } from '@/lib/listings-data';
@@ -118,7 +118,7 @@ const content = {
   en: {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Since 2000',
     heroTitle: 'Your next home, properly found',
-    heroDescription: "For over twenty years we have been matching people with the right property in Amsterdam, Het Gooi and the Vechtstreek. Canal houses with original details, light-filled apartments in leafy neighbourhoods, and family homes with space to breathe — we know every street, every market shift, and what your money is really worth here.",
+    heroDescription: "For over 25+ years we have been matching people with the right property in Amsterdam, Het Gooi and the Vechtstreek. Canal houses with original details, light-filled apartments in leafy neighbourhoods, and family homes with space to breathe — we know every street, every market shift, and what your money is really worth here.",
     viewProperties: 'View Portfolio',
     getInTouch: 'Get in Touch',
     searchPlaceholder: 'Search by neighbourhood or address...',
@@ -177,7 +177,7 @@ const content = {
   nl: {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Sinds 2000',
     heroTitle: 'Uw volgende thuis, goed gevonden',
-    heroDescription: 'Al meer dan twintig jaar helpen we mensen aan het juiste huis in Amsterdam, Het Gooi en de Vechtstreek. Grachtenpanden met karakter, lichte appartementen in groene buurten, en gezinswoningen met ruimte om te leven — we kennen elke straat, elke marktverschuiving, en wat uw geld hier echt waard is.',
+    heroDescription: 'Al meer dan 25+ jaar helpen we mensen aan het juiste huis in Amsterdam, Het Gooi en de Vechtstreek. Grachtenpanden met karakter, lichte appartementen in groene buurten, en gezinswoningen met ruimte om te leven — we kennen elke straat, elke marktverschuiving, en wat uw geld hier echt waard is.',
     viewProperties: 'Bekijk Portfolio',
     getInTouch: 'Neem Contact Op',
     searchPlaceholder: 'Zoek op buurt of adres...',
@@ -316,7 +316,7 @@ export default function Home() {
     if (searchPropertyType !== 'all') params.set('property', searchPropertyType);
     if (searchBeds !== 'all') params.set('beds', searchBeds);
     if (searchPrice !== 'all') params.set('price', searchPrice);
-    window.location.href = `/${locale}/properties?${params.toString()}`;
+    window.location.href = `/properties?${params.toString()}`;
   };
 
   /* valuation handler */
@@ -419,14 +419,14 @@ export default function Home() {
               style={{ transitionDelay: '400ms' }}
             >
               <Link
-                href={`/${locale}/properties`}
+                href={`/properties`}
                 className="inline-flex items-center gap-2 bg-brass text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light hover:scale-[1.02] transition-all duration-300 rounded-sm"
               >
                 {t.viewProperties}
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href={`/${locale}/contact`}
+                href={`/contact`}
                 className="inline-flex items-center gap-2 border border-charcoal text-charcoal px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-charcoal hover:text-white transition-all duration-300 rounded-sm"
               >
                 {t.getInTouch}
@@ -660,7 +660,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Buying — 2x2 hero card */}
             <Link
-              href={`/${locale}/services/buying`}
+              href={`/services/buying`}
               className={`group sm:col-span-2 sm:row-span-2 relative bg-white border border-stone-200 p-8 lg:p-10 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[320px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '150ms' }}
             >
@@ -687,7 +687,7 @@ export default function Home() {
 
             {/* Selling */}
             <Link
-              href={`/${locale}/services/selling`}
+              href={`/services/selling`}
               className={`group relative bg-white border border-stone-200 p-6 lg:p-8 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[150px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '200ms' }}
             >
@@ -708,7 +708,7 @@ export default function Home() {
 
             {/* Renting */}
             <Link
-              href={`/${locale}/services/renting`}
+              href={`/services/renting`}
               className={`group relative bg-white border border-stone-200 p-6 lg:p-8 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[150px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '250ms' }}
             >
@@ -729,7 +729,7 @@ export default function Home() {
 
             {/* Leasing */}
             <Link
-              href={`/${locale}/services/leasing`}
+              href={`/services/leasing`}
               className={`group relative bg-white border border-stone-200 p-6 lg:p-8 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[150px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '300ms' }}
             >
@@ -750,7 +750,7 @@ export default function Home() {
 
             {/* Property Management */}
             <Link
-              href={`/${locale}/services/property-management`}
+              href={`/services/property-management`}
               className={`group relative bg-white border border-stone-200 p-6 lg:p-8 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[150px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '350ms' }}
             >
@@ -771,7 +771,7 @@ export default function Home() {
 
             {/* Expat Services — wide bottom card */}
             <Link
-              href={`/${locale}/services/expat-services`}
+              href={`/services/expat-services`}
               className={`group sm:col-span-2 relative bg-white border border-stone-200 p-6 lg:p-8 hover:border-brass transition-all duration-500 flex flex-col sm:flex-row items-start sm:items-center gap-6 min-h-[120px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '400ms' }}
             >
@@ -834,7 +834,7 @@ export default function Home() {
                 {t.heritageDesc}
               </p>
               <Link
-                href={`/${locale}/about`}
+                href={`/about`}
                 className={`inline-flex items-center gap-2 border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300 ${revealClass(heritageRef.inView)}`}
                 style={{ transitionDelay: '300ms' }}
               >
@@ -883,7 +883,7 @@ export default function Home() {
               </h2>
             </div>
             <Link
-              href={`/${locale}/properties`}
+              href={`/properties`}
               className={`mt-6 md:mt-0 inline-flex items-center gap-2 border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300 ${revealClass(portfolioRef.inView)}`}
               style={{ transitionDelay: '200ms' }}
             >
@@ -896,7 +896,7 @@ export default function Home() {
             {featuredProperties.map((property, i) => (
               <Link
                 key={property.id}
-                href={`/${locale}/properties/${property.id}`}
+                href={`/properties/${property.id}`}
                 className={`group bg-white border border-stone-200 overflow-hidden hover:border-brass hover:shadow-lg hover:shadow-stone-900/5 transition-all duration-500 block ${revealClass(portfolioRef.inView)}`}
                 style={{ transitionDelay: `${150 + i * 100}ms` }}
               >
@@ -1094,7 +1094,7 @@ export default function Home() {
             style={{ transitionDelay: '300ms' }}
           >
             <Link
-              href={`/${locale}/contact`}
+              href={`/contact`}
               className="inline-flex items-center gap-2 bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light hover:scale-[1.02] transition-all duration-300 rounded-sm"
             >
               {t.finalCtaBtn}

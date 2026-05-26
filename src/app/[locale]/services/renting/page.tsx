@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import Script from 'next/script';
 
 export default function RentingPage() {
@@ -123,7 +123,7 @@ export default function RentingPage() {
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
             <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
-            <Link href={`/${locale}/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
+            <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>
           </div>
@@ -132,7 +132,7 @@ export default function RentingPage() {
         <section className='py-16 bg-stone-50'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <Link 
-              href={`/${locale}/services`} 
+              href={`/services`} 
               className='inline-flex items-center gap-3 text-charcoal hover:text-brass transition-colors duration-300 font-body text-sm uppercase tracking-[0.15em] group'
             >
               <span className='transform group-hover:-translate-x-1 transition-transform duration-300'>←</span>

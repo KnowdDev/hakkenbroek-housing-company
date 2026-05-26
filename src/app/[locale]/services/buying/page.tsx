@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import Script from 'next/script';
 
 export default function BuyingPage() {
@@ -12,7 +12,7 @@ export default function BuyingPage() {
       heroTitle: 'Acquire Amsterdam finest properties with discretion',
       heroDescription: 'We represent buyers with precision access and confidentiality that no public portal can offer. From canal house to penthouse we find what others cannot.',
       introTitle: 'The Hakkenbroek approach to buying',
-      introText: 'Buying property in Amsterdam is competitive. In 2026 65-70% of homes sell above asking price. The most exceptional properties often change hands without ever appearing on Funda. Our role is to give you an unfair advantage access intelligence and negotiation power that comes from two decades of Amsterdam market mastery.',
+      introText: 'Buying property in Amsterdam is competitive. In 2026 65-70% of homes sell above asking price. The most exceptional properties often change hands without ever appearing on Funda. Our role is to give you an unfair advantage access intelligence and negotiation power that comes from 25+ years of Amsterdam market mastery.',
       processTitle: 'How we work for buyers',
       steps: [
         { step: '01', title: 'Consultation and Briefing', desc: 'We begin with a confidential conversation at our Leliegracht office. We listen to your ambitions understand your budget and timeline and define exactly what you are looking for.' },
@@ -24,7 +24,7 @@ export default function BuyingPage() {
       benefitsTitle: 'Why buyers choose Hakkenbroek',
       benefits: [
         { title: 'Off-Market Access', desc: 'Our network gives you access to properties that never appear on Funda or Pararius. In Amsterdams competitive market this is the difference between finding your dream home and missing it entirely.' },
-        { title: 'Market Intelligence', desc: 'Two decades of transaction data informs every recommendation. We know what a property is truly worth not just what the asking price suggests.' },
+        { title: 'Market Intelligence', desc: '25+ years of transaction data informs every recommendation. We know what a property is truly worth not just what the asking price suggests.' },
         { title: 'Negotiation Power', desc: 'We negotiate from a position of strength. Sellers and their agents know that a Hakkenbroek buyer is serious qualified and represented by professionals who understand the game.' },
         { title: 'Full-Service Coordination', desc: 'From mortgage advisors to notaries from building inspectors to interior designers we coordinate the entire ecosystem so you can focus on the excitement of your new home.' }
       ],
@@ -117,7 +117,7 @@ export default function BuyingPage() {
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
             <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
-            <Link href={`/${locale}/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
+            <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>
           </div>
@@ -125,7 +125,7 @@ export default function BuyingPage() {
         <section className='py-16 bg-stone-50'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <Link 
-              href={`/${locale}/services`} 
+              href={`/services`} 
               className='inline-flex items-center gap-3 text-charcoal hover:text-brass transition-colors duration-300 font-body text-sm uppercase tracking-[0.15em] group'
             >
               <span className='transform group-hover:-translate-x-1 transition-transform duration-300'>←</span>

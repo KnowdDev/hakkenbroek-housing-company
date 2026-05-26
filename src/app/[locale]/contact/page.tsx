@@ -330,7 +330,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="relative aspect-[21/9] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1920&q=80"
+              src="/contact-image.webp"
               alt="Amsterdam canals near Leliegracht"
               className="w-full h-full object-cover"
             />

@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import Script from 'next/script';
 
 export default function SellingPage() {
@@ -110,7 +110,7 @@ export default function SellingPage() {
               <p className='font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-8'>{t.heroSubtitle}</p>
               <h1 className='font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.15] text-charcoal mb-8'>{t.heroTitle}</h1>
               <p className='font-body text-base lg:text-lg text-warm-gray leading-relaxed mb-10'>{t.heroDescription}</p>
-              <Link href={`/${locale}/contact`} className='inline-block bg-brass text-white px-10 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
+              <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
                 {t.ctaButton}
               </Link>
             </div>
@@ -199,7 +199,7 @@ export default function SellingPage() {
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
             <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
-            <Link href={`/${locale}/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
+            <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>
           </div>

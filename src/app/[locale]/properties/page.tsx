@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { Eye } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
@@ -316,7 +316,7 @@ export default function PropertiesPage() {
               {filteredProperties.map((property) => (
                 <Link
                   key={property.id}
-                  href={`/${locale}/properties/${property.id}`}
+                  href={`/properties/${property.id}`}
                   className="group bg-stone-50 border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500 block cursor-pointer"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone-200">
@@ -395,7 +395,7 @@ export default function PropertiesPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Link
-                    href={`/${locale}/contact?service=off-market`}
+                    href={`/contact?service=off-market`}
                     className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
                   >
                     {t.emptyCta}
@@ -430,7 +430,7 @@ export default function PropertiesPage() {
             {t.ctaText}
           </p>
           <a
-            href={`/${locale}/contact`}
+            href={`/contact`}
             className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
           >
             {t.ctaButton}

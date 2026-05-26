@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 export default function ServicesPage() {
   const pathname = usePathname();
@@ -11,7 +11,7 @@ export default function ServicesPage() {
     en: {
       heroSubtitle: 'Our Expertise',
       heroTitle: 'Buying and selling at the highest level',
-      intro: 'We offer a complete range of real estate services — with buying and selling at the core of everything we do. Whether you are acquiring a canal house, selling a family estate, or seeking investment property, our team brings two decades of Amsterdam market intelligence to your side of the table.',
+      intro: 'We offer a complete range of real estate services — with buying and selling at the core of everything we do. Whether you are acquiring a canal house, selling a family estate, or seeking investment property, our team brings 25+ years of Amsterdam market intelligence to your side of the table.',
       buying: {
         title: 'Buying',
         description: 'We represent buyers with discretion, precision, and access that no portal can offer. From initial consultation to key transfer, we source properties — many off-market — and negotiate terms that reflect true market value.',
@@ -44,7 +44,7 @@ export default function ServicesPage() {
     nl: {
       heroSubtitle: 'Onze Expertise',
       heroTitle: 'Kopen en verkopen op het hoogste niveau',
-      intro: 'Wij bieden een compleet scala aan vastgoeddiensten — met kopen en verkopen als kern van alles wat wij doen. Of u nu een grachtenpand verwerft, een familiebezit verkoopt, of op zoek bent naar investeringsvastgoed, ons team brengt twee decennia Amsterdamse marktkennis aan uw zijde.',
+      intro: 'Wij bieden een compleet scala aan vastgoeddiensten — met kopen en verkopen als kern van alles wat wij doen. Of u nu een grachtenpand verwerft, een familiebezit verkoopt, of op zoek bent naar investeringsvastgoed, ons team brengt 25+ jaar Amsterdamse marktkennis aan uw zijde.',
       buying: {
         title: 'Kopen',
         description: 'Wij vertegenwoordigen kopers met discretie, precisie, en toegang die geen enkel portaal kan bieden. Van eerste consult tot sleuteloverdracht — wij vinden woningen, vaak off-market, en onderhandelen voorwaarden die de werkelijke marktwaarde weerspiegelen.',
@@ -150,7 +150,7 @@ export default function ServicesPage() {
           {services.map((service, index) => (
             <Link
               key={service.title}
-              href={`/${locale}/services/${service.slug}`}
+              href={`/services/${service.slug}`}
               className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center group cursor-pointer ${
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}
@@ -201,7 +201,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Property Management — Full width */}
-      <Link href={`/${locale}/services/property-management`} className="block">
+      <Link href={`/services/property-management`} className="block">
         <section className="py-24 bg-charcoal text-white group cursor-pointer">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -240,7 +240,7 @@ export default function ServicesPage() {
       </Link>
 
       {/* Expat Services — Full width */}
-      <Link href={`/${locale}/services/expat-services`} className="block">
+      <Link href={`/services/expat-services`} className="block">
         <section className="py-24 bg-stone-50 group cursor-pointer">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -298,7 +298,7 @@ export default function ServicesPage() {
             {t.ctaDesc}
           </p>
           <a
-            href={`/${locale}/contact`}
+            href={`/contact`}
             className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
           >
             {t.contactBtn}
