@@ -105,8 +105,8 @@ export default function AboutPage() {
             <div className="lg:col-span-5">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-                  alt="Elegant interior"
+                  src="/about-home-2.webp"
+                  alt="Elegant Amsterdam interior with natural light"
                   className="w-full h-full object-cover"
                 />
               </div>
