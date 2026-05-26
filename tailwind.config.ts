@@ -27,9 +27,9 @@ const config: Config = {
         ink: '#1a1a1a',
         'warm-gray': '#5a5450',
         brass: {
-          DEFAULT: '#a67c52',
-          light: '#c49a6c',
-          dark: '#8a6340',
+          DEFAULT: '#003D15',
+          light: '#2E7D4A',
+          dark: '#002910',
         },
       },
     },

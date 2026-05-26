@@ -97,7 +97,7 @@ export default function SellingPage() {
       </Script>
       <div className='min-h-screen'>
         {/* Hero — Split layout */}
-        <section className='flex flex-col lg:flex-row pt-24 h-auto lg:h-[calc(100vh-6rem)] lg:min-h-[600px] overflow-hidden'>
+        <section className='flex flex-col lg:flex-row h-auto lg:h-[92vh] lg:min-h-[600px] overflow-hidden'>
           <div className='relative w-full lg:w-[58%] h-[55vh] lg:h-full'>
             <img
               src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80'

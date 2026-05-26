@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { Eye } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
 interface Listing {
@@ -104,6 +105,10 @@ export default function PropertiesPage() {
       noMatch: 'No properties match your filters.',
       clearFilters: 'Clear All Filters',
       showing: 'Showing',
+      emptyTitle: 'Nothing listed... yet',
+      emptyLead: 'The properties you are looking for may not be publicly available.',
+      emptyBody: 'Many of the finest homes in Amsterdam, Het Gooi and De Vechtstreek never reach the open market. We know about them before they do. Tell us what you are after and we will reach out discreetly when something fits.',
+      emptyCta: 'Enquire About Off-Market Properties',
       property: 'property',
       properties: 'properties',
       ctaTitle: 'Seeking something unlisted?',
@@ -140,6 +145,10 @@ export default function PropertiesPage() {
       noMatch: 'Geen woningen komen overeen met uw filters.',
       clearFilters: 'Wis Alle Filters',
       showing: 'Toont',
+      emptyTitle: 'Niets te zien... nog niet',
+      emptyLead: 'De woning die u zoekt is mogelijk niet openbaar beschikbaar.',
+      emptyBody: 'Veel van de mooiste woningen in Amsterdam, Het Gooi en De Vechtstreek komen nooit op de open markt. Wij weten ervan voordat ze dat doen. Vertel ons wat u zoekt en wij nemen discreet contact op zodra er iets past.',
+      emptyCta: 'Informeer naar Stille Verkoop',
       property: 'woning',
       properties: 'woningen',
       ctaTitle: 'Op zoek naar iets dat niet genoteerd staat?',
@@ -370,20 +379,42 @@ export default function PropertiesPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20">
-              <p className="text-warm-gray text-lg mb-6">
-                {t.noMatch}
-              </p>
-              <button
-                onClick={() => {
-                  setFilter('all');
-                  setListingTypeFilter('all');
-                  setPriceRange('all');
-                }}
-                className="inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300"
-              >
-                {t.clearFilters}
-              </button>
+            <div className="max-w-3xl mx-auto">
+              <div className="border border-stone-200 bg-white p-10 md:p-14 text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-stone-100 mb-6">
+                  <Eye className="w-5 h-5 text-charcoal" />
+                </div>
+                <h3 className="font-display text-2xl md:text-3xl text-charcoal mb-3">
+                  {t.emptyTitle}
+                </h3>
+                <p className="font-body text-sm uppercase tracking-wider text-brass mb-4">
+                  {t.emptyLead}
+                </p>
+                <p className="text-warm-gray leading-relaxed mb-8 max-w-xl mx-auto">
+                  {t.emptyBody}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link
+                    href={`/${locale}/contact?service=off-market`}
+                    className="inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300"
+                  >
+                    {t.emptyCta}
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setFilter('all');
+                      setListingTypeFilter('all');
+                      setPriceRange('all');
+                      setSearchQuery('');
+                      setPropertyTypeFilter('all');
+                      setMinBedrooms(null);
+                    }}
+                    className="inline-block border-b border-stone-300 text-warm-gray pb-1 font-body text-sm uppercase tracking-wider hover:text-charcoal hover:border-charcoal transition-colors duration-300"
+                  >
+                    {t.clearFilters}
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>

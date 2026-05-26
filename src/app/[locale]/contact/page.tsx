@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function ContactPage() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const locale = pathname.split('/')[1] || 'en';
   const [formData, setFormData] = useState({
     name: '',
@@ -14,6 +15,14 @@ export default function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Pre-fill service from URL param (e.g. ?service=off-market from properties page)
+  useEffect(() => {
+    const serviceParam = searchParams.get('service');
+    if (serviceParam === 'off-market') {
+      setFormData((prev) => ({ ...prev, service: 'off-market' }));
+    }
+  }, [searchParams]);
 
   const content = {
     en: {
@@ -32,6 +41,7 @@ export default function ContactPage() {
       renting: 'Renting',
       leasing: 'Leasing',
       management: 'Property Management',
+      offMarket: 'Off-Market Enquiry',
       other: 'Other',
       message: 'Message',
       submit: 'Send Message',
@@ -60,6 +70,7 @@ export default function ContactPage() {
       renting: 'Huren',
       leasing: 'Verhuur',
       management: 'Vastgoedbeheer',
+      offMarket: 'Stille Verkoop Aanvraag',
       other: 'Anders',
       message: 'Bericht',
       submit: 'Bericht Versturen',
@@ -221,6 +232,7 @@ export default function ContactPage() {
                         <option value="renting">{t.renting}</option>
                         <option value="leasing">{t.leasing}</option>
                         <option value="management">{t.management}</option>
+                        <option value="off-market">{t.offMarket}</option>
                         <option value="other">{t.other}</option>
                       </select>
                     </div>

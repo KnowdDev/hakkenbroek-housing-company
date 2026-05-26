@@ -32,7 +32,7 @@ type Language = 'en' | 'nl';
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [locale, setLocale] = useState<Language>('en');
-  const [isHeroVisible, setIsHeroVisible] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
@@ -43,34 +43,29 @@ export default function Navigation() {
     }
   }, [pathname]);
 
-  // Observe hero sentinel — transparent when hero visible, solid when scrolled past
+  // Scroll-based header state — triggers at 1px for instant feedback
   useEffect(() => {
-    const sentinel = document.getElementById('nav-sentinel');
-    if (!sentinel) {
-      setIsHeroVisible(false);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsHeroVisible(entry.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
+
+  const navBg = scrolled
+    ? 'bg-stone-50/95 backdrop-blur-md border-b border-stone-200'
+    : 'bg-charcoal/50 backdrop-blur-sm border-b border-white/10';
+
+  const navText = scrolled
+    ? 'text-ink hover:text-brass'
+    : 'text-white/90 hover:text-white';
 
   return (
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 ${
-          isHeroVisible
-            ? 'bg-transparent border-b border-white/10'
-            : 'bg-stone-50/95 backdrop-blur-md border-b border-stone-200'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-24">
@@ -79,7 +74,7 @@ export default function Navigation() {
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
                 className={`h-16 md:h-20 w-auto transition-all duration-500 ${
-                  isHeroVisible ? 'brightness-0 invert' : 'brightness-100'
+                  scrolled ? 'brightness-100' : 'brightness-0 invert'
                 }`}
               />
             </Link>
@@ -89,11 +84,7 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={`/${locale}${link.href}`}
-                  className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group ${
-                    isHeroVisible
-                      ? 'text-white/90 hover:text-white'
-                      : 'text-ink hover:text-brass'
-                  }`}
+                  className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group ${navText}`}
                 >
                   {link.label[locale]}
                   <span className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300 bg-brass" />
@@ -104,11 +95,7 @@ export default function Navigation() {
               <div className="relative group">
                 <Link
                   href={`/${locale}/properties`}
-                  className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group inline-flex items-center gap-1 ${
-                    isHeroVisible
-                      ? 'text-white/90 hover:text-white'
-                      : 'text-ink hover:text-brass'
-                  }`}
+                  className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group inline-flex items-center gap-1 ${navText}`}
                 >
                   {propertiesDropdown.label[locale]}
                   <svg className="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,14 +118,14 @@ export default function Navigation() {
                 </div>
               </div>
 
-              <LanguageToggle scrolled={!isHeroVisible} />
+              <LanguageToggle scrolled={scrolled} />
             </div>
 
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`focus:outline-none transition-colors duration-500 font-body text-xs uppercase tracking-wider ${
-                  isHeroVisible ? 'text-white' : 'text-charcoal'
+                  scrolled ? 'text-charcoal' : 'text-white'
                 }`}
                 aria-label="Toggle menu"
               >
