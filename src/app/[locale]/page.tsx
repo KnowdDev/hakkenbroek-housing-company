@@ -267,6 +267,8 @@ export default function Home() {
   const [valAddress, setValAddress] = useState('');
   const [valEmail, setValEmail] = useState('');
   const [valSubmitted, setValSubmitted] = useState(false);
+  const [valSubmitting, setValSubmitting] = useState(false);
+  const [valError, setValError] = useState('');
 
   /* FAQ state */
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -318,15 +320,40 @@ export default function Home() {
   };
 
   /* valuation handler */
-  const handleValuation = (e: React.FormEvent) => {
+  const handleValuation = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (valAddress && valEmail) {
+    if (!valAddress || !valEmail || valSubmitting) return;
+
+    setValSubmitting(true);
+    setValError('');
+
+    try {
+      const response = await fetch('/api/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Valuation request',
+          email: valEmail,
+          message: `Valuation request for: ${valAddress}`,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error((data as { error?: string })?.error || 'Failed to submit valuation');
+      }
+
       setValSubmitted(true);
       setTimeout(() => {
         setValSubmitted(false);
         setValAddress('');
         setValEmail('');
       }, 4000);
+    } catch (error) {
+      console.error('Error submitting valuation request:', error);
+      setValError('Something went wrong. Please try again.');
+    } finally {
+      setValSubmitting(false);
     }
   };
 
@@ -348,8 +375,8 @@ export default function Home() {
         {/* Left: full-bleed image with atmospheric gradient */}
         <div className="relative w-full lg:w-[55%] h-[50vh] lg:h-full">
           <img
-            src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1600&q=80"
-            alt="Amsterdam canal houses in summer light"
+            src="/hero.webp"
+            alt="Elegant Amsterdam interior with green velvet sofa and natural light"
             className="w-full h-full object-cover"
           />
           {/* Dark top gradient ensures white nav text is readable on any hero image */}
@@ -530,7 +557,7 @@ export default function Home() {
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 lg:p-16">
               <div>
                 <p
-                  className={`font-body text-xs uppercase tracking-[0.2em] text-brass-light mb-4 ${revealClass(valRef.inView)}`}
+                  className={`font-body text-xs uppercase tracking-[0.2em] text-stone-300 mb-4 ${revealClass(valRef.inView)}`}
                   style={{ transitionDelay: '100ms' }}
                 >
                   {t.valuationEyebrow}
@@ -551,7 +578,7 @@ export default function Home() {
                   className={`flex items-center gap-2 mt-6 text-stone-400 text-sm ${revealClass(valRef.inView)}`}
                   style={{ transitionDelay: '400ms' }}
                 >
-                  <CheckCircle2 className="w-4 h-4 text-brass-light" />
+                  <CheckCircle2 className="w-4 h-4 text-stone-300" />
                   {t.valuationTrust}
                 </div>
               </div>
@@ -568,7 +595,7 @@ export default function Home() {
                     placeholder={t.valuationAddress}
                     value={valAddress}
                     onChange={(e) => setValAddress(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 text-white placeholder:text-stone-500 font-body text-sm focus:outline-none focus:border-brass-light transition-colors"
+                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 text-white placeholder:text-stone-500 font-body text-sm focus:outline-none focus:border-stone-300 transition-colors"
                   />
                 </div>
                 <div
@@ -582,13 +609,14 @@ export default function Home() {
                     placeholder={t.valuationEmail}
                     value={valEmail}
                     onChange={(e) => setValEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 text-white placeholder:text-stone-500 font-body text-sm focus:outline-none focus:border-brass-light transition-colors"
+                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 text-white placeholder:text-stone-500 font-body text-sm focus:outline-none focus:border-stone-300 transition-colors"
                   />
                 </div>
                 <button
                   type="submit"
                   className={`w-full inline-flex items-center justify-center gap-2 bg-brass text-white px-8 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light hover:scale-[1.01] transition-all duration-300 rounded-sm ${revealClass(valRef.inView)}`}
                   style={{ transitionDelay: '400ms' }}
+                  disabled={valSubmitting}
                 >
                   {valSubmitted ? (
                     <>
@@ -602,6 +630,9 @@ export default function Home() {
                     </>
                   )}
                 </button>
+                {valError ? (
+                  <p className="text-sm text-rose-200">{valError}</p>
+                ) : null}
               </form>
             </div>
           </div>
@@ -778,8 +809,8 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative aspect-[4/5] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=800&q=80"
-                alt="Light-filled living room with herringbone parquet"
+                src="/about-home-2.webp"
+                alt="Elegant Amsterdam interior with natural light"
                 className={`w-full h-full object-cover transition-all duration-1000 ${heritageRef.inView ? 'scale-100' : 'scale-105'}`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />
@@ -922,7 +953,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div className="lg:sticky lg:top-32">
               <p
-                className={`font-body text-xs uppercase tracking-[0.2em] text-brass-light mb-4 ${revealClass(whyRef.inView)}`}
+                className={`font-body text-xs uppercase tracking-[0.2em] text-stone-300 mb-4 ${revealClass(whyRef.inView)}`}
               >
                 {t.whyEyebrow}
               </p>
@@ -960,15 +991,15 @@ export default function Home() {
               ].map((item, i) => (
                 <div
                   key={item.title}
-                  className={`group bg-white/5 border border-white/10 p-8 hover:border-brass/40 hover:bg-white/[0.07] transition-all duration-500 ${revealClass(whyRef.inView)}`}
+                  className={`group bg-white/5 border border-white/10 p-8 hover:border-stone-300/40 hover:bg-white/[0.07] transition-all duration-500 ${revealClass(whyRef.inView)}`}
                   style={{ transitionDelay: `${250 + i * 100}ms` }}
                 >
                   <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-white/10 group-hover:border-brass/30 transition-colors duration-300">
-                      <item.icon className="w-5 h-5 text-brass-light" />
+                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-white/10 group-hover:border-stone-300/30 transition-colors duration-300">
+                      <item.icon className="w-5 h-5 text-stone-300" />
                     </div>
                     <div>
-                      <h3 className="font-display text-xl mb-2 group-hover:text-brass-light transition-colors">
+                      <h3 className="font-display text-xl mb-2 group-hover:text-stone-300 transition-colors">
                         {item.title}
                       </h3>
                       <p className="text-stone-400 leading-relaxed text-sm">{item.desc}</p>
