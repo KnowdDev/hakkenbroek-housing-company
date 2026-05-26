@@ -9,9 +9,9 @@ export default function AboutPage() {
   const content = {
     en: {
       story: 'Our Heritage',
-      headline: 'Two decades of discretion in Amsterdam\'s finest properties',
+      headline: '25+ years of discretion in Amsterdam\'s finest properties',
       who: 'Who We Are',
-      description1: 'Since 2003, Hakkenbroek Housing Company has quietly shaped Amsterdam\'s luxury real estate landscape. From our office on the Leliegracht, we have guided hundreds of discerning clients through the city\'s most significant property transactions — always with discretion, always with care.',
+      description1: 'Since 2000, Hakkenbroek Housing Company has quietly shaped Amsterdam\'s luxury real estate landscape. From our office on the Leliegracht, we have guided hundreds of discerning clients through the city\'s most significant property transactions — always with discretion, always with care.',
       description2: 'We are not a volume agency. We are a trusted advisor. Our team combines deep Amsterdam market knowledge with an international perspective, serving buyers and sellers from the Netherlands, across Europe, and beyond. We speak your language — literally and culturally.',
       description3: 'Our expertise extends beyond standard brokerage. We are specialists in Amsterdam\'s historic monuments, canal house restorations, and the unique regulations that govern listed buildings. We advise on home styling that honors architectural heritage while creating spaces for modern living.',
       valuesTitle: 'What Guides Us',
@@ -21,7 +21,7 @@ export default function AboutPage() {
       personal: 'Personal Dedication',
       personalDesc: 'We take on a limited number of clients at any time. This ensures every client receives our full attention and the best of our network.',
       expertise: 'Market Intelligence',
-      expertiseDesc: 'Two decades of Amsterdam transactions give us insight no algorithm can replicate. We know what a property is worth — and what it could be worth.',
+      expertiseDesc: 'Over 25 years of Amsterdam transactions give us insight no algorithm can replicate. We know what a property is worth — and what it could be worth.',
       global: 'International Reach',
       globalDesc: 'Multilingual representation connecting Amsterdam properties with qualified buyers from London, New York, Singapore, and beyond.',
       quality: 'Curated Portfolio',
@@ -35,9 +35,9 @@ export default function AboutPage() {
     },
     nl: {
       story: 'Ons Erfgoed',
-      headline: 'Twee decennia van discretie in Amsterdams mooiste woningen',
+      headline: '25+ jaar discretie in Amsterdams mooiste woningen',
       who: 'Wie Wij Zijn',
-      description1: 'Sinds 2003 geeft Hakkenbroek Housing Company stilletjes vorm aan het luxe vastgoedlandschap van Amsterdam. Vanuit ons kantoor aan de Leliegracht hebben wij honderden veeleisende cliënten begeleid bij de meest significante vastgoedtransacties van de stad — altijd met discretie, altijd met zorg.',
+      description1: 'Sinds 2000 geeft Hakkenbroek Housing Company stilletjes vorm aan het luxe vastgoedlandschap van Amsterdam. Vanuit ons kantoor aan de Leliegracht hebben wij honderden veeleisende cliënten begeleid bij de meest significante vastgoedtransacties van de stad — altijd met discretie, altijd met zorg.',
       description2: 'Wij zijn geen volume-kantoor. Wij zijn een vertrouwde adviseur. Ons team combineert diepe Amsterdamse marktkennis met een internationaal perspectief, en bedient kopers en verkopers uit Nederland, Europa, en daarbuiten. Wij spreken uw taal — letterlijk en cultureel.',
       description3: 'Onze expertise reikt verder dan standaard makelaardij. Wij zijn specialisten in Amsterdamse monumenten, grachtenpandrestauraties, en de unieke regelgeving voor beschermde gebouwen. Wij adviseren over woningstyling die architectonisch erfgoed eert en tegelijk ruimtes creëert voor modern leven.',
       valuesTitle: 'Wat Ons Leidt',
@@ -47,7 +47,7 @@ export default function AboutPage() {
       personal: 'Persoonlijke Toewijding',
       personalDesc: 'Wij nemen tegelijkertijd een beperkt aantal cliënten aan. Zo krijgt elke cliënt onze volledige aandacht en het beste van ons netwerk.',
       expertise: 'Marktintelligentie',
-      expertiseDesc: 'Twee decennia aan Amsterdamse transacties geven ons inzicht dat geen enkel algoritme kan evenaren. Wij weten wat een woning waard is — en wat het waard zou kunnen worden.',
+      expertiseDesc: 'Meer dan 25 jaar aan Amsterdamse transacties geven ons inzicht dat geen enkel algoritme kan evenaren. Wij weten wat een woning waard is — en wat het waard zou kunnen worden.',
       global: 'Internationaal Bereik',
       globalDesc: 'Meertalige vertegenwoordiging die Amsterdamse woningen verbindt met gekwalificeerde kopers uit Londen, New York, Singapore, en verder.',
       quality: 'Gecureerd Portfolio',
@@ -71,7 +71,7 @@ export default function AboutPage() {
     { num: '06', title: t.relationships, desc: t.relationshipsDesc },
   ];
   const stats = [
-    { value: '20+', label: t.stats.years },
+    { value: '25+', label: t.stats.years },
     { value: '8.0', label: t.stats.rating },
     { value: '19+', label: t.stats.clients },
     { value: '15+', label: t.stats.areas },

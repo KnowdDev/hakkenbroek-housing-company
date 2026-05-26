@@ -9,7 +9,7 @@ export const translations = {
       story: 'Our Story',
       who: 'Who We Are',
       headline: 'A boutique agency with a personal touch',
-      description1: 'Hakkenbroek Housing Company has been serving the Amsterdam real estate market for over 20 years. As a boutique agency, we pride ourselves on providing personalized service and access to the best properties in the region.',
+      description1: 'Hakkenbroek Housing Company has been serving the Amsterdam real estate market for over 25+ years. As a boutique agency, we pride ourselves on providing personalized service and access to the best properties in the region.',
       description2: 'Our team of experienced professionals specializes in serving both domestic and international clients, with a particular focus on the expat housing market. We understand the unique challenges of relocating to a new country and are dedicated to making your transition as smooth as possible.',
       description3: "Whether you're buying, selling, renting, or looking for property management services, our expertise in monuments, foreign real estate, and home styling sets us apart from other agencies.",
       values: 'Our Values',
@@ -111,9 +111,9 @@ export const translations = {
       title: 'Contact Us',
       subtitle: 'Get in touch',
       home: {
-        heroSubtitle: 'Amsterdam Real Estate Since 2003',
+        heroSubtitle: 'Amsterdam Real Estate Since 2000',
         heroTitle: 'Where living becomes an experience',
-        heroDescription: 'Boutique agency with 20+ years of expertise. We connect discerning clients with the most elegant properties Amsterdam has to offer.',
+        heroDescription: 'Boutique agency with 25+ years of expertise. We connect discerning clients with the most elegant properties Amsterdam has to offer.',
         viewProperties: 'View Properties',
         getInTouch: 'Get in Touch',
         servicesSubtitle: 'What We Do',
@@ -145,8 +145,8 @@ export const translations = {
           }
         },
         heritageSubtitle: 'Our Heritage',
-        heritageTitle: 'Over two decades of excellence in Amsterdam real estate',
-        heritageDescription: 'Hakkenbroek Housing Company has been serving the Amsterdam real estate market for over 20 years. As a boutique agency, we pride ourselves on providing personalized service and access to the best properties in the region.',
+        heritageTitle: 'Over 25+ years of excellence in Amsterdam real estate',
+        heritageDescription: 'Hakkenbroek Housing Company has been serving the Amsterdam real estate market for over 25+ years. As a boutique agency, we pride ourselves on providing personalized service and access to the best properties in the region.',
         yearsExperience: 'Years Experience',
         clientRating: 'Client Rating',
         readStory: 'Read Our Story',
@@ -158,7 +158,7 @@ export const translations = {
         whyDescription: 'We believe in quality over quantity. Every client receives our full attention, and every property in our portfolio has been carefully selected for its unique character.',
         why: {
           experience: {
-            title: '20+ Years Experience',
+            title: '25+ Years Experience',
             desc: 'Deep-rooted expertise in the Amsterdam real estate market, from historic monuments to modern developments.'
           },
           expat: {
@@ -198,7 +198,7 @@ export const translations = {
       story: 'Ons Verhaal',
       who: 'Wie Wij Zijn',
       headline: 'Een boutique makelaar met een persoonlijke touch',
-      description1: 'Hakkenbroek Housing Company al meer dan 20 jaar actief op de Amsterdamse vastgoedmarkt. Als boutique makelaar zijn wij trots op onze persoonlijke service en toegang tot de beste woningen in de regio.',
+      description1: 'Hakkenbroek Housing Company al meer dan 25+ jaar actief op de Amsterdamse vastgoedmarkt. Als boutique makelaar zijn wij trots op onze persoonlijke service en toegang tot de beste woningen in de regio.',
       description2: 'Ons team van ervaren professionals is gespecialiseerd in zowel nationale als internationale cliënten, met een focus op de expat-huisvestingsmarkt. Wij begrijpen de unieke uitdagingen van verhuizing naar een nieuw land en zijn toegewijd om uw overgang zo soepel mogelijk te maken.',
       description3: 'Of u nu koopt, verkoopt, huurt of op zoek bent naar vastgoedbeheer, onze expertise in monumenten, buitenlands vastgoed en home styling onderscheidt ons van andere makelaars.',
       values: 'Onze Waarden',

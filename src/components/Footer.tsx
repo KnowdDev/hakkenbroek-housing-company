@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { usePathname } from 'next/navigation';
 import LanguageToggle from './LanguageToggle';
 
@@ -89,10 +89,6 @@ function getLocale(pathname: string): Language {
   return segment === 'nl' ? 'nl' : 'en';
 }
 
-function getLocalizedHref(locale: Language, href: string) {
-  return href === '/' ? `/${locale}` : `/${locale}${href}`;
-}
-
 export default function Footer() {
   const pathname = usePathname();
   const locale = getLocale(pathname);
@@ -107,7 +103,7 @@ export default function Footer() {
               {copy.eyebrow}
             </p>
 
-            <Link href={getLocalizedHref(locale, '/')} className="mt-4 inline-flex">
+            <Link href="/" className="mt-4 inline-flex">
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
@@ -124,7 +120,7 @@ export default function Footer() {
             </p>
 
             <Link
-              href={getLocalizedHref(locale, '/contact')}
+              href="/contact"
               className="mt-6 inline-flex items-center border-b border-brass-light pb-1 text-sm text-stone-100 transition-colors duration-300 hover:text-brass-light"
             >
               {copy.cta}
@@ -140,7 +136,7 @@ export default function Footer() {
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
-                      href={getLocalizedHref(locale, link.href)}
+                      href={link.href}
                       className="transition-colors duration-300 hover:text-brass-light"
                     >
                       {link.label[locale]}
@@ -158,7 +154,7 @@ export default function Footer() {
                 {serviceLinks.map((link) => (
                   <li key={link.href}>
                     <Link
-                      href={getLocalizedHref(locale, link.href)}
+                      href={link.href}
                       className="transition-colors duration-300 hover:text-brass-light"
                     >
                       {link.label[locale]}

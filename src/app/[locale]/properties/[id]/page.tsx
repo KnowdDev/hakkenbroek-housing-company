@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 interface Listing {
   id: number;
@@ -221,7 +221,7 @@ export default function PropertyDetailPage() {
       <div className="min-h-screen bg-stone-50 pt-24 flex items-center justify-center">
         <div className="text-center">
           <p className="text-warm-gray text-lg mb-6">Property not found.</p>
-          <Link href={`/${locale}/properties`} className="inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300">
+          <Link href={`/properties`} className="inline-block border-b border-charcoal text-charcoal pb-1 font-body text-sm uppercase tracking-wider hover:text-brass hover:border-brass transition-colors duration-300">
             {backText}
           </Link>
         </div>
@@ -235,7 +235,7 @@ export default function PropertyDetailPage() {
       <div className="bg-stone-50 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link 
-            href={`/${locale}/properties`} 
+            href={`/properties`} 
             className='inline-flex items-center gap-3 text-charcoal hover:text-brass transition-colors duration-300 font-body text-sm uppercase tracking-[0.15em] group'
           >
             <span className='transform group-hover:-translate-x-1 transition-transform duration-300'>←</span>

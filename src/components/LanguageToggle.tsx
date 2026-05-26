@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname } from '@/navigation';
 
 const languageNames: Record<string, string> = {
   en: 'English',
@@ -22,28 +22,20 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
   const pathname = usePathname();
 
   useEffect(() => {
-    // Extract locale from pathname
-    const segments = pathname.split('/').filter(Boolean);
-    if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl')) {
-      setLocale(segments[0] as Language);
+    if (typeof window !== 'undefined') {
+      const segments = window.location.pathname.split('/').filter(Boolean);
+      if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'nl')) {
+        setLocale(segments[0] as Language);
+      }
     }
   }, [pathname]);
 
   const handleLocaleChange = (newLocale: Language) => {
     setLocale(newLocale);
     setIsOpen(false);
-    
-    // Replace locale in pathname
-    const segments = pathname.split('/').filter(Boolean);
-    const currentLocaleIndex = segments.findIndex(seg => seg === 'en' || seg === 'nl');
-    
-    if (currentLocaleIndex !== -1) {
-      segments[currentLocaleIndex] = newLocale;
-    } else {
-      segments.unshift(newLocale);
-    }
-    
-    router.push(`/${segments.join('/')}`);
+    // next-intl router handles translated pathname swap automatically
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (router.replace as any)(pathname, { locale: newLocale });
   };
 
   return (

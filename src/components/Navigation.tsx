@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { usePathname } from 'next/navigation';
 import LanguageToggle from './LanguageToggle';
 
@@ -53,13 +53,31 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
-  const navBg = scrolled
-    ? 'bg-stone-50/95 backdrop-blur-md border-b border-stone-200'
-    : 'bg-charcoal/50 backdrop-blur-sm border-b border-white/10';
 
-  const navText = scrolled
-    ? 'text-ink hover:text-brass'
-    : 'text-white/90 hover:text-white';
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+
+  const navBg = isOpen
+    ? 'bg-transparent border-b border-white/10'
+    : scrolled
+      ? 'bg-stone-50/95 backdrop-blur-md border-b border-stone-200'
+      : 'bg-charcoal/50 backdrop-blur-sm border-b border-white/10';
+
+  const navText = isOpen
+    ? 'text-white hover:text-white'
+    : scrolled
+      ? 'text-ink hover:text-brass'
+      : 'text-white/90 hover:text-white';
 
   return (
     <>
@@ -69,12 +87,12 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-24">
-            <Link href={`/${locale}`} className="flex items-center py-4">
+            <Link href="/" className="flex items-center py-4">
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
                 className={`h-16 md:h-20 w-auto transition-all duration-500 ${
-                  scrolled ? 'brightness-100' : 'brightness-0 invert'
+                  isOpen ? 'brightness-0 invert' : scrolled ? 'brightness-100' : 'brightness-0 invert'
                 }`}
               />
             </Link>
@@ -83,7 +101,7 @@ export default function Navigation() {
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
-                  href={`/${locale}${link.href}`}
+                  href={link.href}
                   className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group ${navText}`}
                 >
                   {link.label[locale]}
@@ -94,7 +112,7 @@ export default function Navigation() {
               {/* Properties dropdown */}
               <div className="relative group">
                 <Link
-                  href={`/${locale}/properties`}
+                  href="/properties"
                   className={`font-body text-xs tracking-wide uppercase transition-colors duration-300 relative group inline-flex items-center gap-1 ${navText}`}
                 >
                   {propertiesDropdown.label[locale]}
@@ -108,7 +126,7 @@ export default function Navigation() {
                     {propertiesDropdown.items.map((item) => (
                       <Link
                         key={item.href}
-                        href={`/${locale}${item.href}`}
+                        href={item.href}
                         className="block px-5 py-2.5 font-body text-sm text-ink hover:text-brass hover:bg-stone-50 transition-colors duration-200"
                       >
                         {item.label[locale]}
@@ -124,12 +142,12 @@ export default function Navigation() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`focus:outline-none transition-colors duration-500 font-body text-xs uppercase tracking-wider ${
-                  scrolled ? 'text-charcoal' : 'text-white'
-                }`}
+                className={`relative w-8 h-8 focus:outline-none ${isOpen ? 'text-white' : 'text-brass'}`}
                 aria-label="Toggle menu"
               >
-                {isOpen ? 'Close' : 'Menu'}
+                <span className={`absolute left-0 block w-8 h-0.5 bg-current transition-all duration-300 ${isOpen ? 'top-3.5 rotate-45' : 'top-1'}`} />
+                <span className={`absolute left-0 block w-8 h-0.5 bg-current transition-all duration-300 top-3.5 ${isOpen ? 'opacity-0' : 'opacity-100'}`} />
+                <span className={`absolute left-0 block w-8 h-0.5 bg-current transition-all duration-300 ${isOpen ? 'top-3.5 -rotate-45' : 'top-6'}`} />
               </button>
             </div>
           </div>
@@ -138,43 +156,62 @@ export default function Navigation() {
 
       {/* Mobile full-screen overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-charcoal transition-all duration-500 md:hidden ${
-          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`fixed inset-0 z-40 bg-brass transition-transform duration-500 ease-out md:hidden ${
+          isOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8">
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.href}
-              href={`/${locale}${link.href}`}
-              onClick={() => setIsOpen(false)}
-              className="font-display text-3xl text-white hover:text-brass-light transition-colors duration-300"
-              style={{ transitionDelay: isOpen ? `${i * 50}ms` : '0ms' }}
-            >
-              {link.label[locale]}
-            </Link>
-          ))}
-
-          {/* Properties in mobile menu */}
-          <div className="flex flex-col items-center space-y-3">
-            <span className="font-display text-3xl text-white">
-              {propertiesDropdown.label[locale]}
-            </span>
-            {propertiesDropdown.items.map((item, i) => (
+        <div className="flex flex-col h-full pt-24 pb-10 px-6 overflow-y-auto">
+          <div className="flex-1 flex flex-col items-center justify-center gap-7">
+            {navLinks.map((link, i) => (
               <Link
-                key={item.href}
-                href={`/${locale}${item.href}`}
+                key={link.href}
+                href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="font-body text-lg text-stone-300 hover:text-brass-light transition-colors duration-300"
-                style={{ transitionDelay: isOpen ? `${(navLinks.length + i) * 50}ms` : '0ms' }}
+                className={`font-display text-4xl leading-none text-white hover:opacity-80 transition-all duration-500 ${
+                  isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+                }`}
+                style={{ transitionDelay: isOpen ? `${i * 50}ms` : '0ms' }}
               >
-                {item.label[locale]}
+                {link.label[locale]}
               </Link>
             ))}
+
+            {/* Properties in mobile menu */}
+            <div
+              className={`flex flex-col items-center gap-3 pt-2 transition-all duration-500 ${
+                isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+              }`}
+              style={{ transitionDelay: isOpen ? `${navLinks.length * 50}ms` : '0ms' }}
+            >
+              <Link
+                href="/properties"
+                onClick={() => setIsOpen(false)}
+                className="font-display text-4xl leading-none text-white hover:opacity-80 transition-opacity"
+              >
+                {propertiesDropdown.label[locale]}
+              </Link>
+              <div className="flex items-center gap-5">
+                {propertiesDropdown.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="font-body text-sm tracking-wide text-white/75 hover:text-white transition-colors"
+                  >
+                    {item.label[locale]}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="pt-4">
-            <LanguageToggle />
+          <div
+            className={`flex justify-center pt-8 transition-all duration-500 ${
+              isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+            }`}
+            style={{ transitionDelay: isOpen ? `${(navLinks.length + 1) * 50}ms` : '0ms' }}
+          >
+            <LanguageToggle dropUp />
           </div>
         </div>
       </div>

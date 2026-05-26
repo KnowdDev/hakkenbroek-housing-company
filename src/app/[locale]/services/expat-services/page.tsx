@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import Script from 'next/script';
 
 export default function ExpatServicesPage() {
@@ -12,7 +12,7 @@ export default function ExpatServicesPage() {
       heroTitle: 'A complete relocation service for international clients',
       heroDescription: 'Moving to a new country is one of lifes most significant transitions. Our expat service goes far beyond property search. We are your guide your advocate and your support system from the moment you consider Amsterdam to long after you have settled in.',
       introTitle: 'The Hakkenbroek approach to relocation',
-      introText: 'We have spent two decades helping international clients find their place in Amsterdam. We understand that relocation is not just about finding a property. It is about navigating a new culture a new language a new way of life. Our comprehensive service addresses every aspect of your move so you can focus on what matters most starting your new chapter with confidence.',
+      introText: 'We have spent 25+ years helping international clients find their place in Amsterdam. We understand that relocation is not just about finding a property. It is about navigating a new culture a new language a new way of life. Our comprehensive service addresses every aspect of your move so you can focus on what matters most starting your new chapter with confidence.',
       processTitle: 'Our relocation services',
       steps: [
         { step: '01', title: 'Pre-Arrival Consultation', desc: 'Before you even set foot in Amsterdam we conduct detailed video consultations to understand your needs your timeline and your expectations. We provide honest market insights help you set realistic budgets and begin searching for properties that match your criteria.' },
@@ -24,7 +24,7 @@ export default function ExpatServicesPage() {
       benefitsTitle: 'Why expats choose Hakkenbroek',
       benefits: [
         { title: 'Cultural Bridge', desc: 'We understand the expat experience because we have guided hundreds of international clients through it. We speak your language literally and culturally and we bridge the gap between your expectations and Dutch realities.' },
-        { title: 'Network Access', desc: 'Over two decades we have built relationships with the best service providers in Amsterdam. From mortgage brokers to interior designers from schools to sports clubs we connect you with trusted professionals who understand international clients.' },
+        { title: 'Network Access', desc: 'Over 25+ years we have built relationships with the best service providers in Amsterdam. From mortgage brokers to interior designers from schools to sports clubs we connect you with trusted professionals who understand international clients.' },
         { title: 'Honest Guidance', desc: 'We tell you what you need to hear not just what you want to hear. About budgets about neighborhoods about timelines. Our reputation is built on trust and that means being honest even when the truth is uncomfortable.' },
         { title: 'Long-Term Relationship', desc: 'Many of our expat clients become long-term friends. We celebrate your successes support you through challenges and remain your Amsterdam property resource for years to come. Your success in Amsterdam is our success.' }
       ],
@@ -123,7 +123,7 @@ export default function ExpatServicesPage() {
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
             <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
-            <Link href={`/${locale}/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
+            <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>
           </div>
@@ -132,7 +132,7 @@ export default function ExpatServicesPage() {
         <section className='py-16 bg-stone-50'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <Link 
-              href={`/${locale}/services`} 
+              href={`/services`} 
               className='inline-flex items-center gap-3 text-charcoal hover:text-brass transition-colors duration-300 font-body text-sm uppercase tracking-[0.15em] group'
             >
               <span className='transform group-hover:-translate-x-1 transition-transform duration-300'>←</span>
