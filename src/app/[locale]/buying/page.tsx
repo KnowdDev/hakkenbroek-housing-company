@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { Link } from '@/navigation';
 import Script from 'next/script';
+import ProcessTimeline from '@/components/ProcessTimeline';
 
 export default function BuyingPage() {
   const pathname = usePathname();
@@ -128,69 +129,8 @@ export default function BuyingPage() {
         {/* Process */}
         <section className='py-24 bg-stone-100'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <h2 className='font-display text-3xl md:text-4xl text-charcoal mb-16 text-center'>{t.processTitle}</h2>
-            <div className='space-y-16 max-w-4xl mx-auto'>
-              {t.steps.map((s, i) => (
-                <div key={s.step} className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                  <div className={`lg:col-span-5 ${i % 2 === 1 ? 'lg:col-start-8' : ''}`}>
-                    <span className='font-display text-5xl text-brass/40'>{s.step}</span>
-                    <h3 className='font-display text-2xl text-charcoal mt-4 mb-3'>{s.title}</h3>
-                    <p className='text-warm-gray leading-relaxed'>{s.desc}</p>
-                  </div>
-                  <div className={`lg:col-span-6 ${i % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : 'lg:col-start-7'}`}>
-                    <div className='aspect-[4/3] bg-stone-200'>
-                      <img
-                        src={`https://images.unsplash.com/photo-${['1600210492486-724fe5c67fb0', '1600607687939-ce8a6c25118c', '1600566753086-00f18fb6b3ea', '1600585154526-990dced4db0d', '1600596542815-ffad4c1539a9'][i]}?auto=format&fit=crop&w=800&q=80`}
-                        alt={s.title}
-                        className='w-full h-full object-cover'
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Case Studies */}
-        <section className='py-24 bg-stone-50'>
-          <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <h2 className='font-display text-3xl md:text-4xl text-charcoal mb-16 text-center'>{t.casesTitle}</h2>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-              {t.cases.map((c) => (
-                <div key={c.address} className='group bg-white border border-stone-200 overflow-hidden hover:border-stone-300 transition-all duration-500'>
-                  <div className='aspect-[4/3] overflow-hidden'>
-                    <img src={c.image} alt={c.address} className='w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700' />
-                  </div>
-                  <div className='p-6'>
-                    <p className='font-body text-xs uppercase tracking-wider text-brass mb-2'>{c.type}</p>
-                    <h3 className='font-display text-lg text-charcoal mb-3'>{c.address}</h3>
-                    <p className='text-warm-gray text-sm leading-relaxed'>{c.story}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Agents */}
-        <section className='py-24 bg-stone-100'>
-          <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <h2 className='font-display text-3xl md:text-4xl text-charcoal mb-16 text-center'>{t.agentsTitle}</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto'>
-              {t.agents.map((a) => (
-                <div key={a.name} className='flex gap-6 items-start'>
-                  <div className='w-24 h-24 flex-shrink-0 overflow-hidden bg-stone-200'>
-                    <img src={a.image} alt={a.name} className='w-full h-full object-cover' />
-                  </div>
-                  <div>
-                    <h3 className='font-display text-xl text-charcoal'>{a.name}</h3>
-                    <p className='font-body text-xs uppercase tracking-wider text-brass mb-2'>{a.role}</p>
-                    <p className='text-warm-gray text-sm leading-relaxed'>{a.bio}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className='font-display text-3xl md:text-4xl text-charcoal mb-20 text-center'>{t.processTitle}</h2>
+            <ProcessTimeline steps={t.steps} />
           </div>
         </section>
 
