@@ -62,7 +62,7 @@ export default function BuyingPage() {
         <section className='relative h-[60vh] min-h-[450px] flex items-end overflow-hidden'>
           <div className='absolute inset-0'>
             <img
-              src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80'
+              src='/services-buying.webp'
               alt='Luxury Amsterdam canal house interior'
               className='w-full h-full object-cover'
             />

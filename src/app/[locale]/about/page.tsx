@@ -162,7 +162,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
             {stats.map((stat) => (
               <div key={stat.label}>
-                <p className="font-display text-4xl md:text-5xl text-brass mb-2">
+                <p className="font-display text-4xl md:text-5xl text-brass-lighter mb-2">
                   {stat.value}
                 </p>
                 <p className="font-body text-xs uppercase tracking-[0.15em] text-stone-400">

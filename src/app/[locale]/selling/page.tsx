@@ -13,7 +13,7 @@ export default function SellingPage() {
     en: {
       heroSubtitle: 'Seller Representation',
       heroTitle: 'Position your property for the market it deserves',
-      heroDescription: 'Bespoke marketing, private viewings, and access to qualified international buyers who understand rarity. We do not list properties. We present them.',
+      heroDescription: 'We position your property for the market it deserves. Bespoke marketing strategy, professional staging consultation, private viewings for qualified buyers, and access to our international network of high-net-worth individuals.',
       introTitle: 'The art of selling in Amsterdam',
       introText: 'In 2026, 65–70% of Amsterdam properties sell above asking price — but only those positioned correctly. We position your property for the market it deserves, not the market it happens to find. Bespoke strategy, editorial presentation, and a buyer network that spans four continents.',
       processTitle: 'Our selling process',
@@ -101,7 +101,7 @@ export default function SellingPage() {
         <section className='flex flex-col lg:flex-row h-auto lg:h-[92vh] lg:min-h-[600px] overflow-hidden'>
           <div className='relative w-full lg:w-[58%] h-[55vh] lg:h-full'>
             <img
-              src='/selling-hero.webp'
+              src='/services-selling.webp'
               alt='Elegant Amsterdam property exterior'
               className='w-full h-full object-cover'
             />
