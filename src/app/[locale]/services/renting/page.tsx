@@ -64,7 +64,7 @@ export default function RentingPage() {
         <section className='relative h-[60vh] min-h-[450px] flex items-end overflow-hidden'>
           <div className='absolute inset-0'>
             <img
-              src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1920&q=80'
+              src='/services-renting.webp'
               alt='Modern apartment interior with city views'
               className='w-full h-full object-cover'
             />

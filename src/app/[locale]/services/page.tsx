@@ -82,28 +82,28 @@ export default function ServicesPage() {
     {
       title: t.buying.title,
       description: t.buying.description,
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      image: '/services-buying.webp',
       features: t.buying.features,
       slug: 'buying',
     },
     {
       title: t.selling.title,
       description: t.selling.description,
-      image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
+      image: '/selling-hero.webp',
       features: t.selling.features,
       slug: 'selling',
     },
     {
       title: t.renting.title,
       description: t.renting.description,
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+      image: '/services-renting.webp',
       features: t.renting.features,
       slug: 'renting',
     },
     {
       title: t.leasing.title,
       description: t.leasing.description,
-      image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
+      image: '/services-leasing.webp',
       features: t.leasing.features,
       slug: 'leasing',
     },
@@ -229,7 +229,7 @@ export default function ServicesPage() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+                  src="/services-property-management.webp"
                   alt="Property management"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -246,7 +246,7 @@ export default function ServicesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="relative aspect-[4/3] overflow-hidden lg:order-2">
                 <img
-                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+                  src="/services-expat.webp"
                   alt="International professionals in Amsterdam"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />

@@ -206,9 +206,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-stone-400">
-            &copy; {new Date().getFullYear()} Hakkenbroek Housing Company. {copy.copyrightNote}
-          </p>
+          <div>
+            <p className="text-sm text-stone-400">
+              &copy; {new Date().getFullYear()} Hakkenbroek Housing Company. {copy.copyrightNote}
+            </p>
+          </div>
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-stone-400">
             <span>{copy.officeLine}</span>
@@ -217,6 +219,18 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+      </div>
+
+      <div className="flex justify-center border-t border-white/5 py-3">
+        <a
+          href="https://knowd.nz"
+          target="_blank"
+          rel="nofollow noreferrer"
+          className="text-xs text-stone-500 underline decoration-white/20 hover:text-stone-300 transition-colors"
+        >
+          Website: Knowd Digital
+        </a>
       </div>
     </footer>
   );

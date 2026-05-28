@@ -64,7 +64,7 @@ export default function SellingPage() {
         <section className='relative h-[60vh] min-h-[450px] flex items-end overflow-hidden'>
           <div className='absolute inset-0'>
             <img
-              src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80'
+              src='/services-selling.webp'
               alt='Elegant Amsterdam property exterior at golden hour'
               className='w-full h-full object-cover'
             />

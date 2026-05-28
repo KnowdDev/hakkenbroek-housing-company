@@ -29,6 +29,7 @@ const config: Config = {
         brass: {
           DEFAULT: '#003D15',
           light: '#2E7D4A',
+          lighter: '#5CB85C',
           dark: '#002910',
         },
       },

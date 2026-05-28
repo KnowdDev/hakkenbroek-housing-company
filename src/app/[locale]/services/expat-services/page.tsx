@@ -64,7 +64,7 @@ export default function ExpatServicesPage() {
         <section className='relative h-[60vh] min-h-[450px] flex items-end overflow-hidden'>
           <div className='absolute inset-0'>
             <img
-              src='https://images.unsplash.com/photo-1517732306149-e8f829eb588a?auto=format&fit=crop&w=1920&q=80'
+              src='/services-expat.webp'
               alt='Amsterdam canals with historic houses at sunset'
               className='w-full h-full object-cover'
             />
