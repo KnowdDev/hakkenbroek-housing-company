@@ -82,7 +82,7 @@ export default function AboutPage() {
       <section className="relative h-[60vh] min-h-[400px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1920&q=80"
+            src="/about-hero.webp"
             alt="Amsterdam canals"
             className="w-full h-full object-cover"
           />

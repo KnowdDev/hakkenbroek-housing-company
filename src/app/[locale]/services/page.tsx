@@ -116,7 +116,7 @@ export default function ServicesPage() {
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1558551649-e44c8f992010?auto=format&fit=crop&w=1920&q=80"
+            src="/services-hero.webp"
             alt="Amsterdam architecture"
             className="w-full h-full object-cover"
           />
