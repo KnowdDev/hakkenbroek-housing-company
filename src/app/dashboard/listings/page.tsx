@@ -43,6 +43,8 @@ export default function ListingsDashboard() {
   const [editingListing, setEditingListing] = useState<Listing | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'sale' | 'rent'>('all');
+  const [uploadingFeatured, setUploadingFeatured] = useState(false);
+  const [uploadingGallery, setUploadingGallery] = useState(false);
   const [formData, setFormData] = useState<Partial<Listing>>({
     title: '',
     description: '',
@@ -89,6 +91,59 @@ export default function ListingsDashboard() {
     }
   };
 
+  const uploadImage = async (file: File): Promise<string> => {
+    const form = new FormData();
+    form.append('file', file);
+    const response = await fetch('/api/listings/upload', {
+      method: 'POST',
+      body: form,
+    });
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error || 'Upload failed');
+    }
+    const data = await response.json();
+    return data.url;
+  };
+
+  const handleFeaturedUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingFeatured(true);
+    try {
+      const url = await uploadImage(file);
+      setFormData(prev => ({ ...prev, image_url: url }));
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'Featured image upload failed');
+    } finally {
+      setUploadingFeatured(false);
+    }
+  };
+
+  const handleGalleryUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+    setUploadingGallery(true);
+    try {
+      const urls = await Promise.all(files.map(uploadImage));
+      setFormData(prev => ({
+        ...prev,
+        images: [...(prev.images || []), ...urls],
+      }));
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'Gallery upload failed');
+    } finally {
+      setUploadingGallery(false);
+    }
+  };
+
+  const removeGalleryImage = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      images: (prev.images || []).filter((_, i) => i !== index),
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
@@ -98,10 +153,19 @@ export default function ListingsDashboard() {
         : '/api/listings';
       const method = editingListing ? 'PUT' : 'POST';
 
+      // Ensure featured image is first in the gallery
+      const payload = { ...formData };
+      if (payload.image_url) {
+        const gallery = payload.images || [];
+        // Remove featured image if already in gallery, then prepend it
+        const filtered = gallery.filter((url: string) => url !== payload.image_url);
+        payload.images = [payload.image_url, ...filtered];
+      }
+
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
@@ -344,16 +408,49 @@ export default function ListingsDashboard() {
                     className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
                   />
                 </div>
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-stone-700 mb-2">
-                    Image URL
+                    Featured Image <span className="text-stone-400 font-normal">(shown on listing cards & first in gallery)</span>
                   </label>
-                  <input
-                    type="url"
-                    value={formData.image_url}
-                    onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
-                  />
+                  {formData.image_url && (
+                    <div className="mb-3 relative inline-block">
+                      <img
+                        src={formData.image_url}
+                        alt="Featured preview"
+                        className="w-48 h-32 object-cover rounded-lg border border-stone-200"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, image_url: '' }))}
+                        className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-600"
+                      >
+                        x
+                      </button>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-3">
+                    <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-stone-100 border border-stone-300 rounded-lg hover:bg-stone-200 transition-colors">
+                      <svg className="w-5 h-5 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-sm font-medium text-stone-700">{uploadingFeatured ? 'Uploading...' : 'Upload Image'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleFeaturedUpload}
+                        disabled={uploadingFeatured}
+                      />
+                    </label>
+                    <span className="text-sm text-stone-400">or paste URL:</span>
+                    <input
+                      type="url"
+                      value={formData.image_url}
+                      onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                      className="flex-1 min-w-0 px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent text-sm"
+                      placeholder="https://..."
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-2">
@@ -559,21 +656,59 @@ export default function ListingsDashboard() {
               {/* Image Gallery */}
               <div className="border-t border-stone-200 pt-6">
                 <h3 className="font-display text-xl text-charcoal mb-4">Image Gallery</h3>
-                <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2">
-                    Additional Image URLs (one per line)
+                <p className="text-sm text-stone-500 mb-4">
+                  The featured image is automatically included as the first gallery image.
+                  Upload additional images here — they will appear after the featured image.
+                </p>
+
+                {/* Thumbnail grid */}
+                {(formData.images || []).length > 0 && (
+                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-3 mb-4">
+                    {(formData.images || []).map((url, i) => (
+                      <div key={i} className="relative aspect-square group">
+                        <img
+                          src={url}
+                          alt={`Gallery ${i + 1}`}
+                          className="w-full h-full object-cover rounded-lg border border-stone-200"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeGalleryImage(i)}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                        >
+                          x
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-stone-100 border border-stone-300 rounded-lg hover:bg-stone-200 transition-colors shrink-0">
+                    <svg className="w-5 h-5 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                    <span className="text-sm font-medium text-stone-700">{uploadingGallery ? 'Uploading...' : 'Add Images'}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="hidden"
+                      onChange={handleGalleryUpload}
+                      disabled={uploadingGallery}
+                    />
                   </label>
-                  <textarea
-                    rows={4}
-                    value={(formData.images || []).join('\n')}
-                    onChange={(e) => setFormData({ 
-                      ...formData, 
-                      images: e.target.value.split('\n').filter(url => url.trim()) 
+                  <span className="text-sm text-stone-400">or paste URLs:</span>
+                  <input
+                    type="text"
+                    value={(formData.images || []).join(', ')}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      images: e.target.value.split(',').map(url => url.trim()).filter(Boolean),
                     })}
-                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
-                    placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"
+                    className="flex-1 min-w-0 px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent text-sm"
+                    placeholder="https://..., https://..."
                   />
-                  <p className="text-sm text-stone-500 mt-2">Enter each image URL on a new line</p>
                 </div>
               </div>
 
