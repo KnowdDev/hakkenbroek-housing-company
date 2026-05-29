@@ -33,7 +33,30 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
   const handleLocaleChange = (newLocale: Language) => {
     setLocale(newLocale);
     setIsOpen(false);
-    // next-intl router handles translated pathname swap automatically
+
+    const segments = pathname.split('/').filter(Boolean);
+    const firstSegment = segments[0];
+
+    // Property detail page: preserve the ID and let next-intl translate the pathname
+    if (
+      (firstSegment === 'properties' || firstSegment === 'vastgoed') &&
+      segments.length === 2
+    ) {
+      const id = segments[1];
+      router.push(
+        { pathname: '/properties/[id]', params: { id } },
+        { locale: newLocale }
+      );
+      return;
+    }
+
+    // Property index page
+    if (firstSegment === 'properties' || firstSegment === 'vastgoed') {
+      router.push('/properties', { locale: newLocale });
+      return;
+    }
+
+    // For all other pages, next-intl handles pathname translation automatically
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (router.replace as any)(pathname, { locale: newLocale });
   };
