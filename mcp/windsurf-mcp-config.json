@@ -6,7 +6,7 @@
         "/Users/lexvergroesen/knowd/Hakkenbroek Housing Company/hakkenbroek-housing/mcp/stdio-server/dist/index.js"
       ],
       "env": {
-        "DATABASE_URL": "",
+        "DATABASE_URL": "postgresql://neondb_owner:[REDACTED]@ep-icy-glitter-al0foo46-pooler.c-3.eu-central-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require",
         "DB_SSL": "true",
         "SERVER_NAME": "hakkenbroek-housing-stdio",
         "SERVER_VERSION": "2.0.0",
@@ -14,9 +14,9 @@
       }
     },
     "hakkenbroek-http": {
-      "url": "https://hakkenbroek-mcp.YOUR_SUBDOMAIN.workers.dev",
+      "url": "https://hakkenbroek-mcp.runs-one.workers.dev",
       "headers": {
-        "x-api-key": ""
+        "x-api-key": "hbk_static_deploykey_2026_05_29"
       }
     }
   }
