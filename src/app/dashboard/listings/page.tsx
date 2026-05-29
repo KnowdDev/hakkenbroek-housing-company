@@ -202,6 +202,7 @@ export default function ListingsDashboard() {
     setEditingListing(listing);
     setFormData(listing);
     setShowAddForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleDelete = async (id: number) => {
@@ -236,7 +237,6 @@ export default function ListingsDashboard() {
             </div>
             <button
               onClick={() => {
-                console.log('Add Listing clicked');
                 setShowAddForm(true);
                 setEditingListing(null);
                 setFormData({
@@ -255,6 +255,7 @@ export default function ListingsDashboard() {
                   image_url: '',
                   featured: false,
                 });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="bg-charcoal text-white px-6 py-3 font-body text-sm uppercase tracking-wider hover:bg-brass transition-colors"
             >
