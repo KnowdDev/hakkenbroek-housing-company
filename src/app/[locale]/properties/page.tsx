@@ -84,8 +84,8 @@ export default function PropertiesPage() {
   const content = {
     en: {
       heroSubtitle: 'Portfolio',
-      heroTitle: 'Exceptional Properties',
-      heroDescription: 'A curated selection of Amsterdam\'s finest properties. For discreet inquiries about unlisted properties, please contact us directly.',
+      heroTitle: 'Properties we like',
+      heroDescription: 'Every property here is one we would recommend to a friend. If it does not meet our standards, it does not meet yours. For discreet inquiries about unlisted homes, contact us directly.',
       filterAll: 'All Properties',
       filterAvailable: 'Available',
       filterUnderConsideration: 'Under Consideration',
@@ -124,8 +124,8 @@ export default function PropertiesPage() {
     },
     nl: {
       heroSubtitle: 'Portfolio',
-      heroTitle: 'Uitzonderlijke Woningen',
-      heroDescription: 'Een gecureerde selectie van Amsterdams mooiste woningen. Voor discrete vragen over niet-genoteerde woningen, neem direct contact met ons op.',
+      heroTitle: 'Woningen die we mooi vinden',
+      heroDescription: 'Elke woning hier is een die we aan een vriend zouden aanbevelen. Als het niet aan onze normen voldoet, voldoet het niet aan de uwe. Voor discrete vragen over niet-genoteerde woningen, neem direct contact met ons op.',
       filterAll: 'Alle Woningen',
       filterAvailable: 'Beschikbaar',
       filterUnderConsideration: 'In Onderhandeling',
@@ -224,23 +224,21 @@ export default function PropertiesPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
-        <div className="absolute inset-0">
+      {/* Hero — Split layout */}
+      <section className="flex flex-col lg:flex-row h-auto lg:h-[70vh] lg:min-h-[500px] overflow-hidden">
+        <div className="relative w-full lg:w-[55%] h-[45vh] lg:h-full">
           <img
-            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80"
-            alt="Amsterdam canal at golden hour"
+            src="/selling-hero.webp"
+            alt="Amsterdam property"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/40" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
-          <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
-            {t.heroSubtitle}
-          </p>
-          <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
-            {t.heroTitle}
-          </h1>
+        <div className="w-full lg:w-[45%] bg-stone-50 flex items-center">
+          <div className="px-8 py-16 lg:px-14 lg:py-12 max-w-xl">
+            <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-6">{t.heroSubtitle}</p>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.15] text-charcoal mb-6">{t.heroTitle}</h1>
+            <p className="font-body text-base lg:text-lg text-warm-gray leading-relaxed">{t.heroDescription}</p>
+          </div>
         </div>
       </section>
 
