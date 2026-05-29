@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS listings (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   description TEXT,
+  description_en TEXT,
+  description_nl TEXT,
   price DECIMAL(15, 0),
   bedrooms INTEGER,
   bathrooms INTEGER,

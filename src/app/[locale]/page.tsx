@@ -857,7 +857,7 @@ export default function Home() {
               <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.regions}</p>
             </div>
             <div className={`text-center ${revealClass(statsRef.inView)}`} style={{ transitionDelay: '300ms' }}>
-              <p className="font-display text-5xl lg:text-6xl text-stone-300 mb-2">5000+</p>
+              <p className="font-display text-5xl lg:text-6xl text-stone-300 mb-2">2800+</p>
               <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.transactions}</p>
             </div>
           </div>

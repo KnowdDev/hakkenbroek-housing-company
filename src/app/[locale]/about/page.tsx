@@ -72,7 +72,7 @@ export default function AboutPage() {
   ];
   const stats = [
     { value: '25+', label: t.stats.years },
-    { value: '5000+', label: t.stats.transactions },
+    { value: '2800+', label: t.stats.transactions },
     { value: '1', label: t.stats.office },
   ];
   return (

@@ -9,6 +9,8 @@ interface Listing {
   id: number;
   title: string;
   description?: string;
+  description_en?: string;
+  description_nl?: string;
   price?: number;
   bedrooms?: number;
   bathrooms?: number;
@@ -469,7 +471,11 @@ export default function PropertyDetailPage() {
                 <h2 className="font-display text-2xl text-charcoal mb-4">
                   {locale === 'nl' ? 'Beschrijving' : locale === 'es' ? 'Descripcion' : 'Description'}
                 </h2>
-                <FormattedDescription text={listing.description} className="text-lg" />
+                <FormattedDescription text={
+                  locale === 'nl' 
+                    ? (listing.description_nl || listing.description) 
+                    : (listing.description_en || listing.description)
+                } className="text-lg" />
               </div>
 
               <div className="mb-8">

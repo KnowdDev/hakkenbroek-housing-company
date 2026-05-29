@@ -34,6 +34,8 @@ const tools = [
             properties: {
                 title: { type: 'string' },
                 description: { type: 'string' },
+                description_en: { type: 'string' },
+                description_nl: { type: 'string' },
                 price: { type: 'number' },
                 bedrooms: { type: 'number' },
                 bathrooms: { type: 'number' },
@@ -62,10 +64,10 @@ const tools = [
             required: ['title'],
         },
         handler: async (args, id) => {
-            const data = await query(`INSERT INTO listings (title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, featured, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26) RETURNING *`, [
-                String(args.title ?? ''), args.description ?? null, args.price ?? null,
-                args.bedrooms ?? null, args.bathrooms ?? null, args.area ?? null,
+            const data = await query(`INSERT INTO listings (title, description, description_en, description_nl, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, featured, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28) RETURNING *`, [
+                String(args.title ?? ''), args.description ?? null, args.description_en ?? null, args.description_nl ?? null,
+                args.price ?? null, args.bedrooms ?? null, args.bathrooms ?? null, args.area ?? null,
                 args.address ?? null, args.city ?? null, args.postal_code ?? null,
                 args.property_type ?? 'apartment', args.status ?? 'available', args.listing_type ?? 'sale',
                 args.image_url ?? null, args.featured ?? false, args.year_built ?? null,
@@ -82,7 +84,7 @@ const tools = [
         description: 'PATCH fields on an existing listing by id.',
         inputSchema: {
             type: 'object',
-            properties: { id: { type: 'number' }, title: { type: 'string' }, description: { type: 'string' }, price: { type: 'number' }, bedrooms: { type: 'number' }, bathrooms: { type: 'number' }, area: { type: 'number' }, address: { type: 'string' }, city: { type: 'string' }, postal_code: { type: 'string' }, property_type: { type: 'string' }, status: { type: 'string' }, listing_type: { type: 'string' }, image_url: { type: 'string' }, featured: { type: 'boolean' }, year_built: { type: 'number' }, energy_label: { type: 'string' }, floors: { type: 'number' }, furnished: { type: 'boolean' }, garden: { type: 'boolean' }, garden_area: { type: 'number' }, balcony: { type: 'boolean' }, terrace: { type: 'boolean' }, parking: { type: 'boolean' }, parking_spaces: { type: 'number' }, elevator: { type: 'boolean' }, basement: { type: 'boolean' } },
+            properties: { id: { type: 'number' }, title: { type: 'string' }, description: { type: 'string' }, description_en: { type: 'string' }, description_nl: { type: 'string' }, price: { type: 'number' }, bedrooms: { type: 'number' }, bathrooms: { type: 'number' }, area: { type: 'number' }, address: { type: 'string' }, city: { type: 'string' }, postal_code: { type: 'string' }, property_type: { type: 'string' }, status: { type: 'string' }, listing_type: { type: 'string' }, image_url: { type: 'string' }, featured: { type: 'boolean' }, year_built: { type: 'number' }, energy_label: { type: 'string' }, floors: { type: 'number' }, furnished: { type: 'boolean' }, garden: { type: 'boolean' }, garden_area: { type: 'number' }, balcony: { type: 'boolean' }, terrace: { type: 'boolean' }, parking: { type: 'boolean' }, parking_spaces: { type: 'number' }, elevator: { type: 'boolean' }, basement: { type: 'boolean' } },
             required: ['id'],
         },
         handler: async (args, id) => {
@@ -92,7 +94,7 @@ const tools = [
             const current = await query('SELECT * FROM listings WHERE id = $1 LIMIT 1', [listingId]);
             if (current.rows.length === 0)
                 return buildToolResult(id, `Listing ${listingId} not found`);
-            const allowed = ['title', 'description', 'price', 'bedrooms', 'bathrooms', 'area', 'address', 'city', 'postal_code', 'property_type', 'status', 'listing_type', 'image_url', 'featured', 'year_built', 'energy_label', 'floors', 'furnished', 'garden', 'garden_area', 'balcony', 'terrace', 'parking', 'parking_spaces', 'elevator', 'basement'];
+            const allowed = ['title', 'description', 'description_en', 'description_nl', 'price', 'bedrooms', 'bathrooms', 'area', 'address', 'city', 'postal_code', 'property_type', 'status', 'listing_type', 'image_url', 'featured', 'year_built', 'energy_label', 'floors', 'furnished', 'garden', 'garden_area', 'balcony', 'terrace', 'parking', 'parking_spaces', 'elevator', 'basement'];
             const updates = [];
             const values = [];
             let i = 1;
