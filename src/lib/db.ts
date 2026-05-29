@@ -14,7 +14,7 @@ const MAX_RETRIES = parseInt(process.env.DB_MAX_RETRIES || '3', 10);
 const RETRY_BASE_DELAY_MS = parseInt(process.env.DB_RETRY_BASE_DELAY || '100', 10);
 
 const poolConfig: PoolConfig = {
-  connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:[REDACTED_OLD_NEON_PASSWORD]@ep-icy-glitter-al0foo46-pooler.c-3.eu-central-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require',
+  connectionString: 'postgresql://neondb_owner:[REDACTED_OLD_NEON_PASSWORD]@ep-icy-glitter-al0foo46-pooler.c-3.eu-central-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require',
   max: MAX_POOL_SIZE,
   idleTimeoutMillis: IDLE_TIMEOUT_MS,
   connectionTimeoutMillis: CONNECTION_TIMEOUT_MS,
