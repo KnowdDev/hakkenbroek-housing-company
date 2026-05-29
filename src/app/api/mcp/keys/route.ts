@@ -53,6 +53,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Error creating API key:', error);
-    return NextResponse.json({ error: 'Failed to create API key' }, { status: 500 });
+    const msg = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: 'Failed to create API key', detail: msg }, { status: 500 });
   }
 }
