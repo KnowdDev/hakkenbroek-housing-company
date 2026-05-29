@@ -18,8 +18,8 @@ const poolConfig: PoolConfig = {
   max: MAX_POOL_SIZE,
   idleTimeoutMillis: IDLE_TIMEOUT_MS,
   connectionTimeoutMillis: CONNECTION_TIMEOUT_MS,
-  // Only use SSL in production or when explicitly configured
-  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+  // Neon requires SSL
+  ssl: { rejectUnauthorized: false },
 };
 
 const pool = new Pool(poolConfig);
