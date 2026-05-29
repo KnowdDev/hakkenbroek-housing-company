@@ -84,7 +84,7 @@ export default function PropertiesPage() {
   const content = {
     en: {
       heroSubtitle: 'Portfolio',
-      heroTitle: 'Properties we like',
+      heroTitle: 'Homes worth living in',
       heroDescription: 'Every property here is one we would recommend to a friend. If it does not meet our standards, it does not meet yours. For discreet inquiries about unlisted homes, contact us directly.',
       filterAll: 'All Properties',
       filterAvailable: 'Available',
@@ -124,7 +124,7 @@ export default function PropertiesPage() {
     },
     nl: {
       heroSubtitle: 'Portfolio',
-      heroTitle: 'Woningen die we mooi vinden',
+      heroTitle: 'Woningen om in te leven',
       heroDescription: 'Elke woning hier is een die we aan een vriend zouden aanbevelen. Als het niet aan onze normen voldoet, voldoet het niet aan de uwe. Voor discrete vragen over niet-genoteerde woningen, neem direct contact met ons op.',
       filterAll: 'Alle Woningen',
       filterAvailable: 'Beschikbaar',
@@ -228,7 +228,7 @@ export default function PropertiesPage() {
       <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/selling-hero.webp"
+            src="/services-selling.webp"
             alt="Amsterdam property"
             className="w-full h-full object-cover"
           />
