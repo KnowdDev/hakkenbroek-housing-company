@@ -35,7 +35,7 @@ export default function AboutPage() {
     },
     nl: {
       story: 'Ons Erfgoed',
-      headline: '25+ jaar discretie in Amsterdams mooiste woningen',
+      headline: 'Al 25+ jaar discretie in de mooiste woningen van Amsterdam',
       who: 'Wie Wij Zijn',
       description1: 'Sinds 2000 geeft Hakkenbroek Housing Company stilletjes vorm aan het luxe vastgoedlandschap van Amsterdam. Vanuit ons kantoor aan de Leliegracht hebben wij honderden veeleisende cliënten begeleid bij de meest significante vastgoedtransacties van de stad — altijd met discretie, altijd met zorg.',
       description2: 'Wij zijn geen volume-kantoor. Wij zijn een vertrouwde adviseur. Ons team combineert diepe Amsterdamse marktkennis met een internationaal perspectief, en bedient kopers en verkopers uit Nederland, Europa, en daarbuiten. Wij spreken uw taal — letterlijk en cultureel.',

@@ -200,7 +200,7 @@ const content = {
     servicesEyebrow: 'Elke stap gedekt',
     servicesTitle: 'Kopen en verkopen, maar dan goed',
     heritageEyebrow: 'Verankerd in Amsterdam, Het Gooi & De Vechtstreek',
-    heritageTitle: 'Vijfentwintig jaar elke straat kennen, elke markt begrijpen, en weten wat voor u telt',
+    heritageTitle: 'Al vijfentwintig jaar kennen we elke straat, begrijpen we elke markt, en weten we wat voor u telt',
     heritageDesc: 'Sinds 2000 begeleiden we kopers, verkopers en verhuurders door de vastgoedmarkt van Amsterdam, Het Gooi en de Vechtstreek. We jagen geen snelle provisies na. We nemen de tijd om te begrijpen wat u écht zoekt, en we blijven erbij tot het geregeld is. Ons kantoor aan de Leliegracht is het startpunt geweest voor honderden mensen die hun plek in deze stad en daarbuiten vonden.',
     yearsExp: 'Jaar op de Markt',
     regions: 'Regio\'s die Wij Bedienen',
