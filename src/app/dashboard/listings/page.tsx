@@ -33,6 +33,7 @@ interface Listing {
   basement?: boolean;
   elevator?: boolean;
   floors?: number;
+  source_url?: string;
 }
 
 export default function ListingsDashboard() {
@@ -351,6 +352,17 @@ export default function ListingsDashboard() {
                     type="url"
                     value={formData.image_url}
                     onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-stone-700 mb-2">
+                    Source URL (old website link)
+                  </label>
+                  <input
+                    type="url"
+                    value={formData.source_url || ''}
+                    onChange={(e) => setFormData({ ...formData, source_url: e.target.value })}
                     className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
                   />
                 </div>

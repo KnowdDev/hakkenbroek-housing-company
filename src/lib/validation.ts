@@ -46,6 +46,7 @@ export const createListingSchema = z.object({
   parking_spaces: z.number().int().min(0).max(100).optional(),
   elevator: z.boolean().optional(),
   basement: z.boolean().optional(),
+  source_url: z.string().url('Invalid source URL').max(2000).optional(),
 });
 
 export const updateListingSchema = z.object({
@@ -77,6 +78,7 @@ export const updateListingSchema = z.object({
   parking_spaces: z.number().int().min(0).max(100).optional(),
   elevator: z.boolean().optional(),
   basement: z.boolean().optional(),
+  source_url: z.string().url('Invalid source URL').max(2000).optional(),
 });
 
 /** MCP update_listing only — preview mode without writing to DB */

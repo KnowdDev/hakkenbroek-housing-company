@@ -426,7 +426,7 @@ export default function PropertyDetailPage() {
                     <span className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${statusStyles[listing.status] || statusStyles.available}`}>
                       {t[listing.status] || listing.status}
                     </span>
-                    {listing.listing_type && (
+                    {listing.listing_type && listing.status !== 'sold' && listing.status !== 'rented' && (
                       <span className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${listingTypeStyles[listing.listing_type] || ''}`}>
                         {(listingTypeLabels[locale] || listingTypeLabels.en)[listing.listing_type]}
                       </span>

@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
       property_type, status, listing_type, image_url, featured, images, year_built, energy_label, 
       garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
-      basement, elevator, floors 
+      basement, elevator, floors, source_url 
     } = body;
 
     if (!title) {
@@ -43,17 +43,17 @@ export async function POST(request: NextRequest) {
           title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
           property_type, status, listing_type, image_url, featured, images, year_built, energy_label, 
           garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
-          basement, elevator, floors
+          basement, elevator, floors, source_url
         ) VALUES (
           $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, 
-          $17, $18, $19, $20, $21, $22, $23, $24, $25, $26
+          $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27
         ) RETURNING *`,
         [
           title, description, price, bedrooms, bathrooms, area, address, city, postal_code, 
           property_type, status || 'available', listing_type || 'sale', image_url, featured || false, 
           images ? JSON.stringify(images) : null, year_built, energy_label, 
           garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, 
-          basement, elevator, floors
+          basement, elevator, floors, source_url
         ]
       );
     } catch (insertError) {

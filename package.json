@@ -31,6 +31,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/pg": "^8.20.0"
+    "@types/pg": "^8.20.0",
+    "playwright": "^1.60.0"
   }
 }

@@ -77,6 +77,7 @@ export async function PUT(
       basement,
       elevator,
       floors,
+      source_url,
     } = merged;
 
     const imagesPayload =
@@ -91,8 +92,8 @@ export async function PUT(
           status = $11, listing_type = $12, image_url = $13, featured = $14, images = $15, year_built = $16, 
           energy_label = $17, garden = $18, garden_area = $19, parking = $20, 
           parking_spaces = $21, balcony = $22, terrace = $23, furnished = $24, 
-          basement = $25, elevator = $26, floors = $27, updated_at = CURRENT_TIMESTAMP 
-          WHERE id = $28 RETURNING *`,
+          basement = $25, elevator = $26, floors = $27, source_url = $28, updated_at = CURRENT_TIMESTAMP 
+          WHERE id = $29 RETURNING *`,
         [
           title,
           description,
@@ -121,6 +122,7 @@ export async function PUT(
           basement,
           elevator,
           floors,
+          source_url,
           id,
         ]
       );

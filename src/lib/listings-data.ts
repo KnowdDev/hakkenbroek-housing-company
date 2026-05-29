@@ -29,6 +29,7 @@ export interface Listing {
   basement?: boolean;
   elevator?: boolean;
   floors?: number;
+  source_url?: string;
   renovation_year?: number;
   price_per_sqm?: number;
   asking_price?: string;
