@@ -723,7 +723,7 @@ export default function ListingsDashboard() {
                   className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brass focus:border-transparent"
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-4 flex-wrap">
                 <button
                   type="submit"
                   className="bg-charcoal text-white px-6 py-3 font-body text-sm uppercase tracking-wider hover:bg-brass transition-colors"
@@ -740,6 +740,15 @@ export default function ListingsDashboard() {
                 >
                   Cancel
                 </button>
+                {editingListing && (
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(editingListing.id)}
+                    className="bg-red-50 text-red-600 border border-red-200 px-6 py-3 font-body text-sm uppercase tracking-wider hover:bg-red-100 transition-colors ml-auto"
+                  >
+                    Delete Listing
+                  </button>
+                )}
               </div>
             </form>
           </div>
@@ -844,20 +853,12 @@ export default function ListingsDashboard() {
                       )}
                     </td>
                     <td className="px-6 py-4 text-sm">
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => handleEdit(listing)}
-                          className="text-blue-600 hover:text-blue-800"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(listing.id)}
-                          className="text-red-600 hover:text-red-800"
-                        >
-                          Delete
-                        </button>
-                      </div>
+                      <button
+                        onClick={() => handleEdit(listing)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        Edit
+                      </button>
                     </td>
                   </tr>
                 ))}
