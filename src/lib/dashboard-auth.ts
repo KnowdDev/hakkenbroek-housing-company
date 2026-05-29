@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function hasDashboardAuth(request: NextRequest): boolean {
   const token = request.cookies.get('dashboard_token')?.value;
-  const expectedToken = process.env.DASHBOARD_PASSWORD || 'Hakkenbroek2026!';
+  const expectedToken = 'Hakkenbroek2026!';
   if (!expectedToken) {
     return false;
   }
