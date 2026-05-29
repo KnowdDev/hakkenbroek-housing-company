@@ -34,15 +34,18 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
     setLocale(newLocale);
     setIsOpen(false);
 
-    const segments = pathname.split('/').filter(Boolean);
+    // Strip locale prefix from pathname (usePathname includes it)
+    const rawSegments = pathname.split('/').filter(Boolean);
+    const isLocalePrefix = rawSegments[0] === 'en' || rawSegments[0] === 'nl';
+    const segments = isLocalePrefix ? rawSegments.slice(1) : rawSegments;
     const firstSegment = segments[0];
+    const id = segments[1];
 
     // Property detail page: preserve the ID and let next-intl translate the pathname
     if (
       (firstSegment === 'properties' || firstSegment === 'vastgoed') &&
       segments.length === 2
     ) {
-      const id = segments[1];
       router.push(
         { pathname: '/properties/[id]', params: { id } },
         { locale: newLocale }
@@ -56,9 +59,10 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
       return;
     }
 
-    // For all other pages, next-intl handles pathname translation automatically
+    // For all other pages, pass locale-relative pathname so next-intl translates correctly
+    const localeRelativePath = '/' + segments.join('/');
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (router.replace as any)(pathname, { locale: newLocale });
+    (router.replace as any)(localeRelativePath, { locale: newLocale });
   };
 
   return (
