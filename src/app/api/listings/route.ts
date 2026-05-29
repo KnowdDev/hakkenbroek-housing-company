@@ -3,13 +3,20 @@ import { query } from '@/lib/db';
 import { demoListings } from '@/lib/listings-data';
 import { requireWriteAccess } from '@/lib/api-auth';
 
+// Cache public listing reads at the CDN edge: serve instantly for 60s, then
+// serve stale while revalidating in the background for up to 5 minutes.
+const LISTINGS_CACHE_HEADER =
+  'public, s-maxage=60, stale-while-revalidate=300';
+
 export async function GET() {
   try {
     const result = await query(
       'SELECT * FROM listings ORDER BY created_at DESC'
     );
     if (result.rows.length > 0) {
-      return NextResponse.json(result.rows);
+      return NextResponse.json(result.rows, {
+        headers: { 'Cache-Control': LISTINGS_CACHE_HEADER },
+      });
     }
   } catch (error) {
     console.error('Error fetching listings from DB, using demo data:', error);

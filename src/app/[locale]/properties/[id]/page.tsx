@@ -256,6 +256,8 @@ export default function PropertyDetailPage() {
                 <img
                   src={images[activeImage]}
                   alt={listing.title}
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               ) : (
@@ -303,7 +305,7 @@ export default function PropertyDetailPage() {
                   onClick={() => setActiveImage(i + 1)}
                   className="relative overflow-hidden bg-stone-200 group"
                 >
-                  <img src={img} alt={`${listing.title} - ${i + 2}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <img src={img} alt={`${listing.title} - ${i + 2}`} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </button>
               ))}
               {images.length > 4 && (
@@ -311,7 +313,7 @@ export default function PropertyDetailPage() {
                   onClick={() => setLightboxOpen(true)}
                   className="relative overflow-hidden bg-stone-200 group"
                 >
-                  <img src={images[4]} alt={`${listing.title} - 5`} className="w-full h-full object-cover" />
+                  <img src={images[4]} alt={`${listing.title} - 5`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-charcoal/50 flex flex-col items-center justify-center text-white transition-colors duration-300 group-hover:bg-charcoal/60">
                     <span className="font-display text-2xl">+{images.length - 4}</span>
                     <span className="font-body text-xs uppercase tracking-wider mt-1">View all</span>
@@ -323,7 +325,7 @@ export default function PropertyDetailPage() {
                   onClick={() => setActiveImage(3)}
                   className="relative overflow-hidden bg-stone-200 group"
                 >
-                  <img src={images[3]} alt={`${listing.title} - 4`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <img src={images[3]} alt={`${listing.title} - 4`} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </button>
               )}
             </div>
@@ -342,7 +344,7 @@ export default function PropertyDetailPage() {
                       : 'border-transparent opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img src={img} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -408,7 +410,7 @@ export default function PropertyDetailPage() {
                       : 'border-transparent opacity-50 hover:opacity-80'
                   }`}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img src={img} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

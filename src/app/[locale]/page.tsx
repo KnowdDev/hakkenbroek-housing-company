@@ -372,6 +372,8 @@ export default function Home() {
           <img
             src="/hero.webp"
             alt="Elegant Amsterdam interior with green velvet sofa and natural light"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover"
           />
           {/* Dark top gradient ensures white nav text is readable on any hero image */}
@@ -806,6 +808,8 @@ export default function Home() {
               <img
                 src="/about-home-2.webp"
                 alt="Elegant Amsterdam interior with natural light"
+                loading="lazy"
+                decoding="async"
                 className={`w-full h-full object-cover transition-all duration-1000 ${heritageRef.inView ? 'scale-100' : 'scale-105'}`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent" />
@@ -906,6 +910,8 @@ export default function Home() {
                   <img
                     src={property.image_url}
                     alt={property.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700"
                   />
                   <div className="absolute top-4 left-4 flex gap-2">
