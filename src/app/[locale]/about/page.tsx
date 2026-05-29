@@ -158,7 +158,7 @@ export default function AboutPage() {
       {/* Stats */}
       <section className="py-24 bg-charcoal text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center place-items-center max-w-3xl mx-auto">
             {stats.map((stat) => (
               <div key={stat.label}>
                 <p className="font-display text-4xl md:text-5xl text-stone-300 mb-2">
