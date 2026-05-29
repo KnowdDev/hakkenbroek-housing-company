@@ -32,6 +32,32 @@ export default function ExpatServicesPage() {
       ctaText: 'Contact us to discuss your relocation timeline and requirements. We will explain how our service works what to expect and how we can make your transition to Amsterdam as smooth as possible.',
       ctaButton: 'Start Your Journey',
       backToServices: 'Back to Services'
+    },
+    nl: {
+      heroSubtitle: 'Relocatieservice',
+      heroTitle: 'Een complete relocatieservice voor internationale klanten',
+      heroDescription: 'Verhuizen naar een nieuw land is één van de grootste veranderingen in het leven. Onze expat-service gaat veel verder dan woningzoeken. Wij zijn uw gids, uw woordvoerder en uw steun vanaf het moment dat u Amsterdam overweegt tot lang nadat u bent ingewoond.',
+      introTitle: 'De Hakkenbroek aanpak voor verhuizing',
+      introText: 'Wij hebben 25+ jaar ervaring met het helpen van internationale klanten om hun plek in Amsterdam te vinden. We begrijpen dat verhuizen niet alleen draait om een woning vinden — het draait om navigeren in een nieuwe cultuur, een nieuwe taal, een nieuwe manier van leven. Onze uitgebreide service richt zich op elk aspect van uw verhuizing, zodat u zich kunt richten op wat het belangrijkst is: uw nieuwe hoofdstuk met vertrouwen beginnen.',
+      processTitle: 'Onze relocatieservices',
+      steps: [
+        { step: '01', title: 'Pre-arrival consult', desc: 'Voordat u ook maar één voet in Amsterdam zet, voeren we uitgebreide videogesprekken om uw wensen, tijdlijn en verwachtingen te bespreken. We geven eerlijke marktinzichten, helpen u realistische budgetten te stellen en beginnen met zoeken naar woningen die bij uw criteria passen.' },
+        { step: '02', title: 'Woningzoektocht en selectie', desc: 'We stellen een selectie van woningen samen voor uw overweging, compleet met videorondleidingen, buurtinformatie en eerlijke beoordelingen. Wanneer u aankomt voor bezichtigingen hebben wij het voorwerk al gedaan, zodat u zich kunt richten op keuzes maken in plaats van listings doorzoeken.' },
+        { step: '03', title: 'Bezichtiging en beslissingsondersteuning', desc: 'We begeleiden u bij alle bezichtigingen en geven context over elke woning, de buurt en de geschiktheid voor uw specifieke situatie. We helpen u opties vergelijken, voor- en nadelen afwegen en weloverwogen beslissingen nemen. Geen druk, geen haast — alleen deskundige begeleiding.' },
+        { step: '04', title: 'Contract en juridische ondersteuning', desc: 'We begeleiden u door het huur- of koopcontract en leggen alle voorwaarden in begrijpelijke taal uit. We zorgen ervoor dat uw belangen beschermd zijn en coördineren met notarissen, advocaten en belastingadviseurs waar nodig. Wij regelen het papierwerk zodat u zich geen zorgen hoeft te maken over cruciale details.' },
+        { step: '05', title: 'Inwoonondersteuning', desc: 'Onze service loopt door tot ver na de verhuisdag. We helpen met nutsvoorzieningen, internet, lokale registraties en introducties tot essentiële diensten. We voorzien u van buurtgidsen, adviseren restaurants en diensten en blijven beschikbaar voor vragen terwijl u zich settelt in het Amsterdamse leven.' }
+      ],
+      benefitsTitle: 'Waarom expats voor Hakkenbroek kiezen',
+      benefits: [
+        { title: 'Culturele brug', desc: 'We begrijpen de expat-ervaring omdat we honderden internationale klanten hebben begeleid. We spreken uw taal — letterlijk en cultureel — en overbruggen de kloof tussen uw verwachtingen en Nederlandse realiteiten.' },
+        { title: 'Netwerktoegang', desc: 'In 25+ jaar hebben we relaties opgebouwd met de beste dienstverleners van Amsterdam. Van hypotheekadviseurs tot interieurontwerpers, van scholen tot sportclubs — we koppelen u aan betrouwbare professionals die internationale klanten begrijpen.' },
+        { title: 'Eerlijk advies', desc: 'We vertellen u wat u moet horen, niet alleen wat u wilt horen. Over budgetten, buurten en tijdlijnen. Onze reputatie is gebouwd op vertrouwen, en dat betekent eerlijk zijn — zelfs wanneer de waarheid ongemakkelijk is.' },
+        { title: 'Langetermijnrelatie', desc: 'Veel van onze expat-klanten worden langetermijnvrienden. We vieren uw successen, ondersteunen u bij uitdagingen en blijven uw vastgoedadviseur in Amsterdam voor jaren. Uw succes in Amsterdam is ons succes.' }
+      ],
+      ctaTitle: 'Plant u een verhuizing naar Amsterdam?',
+      ctaText: 'Neem contact met ons op om uw relocatietijdlijn en wensen te bespreken. We leggen uit hoe onze service werkt, wat u kunt verwachten en hoe wij uw overgang naar Amsterdam zo soepel mogelijk maken.',
+      ctaButton: 'Start uw reis',
+      backToServices: 'Terug naar Diensten'
     }
   };
   const t = content[locale as keyof typeof content] || content.en;

@@ -32,6 +32,32 @@ export default function RentingPage() {
       ctaText: 'Contact us to discuss your rental requirements. We will listen to your needs and begin searching for properties that genuinely match your criteria.',
       ctaButton: 'Discuss Your Needs',
       backToServices: 'Back to Services'
+    },
+    nl: {
+      heroSubtitle: 'Huurservice',
+      heroTitle: 'Geselecteerde huurwoningen voor kritische huurders',
+      heroDescription: 'Wij vertegenwoordigen huurders met dezelfde discretie en precisie die wij ook kopers bieden. Of u nu verhuist voor werk of een tijdelijk thuis in Amsterdam zoekt — wij vinden woningen die voldoen aan uw normen, niet alleen uw budget.',
+      introTitle: 'De Hakkenbroek aanpak voor huren',
+      introText: 'Het vinden van een kwalitatieve huurwoning in Amsterdam wordt steeds concurrerender. De beste aanbiedingen worden vaak binnen dagen — soms uren — na publicatie verhuurd. Onze huurservice geeft u vroegtijdig toegang tot zorgvuldig geselecteerde woningen en regelt elk detail van bezichtiging tot contractondertekening, zodat u zich kunt richten op uw verhuizing.',
+      processTitle: 'Hoe wij voor huurders werken',
+      steps: [
+        { step: '01', title: 'Behoefteanalyse', desc: 'We beginnen met een uitgebreid gesprek over uw wensen. Locatievoorkeuren, huurduur, budget en must-have kenmerken. We bespreken ook uw tijdlijn zodat we woningen kunnen prioriteren die aansluiten bij uw verhuisdatum.' },
+        { step: '02', title: 'Geselecteerde zoektocht', desc: 'We doorzoeken ons portfolio en netwerk naar woningen die bij uw criteria passen. In tegenstelling tot publieke portals waar u door honderden advertenties moet zoeken, presenteren wij alleen woningen die echt bij u passen — meestal 3 tot 5 zorgvuldig geselecteerde opties.' },
+        { step: '03', title: 'Privébezichtigingen', desc: 'We regelen privébezichtigingen op tijdstippen die bij uw agenda passen. We begeleiden u bij elke bezichtiging en geven context over de woning, de buurt en de verhuurder. Geen haastige open huizen, geen concurrentie met tientallen andere geïnteresseerden.' },
+        { step: '04', title: 'Aanvraagondersteuning', desc: 'We begeleiden u door het aanvraagproces en zorgen ervoor dat uw documentatie compleet is en in het beste daglicht wordt gepresenteerd. We weten wat verhuurders zoeken en helpen u om uzelf te presenteren als de ideale huurder.' },
+        { step: '05', title: 'Contract en inwoning', desc: 'We beoordelen het huurcontract samen met u en leggen alle voorwaarden in begrijpelijke taal uit. We coördineren de sleuteloverdracht, inventarisatiecheck en eventuele benodigde voorbereidingen. Onze ondersteuning loopt door in uw eerste maand voor een soepele overgang.' }
+      ],
+      benefitsTitle: 'Waarom huurders voor Hakkenbroek kiezen',
+      benefits: [
+        { title: 'Vroegtijdige toegang', desc: 'Ons netwerk geeft u toegang tot huurwoningen voordat ze op publieke portals verschijnen. In een markt waar de beste woningen binnen dagen verhuurd zijn, is deze voorsprong onbetaalbaar.' },
+        { title: 'Kwaliteitsgarantie', desc: 'Elke woning in ons huurportfolio is persoonlijk geïnspecteerd door ons team. We verifiëren de staat, de verhuurder en de juridische situatie zodat u na ondertekening geen verrassingen tegenkomt.' },
+        { title: 'Sterke aanvraag', desc: 'Een aanvraag via Hakkenbroek telt mee. Verhuurders weten dat wij serieuze, betrouwbare huurders vertegenwoordigen. We presenteren uw aanvraag professioneel en volgen persoonlijk op, waardoor uw kansen op de woning het grootst zijn.' },
+        { title: 'Doorlopende ondersteuning', desc: 'Onze relatie eindigt niet bij sleuteloverdracht. We blijven beschikbaar gedurende uw huurperiode voor vragen, zorgen of hulp bij onderhoudskwesties. Zie ons als uw vastgoedconciërge.' }
+      ],
+      ctaTitle: 'Start uw zoektocht naar een huurwoning',
+      ctaText: 'Neem contact met ons op om uw huurwensen te bespreken. We luisteren naar uw behoeften en beginnen met zoeken naar woningen die écht bij u passen.',
+      ctaButton: 'Bespreek uw wensen',
+      backToServices: 'Terug naar Diensten'
     }
   };
   const t = content[locale as keyof typeof content] || content.en;
