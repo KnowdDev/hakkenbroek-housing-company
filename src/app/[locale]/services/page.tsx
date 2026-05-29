@@ -89,7 +89,7 @@ export default function ServicesPage() {
     {
       title: t.selling.title,
       description: t.selling.description,
-      image: '/selling-hero.webp',
+      image: '/services-selling.webp',
       features: t.selling.features,
       href: '/selling',
     },
