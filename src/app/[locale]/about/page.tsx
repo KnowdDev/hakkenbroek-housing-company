@@ -28,7 +28,7 @@ export default function AboutPage() {
       qualityDesc: 'We are selective about the properties we represent. If we would not recommend it to a friend, we will not list it.',
       relationships: 'Lifetime Relationships',
       relationshipsDesc: 'Most of our clients return. Many become friends. A property transaction is never just a transaction — it is the beginning of a relationship.',
-      stats: { years: 'Years Experience', rating: 'Client Rating', clients: 'Happy Clients', areas: 'Areas Served' },
+      stats: { years: 'Years on the Market', transactions: 'Properties Sold & Let', languages: 'Languages Spoken', office: 'Office in Amsterdam' },
       cta: 'Begin a conversation',
       ctaDesc: 'Visit us at Leliegracht 21. No obligation. Complete discretion. Just an honest conversation about your property ambitions.',
       contactBtn: 'Arrange a Meeting'
@@ -54,7 +54,7 @@ export default function AboutPage() {
       qualityDesc: 'Wij zijn selectief in de woningen die wij vertegenwoordigen. Als wij het niet aan een vriend zouden aanbevelen, noteren wij het niet.',
       relationships: 'Levenslange Relaties',
       relationshipsDesc: 'De meeste van onze cliënten keren terug. Velen worden vrienden. Een vastgoedtransactie is nooit alleen een transactie — het is het begin van een relatie.',
-      stats: { years: 'Jaren Ervaring', rating: 'Cliëntbeoordeling', clients: 'Tevreden Cliënten', areas: 'Gebieden' },
+      stats: { years: 'Jaar op de Markt', transactions: 'Woningen Verkocht & Verhuurd', languages: 'Taalvaardigheid', office: 'Kantoor in Amsterdam' },
       cta: 'Begin een gesprek',
       ctaDesc: 'Bezoek ons aan de Leliegracht 21. Geen verplichting. Volledige discretie. Gewoon een eerlijk gesprek over uw vastgoedambities.',
       contactBtn: 'Maak een Afspraak'
@@ -72,9 +72,9 @@ export default function AboutPage() {
   ];
   const stats = [
     { value: '25+', label: t.stats.years },
-    { value: '8.0', label: t.stats.rating },
-    { value: '19+', label: t.stats.clients },
-    { value: '15+', label: t.stats.areas },
+    { value: '500+', label: t.stats.transactions },
+    { value: 'NL / EN', label: t.stats.languages },
+    { value: '1', label: t.stats.office },
   ];
   return (
     <div className="min-h-screen">

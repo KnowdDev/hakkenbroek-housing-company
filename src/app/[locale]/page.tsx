@@ -143,9 +143,9 @@ const content = {
     heritageEyebrow: 'Rooted in Amsterdam, Het Gooi & De Vechtstreek',
     heritageTitle: 'Twenty-five years of knowing every street, every market, and what matters to you',
     heritageDesc: 'Since 2000 we have guided buyers, sellers and landlords through the property market in Amsterdam, Het Gooi and the Vechtstreek. We do not chase quick commissions. We take the time to understand what you are actually looking for, then stick with you until it is sorted. Our office on Leliegracht has been the starting point for hundreds of people finding their place in this city and beyond.',
-    yearsExp: 'Years of Experience',
-    clientSat: 'Client Satisfaction',
-    transactions: 'Successful Deals',
+    yearsExp: 'Years on the Market',
+    regions: 'Regions We Serve',
+    languages: 'Languages We Speak',
     readStory: 'Discover Our Story',
     portfolioEyebrow: 'Hand-picked listings',
     portfolioTitle: 'Properties we like',
@@ -202,9 +202,9 @@ const content = {
     heritageEyebrow: 'Verankerd in Amsterdam, Het Gooi & De Vechtstreek',
     heritageTitle: 'Vijfentwintig jaar elke straat kennen, elke markt begrijpen, en weten wat voor u telt',
     heritageDesc: 'Sinds 2000 begeleiden we kopers, verkopers en verhuurders door de vastgoedmarkt van Amsterdam, Het Gooi en de Vechtstreek. We jagen geen snelle provisies na. We nemen de tijd om te begrijpen wat u écht zoekt, en we blijven erbij tot het geregeld is. Ons kantoor aan de Leliegracht is het startpunt geweest voor honderden mensen die hun plek in deze stad en daarbuiten vonden.',
-    yearsExp: 'Jaren Ervaring',
-    clientSat: 'Cliënttevredenheid',
-    transactions: 'Succesvolle Deals',
+    yearsExp: 'Jaar op de Markt',
+    regions: 'Regio\'s die Wij Bedienen',
+    languages: 'Taalvaardigheid',
     readStory: 'Ontdek Ons Verhaal',
     portfolioEyebrow: 'Zorgvuldig geselecteerd',
     portfolioTitle: 'Woningen die we mooi vinden',
@@ -286,9 +286,7 @@ export default function Home() {
   const finalCtaRef = useInView<HTMLDivElement>(0.1);
 
   /* counters */
-  const yearsCount = useCountUp(20, 2000, statsRef.inView);
-  const satCount = useCountUp(97, 2000, statsRef.inView);
-  const dealsCount = useCountUp(850, 2500, statsRef.inView);
+  const yearsCount = useCountUp(25, 2000, statsRef.inView);
 
   /* fetch featured properties */
   useEffect(() => {
@@ -854,12 +852,12 @@ export default function Home() {
               <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.yearsExp}</p>
             </div>
             <div className={`text-center ${revealClass(statsRef.inView)}`} style={{ transitionDelay: '200ms' }}>
-              <p className="font-display text-5xl lg:text-6xl text-brass mb-2">{satCount}%</p>
-              <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.clientSat}</p>
+              <p className="font-display text-5xl lg:text-6xl text-brass mb-2">3</p>
+              <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.regions}</p>
             </div>
             <div className={`text-center ${revealClass(statsRef.inView)}`} style={{ transitionDelay: '300ms' }}>
-              <p className="font-display text-5xl lg:text-6xl text-brass mb-2">{dealsCount}+</p>
-              <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.transactions}</p>
+              <p className="font-display text-5xl lg:text-6xl text-brass mb-2">2</p>
+              <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.languages}</p>
             </div>
           </div>
         </div>
