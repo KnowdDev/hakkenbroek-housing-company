@@ -28,6 +28,7 @@ export const LISTING_PUT_PATCH_KEYS = [
   'basement',
   'elevator',
   'floors',
+  'source_url',
 ] as const;
 
 export function coerceListingImages(row: Record<string, unknown>): Record<string, unknown> {

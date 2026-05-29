@@ -912,7 +912,7 @@ export default function Home() {
                     >
                       {statusLabelsLocale[property.status] || property.status}
                     </span>
-                    {property.listing_type && (
+                    {property.listing_type && property.status !== 'sold' && property.status !== 'rented' && (
                       <span
                         className={`text-xs font-body uppercase tracking-wider px-3 py-1.5 ${listingTypeStyles[property.listing_type] || ''}`}
                       >
