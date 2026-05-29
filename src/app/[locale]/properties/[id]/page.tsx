@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, usePathname } from 'next/navigation';
 import { Link } from '@/navigation';
+import FormattedDescription from '@/components/FormattedDescription';
 
 interface Listing {
   id: number;
@@ -466,7 +467,7 @@ export default function PropertyDetailPage() {
                 <h2 className="font-display text-2xl text-charcoal mb-4">
                   {locale === 'nl' ? 'Beschrijving' : locale === 'es' ? 'Descripcion' : 'Description'}
                 </h2>
-                <p className="text-stone-600 leading-relaxed text-lg">{listing.description}</p>
+                <FormattedDescription text={listing.description} className="text-lg" />
               </div>
 
               <div className="mb-8">
