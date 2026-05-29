@@ -3,7 +3,6 @@
 import { Link } from '@/navigation';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { demoListings } from '@/lib/listings-data';
 import {
   Search, Home as HomeIcon, Key, ShieldCheck, Globe, Landmark,
   ChevronDown, ChevronUp, MapPin, Bed, Euro, ArrowRight,
@@ -252,9 +251,7 @@ export default function Home() {
   const t = content[locale] || content.en;
   const statusLabelsLocale = statusLabels[locale] || statusLabels.en;
 
-  const [featuredProperties, setFeaturedProperties] = useState<Listing[]>(
-    demoListings.filter((p) => p.featured).slice(0, 3)
-  );
+  const [featuredProperties, setFeaturedProperties] = useState<Listing[]>([]);
 
   /* search state */
   const [searchQuery, setSearchQuery] = useState('');
@@ -890,6 +887,13 @@ export default function Home() {
             </Link>
           </div>
 
+          {featuredProperties.length === 0 ? (
+            <p className="text-center text-stone-400 py-12">
+              {locale === 'nl'
+                ? 'Geen uitgelichte woningen gevonden. Markt een woning als "Uitgelicht" in het dashboard om deze hier te tonen.'
+                : 'No featured properties found. Mark a listing as "Featured" in the dashboard to display it here.'}
+            </p>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProperties.map((property, i) => (
               <Link
@@ -939,6 +943,7 @@ export default function Home() {
               </Link>
             ))}
           </div>
+          )}
         </div>
       </section>
 
