@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import { useRouter, usePathname } from '@/navigation';
 
 const languageNames: Record<string, string> = {
@@ -20,6 +21,7 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
   const [locale, setLocale] = useState<Language>('en');
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -34,18 +36,11 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
     setLocale(newLocale);
     setIsOpen(false);
 
-    // Strip locale prefix from pathname (usePathname includes it)
-    const rawSegments = pathname.split('/').filter(Boolean);
-    const isLocalePrefix = rawSegments[0] === 'en' || rawSegments[0] === 'nl';
-    const segments = isLocalePrefix ? rawSegments.slice(1) : rawSegments;
-    const firstSegment = segments[0];
-    const id = segments[1];
-
-    // Property detail page: preserve the ID and let next-intl translate the pathname
-    if (
-      (firstSegment === 'properties' || firstSegment === 'vastgoed') &&
-      segments.length === 2
-    ) {
+    // next-intl's usePathname returns the INTERNAL route template (e.g. "/properties/[id]"),
+    // not the resolved URL. For dynamic routes the [id] placeholder is not substituted,
+    // so we must supply the real id from useParams().
+    if (pathname === '/properties/[id]' && params?.id) {
+      const id = Array.isArray(params.id) ? params.id[0] : (params.id as string);
       router.push(
         { pathname: '/properties/[id]', params: { id } },
         { locale: newLocale }
@@ -53,16 +48,10 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
       return;
     }
 
-    // Property index page
-    if (firstSegment === 'properties' || firstSegment === 'vastgoed') {
-      router.push('/properties', { locale: newLocale });
-      return;
-    }
-
-    // For all other pages, pass locale-relative pathname so next-intl translates correctly
-    const localeRelativePath = '/' + segments.join('/');
+    // All static routes: usePathname already returns the internal pathname (e.g. "/about"),
+    // which next-intl translates to the correct localized URL.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (router.replace as any)(localeRelativePath, { locale: newLocale });
+    (router.replace as any)(pathname, { locale: newLocale });
   };
 
   return (
