@@ -1,0 +1,20 @@
+name = "hakkenbroek-mcp"
+main = "src/index.ts"
+compatibility_date = "2025-03-27"
+compatibility_flags = ["nodejs_compat"]
+account_id = "0ca1b9d1d3d614c208de87dd4590f40e"
+
+# Hardening: keep-alive for persistent connections
+keep_alive = true
+
+# Environment variables (set via wrangler secret or dashboard)
+[vars]
+SERVER_NAME = "hakkenbroek-housing"
+SERVER_VERSION = "2.0.0"
+PROTOCOL_VERSION = "2024-11-05"
+MAX_BODY_SIZE = "1048576"
+QUERY_TIMEOUT_MS = "10000"
+
+# Secrets (do NOT commit these):
+# wrangler secret put DATABASE_URL
+# wrangler secret put MCP_API_KEY
