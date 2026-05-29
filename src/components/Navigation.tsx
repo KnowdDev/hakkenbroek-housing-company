@@ -43,15 +43,17 @@ export default function Navigation() {
     }
   }, [pathname]);
 
+  const isPropertyDetail = pathname.split('/').filter(Boolean).length === 3 && pathname.includes('/properties/');
+
   // Scroll-based header state — triggers at 1px for instant feedback
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
+      setScrolled(window.scrollY > 0 || isPropertyDetail);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname]);
+  }, [pathname, isPropertyDetail]);
 
 
   // Lock body scroll when mobile menu is open
