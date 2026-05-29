@@ -43,7 +43,7 @@ export default function Navigation() {
     }
   }, [pathname]);
 
-  const isPropertyDetail = pathname.split('/').filter(Boolean).length === 3 && pathname.includes('/properties/');
+  const isPropertyDetail = pathname.split('/').filter(Boolean).length === 3 && (pathname.includes('/properties/') || pathname.includes('/vastgoed/'));
 
   // Scroll-based header state — triggers at 1px for instant feedback
   useEffect(() => {
