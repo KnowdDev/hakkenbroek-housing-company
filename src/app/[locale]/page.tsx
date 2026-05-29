@@ -655,7 +655,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Buying — 2x2 hero card */}
             <Link
-              href={`/services/buying`}
+              href={`/buying`}
               className={`group sm:col-span-2 sm:row-span-2 relative bg-white border border-stone-200 p-8 lg:p-10 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[320px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '150ms' }}
             >
@@ -682,7 +682,7 @@ export default function Home() {
 
             {/* Selling */}
             <Link
-              href={`/services/selling`}
+              href={`/selling`}
               className={`group relative bg-white border border-stone-200 p-6 lg:p-8 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[150px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '200ms' }}
             >

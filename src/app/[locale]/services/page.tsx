@@ -84,28 +84,28 @@ export default function ServicesPage() {
       description: t.buying.description,
       image: '/services-buying.webp',
       features: t.buying.features,
-      slug: 'buying',
+      href: '/buying',
     },
     {
       title: t.selling.title,
       description: t.selling.description,
       image: '/selling-hero.webp',
       features: t.selling.features,
-      slug: 'selling',
+      href: '/selling',
     },
     {
       title: t.renting.title,
       description: t.renting.description,
       image: '/services-renting.webp',
       features: t.renting.features,
-      slug: 'renting',
+      href: '/services/renting',
     },
     {
       title: t.leasing.title,
       description: t.leasing.description,
       image: '/services-leasing.webp',
       features: t.leasing.features,
-      slug: 'leasing',
+      href: '/services/leasing',
     },
   ];
 
@@ -150,7 +150,7 @@ export default function ServicesPage() {
           {services.map((service, index) => (
             <Link
               key={service.title}
-              href={`/services/${service.slug}`}
+              href={service.href}
               className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center group cursor-pointer ${
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}

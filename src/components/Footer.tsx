@@ -37,8 +37,8 @@ const navLinks: FooterLink[] = [
 ];
 
 const serviceLinks: FooterLink[] = [
-  { href: '/services/buying', label: { en: 'Buying', nl: 'Aankopen' } },
-  { href: '/services/selling', label: { en: 'Selling', nl: 'Verkopen' } },
+  { href: '/buying', label: { en: 'Buying', nl: 'Kopen' } },
+  { href: '/selling', label: { en: 'Selling', nl: 'Verkopen' } },
   { href: '/services/renting', label: { en: 'Renting', nl: 'Huren' } },
   { href: '/services/leasing', label: { en: 'Leasing', nl: 'Verhuren' } },
   {
