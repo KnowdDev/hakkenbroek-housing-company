@@ -224,21 +224,23 @@ export default function PropertiesPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero — Split layout */}
-      <section className="flex flex-col lg:flex-row h-auto lg:h-[70vh] lg:min-h-[500px] overflow-hidden">
-        <div className="relative w-full lg:w-[55%] h-[45vh] lg:h-full">
+      {/* Hero */}
+      <section className="relative h-[50vh] min-h-[350px] flex items-end overflow-hidden">
+        <div className="absolute inset-0">
           <img
             src="/selling-hero.webp"
             alt="Amsterdam property"
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-charcoal/40" />
         </div>
-        <div className="w-full lg:w-[45%] bg-stone-50 flex items-center">
-          <div className="px-8 py-16 lg:px-14 lg:py-12 max-w-xl">
-            <p className="font-body text-xs uppercase tracking-[0.2em] text-warm-gray mb-6">{t.heroSubtitle}</p>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.15] text-charcoal mb-6">{t.heroTitle}</h1>
-            <p className="font-body text-base lg:text-lg text-warm-gray leading-relaxed">{t.heroDescription}</p>
-          </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
+          <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
+            {t.heroSubtitle}
+          </p>
+          <h1 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
+            {t.heroTitle}
+          </h1>
         </div>
       </section>
 
