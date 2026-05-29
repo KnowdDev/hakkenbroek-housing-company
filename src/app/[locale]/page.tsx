@@ -145,7 +145,7 @@ const content = {
     heritageDesc: 'Since 2000 we have guided buyers, sellers and landlords through the property market in Amsterdam, Het Gooi and the Vechtstreek. We do not chase quick commissions. We take the time to understand what you are actually looking for, then stick with you until it is sorted. Our office on Leliegracht has been the starting point for hundreds of people finding their place in this city and beyond.',
     yearsExp: 'Years on the Market',
     regions: 'Regions We Serve',
-    languages: 'Languages We Speak',
+    transactions: 'Properties Sold & Let',
     readStory: 'Discover Our Story',
     portfolioEyebrow: 'Hand-picked listings',
     portfolioTitle: 'Properties we like',
@@ -204,7 +204,7 @@ const content = {
     heritageDesc: 'Sinds 2000 begeleiden we kopers, verkopers en verhuurders door de vastgoedmarkt van Amsterdam, Het Gooi en de Vechtstreek. We jagen geen snelle provisies na. We nemen de tijd om te begrijpen wat u écht zoekt, en we blijven erbij tot het geregeld is. Ons kantoor aan de Leliegracht is het startpunt geweest voor honderden mensen die hun plek in deze stad en daarbuiten vonden.',
     yearsExp: 'Jaar op de Markt',
     regions: 'Regio\'s die Wij Bedienen',
-    languages: 'Taalvaardigheid',
+    transactions: 'Woningen Verkocht & Verhuurd',
     readStory: 'Ontdek Ons Verhaal',
     portfolioEyebrow: 'Zorgvuldig geselecteerd',
     portfolioTitle: 'Woningen die we mooi vinden',
@@ -848,16 +848,16 @@ export default function Home() {
             className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-20 pt-12 border-t border-stone-300"
           >
             <div className={`text-center ${revealClass(statsRef.inView)}`} style={{ transitionDelay: '100ms' }}>
-              <p className="font-display text-5xl lg:text-6xl text-brass mb-2">{yearsCount}+</p>
+              <p className="font-display text-5xl lg:text-6xl text-stone-300 mb-2">{yearsCount}+</p>
               <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.yearsExp}</p>
             </div>
             <div className={`text-center ${revealClass(statsRef.inView)}`} style={{ transitionDelay: '200ms' }}>
-              <p className="font-display text-5xl lg:text-6xl text-brass mb-2">3</p>
+              <p className="font-display text-5xl lg:text-6xl text-stone-300 mb-2">3</p>
               <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.regions}</p>
             </div>
             <div className={`text-center ${revealClass(statsRef.inView)}`} style={{ transitionDelay: '300ms' }}>
-              <p className="font-display text-5xl lg:text-6xl text-brass mb-2">2</p>
-              <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.languages}</p>
+              <p className="font-display text-5xl lg:text-6xl text-stone-300 mb-2">5000+</p>
+              <p className="font-body text-xs uppercase tracking-widest text-warm-gray">{t.transactions}</p>
             </div>
           </div>
         </div>
