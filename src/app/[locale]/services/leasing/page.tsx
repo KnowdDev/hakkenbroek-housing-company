@@ -32,6 +32,32 @@ export default function LeasingPage() {
       ctaText: 'Contact us for a confidential discussion about your property and our lease management services. We will explain our process our fees and how we can help you achieve the best returns from your investment.',
       ctaButton: 'Discuss Management',
       backToServices: 'Back to Services'
+    },
+    nl: {
+      heroSubtitle: 'Verhuurbeheer',
+      heroTitle: 'Langdurig verhuurbeheer voor kritische verhuurders',
+      heroDescription: 'Wij beheren uw woning alsof het onze eigen is. Van huurdersselectie tot incasso, juridische naleving tot onderhoudscoördinatie — wij behartigen elk aspect van langdurige verhuur met precisie en zorg.',
+      introTitle: 'De Hakkenbroek aanpak voor verhuur',
+      introText: 'Het verhuren van uw woning zou inkomsten moeten opleveren, geen hoofdpijn. Toch raken veel verhuurders overweldigd door huurdersproblemen, onderhoudsverzoeken en administratieve lasten. Ons verhuurbeheer transformeert eigendom in een écht passieve investering, terwijl uw bezit beschermd blijft en uw rendement wordt gemaximaliseerd.',
+      processTitle: 'Ons verhuurbeheerproces',
+      steps: [
+        { step: '01', title: 'Woningassessment', desc: 'We beginnen met een grondige beoordeling van uw woning. We bepalen de huurpotentie, identificeren onderhouds- of verbeterbehoeften en adviseren over positionering om kwalitatieve huurders te trekken en de optimale huur te realiseren.' },
+        { step: '02', title: 'Huurdersselectie', desc: 'We voeren een zorgvuldige screening uit inclusief kredietchecks, werkgeversverificatie, referentiechecks en persoonlijke gesprekken. We vinden niet zomaar huurders — we vinden dé juiste huurders die uw woning respecteren en hun verplichtingen nakomen.' },
+        { step: '03', title: 'Contractadministratie', desc: 'We verzorgen alle huurdocumentatie, zorgen voor naleving van de Nederlandse huurwetgeving en beschermen uw belangen. We beheren incasso, voeren reguliere inspecties uit en houden gedetailleerde financiële administratie bij zodat u altijd precies weet hoe uw investering presteert.' },
+        { step: '04', title: 'Onderhoudscoördinatie', desc: 'Bij onderhoud coördineren wij het gehele proces. We hebben jarenlange relaties met betrouwbare aannemers en vakmensen die kwalitatief werk leveren tegen eerlijke prijzen. Bij noodgevallen bieden we 24/7 ondersteuning zodat uw huurders en uw woning altijd beschermd zijn.' },
+        { step: '05', title: 'Doorlopend beheer', desc: 'Onze service loopt door gedurende de gehele huurperiode. We voeren reguliere inspecties uit, beheren verlengingen en opzeggingen en voorzien u van gedetailleerde financiële rapportages. Wanneer de tijd rijp is om te verkopen of opnieuw te verhuren, adviseren wij over optimaal timing en strategie.' }
+      ],
+      benefitsTitle: 'Waarom verhuurders voor Hakkenbroek kiezen',
+      benefits: [
+        { title: 'Gemoedsrust', desc: 'Wij regelen elk aspect van het huurdersbeheer zodat u zich daar geen zorgen over hoeft te maken. Van noodgevallen in de nacht tot contractverlengingen — wij zijn uw enige aanspreekpunt voor alles wat met uw woning te maken heeft.' },
+        { title: 'Kwalitatieve huurders', desc: 'Onze strenge screening zorgt ervoor dat alleen betrouwbare, respectvolle huurders uw woning bewonen. Dit vermindert slijtage, minimaliseert achterstanden en creëert een stabiele, langdurige inkomstenbron.' },
+        { title: 'Juridische bescherming', desc: 'De Nederlandse huurwetgeving is complex en voortdurend in ontwikkeling. Wij zorgen ervoor dat uw huurcontracten voldoen aan alle actuele regelgeving, zodat u beschermd bent tegen kostbare geschillen en juridische uitdagingen.' },
+        { title: 'Financiële transparantie', desc: 'U ontvangt regelmatig gedetailleerde financiële rapportages met inkomsten, uitgaven en netto rendement. Geen verborgen kosten, geen verrassingen. Alleen helder, transparant beheer van uw investering.' }
+      ],
+      ctaTitle: 'Klaar om uw woning te verhuren?',
+      ctaText: 'Neem contact met ons op voor een vertrouwelijk gesprek over uw woning en onze verhuurservices. We leggen ons proces, ons tarief en hoe wij u helpen het beste rendement uit uw investering te halen uit.',
+      ctaButton: 'Bespreek verhuur',
+      backToServices: 'Terug naar Diensten'
     }
   };
   const t = content[locale as keyof typeof content] || content.en;
