@@ -2,6 +2,8 @@ export interface Listing {
   id: number;
   title: string;
   description?: string;
+  description_en?: string;
+  description_nl?: string;
   price?: number;
   bedrooms?: number;
   bathrooms?: number;

@@ -56,6 +56,8 @@ export async function PUT(
     const {
       title,
       description,
+      description_en,
+      description_nl,
       price,
       bedrooms,
       bathrooms,
@@ -90,17 +92,19 @@ export async function PUT(
     let result;
     try {
       result = await query(
-        `UPDATE listings SET 
-          title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5, 
-          area = $6, address = $7, city = $8, postal_code = $9, property_type = $10, 
-          status = $11, listing_type = $12, image_url = $13, featured = $14, images = $15, year_built = $16, 
-          energy_label = $17, garden = $18, garden_area = $19, parking = $20, 
-          parking_spaces = $21, balcony = $22, terrace = $23, furnished = $24, 
-          basement = $25, elevator = $26, floors = $27, source_url = $28, updated_at = CURRENT_TIMESTAMP 
-          WHERE id = $29 RETURNING *`,
+        `UPDATE listings SET
+          title = $1, description = $2, description_en = $3, description_nl = $4, price = $5, bedrooms = $6, bathrooms = $7,
+          area = $8, address = $9, city = $10, postal_code = $11, property_type = $12,
+          status = $13, listing_type = $14, image_url = $15, featured = $16, images = $17, year_built = $18,
+          energy_label = $19, garden = $20, garden_area = $21, parking = $22,
+          parking_spaces = $23, balcony = $24, terrace = $25, furnished = $26,
+          basement = $27, elevator = $28, floors = $29, source_url = $30, updated_at = CURRENT_TIMESTAMP
+          WHERE id = $31 RETURNING *`,
         [
           title,
           description,
+          description_en,
+          description_nl,
           price,
           bedrooms,
           bathrooms,
