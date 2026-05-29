@@ -16,7 +16,11 @@ export async function GET(
     );
 
     if (result.rows.length > 0) {
-      return NextResponse.json(result.rows[0]);
+      return NextResponse.json(result.rows[0], {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        },
+      });
     }
   } catch (error) {
     console.error('Error fetching listing from DB, using demo data:', error);

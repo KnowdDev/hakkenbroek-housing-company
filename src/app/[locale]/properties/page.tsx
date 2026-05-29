@@ -324,6 +324,8 @@ export default function PropertiesPage() {
                       <img
                         src={property.image_url}
                         alt={property.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                       />
                     ) : (
