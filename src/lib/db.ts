@@ -149,7 +149,7 @@ export async function query<R = any>(
   }
 }
 
-export async function healthCheck(): Promise<{ healthy: boolean; latencyMs: number }> {
+export async function healthCheck(): Promise<{ healthy: boolean; latencyMs: number; error?: string }> {
   const start = Date.now();
   try {
     await withTimeout(
@@ -163,8 +163,9 @@ export async function healthCheck(): Promise<{ healthy: boolean; latencyMs: numb
       'health check'
     );
     return { healthy: true, latencyMs: Date.now() - start };
-  } catch {
-    return { healthy: false, latencyMs: Date.now() - start };
+  } catch (err) {
+    logger.error('Health check DB error', err instanceof Error ? err : undefined);
+    return { healthy: false, latencyMs: Date.now() - start, error: err instanceof Error ? err.message : String(err) };
   }
 }
 
