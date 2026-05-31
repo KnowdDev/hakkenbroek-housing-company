@@ -9,6 +9,11 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const isKeepWarm = request.headers.get('x-keep-warm') === 'true';
+  if (isKeepWarm) {
+    console.log('[api/listings/[id]] Keep-warm ping received');
+  }
+
   const { id } = await params;
   const isDashboardRequest = hasDashboardAuth(request);
 

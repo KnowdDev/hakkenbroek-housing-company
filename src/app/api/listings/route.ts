@@ -10,6 +10,11 @@ const LISTINGS_CACHE_HEADER =
   'public, s-maxage=60, stale-while-revalidate=300';
 
 export async function GET(request: NextRequest) {
+  const isKeepWarm = request.headers.get('x-keep-warm') === 'true';
+  if (isKeepWarm) {
+    console.log('[api/listings] Keep-warm ping received');
+  }
+
   const includeHidden =
     request.nextUrl.searchParams.get('includeHidden') === 'true' &&
     hasDashboardAuth(request);
