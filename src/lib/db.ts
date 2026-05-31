@@ -7,7 +7,22 @@ if (!DATABASE_URL) {
   logger.warn('DATABASE_URL environment variable is not set. Database queries will fail.');
 }
 
-const sql = DATABASE_URL ? neon(DATABASE_URL) : null;
+// Lazy-initialise the Neon client so an invalid DATABASE_URL does not break
+// the Next.js build during static page generation.
+let sqlInstance: ReturnType<typeof neon> | null = null;
+function getSql() {
+  if (!sqlInstance && DATABASE_URL) {
+    try {
+      sqlInstance = neon(DATABASE_URL);
+    } catch (err) {
+      logger.error('Failed to initialise Neon client', err instanceof Error ? err : undefined);
+      throw new DatabaseError(
+        err instanceof Error ? err.message : 'Failed to initialise Neon client'
+      );
+    }
+  }
+  return sqlInstance;
+}
 
 const QUERY_TIMEOUT_MS = parseInt(process.env.DB_QUERY_TIMEOUT || '15000', 10);
 const MAX_RETRIES = parseInt(process.env.DB_MAX_RETRIES || '3', 10);
@@ -95,6 +110,7 @@ export async function query<R = any>(
   params?: unknown[]
 ): Promise<{ rows: R[]; rowCount: number | null }> {
   const start = Date.now();
+  const sql = getSql();
   if (!sql) {
     throw new DatabaseError('DATABASE_URL is not configured');
   }
@@ -139,6 +155,7 @@ export async function healthCheck(): Promise<{ healthy: boolean; latencyMs: numb
     await withTimeout(
       () =>
         withRetry(async () => {
+          const sql = getSql();
           if (!sql) throw new Error('No DB');
           await sql.query('SELECT 1');
         }, 'health check'),
