@@ -1,40 +1,21 @@
-import { Pool, types, PoolConfig, QueryResult, QueryResultRow } from 'pg';
+import { neon } from '@neondatabase/serverless';
 import { logger } from './logger';
 import { DatabaseError, TimeoutError } from './errors';
 
-// Parse DECIMAL / NUMERIC as numbers instead of strings
-// OID 1700 = numeric/decimal in PostgreSQL
-types.setTypeParser(1700, (val: string) => parseFloat(val));
+const DATABASE_URL = process.env.DATABASE_URL;
+if (!DATABASE_URL) {
+  logger.warn('DATABASE_URL environment variable is not set. Database queries will fail.');
+}
 
-const MAX_POOL_SIZE = parseInt(process.env.DB_POOL_MAX || '20', 10);
-const IDLE_TIMEOUT_MS = parseInt(process.env.DB_POOL_IDLE_TIMEOUT || '30000', 10);
-const CONNECTION_TIMEOUT_MS = parseInt(process.env.DB_CONNECTION_TIMEOUT || '10000', 10);
+const sql = DATABASE_URL ? neon(DATABASE_URL) : null;
+
 const QUERY_TIMEOUT_MS = parseInt(process.env.DB_QUERY_TIMEOUT || '15000', 10);
 const MAX_RETRIES = parseInt(process.env.DB_MAX_RETRIES || '3', 10);
 const RETRY_BASE_DELAY_MS = parseInt(process.env.DB_RETRY_BASE_DELAY || '100', 10);
 
-const poolConfig: PoolConfig = {
-  connectionString: 'postgresql://neondb_owner:[REDACTED_OLD_NEON_PASSWORD]@ep-icy-glitter-al0foo46-pooler.c-3.eu-central-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require',
-  max: MAX_POOL_SIZE,
-  idleTimeoutMillis: IDLE_TIMEOUT_MS,
-  connectionTimeoutMillis: CONNECTION_TIMEOUT_MS,
-  // Neon requires SSL
-  ssl: { rejectUnauthorized: false },
-};
-
-const pool = new Pool(poolConfig);
-
-pool.on('error', (err: Error) => {
-  logger.error('Unexpected pool error', err, { poolTotal: pool.totalCount, poolIdle: pool.idleCount });
-});
-
-pool.on('connect', () => {
-  logger.debug('New client connected to pool', { poolTotal: pool.totalCount, poolIdle: pool.idleCount });
-});
-
-pool.on('remove', () => {
-  logger.debug('Client removed from pool', { poolTotal: pool.totalCount, poolIdle: pool.idleCount });
-});
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function isRetryableError(error: unknown): boolean {
   if (!(error instanceof Error)) return false;
@@ -48,12 +29,18 @@ function isRetryableError(error: unknown): boolean {
     msg.includes('connection reset') ||
     msg.includes('econnreset') ||
     msg.includes('econnrefused') ||
-    msg.includes('etimedout')
+    msg.includes('etimedout') ||
+    msg.includes('fetch failed') ||
+    msg.includes('networkerror')
   );
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function coerceNumericFields(row: any): any {
+  const r = { ...row };
+  if (typeof r.price === 'string') {
+    r.price = parseFloat(r.price);
+  }
+  return r;
 }
 
 async function withRetry<T>(
@@ -62,13 +49,11 @@ async function withRetry<T>(
   maxRetries: number = MAX_RETRIES
 ): Promise<T> {
   let lastError: unknown;
-
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await operation();
     } catch (error) {
       lastError = error;
-
       if (attempt < maxRetries && isRetryableError(error)) {
         const delay = RETRY_BASE_DELAY_MS * Math.pow(2, attempt) + Math.random() * 100;
         logger.warn(`DB retry ${attempt + 1}/${maxRetries} for '${context}'`, {
@@ -78,11 +63,9 @@ async function withRetry<T>(
         await sleep(delay);
         continue;
       }
-
       throw error;
     }
   }
-
   throw lastError;
 }
 
@@ -95,7 +78,6 @@ async function withTimeout<T>(
     const timer = setTimeout(() => {
       reject(new TimeoutError(context, timeoutMs));
     }, timeoutMs);
-
     operation()
       .then((result) => {
         clearTimeout(timer);
@@ -108,56 +90,42 @@ async function withTimeout<T>(
   });
 }
 
-export async function query<R extends QueryResultRow = any>(
+export async function query<R = any>(
   text: string,
   params?: unknown[]
-): Promise<QueryResult<R>> {
+): Promise<{ rows: R[]; rowCount: number | null }> {
   const start = Date.now();
-
+  if (!sql) {
+    throw new DatabaseError('DATABASE_URL is not configured');
+  }
   try {
     const result = await withTimeout(
       () =>
         withRetry(
-          () => pool.query<R>(text, params),
+          async () => {
+            const rows = (await sql.query(text, params ?? [])) as R[];
+            const coercedRows = rows.map(coerceNumericFields) as R[];
+            return { rows: coercedRows, rowCount: rows.length };
+          },
           text.substring(0, 80)
         ),
       QUERY_TIMEOUT_MS,
       `query: ${text.substring(0, 60)}`
     );
-
     const duration = Date.now() - start;
-
     if (duration > 1000) {
-      logger.warn('Slow query', {
-        text: text.substring(0, 120),
-        duration,
-        rows: result.rowCount,
-      });
+      logger.warn('Slow query', { text: text.substring(0, 120), duration, rows: result.rowCount });
     } else {
-      logger.debug('Query executed', {
-        text: text.substring(0, 80),
-        duration,
-        rows: result.rowCount,
-      });
+      logger.debug('Query executed', { text: text.substring(0, 80), duration, rows: result.rowCount });
     }
-
     return result;
   } catch (error) {
     const duration = Date.now() - start;
-
     if (error instanceof TimeoutError) {
-      logger.error('Query timeout', error, {
-        text: text.substring(0, 120),
-        duration,
-      });
+      logger.error('Query timeout', error, { text: text.substring(0, 120), duration });
       throw error;
     }
-
-    logger.error('Database query failed', error instanceof Error ? error : undefined, {
-      text: text.substring(0, 120),
-      duration,
-    });
-
+    logger.error('Database query failed', error instanceof Error ? error : undefined, { text: text.substring(0, 120), duration });
     throw new DatabaseError(
       error instanceof Error ? error.message : 'Unknown database error',
       error instanceof Error ? error : undefined
@@ -169,7 +137,11 @@ export async function healthCheck(): Promise<{ healthy: boolean; latencyMs: numb
   const start = Date.now();
   try {
     await withTimeout(
-      () => pool.query('SELECT 1'),
+      () =>
+        withRetry(async () => {
+          if (!sql) throw new Error('No DB');
+          await sql.query('SELECT 1');
+        }, 'health check'),
       5000,
       'health check'
     );
@@ -180,23 +152,16 @@ export async function healthCheck(): Promise<{ healthy: boolean; latencyMs: numb
 }
 
 export async function getPoolStats() {
-  return {
-    totalConnections: pool.totalCount,
-    idleConnections: pool.idleCount,
-    waitingClients: pool.waitingCount,
-  };
+  return { totalConnections: 0, idleConnections: 0, waitingClients: 0 };
 }
 
 export async function shutdown(): Promise<void> {
-  logger.info('Draining database pool...');
-  await pool.end();
-  logger.info('Database pool drained');
+  logger.info('Database shutdown (serverless driver — nothing to drain)');
 }
 
 export async function resolveConfig(key: string): Promise<string | undefined> {
   const envVal = process.env[key];
   if (envVal) return envVal;
-
   try {
     const { resolveSecret } = await import('./vault');
     return await resolveSecret(key);
@@ -205,4 +170,4 @@ export async function resolveConfig(key: string): Promise<string | undefined> {
   }
 }
 
-export default pool;
+export default { query, healthCheck, getPoolStats, shutdown, resolveConfig };
