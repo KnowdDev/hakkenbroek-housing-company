@@ -93,6 +93,8 @@ const tools: ToolDefinition[] = [
       properties: {
         title: { type: 'string', description: 'Property title' },
         description: { type: 'string', description: 'Property description' },
+        description_en: { type: 'string', description: 'English marketing description' },
+        description_nl: { type: 'string', description: 'Dutch marketing description' },
         price: { type: 'number', description: 'Price in Euros' },
         bedrooms: { type: 'number', description: 'Number of bedrooms' },
         bathrooms: { type: 'number', description: 'Number of bathrooms' },
@@ -104,6 +106,11 @@ const tools: ToolDefinition[] = [
         status: { type: 'string', description: 'available, sold, rented, under-consideration' },
         listing_type: { type: 'string', description: 'sale or rent' },
         image_url: { type: 'string', description: 'Primary image URL' },
+        images: {
+          type: 'array',
+          description: 'Gallery image URLs in display order',
+          items: { type: 'string' },
+        },
         featured: { type: 'boolean', description: 'Highlight on homepage' },
         hidden: { type: 'boolean', description: 'Keep in dashboard but hide from public website' },
         year_built: { type: 'number', description: 'Year the property was built' },
@@ -118,17 +125,20 @@ const tools: ToolDefinition[] = [
         parking_spaces: { type: 'number', description: 'Number of parking spaces' },
         elevator: { type: 'boolean', description: 'Whether the building has an elevator' },
         basement: { type: 'boolean', description: 'Whether the property has a basement' },
+        source_url: { type: 'string', description: 'Original hakkenbroek.com detail URL for traceability' },
       },
       required: ['title'],
     },
     handler: async (args, id, _ctx) => {
       const validated = validateArgs(createListingSchema, args, 'create_listing');
       const data = await query(
-        `INSERT INTO listings (title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, featured, hidden, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27) RETURNING *`,
+        `INSERT INTO listings (title, description, description_en, description_nl, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, images, featured, hidden, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors, source_url)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16::jsonb, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31) RETURNING *`,
         [
           validated.title,
           validated.description ?? null,
+          validated.description_en ?? null,
+          validated.description_nl ?? null,
           validated.price ?? null,
           validated.bedrooms ?? null,
           validated.bathrooms ?? null,
@@ -140,6 +150,7 @@ const tools: ToolDefinition[] = [
           validated.status ?? 'available',
           validated.listing_type ?? 'sale',
           validated.image_url ?? null,
+          validated.images ? JSON.stringify(validated.images) : null,
           validated.featured ?? false,
           validated.hidden ?? false,
           validated.year_built ?? null,
@@ -154,6 +165,7 @@ const tools: ToolDefinition[] = [
           validated.basement ?? false,
           validated.elevator ?? false,
           validated.floors ?? null,
+          validated.source_url ?? null,
         ]
       );
       return buildToolResult(id, JSON.stringify(data.rows[0], null, 2));
@@ -174,6 +186,8 @@ const tools: ToolDefinition[] = [
         },
         title: { type: 'string' },
         description: { type: 'string' },
+        description_en: { type: 'string' },
+        description_nl: { type: 'string' },
         price: { type: 'number' },
         bedrooms: { type: 'number' },
         bathrooms: { type: 'number' },
@@ -204,6 +218,7 @@ const tools: ToolDefinition[] = [
         parking_spaces: { type: 'number' },
         elevator: { type: 'boolean' },
         basement: { type: 'boolean' },
+        source_url: { type: 'string' },
       },
       required: ['id'],
     },
@@ -223,7 +238,7 @@ const tools: ToolDefinition[] = [
         patch_json: {
           type: 'string',
           description:
-            'JSON object string only (no markdown fences). Keys are listing fields only: title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, images (URL array), featured, hidden, year_built, energy_label, floors, furnished, garden, garden_area, balcony, terrace, parking, parking_spaces, elevator, basement. Example: {"title":"…","description":"…","bedrooms":2}',
+            'JSON object string only (no markdown fences). Keys are listing fields only: title, description, description_en, description_nl, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, images (URL array), featured, hidden, year_built, energy_label, floors, furnished, garden, garden_area, balcony, terrace, parking, parking_spaces, elevator, basement, source_url. Example: {"title":"…","description":"…","bedrooms":2}',
         },
         dry_run: {
           type: 'boolean',

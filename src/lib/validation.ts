@@ -21,6 +21,8 @@ export const getListingSchema = z.object({
 export const createListingSchema = z.object({
   title: z.string().min(1, 'Title is required').max(500),
   description: z.string().max(10000).optional(),
+  description_en: z.string().max(10000).optional(),
+  description_nl: z.string().max(10000).optional(),
   price: z.number().positive('Price must be positive').optional(),
   bedrooms: z.number().int().min(0).max(100).optional(),
   bathrooms: z.number().int().min(0).max(100).optional(),
@@ -54,6 +56,8 @@ export const updateListingSchema = z.object({
   id: z.number().int().positive('Listing ID must be a positive integer'),
   title: z.string().min(1).max(500).optional(),
   description: z.string().max(10000).optional(),
+  description_en: z.string().max(10000).optional(),
+  description_nl: z.string().max(10000).optional(),
   price: z.number().positive('Price must be positive').optional(),
   bedrooms: z.number().int().min(0).max(100).optional(),
   bathrooms: z.number().int().min(0).max(100).optional(),

@@ -3,6 +3,8 @@
 export const LISTING_PUT_PATCH_KEYS = [
   'title',
   'description',
+  'description_en',
+  'description_nl',
   'price',
   'bedrooms',
   'bathrooms',

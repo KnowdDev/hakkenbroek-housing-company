@@ -3,6 +3,8 @@
 export const LISTING_PATCH_COLUMNS = [
   'title',
   'description',
+  'description_en',
+  'description_nl',
   'price',
   'bedrooms',
   'bathrooms',
@@ -29,6 +31,7 @@ export const LISTING_PATCH_COLUMNS = [
   'elevator',
   'basement',
   'images',
+  'source_url',
 ] as const;
 
 export type ListingPatchColumn = (typeof LISTING_PATCH_COLUMNS)[number];
