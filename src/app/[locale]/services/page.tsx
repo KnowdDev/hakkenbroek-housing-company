@@ -11,7 +11,7 @@ export default function ServicesPage() {
     en: {
       heroSubtitle: 'Our Expertise',
       heroTitle: 'Buying and selling at the highest level',
-      intro: 'We offer a complete range of real estate services — with buying and selling at the core of everything we do. Whether you are acquiring a canal house, selling a family estate, or seeking investment property, our team brings 25+ years of Amsterdam market intelligence to your side of the table.',
+      intro: 'We offer a complete range of real estate services — with buying and selling at the core of everything we do. Whether you are acquiring a canal house, selling a family estate, or seeking investment property, our team brings more than 25 years of Amsterdam market intelligence to your side of the table.',
       buying: {
         title: 'Buying',
         description: 'We represent buyers with discretion, precision, and access that no portal can offer. From initial consultation to key transfer, we source properties — many off-market — and negotiate terms that reflect true market value.',
@@ -24,12 +24,12 @@ export default function ServicesPage() {
       },
       renting: {
         title: 'Renting',
-        description: 'Curated rental properties for expats and locals who expect more. Every listing in our portfolio meets our standards for location, light, and character.',
+        description: 'Amsterdam’s rental market moves quickly. We give tenants access to carefully selected properties and guide every step from viewing to contract.',
         features: ['Curated rental portfolio', 'Expat rental specialists', 'Lease negotiation', 'Move-in coordination']
       },
       leasing: {
         title: 'Leasing',
-        description: 'Long-term lease management for landlords who value peace of mind. We handle tenant selection, rent collection, and full legal compliance.',
+        description: 'For landlords, we position your property for the right market with tailored presentation, carefully screened tenants, and reliable legal and operational management.',
         features: ['Tenant selection and screening', 'Rent collection and administration', 'Property maintenance coordination', 'Legal and regulatory compliance']
       },
       management: {
@@ -44,7 +44,7 @@ export default function ServicesPage() {
     nl: {
       heroSubtitle: 'Onze Expertise',
       heroTitle: 'Kopen en verkopen op het hoogste niveau',
-      intro: 'Wij bieden een compleet scala aan vastgoeddiensten — met kopen en verkopen als kern van alles wat wij doen. Of u nu een grachtenpand verwerft, een familiebezit verkoopt, of op zoek bent naar investeringsvastgoed, ons team brengt 25+ jaar Amsterdamse marktkennis aan uw zijde.',
+      intro: 'Wij bieden een compleet scala aan vastgoeddiensten — met kopen en verkopen als kern van alles wat wij doen. Of u nu een grachtenpand verwerft, een familiebezit verkoopt, of op zoek bent naar investeringsvastgoed, ons team brengt al meer dan 25 jaar Amsterdamse marktkennis aan uw zijde.',
       buying: {
         title: 'Kopen',
         description: 'Wij vertegenwoordigen kopers met discretie, precisie, en toegang die geen enkel portaal kan bieden. Van eerste consult tot sleuteloverdracht — wij vinden woningen, vaak off-market, en onderhandelen voorwaarden die de werkelijke marktwaarde weerspiegelen.',
@@ -57,12 +57,12 @@ export default function ServicesPage() {
       },
       renting: {
         title: 'Huren',
-        description: 'Gecureerde huurwoningen voor expats en locals die meer verwachten. Elke woning in ons portfolio voldoet aan onze normen voor locatie, licht en karakter.',
+        description: 'De huurmarkt in Amsterdam beweegt snel. Wij geven huurders toegang tot zorgvuldig geselecteerde woningen en begeleiden iedere stap van bezichtiging tot contract.',
         features: ['Gecureerd huurportfolio', 'Expat huurspecialisten', 'Huurcontract onderhandeling', 'Verhuiscoördinatie']
       },
       leasing: {
         title: 'Verhuur',
-        description: 'Lange-termijn verhuurbeheer voor verhuurders die gemoedsrust waarderen. Wij verzorgen huurdersselectie, incasso, en volledige juridische naleving.',
+        description: 'Voor verhuurders positioneren wij uw woning voor de juiste markt, met gerichte presentatie, zorgvuldig gescreende huurders en betrouwbaar juridisch en operationeel beheer.',
         features: ['Huurdersselectie en screening', 'Huurincasso en administratie', 'Coördinatie van onderhoud', 'Juridische en regelgevende naleving']
       },
       management: {
@@ -120,7 +120,7 @@ export default function ServicesPage() {
             alt="Amsterdam architecture"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/40" />
+          <div className="absolute inset-0 bg-earth/40" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
@@ -202,22 +202,22 @@ export default function ServicesPage() {
 
       {/* Property Management — Full width */}
       <Link href={`/services/property-management`} className="block">
-        <section className="py-24 bg-charcoal text-white group cursor-pointer">
+        <section className="py-24 bg-earth text-white group cursor-pointer">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-400 mb-4">
+                <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-100/75 mb-4">
                   05
                 </p>
                 <h2 className="font-display text-3xl md:text-4xl mb-6 group-hover:text-brass-light transition-colors">
                   {t.management.title}
                 </h2>
-                <p className="text-stone-300 leading-relaxed mb-10">
+                <p className="text-stone-100/85 leading-relaxed mb-10">
                   {t.management.description}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {managementFeatures.map((item) => (
-                    <div key={item} className="flex items-start text-stone-300">
+                    <div key={item} className="flex items-start text-stone-100/85">
                       <span className="text-brass-light mr-3">—</span>
                       {item}
                     </div>

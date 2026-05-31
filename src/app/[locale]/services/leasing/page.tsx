@@ -11,8 +11,8 @@ export default function LeasingPage() {
       heroSubtitle: 'Lease Management',
       heroTitle: 'Long-term lease management for discerning landlords',
       heroDescription: 'We manage your property as if it were our own. From tenant selection to rent collection legal compliance to maintenance coordination we handle every aspect of long-term leasing with precision and care.',
-      introTitle: 'The Hakkenbroek approach to leasing',
-      introText: 'Leasing your property should generate income not headaches. Yet many landlords find themselves overwhelmed by tenant issues maintenance requests and administrative burdens. Our lease management service transforms property ownership into a truly passive investment while protecting your asset and maximizing your returns.',
+      introTitle: 'Position your property for the right market',
+      introText: 'With a tailored marketing approach, exclusive private viewings, and access to an international network of qualified tenants, we present your property to the right audience. We do not stop at offering properties — we present them in a way that does justice to their unique character and value.',
       processTitle: 'Our lease management process',
       steps: [
         { step: '01', title: 'Property Assessment', desc: 'We begin with a thorough assessment of your property. We evaluate its rental potential identify any maintenance or improvement needs and recommend positioning strategies to attract quality tenants and achieve optimal rent.' },
@@ -37,8 +37,8 @@ export default function LeasingPage() {
       heroSubtitle: 'Verhuurbeheer',
       heroTitle: 'Langdurig verhuurbeheer voor kritische verhuurders',
       heroDescription: 'Wij beheren uw woning alsof het onze eigen is. Van huurdersselectie tot incasso, juridische naleving tot onderhoudscoördinatie — wij behartigen elk aspect van langdurige verhuur met precisie en zorg.',
-      introTitle: 'De Hakkenbroek aanpak voor verhuur',
-      introText: 'Het verhuren van uw woning zou inkomsten moeten opleveren, geen hoofdpijn. Toch raken veel verhuurders overweldigd door huurdersproblemen, onderhoudsverzoeken en administratieve lasten. Ons verhuurbeheer transformeert eigendom in een écht passieve investering, terwijl uw bezit beschermd blijft en uw rendement wordt gemaximaliseerd.',
+      introTitle: 'Positioneer uw woning voor de juiste markt',
+      introText: 'Met een op maat gemaakte marketingaanpak, exclusieve privébezichtigingen en toegang tot een internationaal netwerk van gekwalificeerde huurders brengen wij uw woning onder de aandacht bij de juiste doelgroep. Wij beperken ons niet tot het aanbieden van woningen — wij presenteren ze op een manier die recht doet aan hun unieke karakter en waarde.',
       processTitle: 'Ons verhuurbeheerproces',
       steps: [
         { step: '01', title: 'Woningassessment', desc: 'We beginnen met een grondige beoordeling van uw woning. We bepalen de huurpotentie, identificeren onderhouds- of verbeterbehoeften en adviseren over positionering om kwalitatieve huurders te trekken en de optimale huur te realiseren.' },
@@ -94,7 +94,7 @@ export default function LeasingPage() {
               alt='Well-maintained historic property exterior'
               className='w-full h-full object-cover'
             />
-            <div className='absolute inset-0 bg-charcoal/45' />
+            <div className='absolute inset-0 bg-earth/45' />
           </div>
           <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 text-white'>
             <p className='font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4'>{t.heroSubtitle}</p>
@@ -145,10 +145,10 @@ export default function LeasingPage() {
           </div>
         </section>
 
-        <section className='py-24 bg-charcoal text-white'>
+        <section className='py-24 bg-earth text-white'>
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
-            <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
+            <p className='text-stone-100/85 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
             <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>

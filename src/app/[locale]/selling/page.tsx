@@ -15,7 +15,7 @@ export default function SellingPage() {
       heroTitle: 'Position your property for the market it deserves',
       heroDescription: 'We position your property for the market it deserves. Bespoke marketing strategy, professional staging consultation, private viewings for qualified buyers, and access to our international network of high-net-worth individuals.',
       introTitle: 'The art of selling in Amsterdam',
-      introText: 'In 2026, 65–70% of Amsterdam properties sell above asking price — but only those positioned correctly. We position your property for the market it deserves, not the market it happens to find. Bespoke strategy, editorial presentation, and a buyer network that spans four continents.',
+      introText: 'A successful sale begins with the right positioning. In a competitive market such as Amsterdam, it is essential that a property is not only visible, but also speaks to the right audience. With a carefully developed sales strategy, professional presentation, and access to an international network of buyers, we ensure your property receives the attention it deserves. That is how we create the optimal conditions for a successful transaction on the best possible terms.',
       processTitle: 'Our selling process',
       steps: [
         { step: '01', title: 'Valuation & Strategy', desc: 'We begin with a comprehensive valuation rooted in comparable sales, market trends, and the unique qualities of your property. From this foundation, we develop a bespoke marketing strategy tailored to the buyers most likely to appreciate what you offer.' },
@@ -43,8 +43,8 @@ export default function SellingPage() {
       heroSubtitle: 'Verkopersbegeleiding',
       heroTitle: 'Positioneer uw woning voor de markt die het verdient',
       heroDescription: 'Maatwerk marketing, privébezichtigingen, en toegang tot gekwalificeerde internationale kopers die zeldzaamheid begrijpen. Wij noteren woningen niet. Wij presenteren ze.',
-      introTitle: 'De kunst van het verkopen in Amsterdam',
-      introText: 'In 2026 wordt 65–70% van de Amsterdamse woningen boven de vraagprijs verkocht — maar alleen diegenen die correct gepositioneerd zijn. Wij positioneren uw woning voor de markt die het verdient, niet de markt die het toevallig vindt. Maatwerk strategie, editoriale presentatie, en een kopersnetwerk dat vier continenten bestrijkt.',
+      introTitle: 'De kunst van verkopen in Amsterdam',
+      introText: 'Een succesvolle verkoop begint met de juiste positionering. In een competitieve markt zoals Amsterdam is het essentieel dat een woning niet alleen zichtbaar is, maar ook de juiste doelgroep aanspreekt. Met een zorgvuldig uitgewerkte verkoopstrategie, professionele presentatie en toegang tot een internationaal netwerk van kopers zorgen wij ervoor dat uw woning de aandacht krijgt die zij verdient. Zo creëren wij de optimale omstandigheden voor een succesvolle transactie tegen de best mogelijke voorwaarden.',
       processTitle: 'Ons verkoopproces',
       steps: [
         { step: '01', title: 'Waardering & Strategie', desc: 'Wij beginnen met een uitgebreide waardering gebaseerd op vergelijkbare verkopen, markttrends, en de unieke kwaliteiten van uw woning. Vanuit dit fundament ontwikkelen wij een maatwerk marketingstrategie afgestemd op de kopers die uw woning het meest zullen waarderen.' },
@@ -135,10 +135,10 @@ export default function SellingPage() {
         </section>
 
         {/* CTA */}
-        <section className='py-24 bg-charcoal text-white'>
+        <section className='py-24 bg-earth text-white'>
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
-            <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
+            <p className='text-stone-100/85 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
             <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>

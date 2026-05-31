@@ -20,6 +20,7 @@ interface Listing {
   image_url?: string;
   images?: string[];
   featured: boolean;
+  hidden: boolean;
   created_at: string;
   year_built?: number;
   energy_label?: string;
@@ -43,6 +44,7 @@ export default function ListingsDashboard() {
   const [editingListing, setEditingListing] = useState<Listing | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'sale' | 'rent'>('all');
+  const [filterVisibility, setFilterVisibility] = useState<'all' | 'visible' | 'hidden'>('all');
   const [uploadingFeatured, setUploadingFeatured] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
   const [formData, setFormData] = useState<Partial<Listing>>({
@@ -61,6 +63,7 @@ export default function ListingsDashboard() {
     image_url: '',
     images: [],
     featured: false,
+    hidden: false,
     year_built: undefined,
     energy_label: '',
     garden: false,
@@ -81,7 +84,7 @@ export default function ListingsDashboard() {
 
   const fetchListings = async () => {
     try {
-      const response = await fetch('/api/listings');
+      const response = await fetch('/api/listings?includeHidden=true');
       const data = await response.json();
       setListings(data);
     } catch (error) {
@@ -186,7 +189,9 @@ export default function ListingsDashboard() {
           status: 'available',
           listing_type: 'sale',
           image_url: '',
+          images: [],
           featured: false,
+          hidden: false,
         });
       } else {
         const data = await response.json().catch(() => ({}));
@@ -226,6 +231,37 @@ export default function ListingsDashboard() {
     }
   };
 
+  const handleVisibilityToggle = async (listing: Listing) => {
+    setErrorMessage('');
+
+    try {
+      const response = await fetch(`/api/listings/${listing.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hidden: !listing.hidden }),
+      });
+
+      if (response.ok) {
+        await fetchListings();
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setErrorMessage(data?.error || 'Failed to update listing visibility');
+      }
+    } catch (error) {
+      console.error('Error updating listing visibility:', error);
+      setErrorMessage('Network error while updating listing visibility');
+    }
+  };
+
+  const filteredListings = listings.filter((listing) => {
+    const matchesType = filterType === 'all' || listing.listing_type === filterType;
+    const matchesVisibility =
+      filterVisibility === 'all' ||
+      (filterVisibility === 'hidden' ? listing.hidden : !listing.hidden);
+
+    return matchesType && matchesVisibility;
+  });
+
   return (
     <DashboardLayout>
       <div className="p-8">
@@ -253,7 +289,9 @@ export default function ListingsDashboard() {
                   status: 'available',
                   listing_type: 'sale',
                   image_url: '',
+                  images: [],
                   featured: false,
+                  hidden: false,
                 });
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
@@ -475,6 +513,25 @@ export default function ListingsDashboard() {
                   <label htmlFor="featured" className="ml-2 text-sm font-medium text-stone-700">
                     Featured
                   </label>
+                </div>
+                <div className="md:col-span-2 rounded-lg border border-stone-200 bg-white px-4 py-3">
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="hidden"
+                      checked={Boolean(formData.hidden)}
+                      onChange={(e) => setFormData({ ...formData, hidden: e.target.checked })}
+                      className="mt-0.5 h-5 w-5 rounded border-stone-300 text-brass focus:ring-brass"
+                    />
+                    <div>
+                      <label htmlFor="hidden" className="text-sm font-medium text-stone-700">
+                        Hide from website
+                      </label>
+                      <p className="mt-1 text-sm text-stone-500">
+                        Keep this listing in the dashboard, but remove it from public property pages, featured sections, and direct public detail access.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -755,23 +812,48 @@ export default function ListingsDashboard() {
           </div>
         )}
 
-        <div className="mb-6 flex gap-2">
-          {(['all', 'sale', 'rent'] as const).map((type) => (
-            <button
-              key={type}
-              onClick={() => setFilterType(type)}
-              className={`px-4 py-2 font-body text-sm uppercase tracking-wider transition-colors ${
-                filterType === type
-                  ? 'bg-charcoal text-white'
-                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-              }`}
-            >
-              {type === 'all' ? 'All' : type === 'sale' ? 'For Sale' : 'For Rent'}
-              <span className="ml-2 text-xs opacity-70">
-                ({type === 'all' ? listings.length : listings.filter(l => l.listing_type === type).length})
-              </span>
-            </button>
-          ))}
+        <div className="mb-6 flex flex-wrap gap-6">
+          <div className="flex flex-wrap gap-2">
+            {(['all', 'sale', 'rent'] as const).map((type) => (
+              <button
+                key={type}
+                onClick={() => setFilterType(type)}
+                className={`px-4 py-2 font-body text-sm uppercase tracking-wider transition-colors ${
+                  filterType === type
+                    ? 'bg-charcoal text-white'
+                    : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                }`}
+              >
+                {type === 'all' ? 'All' : type === 'sale' ? 'For Sale' : 'For Rent'}
+                <span className="ml-2 text-xs opacity-70">
+                  ({type === 'all' ? listings.length : listings.filter(l => l.listing_type === type).length})
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {(['all', 'visible', 'hidden'] as const).map((visibility) => (
+              <button
+                key={visibility}
+                onClick={() => setFilterVisibility(visibility)}
+                className={`px-4 py-2 font-body text-sm uppercase tracking-wider transition-colors ${
+                  filterVisibility === visibility
+                    ? 'bg-earth text-white'
+                    : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                }`}
+              >
+                {visibility === 'all' ? 'All Visibility' : visibility === 'visible' ? 'Visible' : 'Hidden'}
+                <span className="ml-2 text-xs opacity-70">
+                  ({visibility === 'all'
+                    ? listings.length
+                    : visibility === 'visible'
+                      ? listings.filter((listing) => !listing.hidden).length
+                      : listings.filter((listing) => listing.hidden).length})
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="bg-stone-50 rounded-lg shadow-sm overflow-hidden">
@@ -779,6 +861,8 @@ export default function ListingsDashboard() {
             <div className="p-8 text-center text-stone-500">Loading listings...</div>
           ) : listings.length === 0 ? (
             <div className="p-8 text-center text-stone-500">No listings yet</div>
+          ) : filteredListings.length === 0 ? (
+            <div className="p-8 text-center text-stone-500">No listings match the current filters</div>
           ) : (
             <table className="w-full">
               <thead className="bg-stone-50 border-b border-stone-200">
@@ -796,6 +880,9 @@ export default function ListingsDashboard() {
                     Type
                   </th>
                   <th className="px-6 py-4 text-left font-body text-xs uppercase tracking-wider text-stone-600">
+                    Public Visibility
+                  </th>
+                  <th className="px-6 py-4 text-left font-body text-xs uppercase tracking-wider text-stone-600">
                     Status
                   </th>
                   <th className="px-6 py-4 text-left font-body text-xs uppercase tracking-wider text-stone-600">
@@ -807,10 +894,8 @@ export default function ListingsDashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
-                {listings
-                  .filter((listing) => filterType === 'all' || listing.listing_type === filterType)
-                  .map((listing) => (
-                  <tr key={listing.id} className="hover:bg-stone-50">
+                {filteredListings.map((listing) => (
+                  <tr key={listing.id} className={listing.hidden ? 'bg-stone-50/80 hover:bg-stone-100/80' : 'hover:bg-stone-50'}>
                     <td className="px-6 py-4 text-sm font-medium text-charcoal">
                       {listing.title}
                     </td>
@@ -829,6 +914,17 @@ export default function ListingsDashboard() {
                         }`}
                       >
                         {listing.listing_type === 'rent' ? 'For Rent' : 'For Sale'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          listing.hidden
+                            ? 'bg-stone-200 text-stone-700'
+                            : 'bg-emerald-100 text-emerald-800'
+                        }`}
+                      >
+                        {listing.hidden ? 'Hidden' : 'Visible'}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-sm">
@@ -854,12 +950,20 @@ export default function ListingsDashboard() {
                       )}
                     </td>
                     <td className="px-6 py-4 text-sm">
-                      <button
-                        onClick={() => handleEdit(listing)}
-                        className="text-blue-600 hover:text-blue-800"
-                      >
-                        Edit
-                      </button>
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => handleEdit(listing)}
+                          className="text-blue-600 hover:text-blue-800"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleVisibilityToggle(listing)}
+                          className={listing.hidden ? 'text-emerald-700 hover:text-emerald-900' : 'text-stone-600 hover:text-charcoal'}
+                        >
+                          {listing.hidden ? 'Show' : 'Hide'}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

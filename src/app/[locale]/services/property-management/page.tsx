@@ -94,7 +94,7 @@ export default function PropertyManagementPage() {
               alt='Well-maintained luxury property with garden'
               className='w-full h-full object-cover'
             />
-            <div className='absolute inset-0 bg-charcoal/45' />
+            <div className='absolute inset-0 bg-earth/45' />
           </div>
           <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 text-white'>
             <p className='font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4'>{t.heroSubtitle}</p>
@@ -145,10 +145,10 @@ export default function PropertyManagementPage() {
           </div>
         </section>
 
-        <section className='py-24 bg-charcoal text-white'>
+        <section className='py-24 bg-earth text-white'>
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
-            <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
+            <p className='text-stone-100/85 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
             <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>

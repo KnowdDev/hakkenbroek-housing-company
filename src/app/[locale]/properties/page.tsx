@@ -232,7 +232,7 @@ export default function PropertiesPage() {
             alt="Amsterdam property"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/40" />
+          <div className="absolute inset-0 bg-earth/40" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
@@ -423,12 +423,12 @@ export default function PropertiesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-charcoal text-white">
+      <section className="py-24 bg-earth text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-4xl mb-6">
             {t.ctaTitle}
           </h2>
-          <p className="text-stone-300 text-lg mb-10 leading-relaxed">
+          <p className="text-stone-100/85 text-lg mb-10 leading-relaxed">
             {t.ctaText}
           </p>
           <a

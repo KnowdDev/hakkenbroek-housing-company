@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { demoListings } from '@/lib/listings-data';
 import { requireWriteAccess } from '@/lib/api-auth';
+import { hasDashboardAuth } from '@/lib/dashboard-auth';
 import { mergeListingPutBody } from '@/lib/listing-put-merge';
 
 export async function GET(
@@ -9,16 +10,25 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+  const isDashboardRequest = hasDashboardAuth(request);
+
   try {
     const result = await query(
-      'SELECT * FROM listings WHERE id = $1',
+      'SELECT *, COALESCE(hidden, FALSE) AS hidden FROM listings WHERE id = $1',
       [id]
     );
 
     if (result.rows.length > 0) {
+      const listing = result.rows[0] as Record<string, unknown>;
+      if (listing.hidden && !isDashboardRequest) {
+        return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+      }
+
       return NextResponse.json(result.rows[0], {
         headers: {
-          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+          'Cache-Control': isDashboardRequest
+            ? 'private, no-store'
+            : 'public, s-maxage=60, stale-while-revalidate=300',
         },
       });
     }
@@ -30,6 +40,11 @@ export async function GET(
   if (!listing) {
     return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
   }
+
+  if (listing.hidden && !isDashboardRequest) {
+    return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+  }
+
   return NextResponse.json(listing);
 }
 
@@ -70,6 +85,7 @@ export async function PUT(
       listing_type,
       image_url,
       featured,
+      hidden,
       images,
       year_built,
       energy_label,
@@ -95,11 +111,11 @@ export async function PUT(
         `UPDATE listings SET
           title = $1, description = $2, description_en = $3, description_nl = $4, price = $5, bedrooms = $6, bathrooms = $7,
           area = $8, address = $9, city = $10, postal_code = $11, property_type = $12,
-          status = $13, listing_type = $14, image_url = $15, featured = $16, images = $17, year_built = $18,
-          energy_label = $19, garden = $20, garden_area = $21, parking = $22,
-          parking_spaces = $23, balcony = $24, terrace = $25, furnished = $26,
-          basement = $27, elevator = $28, floors = $29, source_url = $30, updated_at = CURRENT_TIMESTAMP
-          WHERE id = $31 RETURNING *`,
+          status = $13, listing_type = $14, image_url = $15, featured = $16, hidden = $17, images = $18, year_built = $19,
+          energy_label = $20, garden = $21, garden_area = $22, parking = $23,
+          parking_spaces = $24, balcony = $25, terrace = $26, furnished = $27,
+          basement = $28, elevator = $29, floors = $30, source_url = $31, updated_at = CURRENT_TIMESTAMP
+          WHERE id = $32 RETURNING *`,
         [
           title,
           description,
@@ -117,6 +133,7 @@ export async function PUT(
           (listing_type as string) || 'sale',
           image_url,
           featured,
+          hidden,
           imagesPayload,
           year_built,
           energy_label,
@@ -140,8 +157,8 @@ export async function PUT(
         `UPDATE listings SET
           title = $1, description = $2, price = $3, bedrooms = $4, bathrooms = $5,
           area = $6, address = $7, city = $8, postal_code = $9, property_type = $10,
-          status = $11, listing_type = $12, image_url = $13, featured = $14, updated_at = CURRENT_TIMESTAMP
-          WHERE id = $15 RETURNING *`,
+          status = $11, listing_type = $12, image_url = $13, featured = $14, hidden = $15, updated_at = CURRENT_TIMESTAMP
+          WHERE id = $16 RETURNING *`,
         [
           title,
           description,
@@ -157,6 +174,7 @@ export async function PUT(
           (listing_type as string) || 'sale',
           image_url,
           featured,
+          hidden,
           id,
         ]
       );

@@ -99,11 +99,11 @@ export default function BuyingPage() {
       <div className='min-h-screen'>
         {/* Hero — Split layout */}
         <section className='flex flex-col lg:flex-row h-auto lg:h-[92vh] lg:min-h-[600px] overflow-hidden'>
-          <div className='relative w-full lg:w-[58%] h-[55vh] lg:h-full'>
+          <div className='relative flex w-full items-center justify-center bg-stone-100 lg:w-[58%] lg:h-full'>
             <img
               src='/buying-hero.webp'
-              alt='Luxury Amsterdam canal house interior'
-              className='w-full h-full object-cover'
+              alt='Elegant Amsterdam villa overlooking a private pond and garden'
+              className='block w-full h-auto lg:h-full lg:w-full object-contain object-center'
             />
           </div>
           <div className='w-full lg:w-[42%] bg-stone-50 flex items-center'>
@@ -135,10 +135,10 @@ export default function BuyingPage() {
         </section>
 
         {/* CTA */}
-        <section className='py-24 bg-charcoal text-white'>
+        <section className='py-24 bg-earth text-white'>
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
-            <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
+            <p className='text-stone-100/85 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
             <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>

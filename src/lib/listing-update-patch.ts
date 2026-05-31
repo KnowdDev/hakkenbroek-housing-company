@@ -15,6 +15,7 @@ export const LISTING_PATCH_COLUMNS = [
   'listing_type',
   'image_url',
   'featured',
+  'hidden',
   'year_built',
   'energy_label',
   'floors',

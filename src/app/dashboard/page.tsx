@@ -23,6 +23,7 @@ interface Listing {
   property_type?: string;
   listing_type?: 'sale' | 'rent';
   featured: boolean;
+  hidden: boolean;
 }
 
 export default function Dashboard() {
@@ -50,7 +51,7 @@ export default function Dashboard() {
 
   const fetchListings = async () => {
     try {
-      const response = await fetch('/api/listings');
+      const response = await fetch('/api/listings?includeHidden=true');
       const data = await response.json();
       if (!response.ok) {
         throw new Error((data as { error?: string })?.error || 'Failed to fetch listings');
@@ -66,6 +67,8 @@ export default function Dashboard() {
 
   const stats = {
     totalListings: listings.length,
+    visibleListings: listings.filter(l => !l.hidden).length,
+    hiddenListings: listings.filter(l => l.hidden).length,
     saleListings: listings.filter(l => l.listing_type === 'sale').length,
     rentListings: listings.filter(l => l.listing_type === 'rent').length,
     availableListings: listings.filter(l => l.status === 'available').length,
@@ -88,6 +91,9 @@ export default function Dashboard() {
           <div className="bg-white rounded-lg border border-stone-200 p-6">
             <p className="text-sm font-body uppercase tracking-wider text-stone-600 mb-2">Total Listings</p>
             <p className="font-display text-3xl text-charcoal">{stats.totalListings}</p>
+            <p className="text-sm text-stone-500 mt-2">
+              {stats.visibleListings} visible, {stats.hiddenListings} hidden
+            </p>
             <Link href="/dashboard/listings" className="text-sm text-brass hover:underline mt-2 inline-block">
               View all →
             </Link>

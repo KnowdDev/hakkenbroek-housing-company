@@ -116,8 +116,8 @@ function useCountUp(end: number, duration = 2000, inView = false) {
 const content = {
   en: {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Since 2000',
-    heroTitle: 'Your next home, properly found',
-    heroDescription: "For over 25+ years we have been matching people with the right property in Amsterdam, Het Gooi and the Vechtstreek. Canal houses with original details, light-filled apartments in leafy neighbourhoods, and family homes with space to breathe — we know every street, every market shift, and what your money is really worth here.",
+    heroTitle: 'Your next home, perfectly matched',
+    heroDescription: 'For more than 25 years we have been matching people with the right property in Amsterdam, Het Gooi and the Vechtstreek. Canal houses with original details, light-filled apartments in leafy neighbourhoods, and family homes with space to breathe — we know every street, every market shift, and what your money is really worth here.',
     viewProperties: 'View Portfolio',
     getInTouch: 'Get in Touch',
     searchPlaceholder: 'Search by neighbourhood or address...',
@@ -132,13 +132,14 @@ const content = {
     allPrices: 'Any Price',
     valuationEyebrow: 'Thinking of selling?',
     valuationTitle: "What's your home worth?",
+    valuationAssetLine: 'Your property is more than a home — it is your most important asset.',
     valuationDesc: 'Get a free, no-obligation valuation from agents who know the Amsterdam, Gooi and Vecht markets inside out. We will reply within 24 hours with honest numbers.',
     valuationAddress: 'Your address',
     valuationEmail: 'Your email',
     valuationBtn: 'Get My Valuation',
     valuationTrust: 'No spam. No pressure. Just honest numbers.',
-    servicesEyebrow: 'Every step covered',
-    servicesTitle: 'Buying and selling done properly',
+    servicesEyebrow: 'What we offer',
+    servicesTitle: 'Our services',
     heritageEyebrow: 'Rooted in Amsterdam, Het Gooi & De Vechtstreek',
     heritageTitle: 'Twenty-five years of knowing every street, every market, and what matters to you',
     heritageDesc: 'Since 2000 we have guided buyers, sellers and landlords through the property market in Amsterdam, Het Gooi and the Vechtstreek. We do not chase quick commissions. We take the time to understand what you are actually looking for, then stick with you until it is sorted. Our office on Leliegracht has been the starting point for hundreds of people finding their place in this city and beyond.',
@@ -155,7 +156,7 @@ const content = {
     whyAccess: 'Access to Off-Market Homes',
     whyAccessDesc: 'In Amsterdam, Het Gooi and the Vechtstreek, some of the best properties never make it to the public portals. After twenty-five years, we know the owners, the developers, and the landlords who prefer discretion.',
     whyIntl: 'International Reach, Local Roots',
-    whyIntlDesc: 'We speak English and Dutch, and we have worked with buyers and sellers from every continent. Whether you are relocating from London, Singapore or Berlin, we make the Dutch property system feel straightforward.',
+    whyIntlDesc: 'We speak English and Dutch, and we work with buyers and sellers from around the world. Whether you are relocating from London, Singapore or Berlin, we make the Dutch property system feel straightforward.',
     whyHistoric: 'Expertise in Historic Homes',
     whyHistoricDesc: 'Canal houses, monuments, and period villas have their own rules. We know the difference between a protected facade and a full monument status, and we will tell you exactly what maintenance and renovation really costs.',
     faqEyebrow: 'Questions before you start',
@@ -175,8 +176,8 @@ const content = {
   },
   nl: {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Sinds 2000',
-    heroTitle: 'Uw volgende thuis, goed gevonden',
-    heroDescription: 'Al meer dan 25+ jaar helpen we mensen aan het juiste huis in Amsterdam, Het Gooi en de Vechtstreek. Grachtenpanden met karakter, lichte appartementen in groene buurten, en gezinswoningen met ruimte om te leven — we kennen elke straat, elke marktverschuiving, en wat uw geld hier echt waard is.',
+    heroTitle: 'Uw volgende thuis, perfect gevonden',
+    heroDescription: 'Al meer dan 25 jaar helpen we mensen aan het juiste huis in Amsterdam, Het Gooi en de Vechtstreek. Grachtenpanden met karakter, lichte appartementen in groene buurten, en gezinswoningen met ruimte om te leven — we kennen elke straat, elke marktverschuiving, en wat uw geld hier echt waard is.',
     viewProperties: 'Bekijk Portfolio',
     getInTouch: 'Neem Contact Op',
     searchPlaceholder: 'Zoek op buurt of adres...',
@@ -191,13 +192,14 @@ const content = {
     allPrices: 'Alle Prijzen',
     valuationEyebrow: 'Overweegt u te verkopen?',
     valuationTitle: 'Wat is uw huis waard?',
+    valuationAssetLine: 'Uw woning is meer dan een thuis — het is uw belangrijkste bezit.',
     valuationDesc: 'Ontvang een gratis, vrijblijvende taxatie van makelaars die de markten van Amsterdam, Het Gooi en de Vechtstreek door en door kennen. We reageren binnen 24 uur met eerlijke cijfers.',
     valuationAddress: 'Uw adres',
     valuationEmail: 'Uw e-mail',
     valuationBtn: 'Vraag Taxatie Aan',
     valuationTrust: 'Geen spam. Geen druk. Gewoon eerlijke cijfers.',
-    servicesEyebrow: 'Elke stap gedekt',
-    servicesTitle: 'Kopen en verkopen, maar dan goed',
+    servicesEyebrow: 'Wat wij bieden',
+    servicesTitle: 'Onze diensten',
     heritageEyebrow: 'Verankerd in Amsterdam, Het Gooi & De Vechtstreek',
     heritageTitle: 'Al vijfentwintig jaar kennen we elke straat, begrijpen we elke markt, en weten we wat voor u telt',
     heritageDesc: 'Sinds 2000 begeleiden we kopers, verkopers en verhuurders door de vastgoedmarkt van Amsterdam, Het Gooi en de Vechtstreek. We jagen geen snelle provisies na. We nemen de tijd om te begrijpen wat u écht zoekt, en we blijven erbij tot het geregeld is. Ons kantoor aan de Leliegracht is het startpunt geweest voor honderden mensen die hun plek in deze stad en daarbuiten vonden.',
@@ -214,7 +216,7 @@ const content = {
     whyAccess: 'Toegang Tot Off-Market Woningen',
     whyAccessDesc: 'In Amsterdam, Het Gooi en de Vechtstreek komen sommige van de beste woningen nooit op de openbare portals. Na vijfentwintig jaar kennen we de eigenaren, de ontwikkelaars, en de verhuurders die discretie verkiezen.',
     whyIntl: 'Internationaal Bereik, Lokale Wortels',
-    whyIntlDesc: 'We spreken Nederlands en Engels, en hebben met kopers en verkopers uit alle continenten gewerkt. Of u nu verhuist vanuit Londen, Singapore of Berlijn, we maken het Nederlandse vastgoedsysteem begrijpelijk.',
+    whyIntlDesc: 'We spreken Nederlands en Engels, en werken met kopers en verkopers van over de hele wereld. Of u nu verhuist vanuit Londen, Singapore of Berlijn, we maken het Nederlandse vastgoedsysteem begrijpelijk.',
     whyHistoric: 'Expertise in Monumentale Panden',
     whyHistoricDesc: 'Grachtenpanden, monumenten en villa\'s uit een eerdere tijd hebben hun eigen regels. We kennen het verschil tussen een beschermd gezicht en een volledig monument, en we vertellen u precies wat onderhoud en renovatie echt kost.',
     faqEyebrow: 'Vragen voordat u begint',
@@ -367,7 +369,7 @@ export default function Home() {
           {/* Left: full-bleed image with atmospheric gradient */}
           <div className="relative w-full lg:w-[52%] h-[48vh] sm:h-[54vh] md:h-[62vh] lg:h-auto">
             <img
-              src="/hero.webp"
+              src="/hakkenbroek-home.webp"
               alt="Elegant Amsterdam interior with green velvet sofa and natural light"
               fetchPriority="high"
               decoding="async"
@@ -543,7 +545,7 @@ export default function Home() {
       {/* ═══════════════════ VALUATION CTA ═══════════════════ */}
       <section ref={valRef.ref} className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative bg-charcoal overflow-hidden">
+          <div className="relative bg-earth overflow-hidden">
             {/* atmospheric glow */}
             <div className="absolute -top-20 -right-20 w-80 h-80 bg-brass/10 rounded-full blur-3xl" />
             <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-brass/5 rounded-full blur-3xl" />
@@ -563,16 +565,22 @@ export default function Home() {
                   {t.valuationTitle}
                 </h2>
                 <p
-                  className={`text-stone-300 leading-relaxed max-w-md ${revealClass(valRef.inView)}`}
+                  className={`text-stone-100/90 leading-relaxed max-w-md mb-4 ${revealClass(valRef.inView)}`}
+                  style={{ transitionDelay: '250ms' }}
+                >
+                  {t.valuationAssetLine}
+                </p>
+                <p
+                  className={`text-stone-100/80 leading-relaxed max-w-md ${revealClass(valRef.inView)}`}
                   style={{ transitionDelay: '300ms' }}
                 >
                   {t.valuationDesc}
                 </p>
                 <div
-                  className={`flex items-center gap-2 mt-6 text-stone-400 text-sm ${revealClass(valRef.inView)}`}
+                  className={`flex items-center gap-2 mt-6 text-stone-100/70 text-sm ${revealClass(valRef.inView)}`}
                   style={{ transitionDelay: '400ms' }}
                 >
-                  <CheckCircle2 className="w-4 h-4 text-stone-300" />
+                  <CheckCircle2 className="w-4 h-4 text-stone-100/90" />
                   {t.valuationTrust}
                 </div>
               </div>
@@ -582,28 +590,28 @@ export default function Home() {
                   className={`relative ${revealClass(valRef.inView)}`}
                   style={{ transitionDelay: '200ms' }}
                 >
-                  <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                  <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-100/70" />
                   <input
                     type="text"
                     required
                     placeholder={t.valuationAddress}
                     value={valAddress}
                     onChange={(e) => setValAddress(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 text-white placeholder:text-stone-500 font-body text-sm focus:outline-none focus:border-stone-300 transition-colors"
+                    className="w-full pl-12 pr-4 py-4 bg-white/[0.08] border border-white/20 text-white placeholder:text-stone-100/55 font-body text-sm focus:outline-none focus:border-white/35 transition-colors"
                   />
                 </div>
                 <div
                   className={`relative ${revealClass(valRef.inView)}`}
                   style={{ transitionDelay: '300ms' }}
                 >
-                  <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                  <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-100/70" />
                   <input
                     type="email"
                     required
                     placeholder={t.valuationEmail}
                     value={valEmail}
                     onChange={(e) => setValEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 text-white placeholder:text-stone-500 font-body text-sm focus:outline-none focus:border-stone-300 transition-colors"
+                    className="w-full pl-12 pr-4 py-4 bg-white/[0.08] border border-white/20 text-white placeholder:text-stone-100/55 font-body text-sm focus:outline-none focus:border-white/35 transition-colors"
                   />
                 </div>
                 <button
@@ -951,7 +959,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════ WHY CHOOSE US ═══════════════════ */}
-      <section ref={whyRef.ref} className="py-20 lg:py-28 bg-charcoal text-white relative overflow-hidden">
+      <section ref={whyRef.ref} className="py-20 lg:py-28 bg-earth text-white relative overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-brass/5 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-brass/3 rounded-full blur-3xl" />
 
@@ -959,7 +967,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div className="lg:sticky lg:top-32">
               <p
-                className={`font-body text-xs uppercase tracking-[0.2em] text-stone-300 mb-4 ${revealClass(whyRef.inView)}`}
+                className={`font-body text-xs uppercase tracking-[0.2em] text-stone-100/75 mb-4 ${revealClass(whyRef.inView)}`}
               >
                 {t.whyEyebrow}
               </p>
@@ -970,7 +978,7 @@ export default function Home() {
                 {t.whyTitle}
               </h2>
               <p
-                className={`text-stone-400 leading-relaxed max-w-md ${revealClass(whyRef.inView)}`}
+                className={`text-stone-100/80 leading-relaxed max-w-md ${revealClass(whyRef.inView)}`}
                 style={{ transitionDelay: '200ms' }}
               >
                 {t.whyDesc}
@@ -997,18 +1005,18 @@ export default function Home() {
               ].map((item, i) => (
                 <div
                   key={item.title}
-                  className={`group bg-white/5 border border-white/10 p-8 hover:border-stone-300/40 hover:bg-white/[0.07] transition-all duration-500 ${revealClass(whyRef.inView)}`}
+                  className={`group bg-white/[0.08] border border-white/20 p-8 hover:border-white/30 hover:bg-white/[0.11] transition-all duration-500 ${revealClass(whyRef.inView)}`}
                   style={{ transitionDelay: `${250 + i * 100}ms` }}
                 >
                   <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-white/10 group-hover:border-stone-300/30 transition-colors duration-300">
-                      <item.icon className="w-5 h-5 text-stone-300" />
+                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-white/20 group-hover:border-white/30 transition-colors duration-300">
+                      <item.icon className="w-5 h-5 text-stone-100/90" />
                     </div>
                     <div>
-                      <h3 className="font-display text-xl mb-2 group-hover:text-stone-300 transition-colors">
+                      <h3 className="font-display text-xl mb-2 text-white group-hover:text-stone-50 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-stone-400 leading-relaxed text-sm">{item.desc}</p>
+                      <p className="text-stone-100/75 leading-relaxed text-sm">{item.desc}</p>
                     </div>
                   </div>
                 </div>

@@ -18,6 +18,7 @@ export interface ListingMarkdownDraft {
   postal_code?: string;
   image_url?: string;
   images?: string[];
+  hidden?: boolean;
   furnished?: boolean;
   balcony?: boolean;
   terrace?: boolean;
@@ -152,6 +153,18 @@ export function extractListingDraftsFromMarkdown(markdown: string): ListingMarkd
 
   const statusRaw = kv['status'];
   if (statusRaw) draft.status = statusRaw;
+
+  const hiddenRaw = kv['hidden'] || kv['hide'] || kv['visibility'];
+  if (hiddenRaw) {
+    const hiddenBool = parseBoolFromLine(hiddenRaw);
+    if (hiddenBool !== undefined) {
+      draft.hidden = hiddenBool;
+    } else if (/hidden|private|internal|not public/i.test(hiddenRaw)) {
+      draft.hidden = true;
+    } else if (/visible|public|live/i.test(hiddenRaw)) {
+      draft.hidden = false;
+    }
+  }
 
   const desc =
     sectionAfterHeading(src, 'Description') ||

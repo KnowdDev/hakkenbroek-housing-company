@@ -51,8 +51,8 @@ export default function ContactPage() {
       addressText: 'Leliegracht 21\n1015 DE Amsterdam\nNetherlands',
       emailAddress: 'Email',
       phoneNumber: 'Phone',
-      officeHours: 'Office Hours',
-      officeHoursText: 'Monday - Friday: 9:00 - 17:00\nSaturday: By appointment\nSunday: Closed'
+      officeHours: 'Opening Hours',
+      officeHoursText: 'By appointment, including weekends'
     },
     nl: {
       heroSubtitle: 'Contact',
@@ -80,8 +80,8 @@ export default function ContactPage() {
       addressText: 'Leliegracht 21\n1015 DE Amsterdam\nNederland',
       emailAddress: 'E-mail',
       phoneNumber: 'Telefoon',
-      officeHours: 'Kantooruren',
-      officeHoursText: 'Maandag - Vrijdag: 9:00 - 17:00\nZaterdag: Op afspraak\nZondag: Gesloten'
+      officeHours: 'Openingstijden',
+      officeHoursText: 'Ons kantoor is bereikbaar op afspraak, ook in het weekend.'
     },
   };
 
@@ -115,7 +115,7 @@ export default function ContactPage() {
             alt="Amsterdam architecture"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/40" />
+          <div className="absolute inset-0 bg-earth/40" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
@@ -334,7 +334,7 @@ export default function ContactPage() {
               alt="Amsterdam canals near Leliegracht"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-charcoal/20" />
+            <div className="absolute inset-0 bg-earth/20" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center text-white">
                 <p className="font-display text-2xl mb-2">Leliegracht 21</p>

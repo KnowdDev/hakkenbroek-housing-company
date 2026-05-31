@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS listings (
   image_url TEXT,
   images JSONB,
   featured BOOLEAN DEFAULT FALSE,
+  hidden BOOLEAN DEFAULT FALSE,
   year_built INTEGER,
   energy_label VARCHAR(10),
   garden BOOLEAN DEFAULT FALSE,
@@ -55,6 +56,9 @@ CREATE INDEX IF NOT EXISTS idx_listings_status ON listings(status);
 
 -- Create index on listing_type for listings
 CREATE INDEX IF NOT EXISTS idx_listings_type ON listings(listing_type);
+
+-- Create index on hidden visibility for listings
+CREATE INDEX IF NOT EXISTS idx_listings_hidden ON listings(hidden);
 
 -- Create API keys table for MCP/agent access
 CREATE TABLE IF NOT EXISTS api_keys (

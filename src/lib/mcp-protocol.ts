@@ -105,6 +105,7 @@ const tools: ToolDefinition[] = [
         listing_type: { type: 'string', description: 'sale or rent' },
         image_url: { type: 'string', description: 'Primary image URL' },
         featured: { type: 'boolean', description: 'Highlight on homepage' },
+        hidden: { type: 'boolean', description: 'Keep in dashboard but hide from public website' },
         year_built: { type: 'number', description: 'Year the property was built' },
         energy_label: { type: 'string', description: 'Energy efficiency label (A++, A+, A, B, C, D, E, F, G)' },
         floors: { type: 'number', description: 'Number of floors' },
@@ -123,8 +124,8 @@ const tools: ToolDefinition[] = [
     handler: async (args, id, _ctx) => {
       const validated = validateArgs(createListingSchema, args, 'create_listing');
       const data = await query(
-        `INSERT INTO listings (title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, featured, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26) RETURNING *`,
+        `INSERT INTO listings (title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, featured, hidden, year_built, energy_label, garden, garden_area, parking, parking_spaces, balcony, terrace, furnished, basement, elevator, floors)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27) RETURNING *`,
         [
           validated.title,
           validated.description ?? null,
@@ -140,6 +141,7 @@ const tools: ToolDefinition[] = [
           validated.listing_type ?? 'sale',
           validated.image_url ?? null,
           validated.featured ?? false,
+          validated.hidden ?? false,
           validated.year_built ?? null,
           validated.energy_label ?? null,
           validated.garden ?? false,
@@ -189,6 +191,7 @@ const tools: ToolDefinition[] = [
           items: { type: 'string' },
         },
         featured: { type: 'boolean' },
+        hidden: { type: 'boolean' },
         year_built: { type: 'number' },
         energy_label: { type: 'string' },
         floors: { type: 'number' },
@@ -220,7 +223,7 @@ const tools: ToolDefinition[] = [
         patch_json: {
           type: 'string',
           description:
-            'JSON object string only (no markdown fences). Keys are listing fields only: title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, images (URL array), featured, year_built, energy_label, floors, furnished, garden, garden_area, balcony, terrace, parking, parking_spaces, elevator, basement. Example: {"title":"…","description":"…","bedrooms":2}',
+            'JSON object string only (no markdown fences). Keys are listing fields only: title, description, price, bedrooms, bathrooms, area, address, city, postal_code, property_type, status, listing_type, image_url, images (URL array), featured, hidden, year_built, energy_label, floors, furnished, garden, garden_area, balcony, terrace, parking, parking_spaces, elevator, basement. Example: {"title":"…","description":"…","bedrooms":2}',
         },
         dry_run: {
           type: 'boolean',

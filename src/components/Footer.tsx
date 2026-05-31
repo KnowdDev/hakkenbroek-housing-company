@@ -59,7 +59,7 @@ const footerCopy: Record<Language, FooterCopy> = {
     officeTitle: 'Visit',
     officeLine: 'By appointment at Leliegracht 21',
     officeCity: 'Amsterdam, Netherlands',
-    officeHours: 'Monday to Friday · 09:00–18:00',
+    officeHours: 'By appointment, including weekends',
     directions: 'Map and directions',
     emailLabel: 'info@hakkenbroek.com',
     phoneLabel: '+31 20 123 4567',
@@ -76,7 +76,7 @@ const footerCopy: Record<Language, FooterCopy> = {
     officeTitle: 'Bezoek',
     officeLine: 'Op afspraak aan de Leliegracht 21',
     officeCity: 'Amsterdam, Nederland',
-    officeHours: 'Maandag t/m vrijdag · 09:00–18:00',
+    officeHours: 'Op afspraak, ook in het weekend',
     directions: 'Route en kaart',
     emailLabel: 'info@hakkenbroek.com',
     phoneLabel: '+31 20 123 4567',
@@ -95,11 +95,11 @@ export default function Footer() {
   const copy = footerCopy[locale];
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-charcoal text-white">
+    <footer className="relative overflow-hidden border-t border-white/15 bg-earth text-white">
       <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-14 lg:px-8 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
           <div className="max-w-xl">
-            <p className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-400">
+            <p className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
               {copy.eyebrow}
             </p>
 
@@ -107,21 +107,21 @@ export default function Footer() {
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
-                className="h-16 w-auto brightness-0 invert"
+                className="h-14 w-auto brightness-0 invert"
               />
             </Link>
 
-            <p className="mt-6 max-w-[20ch] font-display text-[2rem] leading-[1.15] text-stone-50 sm:text-[2.35rem]">
+            <p className="mt-6 max-w-[20ch] font-display text-[2rem] leading-[1.15] text-white sm:text-[2.35rem]">
               {copy.title}
             </p>
 
-            <p className="mt-4 max-w-md text-[15px] leading-7 text-stone-300 sm:text-base">
+            <p className="mt-4 max-w-md text-[15px] leading-7 text-stone-100/85 sm:text-base">
               {copy.description}
             </p>
 
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center border-b border-brass-light pb-1 text-sm text-stone-100 transition-colors duration-300 hover:text-brass-light"
+              className="mt-6 inline-flex items-center border-b border-brass-light pb-1 text-sm text-white transition-colors duration-300 hover:text-brass-light"
             >
               {copy.cta}
             </Link>
@@ -129,10 +129,10 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:gap-x-10">
             <div>
-              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-400">
+              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
                 {copy.navTitle}
               </h3>
-              <ul className="mt-4 space-y-3 text-sm text-stone-300">
+              <ul className="mt-4 space-y-3 text-sm text-stone-100/85">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -147,10 +147,10 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-400">
+              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
                 {copy.servicesTitle}
               </h3>
-              <ul className="mt-4 space-y-3 text-sm text-stone-300">
+              <ul className="mt-4 space-y-3 text-sm text-stone-100/85">
                 {serviceLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -164,20 +164,20 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="col-span-2 border-t border-white/10 pt-6 sm:pt-7">
-              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-400">
+            <div className="col-span-2 border-t border-white/15 pt-6 sm:pt-7">
+              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
                 {copy.officeTitle}
               </h3>
 
-              <div className="mt-4 grid gap-3 text-sm text-stone-300 sm:grid-cols-2 sm:gap-x-8">
+              <div className="mt-4 grid gap-3 text-sm text-stone-100/85 sm:grid-cols-2 sm:gap-x-8">
                 <div>
-                  <p className="text-stone-100">{copy.officeLine}</p>
+                  <p className="text-white">{copy.officeLine}</p>
                   <p className="mt-1">{copy.officeCity}</p>
                   <a
                     href="https://maps.google.com/?q=Leliegracht+21+Amsterdam"
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-3 inline-flex border-b border-white/20 pb-1 text-stone-100 transition-colors duration-300 hover:text-brass-light"
+                    className="mt-3 inline-flex border-b border-white/30 pb-1 text-white transition-colors duration-300 hover:text-brass-light"
                   >
                     {copy.directions}
                   </a>
@@ -205,16 +205,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/15 pt-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm text-stone-400">
+            <p className="text-sm text-stone-200/80">
               &copy; {new Date().getFullYear()} Hakkenbroek Housing Company. {copy.copyrightNote}
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-stone-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-stone-200/80">
             <span>{copy.officeLine}</span>
-            <div className="rounded-full border border-white/10">
+            <div className="rounded-full border border-white/20">
               <LanguageToggle dropUp />
             </div>
           </div>
@@ -222,12 +222,12 @@ export default function Footer() {
 
       </div>
 
-      <div className="flex justify-center border-t border-white/5 py-3">
+      <div className="flex justify-center border-t border-white/10 py-3">
         <a
           href="https://knowd.nz"
           target="_blank"
           rel="nofollow noreferrer"
-          className="text-xs text-stone-500 underline decoration-white/20 hover:text-stone-300 transition-colors"
+          className="text-xs text-stone-200/70 underline decoration-white/30 hover:text-white transition-colors"
         >
           Website: Knowd Digital
         </a>

@@ -15,6 +15,7 @@ export const LISTING_PUT_PATCH_KEYS = [
   'listing_type',
   'image_url',
   'featured',
+  'hidden',
   'images',
   'year_built',
   'energy_label',

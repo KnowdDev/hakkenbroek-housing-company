@@ -17,6 +17,7 @@ export interface Listing {
   image_url?: string;
   images?: string[];
   featured: boolean;
+  hidden?: boolean;
   created_at: string;
   // Luxury real estate fields
   year_built?: number;

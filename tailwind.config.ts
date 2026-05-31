@@ -23,6 +23,7 @@ const config: Config = {
           400: '#9e9488',
           500: '#827a70',
         },
+        earth: '#6f665c',
         charcoal: '#0f0f0f',
         ink: '#1a1a1a',
         'warm-gray': '#5a5450',

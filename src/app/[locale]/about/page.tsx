@@ -12,7 +12,7 @@ export default function AboutPage() {
       headline: '25+ years of discretion in Amsterdam\'s finest properties',
       who: 'Who We Are',
       description1: 'Since 2000, Hakkenbroek Housing Company has quietly shaped Amsterdam\'s luxury real estate landscape. From our office on the Leliegracht, we have guided hundreds of discerning clients through the city\'s most significant property transactions — always with discretion, always with care.',
-      description2: 'We are not a volume agency. We are a trusted advisor. Our team combines deep Amsterdam market knowledge with an international perspective, serving buyers and sellers from the Netherlands, across Europe, and beyond. We speak your language — literally and culturally.',
+      description2: 'We are not a volume agency. We are a trusted advisor. Our team combines deep Amsterdam market knowledge with an international perspective, serving buyers and sellers from the Netherlands, across Europe, and beyond. We speak your language — literally and figuratively.',
       description3: 'Our expertise extends beyond standard brokerage. We are specialists in Amsterdam\'s historic monuments, canal house restorations, and the unique regulations that govern listed buildings. We advise on home styling that honors architectural heritage while creating spaces for modern living.',
       valuesTitle: 'What Guides Us',
       values: 'Our Principles',
@@ -38,7 +38,7 @@ export default function AboutPage() {
       headline: 'Al 25+ jaar discretie in de mooiste woningen van Amsterdam',
       who: 'Wie Wij Zijn',
       description1: 'Sinds 2000 geeft Hakkenbroek Housing Company stilletjes vorm aan het luxe vastgoedlandschap van Amsterdam. Vanuit ons kantoor aan de Leliegracht hebben wij honderden veeleisende cliënten begeleid bij de meest significante vastgoedtransacties van de stad — altijd met discretie, altijd met zorg.',
-      description2: 'Wij zijn geen volume-kantoor. Wij zijn een vertrouwde adviseur. Ons team combineert diepe Amsterdamse marktkennis met een internationaal perspectief, en bedient kopers en verkopers uit Nederland, Europa, en daarbuiten. Wij spreken uw taal — letterlijk en cultureel.',
+      description2: 'Wij zijn geen volume-kantoor. Wij zijn een vertrouwde adviseur. Ons team combineert diepe Amsterdamse marktkennis met een internationaal perspectief, en bedient kopers en verkopers uit Nederland, Europa, en daarbuiten. Wij spreken uw taal — letterlijk en figuurlijk.',
       description3: 'Onze expertise reikt verder dan standaard makelaardij. Wij zijn specialisten in Amsterdamse monumenten, grachtenpandrestauraties, en de unieke regelgeving voor beschermde gebouwen. Wij adviseren over woningstyling die architectonisch erfgoed eert en tegelijk ruimtes creëert voor modern leven.',
       valuesTitle: 'Wat Ons Leidt',
       values: 'Onze Principes',
@@ -85,7 +85,7 @@ export default function AboutPage() {
             alt="Amsterdam canals"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/40" />
+          <div className="absolute inset-0 bg-earth/40" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <p className="font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4">
@@ -156,15 +156,15 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-24 bg-charcoal text-white">
+      <section className="py-24 bg-earth text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center place-items-center max-w-3xl mx-auto">
             {stats.map((stat) => (
               <div key={stat.label}>
-                <p className="font-display text-4xl md:text-5xl text-stone-300 mb-2">
+                <p className="font-display text-4xl md:text-5xl text-stone-100 mb-2">
                   {stat.value}
                 </p>
-                <p className="font-body text-xs uppercase tracking-[0.15em] text-stone-400">
+                <p className="font-body text-xs uppercase tracking-[0.15em] text-stone-100/70">
                   {stat.label}
                 </p>
               </div>

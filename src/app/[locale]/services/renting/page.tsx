@@ -11,8 +11,8 @@ export default function RentingPage() {
       heroSubtitle: 'Rental Service',
       heroTitle: 'Curated rental properties for discerning tenants',
       heroDescription: 'We represent tenants with the same discretion and precision we apply to buyers. Whether you are relocating for work or seeking a temporary Amsterdam home we find properties that meet your standards not just your budget.',
-      introTitle: 'The Hakkenbroek approach to renting',
-      introText: 'Finding quality rental property in Amsterdam is increasingly competitive. The best listings are often leased within days sometimes hours of appearing online. Our rental service gives you early access to carefully selected properties and handles every detail from viewing to contract signing so you can focus on your move.',
+      introTitle: 'The Hakkenbroek approach',
+      introText: 'Amsterdam’s rental market is dynamic and competitive. Desirable homes are often let within days, and sometimes within hours. With our rental service, you gain access to carefully selected properties and expert guidance throughout the process. From scheduling viewings to signing the contract, we take care of every detail so you can focus entirely on a smooth move.',
       processTitle: 'How we work for tenants',
       steps: [
         { step: '01', title: 'Needs Assessment', desc: 'We begin with a detailed conversation about your requirements. Location preferences lease duration budget and must-have features. We also discuss your timeline so we can prioritize properties that align with your move dates.' },
@@ -37,8 +37,8 @@ export default function RentingPage() {
       heroSubtitle: 'Huurservice',
       heroTitle: 'Geselecteerde huurwoningen voor kritische huurders',
       heroDescription: 'Wij vertegenwoordigen huurders met dezelfde discretie en precisie die wij ook kopers bieden. Of u nu verhuist voor werk of een tijdelijk thuis in Amsterdam zoekt — wij vinden woningen die voldoen aan uw normen, niet alleen uw budget.',
-      introTitle: 'De Hakkenbroek aanpak voor huren',
-      introText: 'Het vinden van een kwalitatieve huurwoning in Amsterdam wordt steeds concurrerender. De beste aanbiedingen worden vaak binnen dagen — soms uren — na publicatie verhuurd. Onze huurservice geeft u vroegtijdig toegang tot zorgvuldig geselecteerde woningen en regelt elk detail van bezichtiging tot contractondertekening, zodat u zich kunt richten op uw verhuizing.',
+      introTitle: 'De Hakkenbroek-aanpak',
+      introText: 'De huurmarkt in Amsterdam is dynamisch en competitief. Gewilde woningen worden vaak binnen enkele dagen, en soms zelfs binnen enkele uren, verhuurd. Met onze huurservice krijgt u toegang tot zorgvuldig geselecteerde woningen en deskundige begeleiding gedurende het gehele proces. Van het plannen van bezichtigingen tot de contractondertekening: wij verzorgen ieder detail, zodat u zich volledig kunt richten op een soepele verhuizing.',
       processTitle: 'Hoe wij voor huurders werken',
       steps: [
         { step: '01', title: 'Behoefteanalyse', desc: 'We beginnen met een uitgebreid gesprek over uw wensen. Locatievoorkeuren, huurduur, budget en must-have kenmerken. We bespreken ook uw tijdlijn zodat we woningen kunnen prioriteren die aansluiten bij uw verhuisdatum.' },
@@ -94,7 +94,7 @@ export default function RentingPage() {
               alt='Modern apartment interior with city views'
               className='w-full h-full object-cover'
             />
-            <div className='absolute inset-0 bg-charcoal/45' />
+            <div className='absolute inset-0 bg-earth/45' />
           </div>
           <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 text-white'>
             <p className='font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4'>{t.heroSubtitle}</p>
@@ -145,10 +145,10 @@ export default function RentingPage() {
           </div>
         </section>
 
-        <section className='py-24 bg-charcoal text-white'>
+        <section className='py-24 bg-earth text-white'>
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
-            <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
+            <p className='text-stone-100/85 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
             <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>

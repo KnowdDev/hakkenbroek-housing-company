@@ -12,7 +12,7 @@ export default function ExpatServicesPage() {
       heroTitle: 'A complete relocation service for international clients',
       heroDescription: 'Moving to a new country is one of lifes most significant transitions. Our expat service goes far beyond property search. We are your guide your advocate and your support system from the moment you consider Amsterdam to long after you have settled in.',
       introTitle: 'The Hakkenbroek approach to relocation',
-      introText: 'We have spent 25+ years helping international clients find their place in Amsterdam. We understand that relocation is not just about finding a property. It is about navigating a new culture a new language a new way of life. Our comprehensive service addresses every aspect of your move so you can focus on what matters most starting your new chapter with confidence.',
+      introText: 'For more than 25 years, we have helped international clients find their place in Amsterdam. We understand that relocation is not just about finding a property. It is about navigating a new culture, a new language, and a new way of life. Our comprehensive service addresses every aspect of your move so you can focus on what matters most: starting your new chapter with confidence.',
       processTitle: 'Our relocation services',
       steps: [
         { step: '01', title: 'Pre-Arrival Consultation', desc: 'Before you even set foot in Amsterdam we conduct detailed video consultations to understand your needs your timeline and your expectations. We provide honest market insights help you set realistic budgets and begin searching for properties that match your criteria.' },
@@ -23,8 +23,8 @@ export default function ExpatServicesPage() {
       ],
       benefitsTitle: 'Why expats choose Hakkenbroek',
       benefits: [
-        { title: 'Cultural Bridge', desc: 'We understand the expat experience because we have guided hundreds of international clients through it. We speak your language literally and culturally and we bridge the gap between your expectations and Dutch realities.' },
-        { title: 'Network Access', desc: 'Over 25+ years we have built relationships with the best service providers in Amsterdam. From mortgage brokers to interior designers from schools to sports clubs we connect you with trusted professionals who understand international clients.' },
+        { title: 'Cultural Bridge', desc: 'We understand the expat experience because we have guided hundreds of international clients through it. We speak your language — literally and figuratively. Our service extends beyond our core regions and, on request, we guide clients throughout the Netherlands.' },
+        { title: 'Network Access', desc: 'Over more than 25 years we have built relationships with the best service providers in Amsterdam. From mortgage brokers to interior designers, from schools to sports clubs, we connect you with trusted professionals who understand international clients.' },
         { title: 'Honest Guidance', desc: 'We tell you what you need to hear not just what you want to hear. About budgets about neighborhoods about timelines. Our reputation is built on trust and that means being honest even when the truth is uncomfortable.' },
         { title: 'Long-Term Relationship', desc: 'Many of our expat clients become long-term friends. We celebrate your successes support you through challenges and remain your Amsterdam property resource for years to come. Your success in Amsterdam is our success.' }
       ],
@@ -38,7 +38,7 @@ export default function ExpatServicesPage() {
       heroTitle: 'Een complete relocatieservice voor internationale klanten',
       heroDescription: 'Verhuizen naar een nieuw land is één van de grootste veranderingen in het leven. Onze expat-service gaat veel verder dan woningzoeken. Wij zijn uw gids, uw woordvoerder en uw steun vanaf het moment dat u Amsterdam overweegt tot lang nadat u bent ingewoond.',
       introTitle: 'De Hakkenbroek aanpak voor verhuizing',
-      introText: 'Wij hebben 25+ jaar ervaring met het helpen van internationale klanten om hun plek in Amsterdam te vinden. We begrijpen dat verhuizen niet alleen draait om een woning vinden — het draait om navigeren in een nieuwe cultuur, een nieuwe taal, een nieuwe manier van leven. Onze uitgebreide service richt zich op elk aspect van uw verhuizing, zodat u zich kunt richten op wat het belangrijkst is: uw nieuwe hoofdstuk met vertrouwen beginnen.',
+      introText: 'Wij helpen internationale klanten al meer dan 25 jaar om hun plek in Amsterdam te vinden. We begrijpen dat verhuizen niet alleen draait om een woning vinden — het draait om navigeren in een nieuwe cultuur, een nieuwe taal en een nieuwe manier van leven. Onze uitgebreide service richt zich op elk aspect van uw verhuizing, zodat u zich kunt richten op wat het belangrijkst is: uw nieuwe hoofdstuk met vertrouwen beginnen.',
       processTitle: 'Onze relocatieservices',
       steps: [
         { step: '01', title: 'Pre-arrival consult', desc: 'Voordat u ook maar één voet in Amsterdam zet, voeren we uitgebreide videogesprekken om uw wensen, tijdlijn en verwachtingen te bespreken. We geven eerlijke marktinzichten, helpen u realistische budgetten te stellen en beginnen met zoeken naar woningen die bij uw criteria passen.' },
@@ -49,8 +49,8 @@ export default function ExpatServicesPage() {
       ],
       benefitsTitle: 'Waarom expats voor Hakkenbroek kiezen',
       benefits: [
-        { title: 'Culturele brug', desc: 'We begrijpen de expat-ervaring omdat we honderden internationale klanten hebben begeleid. We spreken uw taal — letterlijk en cultureel — en overbruggen de kloof tussen uw verwachtingen en Nederlandse realiteiten.' },
-        { title: 'Netwerktoegang', desc: 'In 25+ jaar hebben we relaties opgebouwd met de beste dienstverleners van Amsterdam. Van hypotheekadviseurs tot interieurontwerpers, van scholen tot sportclubs — we koppelen u aan betrouwbare professionals die internationale klanten begrijpen.' },
+        { title: 'Culturele brug', desc: 'We begrijpen de expat-ervaring omdat we honderden internationale klanten hebben begeleid. Wij spreken uw taal — letterlijk en figuurlijk. Onze dienstverlening reikt verder dan onze kernregio — op verzoek begeleiden wij cliënten door heel Nederland.' },
+        { title: 'Netwerktoegang', desc: 'In meer dan 25 jaar hebben we relaties opgebouwd met de beste dienstverleners van Amsterdam. Van hypotheekadviseurs tot interieurontwerpers, van scholen tot sportclubs — we koppelen u aan betrouwbare professionals die internationale klanten begrijpen.' },
         { title: 'Eerlijk advies', desc: 'We vertellen u wat u moet horen, niet alleen wat u wilt horen. Over budgetten, buurten en tijdlijnen. Onze reputatie is gebouwd op vertrouwen, en dat betekent eerlijk zijn — zelfs wanneer de waarheid ongemakkelijk is.' },
         { title: 'Langetermijnrelatie', desc: 'Veel van onze expat-klanten worden langetermijnvrienden. We vieren uw successen, ondersteunen u bij uitdagingen en blijven uw vastgoedadviseur in Amsterdam voor jaren. Uw succes in Amsterdam is ons succes.' }
       ],
@@ -94,7 +94,7 @@ export default function ExpatServicesPage() {
               alt='Amsterdam canals with historic houses at sunset'
               className='w-full h-full object-cover'
             />
-            <div className='absolute inset-0 bg-charcoal/45' />
+            <div className='absolute inset-0 bg-earth/45' />
           </div>
           <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 text-white'>
             <p className='font-body text-xs uppercase tracking-[0.2em] text-stone-200 mb-4'>{t.heroSubtitle}</p>
@@ -145,10 +145,10 @@ export default function ExpatServicesPage() {
           </div>
         </section>
 
-        <section className='py-24 bg-charcoal text-white'>
+        <section className='py-24 bg-earth text-white'>
           <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
             <h2 className='font-display text-3xl md:text-4xl mb-6'>{t.ctaTitle}</h2>
-            <p className='text-stone-300 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
+            <p className='text-stone-100/85 text-lg mb-10 leading-relaxed'>{t.ctaText}</p>
             <Link href={`/contact`} className='inline-block bg-brass text-white px-10 py-4 font-body text-sm uppercase tracking-wider hover:bg-brass-light transition-colors duration-300'>
               {t.ctaButton}
             </Link>
