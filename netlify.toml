@@ -6,5 +6,9 @@
   NODE_VERSION = "20"
   SECRETS_SCAN_OMIT_PATHS = "mcp/"
 
+[[functions]]
+  function = "*"
+  timeout = 26
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
