@@ -361,87 +361,84 @@ export default function Home() {
       <section
         id="nav-sentinel"
         ref={heroRef.ref}
-        className="relative flex flex-col lg:flex-row h-auto lg:h-[92vh] lg:min-h-[800px] overflow-hidden lg:overflow-visible"
+        className="relative overflow-hidden lg:overflow-visible"
       >
-        {/* Full-width dark top scrim — ensures white nav text is readable on ANY hero image,
-            covering both the dark photo side and the light stone side uniformly */}
-        <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black/55 via-black/20 to-transparent z-[1] pointer-events-none" />
+        <div className="relative flex flex-col lg:flex-row lg:min-h-[760px] xl:min-h-[820px] xl:h-[92vh]">
+          {/* Left: full-bleed image with atmospheric gradient */}
+          <div className="relative w-full lg:w-[52%] h-[48vh] sm:h-[54vh] md:h-[62vh] lg:h-auto">
+            <img
+              src="/hero.webp"
+              alt="Elegant Amsterdam interior with green velvet sofa and natural light"
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent md:hidden" />
+          </div>
 
-        {/* Left: full-bleed image with atmospheric gradient */}
-        <div className="relative w-full lg:w-[55%] h-[50vh] lg:h-full">
-          <img
-            src="/hero.webp"
-            alt="Elegant Amsterdam interior with green velvet sofa and natural light"
-            fetchPriority="high"
-            decoding="async"
-            className="w-full h-full object-cover"
-          />
-          {/* Dark top gradient ensures white nav text is readable on any hero image */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent lg:hidden" />
-        </div>
-
-        {/* Right: content */}
-        <div className="relative w-full lg:w-[45%] bg-stone-50 flex items-center">
-          {/* subtle pattern overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #1a1a1a 1px, transparent 0)`,
-              backgroundSize: '40px 40px',
-            }}
-          />
-          <div className="relative px-8 pt-28 pb-16 lg:px-14 lg:pt-32 lg:pb-12 max-w-xl">
-            <p
-              className={`font-body text-xs uppercase tracking-[0.2em] text-brass mb-6 ${revealClass(heroRef.inView)}`}
-              style={{ transitionDelay: '100ms' }}
-            >
-              {t.heroSubtitle}
-            </p>
-            <h1
-              className={`font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] text-charcoal mb-6 ${revealClass(heroRef.inView)}`}
-              style={{ transitionDelay: '200ms' }}
-            >
-              {t.heroTitle}
-            </h1>
-            <p
-              className={`font-body text-base lg:text-lg text-warm-gray leading-relaxed mb-8 ${revealClass(heroRef.inView)}`}
-              style={{ transitionDelay: '300ms' }}
-            >
-              {t.heroDescription}
-            </p>
+          {/* Right: content */}
+          <div className="relative w-full lg:w-[48%] bg-stone-50 flex items-center">
+            {/* subtle pattern overlay */}
             <div
-              className={`flex flex-wrap gap-4 ${revealClass(heroRef.inView)}`}
-              style={{ transitionDelay: '400ms' }}
-            >
-              <Link
-                href={`/properties`}
-                className="inline-flex items-center gap-2 bg-brass text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light hover:scale-[1.02] transition-all duration-300 rounded-sm"
+              className="absolute inset-0 opacity-[0.03]"
+              style={{
+                backgroundImage: `radial-gradient(circle at 1px 1px, #1a1a1a 1px, transparent 0)`,
+                backgroundSize: '40px 40px',
+              }}
+            />
+            <div className="relative px-8 pt-12 pb-16 md:px-10 md:pt-16 md:pb-14 lg:px-12 lg:pt-32 lg:pb-12 xl:px-14 xl:pt-36 max-w-[36rem]">
+              <p
+                className={`font-body text-xs uppercase tracking-[0.2em] text-brass mb-6 ${revealClass(heroRef.inView)}`}
+                style={{ transitionDelay: '100ms' }}
               >
-                {t.viewProperties}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href={`/contact`}
-                className="inline-flex items-center gap-2 border border-charcoal text-charcoal px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-charcoal hover:text-white transition-all duration-300 rounded-sm"
+                {t.heroSubtitle}
+              </p>
+              <h1
+                className={`font-display text-4xl md:text-[3rem] lg:text-[3.2rem] xl:text-[3.55rem] leading-[1.06] text-charcoal mb-6 ${revealClass(heroRef.inView)}`}
+                style={{ transitionDelay: '200ms' }}
               >
-                {t.getInTouch}
-              </Link>
+                {t.heroTitle}
+              </h1>
+              <p
+                className={`font-body text-base md:text-lg text-warm-gray leading-relaxed mb-8 max-w-[32rem] ${revealClass(heroRef.inView)}`}
+                style={{ transitionDelay: '300ms' }}
+              >
+                {t.heroDescription}
+              </p>
+              <div
+                className={`flex flex-wrap gap-4 ${revealClass(heroRef.inView)}`}
+                style={{ transitionDelay: '400ms' }}
+              >
+                <Link
+                  href={`/properties`}
+                  className="inline-flex items-center gap-2 bg-brass text-white px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-brass-light hover:scale-[1.02] transition-all duration-300 rounded-sm"
+                >
+                  {t.viewProperties}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href={`/contact`}
+                  className="inline-flex items-center gap-2 border border-charcoal text-charcoal px-8 py-3.5 font-body text-sm uppercase tracking-wider hover:bg-charcoal hover:text-white transition-all duration-300 rounded-sm"
+                >
+                  {t.getInTouch}
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Floating search bar — sits at bottom edge, straddling into next section */}
+        {/* Search module — inline below hero on laptop/tablet, overlapping only on wide desktop */}
         <div
           ref={searchRef.ref}
-          className={`relative lg:absolute lg:bottom-0 lg:left-[5%] lg:right-[5%] lg:translate-y-1/2 z-10 mt-6 lg:mt-0 ${revealClass(searchRef.inView)}`}
+          className={`relative z-10 mx-auto mt-4 w-full max-w-7xl px-4 sm:px-6 lg:mt-6 lg:px-8 xl:-mt-12 ${revealClass(searchRef.inView)}`}
           style={{ transitionDelay: '500ms' }}
         >
-          <div className="mx-4 lg:mx-0 bg-white border border-stone-200 shadow-xl shadow-stone-900/5 px-5 py-5 lg:px-8 lg:py-6">
-            <div className="flex flex-col lg:flex-row gap-4 items-stretch">
+          <div className="bg-white border border-stone-200 shadow-xl shadow-stone-900/5 px-5 py-5 lg:px-8 lg:py-6">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-[minmax(0,1.35fr)_auto_minmax(180px,0.9fr)_minmax(120px,0.6fr)_minmax(140px,0.7fr)_auto] xl:items-stretch">
               {/* Query */}
-              <div className="flex-1 relative">
+              <div className="relative md:col-span-2 xl:col-span-1">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-warm-gray" />
                 <input
                   type="text"
@@ -476,7 +473,7 @@ export default function Home() {
               </div>
 
               {/* Property type */}
-              <div className="relative min-w-[140px]">
+              <div className="relative xl:min-w-[160px]">
                 <select
                   value={searchPropertyType}
                   onChange={(e) => setSearchPropertyType(e.target.value)}
@@ -493,7 +490,7 @@ export default function Home() {
               </div>
 
               {/* Bedrooms */}
-              <div className="relative min-w-[100px]">
+              <div className="relative xl:min-w-[120px]">
                 <select
                   value={searchBeds}
                   onChange={(e) => setSearchBeds(e.target.value)}
@@ -509,7 +506,7 @@ export default function Home() {
               </div>
 
               {/* Price */}
-              <div className="relative min-w-[120px]">
+              <div className="relative xl:min-w-[140px]">
                 <select
                   value={searchPrice}
                   onChange={(e) => setSearchPrice(e.target.value)}
@@ -527,7 +524,7 @@ export default function Home() {
               {/* Search button */}
               <button
                 onClick={handleSearch}
-                className="inline-flex items-center justify-center gap-2 bg-charcoal text-white px-8 py-3 font-body text-sm uppercase tracking-wider hover:bg-ink hover:scale-[1.02] transition-all duration-300 rounded-sm min-w-[120px]"
+                className="inline-flex w-full md:col-span-2 xl:col-span-1 items-center justify-center gap-2 bg-charcoal text-white px-8 py-3 font-body text-sm uppercase tracking-wider hover:bg-ink hover:scale-[1.02] transition-all duration-300 rounded-sm xl:min-w-[140px]"
               >
                 <Search className="w-4 h-4" />
                 {t.searchBtn}
@@ -538,7 +535,7 @@ export default function Home() {
       </section>
 
       {/* Spacer for floating search bar on desktop */}
-      <div className="hidden lg:block h-16" />
+      <div className="hidden xl:block h-16" />
 
       {/* anchor for valuation scroll */}
       <div id="valuation-section" className="scroll-mt-24" />

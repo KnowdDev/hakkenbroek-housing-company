@@ -85,7 +85,7 @@ export default function LanguageToggle({ scrolled = false, dropUp = false }: Lan
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className={`absolute right-0 w-40 bg-stone-50 rounded-lg shadow-lg border border-stone-200 z-50 overflow-hidden ${dropUp ? 'bottom-full mb-2' : 'mt-2'}`}>
+          <div className={`absolute right-0 w-40 bg-stone-50 shadow-lg border border-stone-200 z-50 overflow-hidden ${dropUp ? 'bottom-full mb-2' : 'mt-2'}`}>
             {(Object.keys(languageNames) as Language[]).map((loc) => (
               <button
                 key={loc}
