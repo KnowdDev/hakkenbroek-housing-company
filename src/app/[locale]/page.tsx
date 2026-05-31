@@ -359,6 +359,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <link rel="preload" as="image" href="/hakkenbroek-home.webp" type="image/webp" />
       {/* ═══════════════════ HERO ═══════════════════ */}
       <section
         id="nav-sentinel"
