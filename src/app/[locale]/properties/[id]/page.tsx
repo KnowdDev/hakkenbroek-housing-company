@@ -200,6 +200,8 @@ export default function PropertyDetailPage() {
           <img
             src="/logo.svg"
             alt="Hakkenbroek Housing"
+            width="168"
+            height="92"
             className="h-16 w-auto opacity-40 animate-pulse"
           />
           <div className="mt-8 flex justify-center gap-1.5">

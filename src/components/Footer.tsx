@@ -107,6 +107,8 @@ export default function Footer() {
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
+                width="168"
+                height="92"
                 className="h-14 w-auto brightness-0 invert"
               />
             </Link>

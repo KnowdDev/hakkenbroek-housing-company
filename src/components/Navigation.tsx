@@ -96,6 +96,8 @@ export default function Navigation() {
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
+                width="168"
+                height="92"
                 className={`h-14 sm:h-16 w-auto transition-all duration-300 ${logoTone}`}
               />
             </Link>
@@ -180,6 +182,8 @@ export default function Navigation() {
               <img
                 src="/logo.svg"
                 alt="Hakkenbroek Housing Company"
+                width="168"
+                height="92"
                 className="h-14 sm:h-16 w-auto"
               />
             </Link>

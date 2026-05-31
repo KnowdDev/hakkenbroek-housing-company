@@ -42,6 +42,8 @@ export default function LoginPage() {
           <img
             src="/logo.svg"
             alt="Hakkenbroek Housing Company"
+            width="168"
+            height="92"
             className="h-16 mx-auto mb-6"
           />
           <h1 className="font-display text-3xl text-charcoal mb-2">Dashboard</h1>

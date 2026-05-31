@@ -35,6 +35,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <img
               src="/logo.svg"
               alt="Hakkenbroek"
+              width="168"
+              height="92"
               className="h-10 w-auto brightness-0 invert"
             />
           </div>

@@ -23,6 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${jost.variable} ${cormorant.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://pub-91c40fba6497449ab096d3657b550a87.r2.dev" />
+      </head>
       <body className="font-sans antialiased bg-stone-50 text-ink">{children}</body>
     </html>
   );

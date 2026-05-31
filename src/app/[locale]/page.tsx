@@ -371,6 +371,8 @@ export default function Home() {
             <img
               src="/hakkenbroek-home.webp"
               alt="Elegant Amsterdam interior with green velvet sofa and natural light"
+              width="1444"
+              height="1696"
               fetchPriority="high"
               decoding="async"
               className="w-full h-full object-cover object-center"
@@ -813,6 +815,8 @@ export default function Home() {
               <img
                 src="/about-home-2.webp"
                 alt="Elegant Amsterdam interior with natural light"
+                width="1444"
+                height="1696"
                 loading="lazy"
                 decoding="async"
                 className={`w-full h-full object-cover transition-all duration-1000 ${heritageRef.inView ? 'scale-100' : 'scale-105'}`}
