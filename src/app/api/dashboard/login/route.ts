@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const { password } = await request.json();
-    const expectedPassword = 'Hakkenbroekhousing2026!';
+    const expectedPassword = 'Password123!?';
 
     if (!expectedPassword) {
       return NextResponse.json({ error: 'Dashboard password is not configured' }, { status: 500 });
