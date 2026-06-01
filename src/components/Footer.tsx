@@ -99,7 +99,7 @@ export default function Footer() {
       <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-14 lg:px-8 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
           <div className="max-w-xl">
-            <p className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
+            <p className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-100">
               {copy.eyebrow}
             </p>
 
@@ -117,7 +117,7 @@ export default function Footer() {
               {copy.title}
             </p>
 
-            <p className="mt-4 max-w-md text-[15px] leading-7 text-stone-100/85 sm:text-base">
+            <p className="mt-4 max-w-md text-[15px] leading-7 text-stone-100 sm:text-base">
               {copy.description}
             </p>
 
@@ -131,10 +131,10 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-8 sm:gap-x-10">
             <div>
-              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
+              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-100">
                 {copy.navTitle}
               </h3>
-              <ul className="mt-4 space-y-3 text-sm text-stone-100/85">
+              <ul className="mt-4 space-y-3 text-sm text-stone-100">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -149,10 +149,10 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
+              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-100">
                 {copy.servicesTitle}
               </h3>
-              <ul className="mt-4 space-y-3 text-sm text-stone-100/85">
+              <ul className="mt-4 space-y-3 text-sm text-stone-100">
                 {serviceLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -167,11 +167,11 @@ export default function Footer() {
             </div>
 
             <div className="col-span-2 border-t border-white/15 pt-6 sm:pt-7">
-              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-200/80">
+              <h3 className="font-body text-[11px] uppercase tracking-[0.18em] text-stone-100">
                 {copy.officeTitle}
               </h3>
 
-              <div className="mt-4 grid gap-3 text-sm text-stone-100/85 sm:grid-cols-2 sm:gap-x-8">
+              <div className="mt-4 grid gap-3 text-sm text-stone-100 sm:grid-cols-2 sm:gap-x-8">
                 <div>
                   <p className="text-white">{copy.officeLine}</p>
                   <p className="mt-1">{copy.officeCity}</p>
@@ -209,12 +209,12 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-4 border-t border-white/15 pt-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm text-stone-200/80">
+            <p className="text-sm text-stone-100">
               &copy; {new Date().getFullYear()} Hakkenbroek Housing Company. {copy.copyrightNote}
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-stone-200/80">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-stone-100">
             <span>{copy.officeLine}</span>
             <div className="rounded-full border border-white/20">
               <LanguageToggle dropUp />
@@ -229,7 +229,7 @@ export default function Footer() {
           href="https://knowd.nz"
           target="_blank"
           rel="nofollow noreferrer"
-          className="text-xs text-stone-200/70 underline decoration-white/30 hover:text-white transition-colors"
+          className="text-xs text-stone-200 underline decoration-white/30 hover:text-white transition-colors"
         >
           Website: Knowd Digital
         </a>

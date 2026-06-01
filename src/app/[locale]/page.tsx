@@ -482,6 +482,7 @@ export default function Home() {
                 <select
                   value={searchPropertyType}
                   onChange={(e) => setSearchPropertyType(e.target.value)}
+                  aria-label={t.searchType}
                   className="w-full appearance-none px-4 py-3 pr-10 bg-stone-50 border border-stone-200 font-body text-sm text-ink focus:outline-none focus:border-brass transition-colors"
                 >
                   <option value="all">{t.allTypes}</option>
@@ -499,6 +500,7 @@ export default function Home() {
                 <select
                   value={searchBeds}
                   onChange={(e) => setSearchBeds(e.target.value)}
+                  aria-label={t.searchBedrooms}
                   className="w-full appearance-none px-4 py-3 pr-10 bg-stone-50 border border-stone-200 font-body text-sm text-ink focus:outline-none focus:border-brass transition-colors"
                 >
                   <option value="all">{t.searchBedrooms}</option>
@@ -515,6 +517,7 @@ export default function Home() {
                 <select
                   value={searchPrice}
                   onChange={(e) => setSearchPrice(e.target.value)}
+                  aria-label={t.searchPrice}
                   className="w-full appearance-none px-4 py-3 pr-10 bg-stone-50 border border-stone-200 font-body text-sm text-ink focus:outline-none focus:border-brass transition-colors"
                 >
                   <option value="all">{t.searchPrice}</option>
