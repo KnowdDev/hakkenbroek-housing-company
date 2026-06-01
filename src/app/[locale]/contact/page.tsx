@@ -150,10 +150,7 @@ export default function ContactPage() {
                 <form
                   onSubmit={handleSubmit}
                   className="space-y-8"
-                  data-netlify="true"
-                  name="contact"
                 >
-                  <input type="hidden" name="form-name" value="contact" />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <label

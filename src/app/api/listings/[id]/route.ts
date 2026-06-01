@@ -9,11 +9,6 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const isKeepWarm = request.headers.get('x-keep-warm') === 'true';
-  if (isKeepWarm) {
-    console.log('[api/listings/[id]] Keep-warm ping received');
-  }
-
   const { id } = await params;
   const isDashboardRequest = hasDashboardAuth(request);
 
@@ -33,7 +28,7 @@ export async function GET(
         headers: {
           'Cache-Control': isDashboardRequest
             ? 'private, no-store'
-            : 'public, s-maxage=60, stale-while-revalidate=300',
+            : 'public, s-maxage=60, stale-while-revalidate=60',
         },
       });
     }

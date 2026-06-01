@@ -5,16 +5,12 @@ import { requireWriteAccess } from '@/lib/api-auth';
 import { hasDashboardAuth } from '@/lib/dashboard-auth';
 
 // Cache public listing reads at the CDN edge: serve instantly for 60s, then
-// serve stale while revalidating in the background for up to 5 minutes.
+// serve stale while revalidating for up to 60s. Short stale window limits
+// the blast radius if a bad response gets cached on an edge node.
 const LISTINGS_CACHE_HEADER =
-  'public, s-maxage=60, stale-while-revalidate=300';
+  'public, s-maxage=60, stale-while-revalidate=60';
 
 export async function GET(request: NextRequest) {
-  const isKeepWarm = request.headers.get('x-keep-warm') === 'true';
-  if (isKeepWarm) {
-    console.log('[api/listings] Keep-warm ping received');
-  }
-
   const includeHidden =
     request.nextUrl.searchParams.get('includeHidden') === 'true' &&
     hasDashboardAuth(request);

@@ -17,6 +17,7 @@ const nextConfig = {
   // Tree-shake large icon/util packages so only used exports are bundled.
   experimental: {
     optimizePackageImports: ['lucide-react'],
+    instrumentationHook: true,
   },
   images: {
     // Raw <img> tags are used throughout, so keep optimization off to avoid
