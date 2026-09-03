@@ -14,7 +14,7 @@ export default function ServicesPage() {
       intro: 'We offer an exclusive, complete range of property services, with purchase and sale at the heart of what we do. Whether it is acquiring a characterful canal house, selling a distinguished family estate, or selecting high-quality investment property, our team combines more than 25 years of refined market knowledge with deep expertise in today’s property market.',
       buying: {
         title: 'Buying',
-        description: 'With more than 25 years of market knowledge in Het Gooi, Amsterdam and the surrounding area, we offer exclusive access to off-market homes, conduct strategic negotiations, and guide you with complete discretion — from first consultation to key transfer.',
+        description: 'With more than 25 years of market knowledge in Het Gooi, Amsterdam and the surrounding area, we offer exclusive access to off-market homes, conduct strategic negotiations, and guide you with complete discretion, from first consultation to key transfer.',
         features: ['Off-market property sourcing', 'Comprehensive market analysis', 'Strategic negotiation', 'Legal and notarial coordination', 'Post-purchase concierge']
       },
       selling: {
@@ -47,7 +47,7 @@ export default function ServicesPage() {
       intro: 'Wij bieden een exclusief en volledig dienstenpakket binnen het vastgoed, waarbij aankoop en verkoop de kern vormen van onze dienstverlening. Of het nu gaat om de verwerving van een karakteristiek grachtenpand, de verkoop van een bijzonder familiebezit of de selectie van hoogwaardig beleggingsvastgoed, ons team combineert meer dan 25 jaar verfijnde marktkennis met een diepgewortelde expertise in de huidige vastgoedmarkt.',
       buying: {
         title: 'Kopen',
-        description: 'Met ruim 25 jaar marktkennis van ’t Gooi, Amsterdam e.o. bieden wij exclusieve toegang tot off-market woningen, voeren wij strategische onderhandelingen en begeleiden wij u met volledige discretie – van het eerste consult tot de sleuteloverdracht.',
+        description: 'Met ruim 25 jaar marktkennis van ’t Gooi, Amsterdam e.o. bieden wij exclusieve toegang tot off-market woningen, voeren wij strategische onderhandelingen en begeleiden wij u met volledige discretie, van het eerste consult tot de sleuteloverdracht.',
         features: ['Off-market woningzoektocht', 'Uitgebreide marktanalyse', 'Strategische onderhandeling', 'Juridische en notariële coördinatie', 'Conciërge na aankoop']
       },
       selling: {
@@ -67,7 +67,7 @@ export default function ServicesPage() {
       },
       management: {
         title: 'Vastgoedbeheer',
-        description: 'Uitgebreid beheer voor investeerders en eigenaren in het buitenland. Van onderhoud tot financiële rapportage — wij beschermen uw bezit alsof het ons eigen is.',
+        description: 'Uitgebreid beheer voor investeerders en eigenaren in het buitenland. Van onderhoud tot financiële rapportage: wij beschermen uw bezit alsof het ons eigen is.',
         features: ['Geplande woninginspecties', 'Financiële rapportage en budgettering', 'Coördinatie van noodsituaties', 'Belasting- en verzekeringsadministratie', 'Leveranciers- en aannemersbeheer', '24/7 eigenaar ondersteuning']
       },
       cta: 'Klaar om te beginnen?',
@@ -186,7 +186,7 @@ export default function ServicesPage() {
                       key={feature}
                       className="flex items-start text-warm-gray"
                     >
-                      <span className="text-brass mr-3 mt-1">—</span>
+                      <span className="mt-[0.55rem] mr-3 inline-block h-px w-3 shrink-0 bg-brass" aria-hidden="true" />
                       {feature}
                     </li>
                   ))}
@@ -218,7 +218,7 @@ export default function ServicesPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {managementFeatures.map((item) => (
                     <div key={item} className="flex items-start text-stone-100/85">
-                      <span className="text-brass-light mr-3">—</span>
+                      <span className="mt-[0.55rem] mr-3 inline-block h-px w-3 shrink-0 bg-brass-light" aria-hidden="true" />
                       {item}
                     </div>
                   ))}
@@ -263,19 +263,19 @@ export default function ServicesPage() {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start text-warm-gray">
-                    <span className="text-brass mr-3">—</span>
+                    <span className="mt-[0.55rem] mr-3 inline-block h-px w-3 shrink-0 bg-brass" aria-hidden="true" />
                     Pre-arrival consultation and briefing
                   </div>
                   <div className="flex items-start text-warm-gray">
-                    <span className="text-brass mr-3">—</span>
+                    <span className="mt-[0.55rem] mr-3 inline-block h-px w-3 shrink-0 bg-brass" aria-hidden="true" />
                     Curated property search and viewings
                   </div>
                   <div className="flex items-start text-warm-gray">
-                    <span className="text-brass mr-3">—</span>
+                    <span className="mt-[0.55rem] mr-3 inline-block h-px w-3 shrink-0 bg-brass" aria-hidden="true" />
                     Contract and legal support
                   </div>
                   <div className="flex items-start text-warm-gray">
-                    <span className="text-brass mr-3">—</span>
+                    <span className="mt-[0.55rem] mr-3 inline-block h-px w-3 shrink-0 bg-brass" aria-hidden="true" />
                     Settling-in assistance and ongoing support
                   </div>
                 </div>

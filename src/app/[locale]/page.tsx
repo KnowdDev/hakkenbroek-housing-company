@@ -118,8 +118,7 @@ const content = {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Since 2000',
     heroTitle: 'Your next home, well found',
     heroLead: 'Finding a home begins with looking closely.',
-    heroDescription: 'For more than 25 years we have known the finest places, the hidden gems, and the opportunities the property market holds. From a characterful canal house in Amsterdam to a distinguished villa in Het Gooi: we guide you personally through the purchase or sale of your home — with knowledge of the market, an eye for detail, and always attention to what matters to you.',
-    heroClose: 'A house is more than bricks, space and an address. It is the place where your life unfolds. We do not simply help you find a property. We find the place that fits. Our experience does not stop at the region: we now successfully guide purchases and sales throughout the Netherlands and beyond.',
+    heroDescription: 'For more than 25 years we have guided people to the place that fits, from canal houses in Amsterdam to villas in Het Gooi, and now throughout the Netherlands.',
     viewProperties: 'View Portfolio',
     getInTouch: 'Get in Touch',
     searchPlaceholder: 'Search by neighbourhood or address...',
@@ -134,7 +133,7 @@ const content = {
     allPrices: 'Any Price',
     valuationEyebrow: 'Thinking of selling?',
     valuationTitle: "What's your home worth?",
-    valuationAssetLine: 'Your property is more than a home — it is your most important asset.',
+    valuationAssetLine: 'Your property is more than a home. It is your most important asset.',
     valuationDesc: 'Get a free, no-obligation valuation from agents who know the Amsterdam, Gooi and Vecht markets inside out. We will reply within 24 hours with honest numbers.',
     valuationAddress: 'Your address',
     valuationEmail: 'Your email',
@@ -144,7 +143,7 @@ const content = {
     servicesTitle: 'Our services',
     heritageEyebrow: 'Rooted in Amsterdam, Het Gooi, the Vechtstreek and beyond',
     heritageTitle: 'Twenty-five years deeply rooted in the Netherlands’ most sought-after places to live',
-    heritageDesc: 'We know not only the streets and neighbourhoods, but the stories behind them — and the value they carry. Since 2000 we have guided clients in the purchase, sale and letting of distinguished property in Amsterdam, Het Gooi and the Vechtstreek, and beyond: throughout the Netherlands and abroad. Discretion, care and precision are central. Not quick deals, but considered decisions that fit your life and your future. Our office on Leliegracht has long been the starting point for people looking for more than a house: a place that feels right.',
+    heritageDesc: 'A house is more than bricks, space and an address. It is the place where your life unfolds. We know not only the streets and neighbourhoods, but the stories behind them, and the value they carry. Since 2000 we have guided clients in the purchase, sale and letting of distinguished property in Amsterdam, Het Gooi and the Vechtstreek, and beyond: throughout the Netherlands and abroad. Discretion, care and precision are central. Not quick deals, but considered decisions that fit your life. Our office on Leliegracht has long been the starting point for people looking for more than a house: a place that feels right.',
     yearsExp: 'Years on the Market',
     regions: 'Regions We Serve',
     transactions: 'Properties Sold & Let',
@@ -164,14 +163,14 @@ const content = {
     faqEyebrow: 'Questions before you start',
     faqTitle: 'What people usually ask',
     faq: [
-      { q: 'How long does it take to sell a property in Amsterdam, Het Gooi or the Vechtstreek?', a: 'Most properties sell within 4–12 weeks, depending on price, location, and market conditions. We price honestly from day one, using our deep knowledge of the Amsterdam, Gooi and Vecht markets, so you do not sit unsold for months.' },
+      { q: 'How long does it take to sell a property in Amsterdam, Het Gooi or the Vechtstreek?', a: 'Most properties sell within 4 to 12 weeks, depending on price, location, and market conditions. We price honestly from day one, using our deep knowledge of the Amsterdam, Gooi and Vecht markets, so you do not sit unsold for months.' },
       { q: 'Do you work with international buyers and sellers?', a: 'Absolutely. Around 40% of our clients come from outside the Netherlands. We handle the paperwork, introduce you to mortgage advisors who understand international income, and guide you through the notary process step by step.' },
-      { q: 'What fees should I expect when selling?', a: 'Our commission is competitive and fully transparent. Before you sign anything, we give you a complete breakdown — no hidden costs, no surprise charges at the notary, and no vague estimates.' },
+      { q: 'What fees should I expect when selling?', a: 'Our commission is competitive and fully transparent. Before you sign anything, we give you a complete breakdown: no hidden costs, no surprise charges at the notary, and no vague estimates.' },
       { q: 'Can you help me find a rental before I move?', a: 'Yes. We maintain relationships with landlords across Amsterdam, Het Gooi and the Vechtstreek. We can arrange virtual viewings, short-term options, and even introduce you to relocation services if you are moving from abroad.' },
       { q: 'Do you manage rental properties for owners?', a: 'We do. From finding the right tenants to handling maintenance, rent collection, and legal compliance, we treat your property as if it were our own. Many of our landlord clients have been with us for over a decade.' },
     ],
     finalCtaTitle: "Let's talk about your next move",
-    finalCtaDesc: 'Buying, selling, renting, or just curious about the market in Amsterdam, Het Gooi or the Vechtstreek? Come by our office on Leliegracht for a coffee. No pitch, no pressure — just an honest conversation with people who know these markets properly.',
+    finalCtaDesc: 'Buying, selling, renting, or just curious about the market in Amsterdam, Het Gooi or the Vechtstreek? Come by our office on Leliegracht for a coffee. No pitch, no pressure. Just an honest conversation with people who know these markets properly.',
     finalCtaBtn: 'Come Say Hello',
     finalCtaSell: 'Or list your property',
     finalCtaSellBtn: 'Get a Free Valuation',
@@ -180,8 +179,7 @@ const content = {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Sinds 2000',
     heroTitle: 'Uw volgende thuis goed gevonden',
     heroLead: 'Een thuis vinden begint met goed kijken.',
-    heroDescription: 'Al meer dan 25 jaar kennen wij de mooiste plekken, de verborgen parels en de kansen die de woningmarkt biedt. Van een karakteristiek grachtenpand in Amsterdam tot een stijlvolle villa in het Gooi: wij begeleiden u persoonlijk bij de aankoop of verkoop van uw woning. Met kennis van de markt, oog voor detail en altijd aandacht voor wat voor ú belangrijk is.',
-    heroClose: 'Want een huis is meer dan stenen, ruimte en een adres. Het is de plek waar uw leven zich afspeelt. Wij helpen u niet zomaar een woning te vinden. Wij vinden de plek die bij u past. Onze ervaring stopt bovendien niet bij de regio. Inmiddels begeleiden wij met succes aankoop en verkoop door heel Nederland én daarbuiten.',
+    heroDescription: 'Al meer dan 25 jaar begeleiden wij mensen naar de plek die past, van een grachtenpand in Amsterdam tot een villa in het Gooi, en inmiddels door heel Nederland.',
     viewProperties: 'Bekijk Portfolio',
     getInTouch: 'Neem Contact Op',
     searchPlaceholder: 'Zoek op buurt of adres...',
@@ -196,7 +194,7 @@ const content = {
     allPrices: 'Alle Prijzen',
     valuationEyebrow: 'Overweegt u te verkopen?',
     valuationTitle: 'Wat is uw huis waard?',
-    valuationAssetLine: 'Uw woning is meer dan een thuis — het is uw belangrijkste bezit.',
+    valuationAssetLine: 'Uw woning is meer dan een thuis. Het is uw belangrijkste bezit.',
     valuationDesc: 'Ontvang een gratis, vrijblijvende taxatie van makelaars die de markten van Amsterdam, Het Gooi en de Vechtstreek door en door kennen. We reageren binnen 24 uur met eerlijke cijfers.',
     valuationAddress: 'Uw adres',
     valuationEmail: 'Uw e-mail',
@@ -206,7 +204,7 @@ const content = {
     servicesTitle: 'Onze diensten',
     heritageEyebrow: 'Verankerd in Amsterdam, Het Gooi, Vechtstreek e.o.',
     heritageTitle: 'Al vijfentwintig jaar diepgeworteld in de meest gewilde woongebieden van Nederland',
-    heritageDesc: 'We kennen niet alleen de straten en buurten, maar ook de verhalen erachter — en de waarde die ze dragen. Sinds 2000 begeleiden wij cliënten bij de aankoop, verkoop en verhuur van exclusief vastgoed in Amsterdam, Het Gooi, de Vechtstreek, en daarbuiten: in geheel Nederland en internationaal. Discretie, aandacht en precisie staan daarbij centraal. Geen snelle deals, maar doordachte beslissingen die passen bij uw leven en toekomst. Ons kantoor aan de Leliegracht is al jaren het vertrekpunt voor mensen die zoeken naar meer dan een woning: een plek die klopt.',
+    heritageDesc: 'Een huis is meer dan stenen, ruimte en een adres. Het is de plek waar uw leven zich afspeelt. We kennen niet alleen de straten en buurten, maar ook de verhalen erachter, en de waarde die ze dragen. Sinds 2000 begeleiden wij cliënten bij de aankoop, verkoop en verhuur van exclusief vastgoed in Amsterdam, Het Gooi, de Vechtstreek, en daarbuiten: in geheel Nederland en internationaal. Discretie, aandacht en precisie staan daarbij centraal. Geen snelle deals, maar doordachte beslissingen die passen bij uw leven. Ons kantoor aan de Leliegracht is al jaren het vertrekpunt voor mensen die zoeken naar meer dan een woning: een plek die klopt.',
     yearsExp: 'Jaar op de Markt',
     regions: 'Regio\'s die Wij Bedienen',
     transactions: 'Woningen Verkocht & Verhuurd',
@@ -226,14 +224,14 @@ const content = {
     faqEyebrow: 'Vragen voordat u begint',
     faqTitle: 'Wat mensen ons meestal vragen',
     faq: [
-      { q: 'Hoe lang duurt het om een woning te verkopen in Amsterdam, Het Gooi of de Vechtstreek?', a: 'De meeste woningen worden binnen 4–12 weken verkocht, afhankelijk van prijs, locatie en marktomstandigheden. We hanteren vanaf dag één een eerlijke vraagprijs, op basis van onze diepe kennis van de markten in Amsterdam, Het Gooi en de Vechtstreek, zodat u niet maandenlang onverkocht blijft staan.' },
+      { q: 'Hoe lang duurt het om een woning te verkopen in Amsterdam, Het Gooi of de Vechtstreek?', a: 'De meeste woningen worden binnen 4 tot 12 weken verkocht, afhankelijk van prijs, locatie en marktomstandigheden. We hanteren vanaf dag één een eerlijke vraagprijs, op basis van onze diepe kennis van de markten in Amsterdam, Het Gooi en de Vechtstreek, zodat u niet maandenlang onverkocht blijft staan.' },
       { q: 'Werken jullie met internationale kopers en verkopers?', a: 'Zeker. Ongeveer 40% van onze klanten komt van buiten Nederland. We regelen de papierwinkel, introduceren u bij hypotheekadviseurs die internationaal inkomen begrijpen, en begeleiden u stap voor stap door het notarisproces.' },
-      { q: 'Welke kosten kan ik verwachten bij verkoop?', a: 'Onze courtage is concurrerend en volledig transparant. Voordat u iets ondertekent geven we u een volledig overzicht — geen verborgen kosten, geen verrassingen bij de notaris, en geen vaag geraamte.' },
+      { q: 'Welke kosten kan ik verwachten bij verkoop?', a: 'Onze courtage is concurrerend en volledig transparant. Voordat u iets ondertekent geven we u een volledig overzicht: geen verborgen kosten, geen verrassingen bij de notaris, en geen vaag geraamte.' },
       { q: 'Kunnen jullie helpen met een huurwoning vóórdat ik verhuis?', a: 'Ja. We onderhouden relaties met verhuurders door heel Amsterdam, Het Gooi en de Vechtstreek. We kunnen virtuele bezichtigingen, tijdelijke opties en zelfs relocatiediensten regelen als u vanuit het buitenland verhuist.' },
-      { q: 'Beheren jullie ook verhuurwoningen voor eigenaren?', a: 'Dat doen we. Van het vinden van de juiste huurders tot onderhoud, huurincasso en juridische compliance — we behandelen uw woning alsof het onze eigen is. Veel van onze verhuurders zijn al meer dan tien jaar bij ons.' },
+      { q: 'Beheren jullie ook verhuurwoningen voor eigenaren?', a: 'Dat doen we. Van het vinden van de juiste huurders tot onderhoud, huurincasso en juridische compliance: we behandelen uw woning alsof het onze eigen is. Veel van onze verhuurders zijn al meer dan tien jaar bij ons.' },
     ],
     finalCtaTitle: 'Laten we praten over uw volgende stap',
-    finalCtaDesc: 'Kopen, verkopen, huren, of gewoon benieuwd naar de markt in Amsterdam, Het Gooi of de Vechtstreek? Kom langs bij ons kantoor aan de Leliegracht voor een kop koffie. Geen verkooppraatje, geen druk — gewoon een eerlijk gesprek met mensen die deze markten echt kennen.',
+    finalCtaDesc: 'Kopen, verkopen, huren, of gewoon benieuwd naar de markt in Amsterdam, Het Gooi of de Vechtstreek? Kom langs bij ons kantoor aan de Leliegracht voor een kop koffie. Geen verkooppraatje, geen druk. Gewoon een eerlijk gesprek met mensen die deze markten echt kennen.',
     finalCtaBtn: 'Kom Eens Langs',
     finalCtaSell: 'Of verkoop uw woning',
     finalCtaSellBtn: 'Gratis Taxatie Aanvragen',
@@ -397,7 +395,7 @@ export default function Home() {
                 backgroundSize: '40px 40px',
               }}
             />
-            <div className="relative px-8 pt-12 pb-16 md:px-10 md:pt-16 md:pb-14 lg:px-12 lg:pt-32 lg:pb-12 xl:px-14 xl:pt-36 max-w-[36rem]">
+            <div className="relative px-8 pt-12 pb-16 md:px-10 md:pt-16 md:pb-14 lg:px-12 lg:pt-32 lg:pb-28 xl:px-14 xl:pt-36 xl:pb-32 max-w-[36rem]">
               <p
                 className={`font-body text-xs uppercase tracking-[0.2em] text-brass mb-6 ${revealClass(heroRef.inView)}`}
                 style={{ transitionDelay: '100ms' }}
@@ -405,32 +403,26 @@ export default function Home() {
                 {t.heroSubtitle}
               </p>
               <h1
-                className={`font-display text-4xl md:text-[3rem] lg:text-[3.2rem] xl:text-[3.55rem] leading-[1.06] text-charcoal mb-6 ${revealClass(heroRef.inView)}`}
+                className={`font-display text-4xl md:text-[3rem] lg:text-[3.2rem] xl:text-[3.55rem] leading-[1.06] text-charcoal mb-5 ${revealClass(heroRef.inView)}`}
                 style={{ transitionDelay: '200ms' }}
               >
                 {t.heroTitle}
               </h1>
               <p
-                className={`font-body text-base md:text-lg text-charcoal leading-relaxed mb-4 max-w-[32rem] ${revealClass(heroRef.inView)}`}
+                className={`font-body text-lg md:text-xl text-charcoal leading-snug mb-5 max-w-[32rem] ${revealClass(heroRef.inView)}`}
                 style={{ transitionDelay: '250ms' }}
               >
                 {t.heroLead}
               </p>
               <p
-                className={`font-body text-base md:text-lg text-warm-gray leading-relaxed mb-4 max-w-[32rem] ${revealClass(heroRef.inView)}`}
+                className={`font-body text-base text-warm-gray leading-relaxed mb-8 max-w-[30rem] ${revealClass(heroRef.inView)}`}
                 style={{ transitionDelay: '300ms' }}
               >
                 {t.heroDescription}
               </p>
-              <p
-                className={`font-body text-base md:text-lg text-warm-gray leading-relaxed mb-8 max-w-[32rem] ${revealClass(heroRef.inView)}`}
-                style={{ transitionDelay: '350ms' }}
-              >
-                {t.heroClose}
-              </p>
               <div
                 className={`flex flex-wrap gap-4 ${revealClass(heroRef.inView)}`}
-                style={{ transitionDelay: '400ms' }}
+                style={{ transitionDelay: '350ms' }}
               >
                 <Link
                   href={`/properties`}
@@ -697,8 +689,8 @@ export default function Home() {
                 </h3>
                 <p className="text-warm-gray leading-relaxed max-w-sm">
                   {locale === 'nl'
-                    ? 'Exclusieve toegang tot off-market woningen, strategische onderhandeling en volledige discretie — van eerste consult tot sleuteloverdracht.'
-                    : 'Exclusive access to off-market homes, strategic negotiation, and complete discretion — from first consultation to key transfer.'}
+                    ? 'Exclusieve toegang tot off-market woningen, strategische onderhandeling en volledige discretie, van eerste consult tot sleuteloverdracht.'
+                    : 'Exclusive access to off-market homes, strategic negotiation, and complete discretion, from first consultation to key transfer.'}
                 </p>
               </div>
               <div className="flex items-center gap-2 text-charcoal group-hover:text-brass transition-colors mt-6">

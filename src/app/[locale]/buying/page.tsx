@@ -13,16 +13,16 @@ export default function BuyingPage() {
     en: {
       heroSubtitle: 'Buyer Representation',
       heroTitle: 'Acquire what others cannot find',
-      heroDescription: 'With more than 25 years of market knowledge in Het Gooi, Amsterdam and the surrounding area, we offer exclusive access to off-market homes, conduct strategic negotiations, and guide you with complete discretion — from first consultation to key transfer. We have also successfully completed national and international search assignments. Clients particularly value this personal, focused approach.',
+      heroDescription: 'With more than 25 years of market knowledge in Het Gooi, Amsterdam and the surrounding area, we offer exclusive access to off-market homes, conduct strategic negotiations, and guide you with complete discretion, from first consultation to key transfer. We have also successfully completed national and international search assignments. Clients particularly value this personal, focused approach.',
       introTitle: 'The art of buying in Amsterdam',
-      introText: 'Buying a home in Amsterdam today asks for more than a sharp eye on Funda. Many properties sell above asking price, and some of the most attractive homes never reach the public market at all. With 26 years of experience in the Amsterdam property market, we know where the opportunities lie. Through our network, thorough market knowledge and considered negotiation strategy, we guide you to the right home — on the best possible terms. That is how we make the difference: with access, insight and personal guidance throughout the entire buying process.',
+      introText: 'Buying a home in Amsterdam today asks for more than a sharp eye on Funda. Many properties sell above asking price, and some of the most attractive homes never reach the public market at all. With 26 years of experience in the Amsterdam property market, we know where the opportunities lie. Through our network, thorough market knowledge and considered negotiation strategy, we guide you to the right home, on the best possible terms. That is how we make the difference: with access, insight and personal guidance throughout the entire buying process.',
       processTitle: 'Our buyer process',
       steps: [
-        { step: '01', title: 'Confidential Briefing', desc: 'We meet at our Leliegracht office — or yours. We listen, observe, and define precisely what you seek. Budget, timeline, lifestyle, architecture. Every detail matters.' },
+        { step: '01', title: 'Confidential Briefing', desc: 'We meet at our Leliegracht office, or yours. We listen, observe, and define precisely what you seek. Budget, timeline, lifestyle, architecture. Every detail matters.' },
         { step: '02', title: 'Intelligence & Sourcing', desc: 'We activate our network. Many properties we present are not listed anywhere. We reach owners, agents, and advisors across Amsterdam before the market knows they exist.' },
         { step: '03', title: 'Curated Viewings', desc: 'Every viewing is pre-qualified against your brief. No open houses. No wasted afternoons. Each property has been assessed for value, potential, and fit before you step inside.' },
-        { step: '04', title: 'Strategic Negotiation', desc: 'We negotiate with full market intelligence — comparable sales, seller position, timing leverage. Our buyers consistently secure properties at or below true market value.' },
-        { step: '05', title: 'Closing & Beyond', desc: 'From building inspection to notarial transfer, we coordinate every detail. Mortgage advisors, interior designers, contractors — our network becomes yours.' },
+        { step: '04', title: 'Strategic Negotiation', desc: 'We negotiate with full market intelligence: comparable sales, seller position, timing leverage. Our buyers consistently secure properties at or below true market value.' },
+        { step: '05', title: 'Closing & Beyond', desc: 'From building inspection to notarial transfer, we coordinate every detail. Mortgage advisors, interior designers, contractors: our network becomes yours.' },
       ],
       casesTitle: 'Recent acquisitions',
       cases: [
@@ -42,16 +42,16 @@ export default function BuyingPage() {
     nl: {
       heroSubtitle: 'Koperbegeleiding',
       heroTitle: 'Verwerf wat anderen niet kunnen vinden',
-      heroDescription: 'Met ruim 25 jaar marktkennis van ’t Gooi, Amsterdam e.o. bieden wij exclusieve toegang tot off-market woningen, voeren wij strategische onderhandelingen en begeleiden wij u met volledige discretie – van het eerste consult tot de sleuteloverdracht. Ook onze landelijke en internationale zoekopdrachten hebben wij met succes afgerond. Deze persoonlijke en gerichte aanpak wordt door onze klanten bijzonder gewaardeerd.',
+      heroDescription: 'Met ruim 25 jaar marktkennis van ’t Gooi, Amsterdam e.o. bieden wij exclusieve toegang tot off-market woningen, voeren wij strategische onderhandelingen en begeleiden wij u met volledige discretie, van het eerste consult tot de sleuteloverdracht. Ook onze landelijke en internationale zoekopdrachten hebben wij met succes afgerond. Deze persoonlijke en gerichte aanpak wordt door onze klanten bijzonder gewaardeerd.',
       introTitle: 'De kunst van het kopen in Amsterdam',
-      introText: 'Een huis kopen in Amsterdam vraagt vandaag om meer dan een scherp oog voor Funda. Veel woningen worden boven de vraagprijs verkocht en een deel van het meest aantrekkelijke aanbod bereikt de openbare markt niet eens. Met inmiddels 26 jaar ervaring in de Amsterdamse woningmarkt weten wij waar de kansen liggen. Dankzij ons netwerk, grondige marktkennis en doordachte onderhandelingsstrategie begeleiden wij u naar de juiste woning – tegen de beste voorwaarden. Zo maken wij het verschil: met toegang, inzicht en persoonlijke begeleiding gedurende het hele aankoopproces.',
+      introText: 'Een huis kopen in Amsterdam vraagt vandaag om meer dan een scherp oog voor Funda. Veel woningen worden boven de vraagprijs verkocht en een deel van het meest aantrekkelijke aanbod bereikt de openbare markt niet eens. Met inmiddels 26 jaar ervaring in de Amsterdamse woningmarkt weten wij waar de kansen liggen. Dankzij ons netwerk, grondige marktkennis en doordachte onderhandelingsstrategie begeleiden wij u naar de juiste woning, tegen de beste voorwaarden. Zo maken wij het verschil: met toegang, inzicht en persoonlijke begeleiding gedurende het hele aankoopproces.',
       processTitle: 'Ons koopproces',
       steps: [
-        { step: '01', title: 'Vertrouwelijk Briefing', desc: 'Wij ontmoeten elkaar op ons kantoor aan de Leliegracht — of bij u thuis. Wij luisteren, observeren, en bepalen precies wat u zoekt. Budget, tijdlijn, levensstijl, architectuur. Elk detail telt.' },
+        { step: '01', title: 'Vertrouwelijk Briefing', desc: 'Wij ontmoeten elkaar op ons kantoor aan de Leliegracht, of bij u thuis. Wij luisteren, observeren, en bepalen precies wat u zoekt. Budget, tijdlijn, levensstijl, architectuur. Elk detail telt.' },
         { step: '02', title: 'Intelligentie & Sourcing', desc: 'Wij activeren ons netwerk. Veel woningen die wij presenteren staan nergens vermeld. Wij benaderen eigenaren, makelaars, en adviseurs door heel Amsterdam voordat de markt weet dat ze bestaan.' },
         { step: '03', title: 'Gecureerde Bezichtigingen', desc: 'Elke bezichtiging is voorgekwalificeerd op basis van uw briefing. Geen open huizen. Geen verloren middagen. Elke woning is beoordeeld op waarde, potentieel, en geschiktheid voordat u binnenstapt.' },
-        { step: '04', title: 'Strategische Onderhandeling', desc: 'Wij onderhandelen met volledig marktinzicht — vergelijkbare verkopen, positie van de verkoper, timing. Onze kopers verkrijgen woningen consistent op of onder de werkelijke marktwaarde.' },
-        { step: '05', title: 'Afronding & Daarna', desc: 'Van bouwkundige keuring tot notariële overdracht, wij coördineren elk detail. Hypotheekadviseurs, interieurontwerpers, aannemers — ons netwerk wordt het uwe.' },
+        { step: '04', title: 'Strategische Onderhandeling', desc: 'Wij onderhandelen met volledig marktinzicht: vergelijkbare verkopen, positie van de verkoper, timing. Onze kopers verkrijgen woningen consistent op of onder de werkelijke marktwaarde.' },
+        { step: '05', title: 'Afronding & Daarna', desc: 'Van bouwkundige keuring tot notariële overdracht, wij coördineren elk detail. Hypotheekadviseurs, interieurontwerpers, aannemers: ons netwerk wordt het uwe.' },
       ],
       casesTitle: 'Recente acquisities',
       cases: [

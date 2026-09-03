@@ -25,7 +25,7 @@ export const translations = {
       quality: 'Quality Focus',
       qualityDesc: 'We only work with the best properties in the region, ensuring our clients have access to premium listings.',
       relationships: 'Long-term Relationships',
-      relationshipsDesc: "We're not just about transactions — we build lasting relationships with our clients for all their real estate needs.",
+      relationshipsDesc: "We're not just about transactions. We build lasting relationships with our clients for all their real estate needs.",
       stats: {
         years: 'Years Experience',
         rating: 'Client Rating',
@@ -42,7 +42,7 @@ export const translations = {
       heroSubtitle: 'What We Offer',
       heroTitle: 'Services tailored to your journey',
       introLabel: 'Comprehensive Solutions',
-      introText: 'Whether you are looking for a residence that gives roots to your identity or want to make an investment that will pay off in the future, we listen, advise, and anticipate — finding the right properties, often before they even come onto the market.',
+      introText: 'Whether you are looking for a residence that gives roots to your identity or want to make an investment that will pay off in the future, we listen, advise, and anticipate, finding the right properties, often before they even come onto the market.',
       buying: {
         title: 'Buying',
         description: 'Expert guidance through the entire buying process, from property search to transfer. We help you find the perfect home that matches your needs and budget.',
@@ -86,7 +86,7 @@ export const translations = {
         priceRange: 'Price Range',
         allPrices: 'All Prices',
         under600k: 'Under €600,000',
-        between600k700k: '€600,000 – €700,000',
+        between600k700k: '€600,000 to €700,000',
         over700k: '€700,000+',
         showing: 'Showing',
         property: 'property',
@@ -171,7 +171,7 @@ export const translations = {
           }
         },
         ctaTitle: 'Ready to find your Amsterdam home?',
-        ctaDescription: 'Contact us for a personalized consultation. We listen, we observe, we advise — all with one goal in mind: to find the perfect connection between you and your new space.',
+        ctaDescription: 'Contact us for a personalized consultation. We listen, we observe, we advise, all with one goal in mind: to find the perfect connection between you and your new space.',
         startConversation: 'Start a Conversation'
       },
       info: {
@@ -214,7 +214,7 @@ export const translations = {
       quality: 'Kwaliteitsfocus',
       qualityDesc: 'Wij werken alleen met de beste woningen in de regio, zodat onze cliënten toegang hebben tot premium aanbod.',
       relationships: 'Lange-termijn Relaties',
-      relationshipsDesc: 'Wij zijn niet alleen gericht op transacties — wij bouwen langdurige relaties met onze cliënten voor al hun vastgoedbehoeften.',
+      relationshipsDesc: 'Wij zijn niet alleen gericht op transacties. Wij bouwen langdurige relaties met onze cliënten voor al hun vastgoedbehoeften.',
       stats: {
         years: 'Jaar Ervaring',
         rating: 'Cliëntbeoordeling',
@@ -231,7 +231,7 @@ export const translations = {
       heroSubtitle: 'Wat Wij Bieden',
       heroTitle: 'Diensten op maat voor uw reis',
       introLabel: 'Uitgebreide Oplossingen',
-      introText: 'Of u nu zoekt naar een woning die wortel geeft aan uw identiteit of wilt investeren voor de toekomst, wij luisteren, adviseren en anticiperen — wij vinden de juiste woningen, vaak voordat ze zelfs op de markt komen.',
+      introText: 'Of u nu zoekt naar een woning die wortel geeft aan uw identiteit of wilt investeren voor de toekomst, wij luisteren, adviseren en anticiperen. Wij vinden de juiste woningen, vaak voordat ze zelfs op de markt komen.',
       buying: {
         title: 'Kopen',
         description: 'Deskundige begeleiding door het hele aankoopproces, van woningzoektocht tot overdracht. Wij helpen u de perfecte woning te vinden die past bij uw behoeften en budget.',
@@ -275,7 +275,7 @@ export const translations = {
         priceRange: 'Prijsbereik',
         allPrices: 'Alle Prijzen',
         under600k: 'Onder €600.000',
-        between600k700k: '€600.000 – €700.000',
+        between600k700k: '€600.000 tot €700.000',
         over700k: '€700.000+',
         showing: 'Weergeven',
         property: 'woning',

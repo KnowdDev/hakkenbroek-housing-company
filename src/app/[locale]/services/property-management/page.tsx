@@ -36,13 +36,13 @@ export default function PropertyManagementPage() {
     nl: {
       heroSubtitle: 'Vastgoedbeheer',
       heroTitle: 'Uitgebreid beheer voor investeerders en eigenaren in het buitenland',
-      heroDescription: 'Van onderhoud tot financiële rapportage — wij beschermen uw bezit alsof het ons eigen is. Of u nu één investeringswoning bezit of een portfolio door heel Amsterdam, ons beheer garandeert gemoedsrust en optimaal rendement.',
+      heroDescription: 'Van onderhoud tot financiële rapportage: wij beschermen uw bezit alsof het ons eigen is. Of u nu één investeringswoning bezit of een portfolio door heel Amsterdam, ons beheer garandeert gemoedsrust en optimaal rendement.',
       introTitle: 'De Hakkenbroek aanpak voor vastgoedbeheer',
       introText: 'Eigendom zou een bron van welvaart en zekerheid moeten zijn, geen bron van stress. Toch raken veel investeerders en eigenaren in het buitenland overweldigd door de dagelijkse eisen van vastgoedbeheer. Onze uitgebreide service behartigt elk aspect van woningtoezicht, van routinematig onderhoud tot noodgevallen, financiële rapportage tot regelgevende naleving.',
       processTitle: 'Onze beheerservices',
       steps: [
         { step: '01', title: 'Woninginspectie en onboarding', desc: 'We beginnen met een grondige inspectie van uw woning, documenteren de staat, stellen een onderhoudsplan op en identificeren directe behoeften. We leggen duidelijke communicatielijnen en rapportageafspraken vast zodat u altijd op de hoogte bent.' },
-        { step: '02', title: 'Onderhoudsmanagement', desc: 'We coördineren alle reguliere en calamiteitonderhoud via ons netwerk van betrouwbare aannemers. Van loodgieters en elektriciens tot hoveniers en schoonmaak — we zorgen ervoor dat uw woning naar de hoogste standaard wordt onderhouden, zodat de waarde en aantrekkingskracht behouden blijven.' },
+        { step: '02', title: 'Onderhoudsmanagement', desc: 'We coördineren alle reguliere en calamiteitonderhoud via ons netwerk van betrouwbare aannemers. Van loodgieters en elektriciens tot hoveniers en schoonmaak: we zorgen ervoor dat uw woning naar de hoogste standaard wordt onderhouden, zodat de waarde en aantrekkingskracht behouden blijven.' },
         { step: '03', title: 'Financiële administratie', desc: 'We beheren alle vastgoedgerelateerde financiën inclusief incasso, kostenregistratie en leveranciersbetalingen. U ontvangt regelmatig gedetailleerde financiële rapportages met inkomsten, uitgaven en netto prestaties. We verzorgen ook fiscale documentatie en verzekeringsadministratie.' },
         { step: '04', title: 'Huurdersrelaties', desc: 'Wij fungeren als primair aanspreekpunt voor huurders en behandelen vragen, verzoeken en kwesties snel en professioneel. Onze proactieve aanpak onderhoudt positieve huurdersrelaties, vermindert leegstand en beschermt uw huurinkomsten.' },
         { step: '05', title: 'Strategisch advies', desc: 'Naast dagelijks beheer bieden wij strategisch advies over woningverbeteringen, marktpositionering en optimaal timing voor verkoop of herverhuur. We helpen u de langetermijnwaarde van uw investering te maximaliseren.' }
@@ -51,7 +51,7 @@ export default function PropertyManagementPage() {
       benefits: [
         { title: 'Volledig toezicht', desc: 'Wij behartigen elk aspect van vastgoedbeheer zodat u niet zelf meerdere leveranciers hoeft te coördineren of op huurdersverzoeken hoeft te reageren. Één aanspreekpunt. Volledige verantwoordelijkheid.' },
         { title: 'Betrouwbare aannemers', desc: 'We hebben jarenlange relaties met de beste vakmensen en aannemers van Amsterdam. Kwalitatief werk, eerlijke prijzen en betrouwbare service zijn gegarandeerd.' },
-        { title: 'Financiële helderheid', desc: 'Onze gedetailleerde financiële rapportages geven u volledig inzicht in de prestaties van uw woning. Inkomsten, uitgaven, netto rendement en waardestijging — alles duidelijk bijgehouden en gerapporteerd.' },
+        { title: 'Financiële helderheid', desc: 'Onze gedetailleerde financiële rapportages geven u volledig inzicht in de prestaties van uw woning. Inkomsten, uitgaven, netto rendement en waardestijging: alles duidelijk bijgehouden en gerapporteerd.' },
         { title: 'Juridische naleving', desc: 'We zorgen ervoor dat uw woning voldoet aan alle Nederlandse regelgeving, van veiligheidsnormen tot huurwetgeving. We volgen wijzigingen in de regelgeving zodat u dat niet hoeft te doen.' }
       ],
       ctaTitle: 'Klaar voor zorgeloos vastgoedbeheer?',

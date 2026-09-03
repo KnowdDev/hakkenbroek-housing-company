@@ -716,7 +716,7 @@ export default function ListingsDashboard() {
                 <h3 className="font-display text-xl text-charcoal mb-4">Image Gallery</h3>
                 <p className="text-sm text-stone-500 mb-4">
                   The featured image is automatically included as the first gallery image.
-                  Upload additional images here — they will appear after the featured image.
+                  Upload additional images here. They will appear after the featured image.
                 </p>
 
                 {/* Thumbnail grid */}

@@ -2,13 +2,13 @@
 export const LISTING_EDITORIAL_GUIDELINES = `
 ## Hakkenbroek listing voice
 
-- Write with calm confidence and discretion — luxury brokerage, never hype or urgency tricks.
+- Write with calm confidence and discretion. Luxury brokerage, never hype or urgency tricks.
 - Prefer precise facts (m², orientation, finishes, tenure where relevant) over superlatives.
 - Opening sentence: location + typology + one distinctive trait.
 - Body: light → layout → finishes → outdoor → parking → neighbourhood connectivity (schools, transit).
 - Avoid ALL CAPS, excessive exclamation marks, and repetitive clichés ("dream home", "must-see").
-- English site copy stays British/neutral international English unless the source markdown is Dutch — then mirror NL faithfully first, improve clarity second.
-- Short paragraphs (2–4 sentences). Bullet lists only for specs readers scan quickly.
+- English site copy stays British/neutral international English unless the source markdown is Dutch. Then mirror NL faithfully first, improve clarity second.
+- Short paragraphs (2 to 4 sentences). Bullet lists only for specs readers scan quickly.
 
 ## Surgical updates
 
