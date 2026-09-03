@@ -12,7 +12,7 @@ export default function LeasingPage() {
       heroTitle: 'Long-term lease management for discerning landlords',
       heroDescription: 'We manage your property as if it were our own. From tenant selection to rent collection legal compliance to maintenance coordination we handle every aspect of long-term leasing with precision and care.',
       introTitle: 'Position your property for the right market',
-      introText: 'With a tailored marketing approach, exclusive private viewings, and access to an international network of qualified tenants, we present your property to the right audience. We do not stop at offering properties — we present them in a way that does justice to their unique character and value.',
+      introText: 'Since 2000 we have guided clients in letting property. Letting a home — especially for a limited period — is work for specialists. With a tailored marketing approach, exclusive private viewings, and access to an international network of qualified tenants, we present your property to the right audience. We do not stop at offering properties — we present them in a way that does justice to their unique character and value.',
       processTitle: 'Our lease management process',
       steps: [
         { step: '01', title: 'Property Assessment', desc: 'We begin with a thorough assessment of your property. We evaluate its rental potential identify any maintenance or improvement needs and recommend positioning strategies to attract quality tenants and achieve optimal rent.' },
@@ -38,7 +38,7 @@ export default function LeasingPage() {
       heroTitle: 'Langdurig verhuurbeheer voor kritische verhuurders',
       heroDescription: 'Wij beheren uw woning alsof het onze eigen is. Van huurdersselectie tot incasso, juridische naleving tot onderhoudscoördinatie — wij behartigen elk aspect van langdurige verhuur met precisie en zorg.',
       introTitle: 'Positioneer uw woning voor de juiste markt',
-      introText: 'Met een op maat gemaakte marketingaanpak, exclusieve privébezichtigingen en toegang tot een internationaal netwerk van gekwalificeerde huurders brengen wij uw woning onder de aandacht bij de juiste doelgroep. Wij beperken ons niet tot het aanbieden van woningen — wij presenteren ze op een manier die recht doet aan hun unieke karakter en waarde.',
+      introText: 'Sinds 2000 begeleiden wij cliënten bij het verhuren van onroerend goed. Verhuur van woningen is — zeker bij tijdelijk verhuren — werk voor specialisten. Met een op maat gemaakte marketingaanpak, exclusieve privébezichtigingen en toegang tot een internationaal netwerk van gekwalificeerde huurders brengen wij uw woning onder de aandacht bij de juiste doelgroep. Wij beperken ons niet tot het aanbieden van woningen — wij presenteren ze op een manier die recht doet aan hun unieke karakter en waarde.',
       processTitle: 'Ons verhuurbeheerproces',
       steps: [
         { step: '01', title: 'Woningassessment', desc: 'We beginnen met een grondige beoordeling van uw woning. We bepalen de huurpotentie, identificeren onderhouds- of verbeterbehoeften en adviseren over positionering om kwalitatieve huurders te trekken en de optimale huur te realiseren.' },
@@ -72,7 +72,7 @@ export default function LeasingPage() {
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Leliegracht 21',
-        postalCode: '1015 DE',
+        postalCode: '1016 GR',
         addressLocality: 'Amsterdam',
         addressCountry: 'NL'
       }

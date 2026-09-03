@@ -72,7 +72,7 @@ export default function PropertyManagementPage() {
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Leliegracht 21',
-        postalCode: '1015 DE',
+        postalCode: '1016 GR',
         addressLocality: 'Amsterdam',
         addressCountry: 'NL'
       }

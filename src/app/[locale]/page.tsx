@@ -116,8 +116,10 @@ function useCountUp(end: number, duration = 2000, inView = false) {
 const content = {
   en: {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Since 2000',
-    heroTitle: 'Your next home, perfectly matched',
-    heroDescription: 'For more than 25 years we have been matching people with the right property in Amsterdam, Het Gooi and the Vechtstreek. Canal houses with original details, light-filled apartments in leafy neighbourhoods, and family homes with space to breathe — we know every street, every market shift, and what your money is really worth here.',
+    heroTitle: 'Your next home, well found',
+    heroLead: 'Finding a home begins with looking closely.',
+    heroDescription: 'For more than 25 years we have known the finest places, the hidden gems, and the opportunities the property market holds. From a characterful canal house in Amsterdam to a distinguished villa in Het Gooi: we guide you personally through the purchase or sale of your home — with knowledge of the market, an eye for detail, and always attention to what matters to you.',
+    heroClose: 'A house is more than bricks, space and an address. It is the place where your life unfolds. We do not simply help you find a property. We find the place that fits. Our experience does not stop at the region: we now successfully guide purchases and sales throughout the Netherlands and beyond.',
     viewProperties: 'View Portfolio',
     getInTouch: 'Get in Touch',
     searchPlaceholder: 'Search by neighbourhood or address...',
@@ -140,9 +142,9 @@ const content = {
     valuationTrust: 'No spam. No pressure. Just honest numbers.',
     servicesEyebrow: 'What we offer',
     servicesTitle: 'Our services',
-    heritageEyebrow: 'Rooted in Amsterdam, Het Gooi & De Vechtstreek',
-    heritageTitle: 'Twenty-five years of knowing every street, every market, and what matters to you',
-    heritageDesc: 'Since 2000 we have guided buyers, sellers and landlords through the property market in Amsterdam, Het Gooi and the Vechtstreek. We do not chase quick commissions. We take the time to understand what you are actually looking for, then stick with you until it is sorted. Our office on Leliegracht has been the starting point for hundreds of people finding their place in this city and beyond.',
+    heritageEyebrow: 'Rooted in Amsterdam, Het Gooi, the Vechtstreek and beyond',
+    heritageTitle: 'Twenty-five years deeply rooted in the Netherlands’ most sought-after places to live',
+    heritageDesc: 'We know not only the streets and neighbourhoods, but the stories behind them — and the value they carry. Since 2000 we have guided clients in the purchase, sale and letting of distinguished property in Amsterdam, Het Gooi and the Vechtstreek, and beyond: throughout the Netherlands and abroad. Discretion, care and precision are central. Not quick deals, but considered decisions that fit your life and your future. Our office on Leliegracht has long been the starting point for people looking for more than a house: a place that feels right.',
     yearsExp: 'Years on the Market',
     regions: 'Regions We Serve',
     transactions: 'Properties Sold & Let',
@@ -176,8 +178,10 @@ const content = {
   },
   nl: {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Sinds 2000',
-    heroTitle: 'Uw volgende thuis, perfect gevonden',
-    heroDescription: 'Al meer dan 25 jaar helpen we mensen aan het juiste huis in Amsterdam, Het Gooi en de Vechtstreek. Grachtenpanden met karakter, lichte appartementen in groene buurten, en gezinswoningen met ruimte om te leven — we kennen elke straat, elke marktverschuiving, en wat uw geld hier echt waard is.',
+    heroTitle: 'Uw volgende thuis goed gevonden',
+    heroLead: 'Een thuis vinden begint met goed kijken.',
+    heroDescription: 'Al meer dan 25 jaar kennen wij de mooiste plekken, de verborgen parels en de kansen die de woningmarkt biedt. Van een karakteristiek grachtenpand in Amsterdam tot een stijlvolle villa in het Gooi: wij begeleiden u persoonlijk bij de aankoop of verkoop van uw woning. Met kennis van de markt, oog voor detail en altijd aandacht voor wat voor ú belangrijk is.',
+    heroClose: 'Want een huis is meer dan stenen, ruimte en een adres. Het is de plek waar uw leven zich afspeelt. Wij helpen u niet zomaar een woning te vinden. Wij vinden de plek die bij u past. Onze ervaring stopt bovendien niet bij de regio. Inmiddels begeleiden wij met succes aankoop en verkoop door heel Nederland én daarbuiten.',
     viewProperties: 'Bekijk Portfolio',
     getInTouch: 'Neem Contact Op',
     searchPlaceholder: 'Zoek op buurt of adres...',
@@ -200,9 +204,9 @@ const content = {
     valuationTrust: 'Geen spam. Geen druk. Gewoon eerlijke cijfers.',
     servicesEyebrow: 'Wat wij bieden',
     servicesTitle: 'Onze diensten',
-    heritageEyebrow: 'Verankerd in Amsterdam, Het Gooi & De Vechtstreek',
-    heritageTitle: 'Al vijfentwintig jaar kennen we elke straat, begrijpen we elke markt, en weten we wat voor u telt',
-    heritageDesc: 'Sinds 2000 begeleiden we kopers, verkopers en verhuurders door de vastgoedmarkt van Amsterdam, Het Gooi en de Vechtstreek. We jagen geen snelle provisies na. We nemen de tijd om te begrijpen wat u écht zoekt, en we blijven erbij tot het geregeld is. Ons kantoor aan de Leliegracht is het startpunt geweest voor honderden mensen die hun plek in deze stad en daarbuiten vonden.',
+    heritageEyebrow: 'Verankerd in Amsterdam, Het Gooi, Vechtstreek e.o.',
+    heritageTitle: 'Al vijfentwintig jaar diepgeworteld in de meest gewilde woongebieden van Nederland',
+    heritageDesc: 'We kennen niet alleen de straten en buurten, maar ook de verhalen erachter — en de waarde die ze dragen. Sinds 2000 begeleiden wij cliënten bij de aankoop, verkoop en verhuur van exclusief vastgoed in Amsterdam, Het Gooi, de Vechtstreek, en daarbuiten: in geheel Nederland en internationaal. Discretie, aandacht en precisie staan daarbij centraal. Geen snelle deals, maar doordachte beslissingen die passen bij uw leven en toekomst. Ons kantoor aan de Leliegracht is al jaren het vertrekpunt voor mensen die zoeken naar meer dan een woning: een plek die klopt.',
     yearsExp: 'Jaar op de Markt',
     regions: 'Regio\'s die Wij Bedienen',
     transactions: 'Woningen Verkocht & Verhuurd',
@@ -407,10 +411,22 @@ export default function Home() {
                 {t.heroTitle}
               </h1>
               <p
-                className={`font-body text-base md:text-lg text-warm-gray leading-relaxed mb-8 max-w-[32rem] ${revealClass(heroRef.inView)}`}
+                className={`font-body text-base md:text-lg text-charcoal leading-relaxed mb-4 max-w-[32rem] ${revealClass(heroRef.inView)}`}
+                style={{ transitionDelay: '250ms' }}
+              >
+                {t.heroLead}
+              </p>
+              <p
+                className={`font-body text-base md:text-lg text-warm-gray leading-relaxed mb-4 max-w-[32rem] ${revealClass(heroRef.inView)}`}
                 style={{ transitionDelay: '300ms' }}
               >
                 {t.heroDescription}
+              </p>
+              <p
+                className={`font-body text-base md:text-lg text-warm-gray leading-relaxed mb-8 max-w-[32rem] ${revealClass(heroRef.inView)}`}
+                style={{ transitionDelay: '350ms' }}
+              >
+                {t.heroClose}
               </p>
               <div
                 className={`flex flex-wrap gap-4 ${revealClass(heroRef.inView)}`}
@@ -456,22 +472,22 @@ export default function Home() {
               </div>
 
               {/* Type toggle */}
-              <div className="flex border border-stone-200">
+              <div className="flex w-full border border-stone-200">
                 <button
                   onClick={() => setSearchType('all')}
-                  className={`px-4 py-3 font-body text-xs uppercase tracking-wider transition-colors ${searchType === 'all' ? 'bg-charcoal text-white' : 'bg-stone-50 text-warm-gray hover:text-ink'}`}
+                  className={`flex-1 px-4 py-3 font-body text-xs uppercase tracking-wider text-center transition-colors ${searchType === 'all' ? 'bg-charcoal text-white' : 'bg-stone-50 text-warm-gray hover:text-ink'}`}
                 >
                   {locale === 'nl' ? 'Alles' : 'All'}
                 </button>
                 <button
                   onClick={() => setSearchType('sale')}
-                  className={`px-4 py-3 font-body text-xs uppercase tracking-wider transition-colors ${searchType === 'sale' ? 'bg-charcoal text-white' : 'bg-stone-50 text-warm-gray hover:text-ink'}`}
+                  className={`flex-1 px-4 py-3 font-body text-xs uppercase tracking-wider text-center transition-colors ${searchType === 'sale' ? 'bg-charcoal text-white' : 'bg-stone-50 text-warm-gray hover:text-ink'}`}
                 >
                   {t.searchBuy}
                 </button>
                 <button
                   onClick={() => setSearchType('rent')}
-                  className={`px-4 py-3 font-body text-xs uppercase tracking-wider transition-colors ${searchType === 'rent' ? 'bg-charcoal text-white' : 'bg-stone-50 text-warm-gray hover:text-ink'}`}
+                  className={`flex-1 px-4 py-3 font-body text-xs uppercase tracking-wider text-center transition-colors ${searchType === 'rent' ? 'bg-charcoal text-white' : 'bg-stone-50 text-warm-gray hover:text-ink'}`}
                 >
                   {t.searchRent}
                 </button>
@@ -681,8 +697,8 @@ export default function Home() {
                 </h3>
                 <p className="text-warm-gray leading-relaxed max-w-sm">
                   {locale === 'nl'
-                    ? 'We helpen kopers de juiste woning te vinden zonder gedoe. Van grachtenpanden tot gezinsappartementen — eerlijk onderhandeld.'
-                    : 'We help buyers find the right place without the stress. From canal houses to family apartments — fair negotiation, honest advice.'}
+                    ? 'Exclusieve toegang tot off-market woningen, strategische onderhandeling en volledige discretie — van eerste consult tot sleuteloverdracht.'
+                    : 'Exclusive access to off-market homes, strategic negotiation, and complete discretion — from first consultation to key transfer.'}
                 </p>
               </div>
               <div className="flex items-center gap-2 text-charcoal group-hover:text-brass transition-colors mt-6">
@@ -708,8 +724,8 @@ export default function Home() {
                 </h3>
                 <p className="text-warm-gray text-sm leading-relaxed">
                   {locale === 'nl'
-                    ? 'Mooie foto\'s, eerlijke prijzen, serieuze kopers.'
-                    : 'Great photos, honest pricing, serious buyers.'}
+                    ? 'Zorgvuldige positionering, discrete bezichtigingen, de juiste koper.'
+                    : 'Careful positioning, private viewings, the right buyer.'}
                 </p>
               </div>
             </Link>

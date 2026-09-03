@@ -12,7 +12,7 @@ export default function RentingPage() {
       heroTitle: 'Curated rental properties for discerning tenants',
       heroDescription: 'We represent tenants with the same discretion and precision we apply to buyers. Whether you are relocating for work or seeking a temporary Amsterdam home we find properties that meet your standards not just your budget.',
       introTitle: 'The Hakkenbroek approach',
-      introText: 'Amsterdam’s rental market is dynamic and competitive. Desirable homes are often let within days, and sometimes within hours. With our rental service, you gain access to carefully selected properties and expert guidance throughout the process. From scheduling viewings to signing the contract, we take care of every detail so you can focus entirely on a smooth move.',
+      introText: 'Since 2000 we have guided clients in renting property. Amsterdam’s rental market is dynamic and competitive. Desirable homes are often let within days, and sometimes within hours. With our rental service, you gain access to carefully selected properties and expert guidance throughout the process. From scheduling viewings to signing the contract, we take care of every detail so you can focus entirely on a smooth move.',
       processTitle: 'How we work for tenants',
       steps: [
         { step: '01', title: 'Needs Assessment', desc: 'We begin with a detailed conversation about your requirements. Location preferences lease duration budget and must-have features. We also discuss your timeline so we can prioritize properties that align with your move dates.' },
@@ -38,7 +38,7 @@ export default function RentingPage() {
       heroTitle: 'Geselecteerde huurwoningen voor kritische huurders',
       heroDescription: 'Wij vertegenwoordigen huurders met dezelfde discretie en precisie die wij ook kopers bieden. Of u nu verhuist voor werk of een tijdelijk thuis in Amsterdam zoekt — wij vinden woningen die voldoen aan uw normen, niet alleen uw budget.',
       introTitle: 'De Hakkenbroek-aanpak',
-      introText: 'De huurmarkt in Amsterdam is dynamisch en competitief. Gewilde woningen worden vaak binnen enkele dagen, en soms zelfs binnen enkele uren, verhuurd. Met onze huurservice krijgt u toegang tot zorgvuldig geselecteerde woningen en deskundige begeleiding gedurende het gehele proces. Van het plannen van bezichtigingen tot de contractondertekening: wij verzorgen ieder detail, zodat u zich volledig kunt richten op een soepele verhuizing.',
+      introText: 'Sinds 2000 begeleiden wij cliënten bij het aanhuren van onroerend goed. De huurmarkt in Amsterdam is dynamisch en competitief. Gewilde woningen worden vaak binnen enkele dagen, en soms zelfs binnen enkele uren, verhuurd. Met onze huurservice krijgt u toegang tot zorgvuldig geselecteerde woningen en deskundige begeleiding gedurende het gehele proces. Van het plannen van bezichtigingen tot de contractondertekening: wij verzorgen ieder detail, zodat u zich volledig kunt richten op een soepele verhuizing.',
       processTitle: 'Hoe wij voor huurders werken',
       steps: [
         { step: '01', title: 'Behoefteanalyse', desc: 'We beginnen met een uitgebreid gesprek over uw wensen. Locatievoorkeuren, huurduur, budget en must-have kenmerken. We bespreken ook uw tijdlijn zodat we woningen kunnen prioriteren die aansluiten bij uw verhuisdatum.' },
@@ -72,7 +72,7 @@ export default function RentingPage() {
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Leliegracht 21',
-        postalCode: '1015 DE',
+        postalCode: '1016 GR',
         addressLocality: 'Amsterdam',
         addressCountry: 'NL'
       }

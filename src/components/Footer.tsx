@@ -57,12 +57,12 @@ const footerCopy: Record<Language, FooterCopy> = {
     navTitle: 'Menu',
     servicesTitle: 'Services',
     officeTitle: 'Visit',
-    officeLine: 'By appointment at Leliegracht 21',
+    officeLine: 'Leliegracht 21, 1016 GR Amsterdam',
     officeCity: 'Amsterdam, Netherlands',
-    officeHours: 'By appointment, including weekends',
+    officeHours: 'Available by appointment, including weekends',
     directions: 'Map and directions',
     emailLabel: 'info@hakkenbroek.com',
-    phoneLabel: '+31 20 123 4567',
+    phoneLabel: '+31 (0)20 489 51 41',
     copyrightNote: 'Local guidance for Amsterdam, Het Gooi and the Vechtstreek.',
   },
   nl: {
@@ -74,12 +74,12 @@ const footerCopy: Record<Language, FooterCopy> = {
     navTitle: 'Menu',
     servicesTitle: 'Diensten',
     officeTitle: 'Bezoek',
-    officeLine: 'Op afspraak aan de Leliegracht 21',
+    officeLine: 'Leliegracht 21, 1016 GR Amsterdam',
     officeCity: 'Amsterdam, Nederland',
-    officeHours: 'Op afspraak, ook in het weekend',
+    officeHours: 'Bereikbaar op afspraak, ook in het weekend',
     directions: 'Route en kaart',
     emailLabel: 'info@hakkenbroek.com',
-    phoneLabel: '+31 20 123 4567',
+    phoneLabel: '+31 (0)20 489 51 41',
     copyrightNote: 'Lokale begeleiding in Amsterdam, Het Gooi en de Vechtstreek.',
   },
 };
@@ -176,7 +176,7 @@ export default function Footer() {
                   <p className="text-white">{copy.officeLine}</p>
                   <p className="mt-1">{copy.officeCity}</p>
                   <a
-                    href="https://maps.google.com/?q=Leliegracht+21+Amsterdam"
+                    href="https://maps.google.com/?q=Leliegracht+21+1016+GR+Amsterdam"
                     target="_blank"
                     rel="noreferrer"
                     className="mt-3 inline-flex border-b border-white/30 pb-1 text-white transition-colors duration-300 hover:text-brass-light"
@@ -195,7 +195,7 @@ export default function Footer() {
                       {copy.emailLabel}
                     </a>
                     <a
-                      href="tel:+31201234567"
+                      href="tel:+31204895141"
                       className="block transition-colors duration-300 hover:text-brass-light"
                     >
                       {copy.phoneLabel}

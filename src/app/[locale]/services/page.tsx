@@ -11,15 +11,15 @@ export default function ServicesPage() {
     en: {
       heroSubtitle: 'Our Expertise',
       heroTitle: 'Buying and selling at the highest level',
-      intro: 'We offer a complete range of real estate services — with buying and selling at the core of everything we do. Whether you are acquiring a canal house, selling a family estate, or seeking investment property, our team brings more than 25 years of Amsterdam market intelligence to your side of the table.',
+      intro: 'We offer an exclusive, complete range of property services, with purchase and sale at the heart of what we do. Whether it is acquiring a characterful canal house, selling a distinguished family estate, or selecting high-quality investment property, our team combines more than 25 years of refined market knowledge with deep expertise in today’s property market.',
       buying: {
         title: 'Buying',
-        description: 'We represent buyers with discretion, precision, and access that no portal can offer. From initial consultation to key transfer, we source properties — many off-market — and negotiate terms that reflect true market value.',
+        description: 'With more than 25 years of market knowledge in Het Gooi, Amsterdam and the surrounding area, we offer exclusive access to off-market homes, conduct strategic negotiations, and guide you with complete discretion — from first consultation to key transfer.',
         features: ['Off-market property sourcing', 'Comprehensive market analysis', 'Strategic negotiation', 'Legal and notarial coordination', 'Post-purchase concierge']
       },
       selling: {
         title: 'Selling',
-        description: 'We position your property for the market it deserves. Bespoke marketing strategy, professional staging consultation, private viewings for qualified buyers, and access to our international network of high-net-worth individuals.',
+        description: 'Every home has its own character and calls for a focused, personal approach. We do not simply put your home on the market. We position it for the right buyer, at the right moment, with an eye for the best possible result.',
         features: ['Complimentary valuation', 'Bespoke marketing strategy', 'Professional photography and film', 'Private viewings for qualified buyers', 'International buyer network']
       },
       renting: {
@@ -44,15 +44,15 @@ export default function ServicesPage() {
     nl: {
       heroSubtitle: 'Onze Expertise',
       heroTitle: 'Kopen en verkopen op het hoogste niveau',
-      intro: 'Wij bieden een compleet scala aan vastgoeddiensten — met kopen en verkopen als kern van alles wat wij doen. Of u nu een grachtenpand verwerft, een familiebezit verkoopt, of op zoek bent naar investeringsvastgoed, ons team brengt al meer dan 25 jaar Amsterdamse marktkennis aan uw zijde.',
+      intro: 'Wij bieden een exclusief en volledig dienstenpakket binnen het vastgoed, waarbij aankoop en verkoop de kern vormen van onze dienstverlening. Of het nu gaat om de verwerving van een karakteristiek grachtenpand, de verkoop van een bijzonder familiebezit of de selectie van hoogwaardig beleggingsvastgoed, ons team combineert meer dan 25 jaar verfijnde marktkennis met een diepgewortelde expertise in de huidige vastgoedmarkt.',
       buying: {
         title: 'Kopen',
-        description: 'Wij vertegenwoordigen kopers met discretie, precisie, en toegang die geen enkel portaal kan bieden. Van eerste consult tot sleuteloverdracht — wij vinden woningen, vaak off-market, en onderhandelen voorwaarden die de werkelijke marktwaarde weerspiegelen.',
+        description: 'Met ruim 25 jaar marktkennis van ’t Gooi, Amsterdam e.o. bieden wij exclusieve toegang tot off-market woningen, voeren wij strategische onderhandelingen en begeleiden wij u met volledige discretie – van het eerste consult tot de sleuteloverdracht.',
         features: ['Off-market woningzoektocht', 'Uitgebreide marktanalyse', 'Strategische onderhandeling', 'Juridische en notariële coördinatie', 'Conciërge na aankoop']
       },
       selling: {
         title: 'Verkopen',
-        description: 'Wij positioneren uw woning voor de markt die het verdient. Maatwerk marketingstrategie, professioneel stylingadvies, privébezichtigingen voor gekwalificeerde kopers, en toegang tot ons internationale netwerk.',
+        description: 'Elke woning heeft een eigen karakter en vraagt om een gerichte, persoonlijke aanpak. Wij brengen uw woning niet simpelweg op de markt. Wij positioneren haar met aandacht voor de juiste koper, op het juiste moment en met oog voor het best mogelijke resultaat.',
         features: ['Vrijblijvende waardering', 'Maatwerk marketingstrategie', 'Professionele fotografie en film', 'Privébezichtigingen voor gekwalificeerde kopers', 'Internationaal kopersnetwerk']
       },
       renting: {

@@ -175,9 +175,9 @@ export const translations = {
         startConversation: 'Start a Conversation'
       },
       info: {
-        address: 'Leliegracht 21, Amsterdam, Netherlands',
+        address: 'Leliegracht 21, 1016 GR Amsterdam, Netherlands',
         email: 'info@hakkenbroek.com',
-        phone: '+31 20 123 4567'
+        phone: '+31 (0)20 489 51 41'
       },
       form: {
         name: 'Name',
@@ -307,9 +307,9 @@ export const translations = {
         submit: 'Verstuur Bericht'
       },
       info: {
-        address: 'Leliegracht 21, Amsterdam, Nederland',
+        address: 'Leliegracht 21, 1016 GR Amsterdam, Nederland',
         email: 'info@hakkenbroek.com',
-        phone: '+31 20 123 4567'
+        phone: '+31 (0)20 489 51 41'
       }
     }
   },

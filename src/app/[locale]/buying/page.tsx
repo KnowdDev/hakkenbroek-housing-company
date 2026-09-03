@@ -13,9 +13,9 @@ export default function BuyingPage() {
     en: {
       heroSubtitle: 'Buyer Representation',
       heroTitle: 'Acquire what others cannot find',
-      heroDescription: '25+ years of Amsterdam market mastery. Off-market access, strategic negotiation, and complete discretion from first consultation to key transfer.',
+      heroDescription: 'With more than 25 years of market knowledge in Het Gooi, Amsterdam and the surrounding area, we offer exclusive access to off-market homes, conduct strategic negotiations, and guide you with complete discretion — from first consultation to key transfer. We have also successfully completed national and international search assignments. Clients particularly value this personal, focused approach.',
       introTitle: 'The art of buying in Amsterdam',
-      introText: 'In 2026, 65–70% of Amsterdam properties sell above asking price. The finest homes never reach Funda. We give you an unfair advantage — access, intelligence, and negotiation power cultivated over 25+ years at the centre of the market.',
+      introText: 'Buying a home in Amsterdam today asks for more than a sharp eye on Funda. Many properties sell above asking price, and some of the most attractive homes never reach the public market at all. With 26 years of experience in the Amsterdam property market, we know where the opportunities lie. Through our network, thorough market knowledge and considered negotiation strategy, we guide you to the right home — on the best possible terms. That is how we make the difference: with access, insight and personal guidance throughout the entire buying process.',
       processTitle: 'Our buyer process',
       steps: [
         { step: '01', title: 'Confidential Briefing', desc: 'We meet at our Leliegracht office — or yours. We listen, observe, and define precisely what you seek. Budget, timeline, lifestyle, architecture. Every detail matters.' },
@@ -42,9 +42,9 @@ export default function BuyingPage() {
     nl: {
       heroSubtitle: 'Koperbegeleiding',
       heroTitle: 'Verwerf wat anderen niet kunnen vinden',
-      heroDescription: '25+ jaar Amsterdamse marktkennis. Off-market toegang, strategische onderhandeling, en volledige discretie van eerste consult tot sleuteloverdracht.',
+      heroDescription: 'Met ruim 25 jaar marktkennis van ’t Gooi, Amsterdam e.o. bieden wij exclusieve toegang tot off-market woningen, voeren wij strategische onderhandelingen en begeleiden wij u met volledige discretie – van het eerste consult tot de sleuteloverdracht. Ook onze landelijke en internationale zoekopdrachten hebben wij met succes afgerond. Deze persoonlijke en gerichte aanpak wordt door onze klanten bijzonder gewaardeerd.',
       introTitle: 'De kunst van het kopen in Amsterdam',
-      introText: 'In 2026 wordt 65–70% van de Amsterdamse woningen boven de vraagprijs verkocht. De mooiste woningen komen nooit op Funda. Wij geven u een oneerlijk voordeel — toegang, inzicht, en onderhandelingskracht opgebouwd over 25+ jaar in het centrum van de markt.',
+      introText: 'Een huis kopen in Amsterdam vraagt vandaag om meer dan een scherp oog voor Funda. Veel woningen worden boven de vraagprijs verkocht en een deel van het meest aantrekkelijke aanbod bereikt de openbare markt niet eens. Met inmiddels 26 jaar ervaring in de Amsterdamse woningmarkt weten wij waar de kansen liggen. Dankzij ons netwerk, grondige marktkennis en doordachte onderhandelingsstrategie begeleiden wij u naar de juiste woning – tegen de beste voorwaarden. Zo maken wij het verschil: met toegang, inzicht en persoonlijke begeleiding gedurende het hele aankoopproces.',
       processTitle: 'Ons koopproces',
       steps: [
         { step: '01', title: 'Vertrouwelijk Briefing', desc: 'Wij ontmoeten elkaar op ons kantoor aan de Leliegracht — of bij u thuis. Wij luisteren, observeren, en bepalen precies wat u zoekt. Budget, tijdlijn, levensstijl, architectuur. Elk detail telt.' },
@@ -82,7 +82,7 @@ export default function BuyingPage() {
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Leliegracht 21',
-        postalCode: '1015 DE',
+        postalCode: '1016 GR',
         addressLocality: 'Amsterdam',
         addressCountry: 'NL'
       }

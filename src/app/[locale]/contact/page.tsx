@@ -48,11 +48,11 @@ export default function ContactPage() {
       infoSubtitle: 'Visit Our Office',
       infoTitle: 'Leliegracht 21',
       address: 'Address',
-      addressText: 'Leliegracht 21\n1015 DE Amsterdam\nNetherlands',
+      addressText: 'Leliegracht 21\n1016 GR Amsterdam\nNetherlands',
       emailAddress: 'Email',
       phoneNumber: 'Phone',
       officeHours: 'Opening Hours',
-      officeHoursText: 'By appointment, including weekends'
+      officeHoursText: 'Our office is available by appointment, including weekends'
     },
     nl: {
       heroSubtitle: 'Contact',
@@ -77,7 +77,7 @@ export default function ContactPage() {
       infoSubtitle: 'Bezoek Ons Kantoor',
       infoTitle: 'Leliegracht 21',
       address: 'Adres',
-      addressText: 'Leliegracht 21\n1015 DE Amsterdam\nNederland',
+      addressText: 'Leliegracht 21\n1016 GR Amsterdam\nNederland',
       emailAddress: 'E-mail',
       phoneNumber: 'Telefoon',
       officeHours: 'Openingstijden',
@@ -300,10 +300,10 @@ export default function ContactPage() {
                     {t.phoneNumber}
                   </h3>
                   <a
-                    href="tel:+31201234567"
+                    href="tel:+31204895141"
                     className="text-ink hover:text-brass transition-colors border-b border-stone-200 hover:border-brass pb-0.5"
                   >
-                    +31 20 123 4567
+                    +31 (0)20 489 51 41
                   </a>
                 </div>
 
