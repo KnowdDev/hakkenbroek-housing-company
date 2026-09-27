@@ -10,8 +10,8 @@ export default function ServicesPage() {
   const content = {
     en: {
       heroSubtitle: 'Our Expertise',
-      heroTitle: 'Buying and selling at the highest level',
-      intro: 'We offer an exclusive, complete range of property services, with purchase and sale at the heart of what we do. Whether it is acquiring a characterful canal house, selling a distinguished family estate, or selecting high-quality investment property, our team combines more than 25 years of refined market knowledge with deep expertise in today’s property market.',
+      heroTitle: 'Selling and buying at the highest level',
+      intro: 'We offer an exclusive, complete range of property services, with sale and purchase at the heart of what we do. Whether it is selling a distinguished family estate, acquiring a characterful canal house, or selecting high-quality investment property, our team combines more than 25 years of refined market knowledge with deep expertise in today’s property market.',
       buying: {
         title: 'Buying',
         description: 'With more than 25 years of market knowledge in Het Gooi, Amsterdam and the surrounding area, we offer exclusive access to off-market homes, conduct strategic negotiations, and guide you with complete discretion, from first consultation to key transfer.',
@@ -43,8 +43,8 @@ export default function ServicesPage() {
     },
     nl: {
       heroSubtitle: 'Onze Expertise',
-      heroTitle: 'Kopen en verkopen op het hoogste niveau',
-      intro: 'Wij bieden een exclusief en volledig dienstenpakket binnen het vastgoed, waarbij aankoop en verkoop de kern vormen van onze dienstverlening. Of het nu gaat om de verwerving van een karakteristiek grachtenpand, de verkoop van een bijzonder familiebezit of de selectie van hoogwaardig beleggingsvastgoed, ons team combineert meer dan 25 jaar verfijnde marktkennis met een diepgewortelde expertise in de huidige vastgoedmarkt.',
+      heroTitle: 'Verkopen en kopen op het hoogste niveau',
+      intro: 'Wij bieden een exclusief en volledig dienstenpakket binnen het vastgoed, waarbij verkoop en aankoop de kern vormen van onze dienstverlening. Of het nu gaat om de verkoop van een bijzonder familiebezit, de verwerving van een karakteristiek grachtenpand of de selectie van hoogwaardig beleggingsvastgoed, ons team combineert meer dan 25 jaar verfijnde marktkennis met een diepgewortelde expertise in de huidige vastgoedmarkt.',
       buying: {
         title: 'Kopen',
         description: 'Met ruim 25 jaar marktkennis van ’t Gooi, Amsterdam e.o. bieden wij exclusieve toegang tot off-market woningen, voeren wij strategische onderhandelingen en begeleiden wij u met volledige discretie, van het eerste consult tot de sleuteloverdracht.',
@@ -80,18 +80,18 @@ export default function ServicesPage() {
 
   const services = [
     {
-      title: t.buying.title,
-      description: t.buying.description,
-      image: '/services-buying.webp',
-      features: t.buying.features,
-      href: '/buying',
-    },
-    {
       title: t.selling.title,
       description: t.selling.description,
       image: '/services-selling.webp',
       features: t.selling.features,
       href: '/selling',
+    },
+    {
+      title: t.buying.title,
+      description: t.buying.description,
+      image: '/services-buying.webp',
+      features: t.buying.features,
+      href: '/buying',
     },
     {
       title: t.renting.title,

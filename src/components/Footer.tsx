@@ -37,8 +37,8 @@ const navLinks: FooterLink[] = [
 ];
 
 const serviceLinks: FooterLink[] = [
-  { href: '/buying', label: { en: 'Buying', nl: 'Kopen' } },
   { href: '/selling', label: { en: 'Selling', nl: 'Verkopen' } },
+  { href: '/buying', label: { en: 'Buying', nl: 'Kopen' } },
   { href: '/services/renting', label: { en: 'Renting', nl: 'Huren' } },
   { href: '/services/leasing', label: { en: 'Leasing', nl: 'Verhuren' } },
   {
@@ -52,7 +52,7 @@ const footerCopy: Record<Language, FooterCopy> = {
     eyebrow: 'Since 2000',
     title: 'Quiet guidance across Amsterdam, Het Gooi and the Vechtstreek.',
     description:
-      'Hakkenbroek advises buyers, sellers and landlords with a discreet, personal approach and deep knowledge of the markets we serve.',
+      'Hakkenbroek advises sellers, buyers and landlords with a discreet, personal approach and deep knowledge of the markets we serve.',
     cta: 'Arrange a conversation',
     navTitle: 'Menu',
     servicesTitle: 'Services',
@@ -69,7 +69,7 @@ const footerCopy: Record<Language, FooterCopy> = {
     eyebrow: 'Sinds 2000',
     title: 'Discreet advies in Amsterdam, Het Gooi en de Vechtstreek.',
     description:
-      'Hakkenbroek begeleidt kopers, verkopers en verhuurders met lokale kennis, rust en een persoonlijke aanpak.',
+      'Hakkenbroek begeleidt verkopers, kopers en verhuurders met lokale kennis, rust en een persoonlijke aanpak.',
     cta: 'Plan een gesprek',
     navTitle: 'Menu',
     servicesTitle: 'Diensten',
@@ -226,12 +226,12 @@ export default function Footer() {
 
       <div className="flex justify-center border-t border-white/10 py-3">
         <a
-          href="https://knowd.nz"
+          href="https://hatched.digital"
           target="_blank"
           rel="nofollow noreferrer"
           className="text-xs text-stone-200 underline decoration-white/30 hover:text-white transition-colors"
         >
-          Website: Knowd Digital
+          Hatched Digital
         </a>
       </div>
     </footer>

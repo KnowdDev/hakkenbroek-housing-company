@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 import LanguageToggle from './LanguageToggle';
 
 const navLinks = [
-  { href: '/buying', label: { en: 'Buy', nl: 'Kopen' } },
   { href: '/selling', label: { en: 'Sell', nl: 'Verkopen' } },
+  { href: '/buying', label: { en: 'Buy', nl: 'Kopen' } },
   { href: '/about', label: { en: 'About', nl: 'Over ons' } },
   { href: '/services', label: { en: 'Services', nl: 'Diensten' } },
   { href: '/contact', label: { en: 'Contact', nl: 'Contact' } },

@@ -38,7 +38,7 @@ export default function AboutPage() {
       headline: 'Al meer dan 25 jaar discretie in de mooiste woningen',
       who: 'Wie Wij Zijn',
       description1: 'Sinds 2000 geeft Hakkenbroek Housing Company op doordachte wijze vorm aan het luxe en hedendaagse vastgoedlandschap. Vanuit ons kantoor aan de Leliegracht begeleiden wij al decennialang veeleisende cliënten bij de meest betekenisvolle vastgoedtransacties van de stad, altijd met discretie, altijd met zorg.',
-      description2: 'Wij zijn geen volume-kantoor. Wij zijn een vertrouwde adviseur. Ons team combineert diepgewortelde kennis van de vastgoedmarkt met een internationaal perspectief en bedient kopers en verkopers uit Nederland, Europa en daarbuiten. Wij spreken uw taal, in elke betekenis van het woord.',
+      description2: 'Wij zijn geen volume-kantoor. Wij zijn een vertrouwde adviseur. Ons team combineert diepgewortelde kennis van de vastgoedmarkt met een internationaal perspectief en bedient verkopers en kopers uit Nederland, Europa en daarbuiten. Wij spreken uw taal, in elke betekenis van het woord.',
       description3: 'Onze expertise reikt verder dan reguliere makelaardij. Wij zijn gespecialiseerd in monumenten, hogere segment nieuwbouw, villa’s en de restauratie van grachtenpanden en de complexe regelgeving rondom beschermde stadsgezichten en landgoederen. Daarnaast adviseren wij over woningstyling die architectonisch erfgoed respecteert, terwijl zij tegelijkertijd ruimte creëert voor hedendaags comfort en wonen.',
       valuesTitle: 'Wat Ons Leidt',
       values: 'Onze Principes',

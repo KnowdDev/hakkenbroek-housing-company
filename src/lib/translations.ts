@@ -200,7 +200,7 @@ export const translations = {
       headline: 'Een premium makelaar met een persoonlijke touch',
       description1: 'Hakkenbroek Housing Company al meer dan 25+ jaar actief op de Amsterdamse vastgoedmarkt. Als premium makelaar zijn wij trots op onze persoonlijke service en toegang tot de beste woningen in de regio.',
       description2: 'Ons team van ervaren professionals is gespecialiseerd in zowel nationale als internationale cliënten, met een focus op de expat-huisvestingsmarkt. Wij begrijpen de unieke uitdagingen van verhuizing naar een nieuw land en zijn toegewijd om uw overgang zo soepel mogelijk te maken.',
-      description3: 'Of u nu koopt, verkoopt, huurt of op zoek bent naar vastgoedbeheer, onze expertise in monumenten, buitenlands vastgoed en home styling onderscheidt ons van andere makelaars.',
+      description3: 'Of u nu verkoopt, koopt, huurt of op zoek bent naar vastgoedbeheer, onze expertise in monumenten, buitenlands vastgoed en home styling onderscheidt ons van andere makelaars.',
       values: 'Onze Waarden',
       valuesTitle: 'Wat ons Drijft',
       trust: 'Vertrouwen & Integriteit',

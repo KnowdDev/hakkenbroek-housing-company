@@ -224,8 +224,8 @@ export default function ContactPage() {
                         className="w-full px-0 py-3 bg-transparent border-b border-stone-200 text-ink font-body focus:outline-none focus:border-brass transition-colors"
                       >
                         <option value="">{t.selectService}</option>
-                        <option value="buying">{t.buying}</option>
                         <option value="selling">{t.selling}</option>
+                        <option value="buying">{t.buying}</option>
                         <option value="renting">{t.renting}</option>
                         <option value="leasing">{t.leasing}</option>
                         <option value="management">{t.management}</option>

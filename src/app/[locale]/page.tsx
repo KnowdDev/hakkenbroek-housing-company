@@ -177,7 +177,7 @@ const content = {
   },
   nl: {
     heroSubtitle: 'Amsterdam, Het Gooi & De Vechtstreek · Sinds 2000',
-    heroTitle: 'Uw volgende thuis goed gevonden',
+    heroTitle: 'Uw volgende thuis naar wens gevonden',
     heroLead: 'Een thuis vinden begint met goed kijken.',
     heroDescription: 'Al meer dan 25 jaar begeleiden wij mensen naar de plek die past, van een grachtenpand in Amsterdam tot een villa in het Gooi, en inmiddels door heel Nederland.',
     viewProperties: 'Bekijk Portfolio',
@@ -194,17 +194,19 @@ const content = {
     allPrices: 'Alle Prijzen',
     valuationEyebrow: 'Overweegt u te verkopen?',
     valuationTitle: 'Wat is uw huis waard?',
-    valuationAssetLine: 'Uw woning is meer dan een thuis. Het is uw belangrijkste bezit.',
-    valuationDesc: 'Ontvang een gratis, vrijblijvende taxatie van makelaars die de markten van Amsterdam, Het Gooi en de Vechtstreek door en door kennen. We reageren binnen 24 uur met eerlijke cijfers.',
+    valuationAssetLine: 'Uw woning is meer dan een thuis. Het is een van uw belangrijkste bezittingen.',
+    valuationDesc:
+      'Ontvang een gratis, vrijblijvende waarde indicatie van uw woning. Wij kennen de markten van Amsterdam, Het Gooi en de Vechtstreek door en door.',
     valuationAddress: 'Uw adres',
     valuationEmail: 'Uw e-mail',
-    valuationBtn: 'Vraag Taxatie Aan',
+    valuationBtn: 'Vraag Waarde Bepaling Aan',
     valuationTrust: 'Geen spam. Geen druk. Gewoon eerlijke cijfers.',
     servicesEyebrow: 'Wat wij bieden',
     servicesTitle: 'Onze diensten',
     heritageEyebrow: 'Verankerd in Amsterdam, Het Gooi, Vechtstreek e.o.',
     heritageTitle: 'Al vijfentwintig jaar diepgeworteld in de meest gewilde woongebieden van Nederland',
-    heritageDesc: 'Een huis is meer dan stenen, ruimte en een adres. Het is de plek waar uw leven zich afspeelt. We kennen niet alleen de straten en buurten, maar ook de verhalen erachter, en de waarde die ze dragen. Sinds 2000 begeleiden wij cliënten bij de aankoop, verkoop en verhuur van exclusief vastgoed in Amsterdam, Het Gooi, de Vechtstreek, en daarbuiten: in geheel Nederland en internationaal. Discretie, aandacht en precisie staan daarbij centraal. Geen snelle deals, maar doordachte beslissingen die passen bij uw leven. Ons kantoor aan de Leliegracht is al jaren het vertrekpunt voor mensen die zoeken naar meer dan een woning: een plek die klopt.',
+    heritageDesc:
+      'Een huis is meer dan stenen, ruimte en een adres. Het is de plek waar uw leven zich afspeelt. We kennen niet alleen de straten en buurten, maar ook de verhalen erachter, en de waarde die ze dragen. Sinds 2000 begeleiden wij cliënten bij de verkoop, aankoop en verhuur van exclusief vastgoed in Amsterdam, Het Gooi, de Vechtstreek, en daarbuiten: in geheel Nederland en internationaal.\n\nDiscretie, aandacht en precisie staan daarbij centraal. Geen snelle deals, maar doordachte beslissingen die passen bij uw leven. Ons kantoor aan de Leliegracht is al jaren het vertrekpunt voor mensen die zoeken naar meer dan een woning: een plek die klopt.',
     yearsExp: 'Jaar op de Markt',
     regions: 'Regio\'s die Wij Bedienen',
     transactions: 'Woningen Verkocht & Verhuurd',
@@ -218,23 +220,28 @@ const content = {
     whyAccess: 'Toegang Tot Off-Market Woningen',
     whyAccessDesc: 'In Amsterdam, Het Gooi en de Vechtstreek komen sommige van de beste woningen nooit op de openbare portals. Na vijfentwintig jaar kennen we de eigenaren, de ontwikkelaars, en de verhuurders die discretie verkiezen.',
     whyIntl: 'Internationaal Bereik, Lokale Wortels',
-    whyIntlDesc: 'We spreken Nederlands en Engels, en werken met kopers en verkopers van over de hele wereld. Of u nu verhuist vanuit Londen, Singapore of Berlijn, we maken het Nederlandse vastgoedsysteem begrijpelijk.',
+    whyIntlDesc:
+      'We spreken Nederlands en Engels, en werken met verkopers en kopers van over de hele wereld. Of u nu verhuist vanuit Londen, Singapore of Berlijn, we maken het Nederlandse vastgoedsysteem begrijpelijk.',
     whyHistoric: 'Expertise in Monumentale Panden',
     whyHistoricDesc: 'Grachtenpanden, monumenten en villa\'s uit een eerdere tijd hebben hun eigen regels. We kennen het verschil tussen een beschermd gezicht en een volledig monument, en we vertellen u precies wat onderhoud en renovatie echt kost.',
     faqEyebrow: 'Vragen voordat u begint',
     faqTitle: 'Wat mensen ons meestal vragen',
     faq: [
       { q: 'Hoe lang duurt het om een woning te verkopen in Amsterdam, Het Gooi of de Vechtstreek?', a: 'De meeste woningen worden binnen 4 tot 12 weken verkocht, afhankelijk van prijs, locatie en marktomstandigheden. We hanteren vanaf dag één een eerlijke vraagprijs, op basis van onze diepe kennis van de markten in Amsterdam, Het Gooi en de Vechtstreek, zodat u niet maandenlang onverkocht blijft staan.' },
-      { q: 'Werken jullie met internationale kopers en verkopers?', a: 'Zeker. Ongeveer 40% van onze klanten komt van buiten Nederland. We regelen de papierwinkel, introduceren u bij hypotheekadviseurs die internationaal inkomen begrijpen, en begeleiden u stap voor stap door het notarisproces.' },
+      {
+        q: 'Werken jullie met internationale verkopers en kopers?',
+        a: 'Zeker. Ongeveer 40% van onze klanten komt van buiten Nederland. We regelen de papierwinkel, introduceren u bij hypotheekadviseurs die internationaal inkomen begrijpen, en begeleiden u stap voor stap door het notarisproces.',
+      },
       { q: 'Welke kosten kan ik verwachten bij verkoop?', a: 'Onze courtage is concurrerend en volledig transparant. Voordat u iets ondertekent geven we u een volledig overzicht: geen verborgen kosten, geen verrassingen bij de notaris, en geen vaag geraamte.' },
       { q: 'Kunnen jullie helpen met een huurwoning vóórdat ik verhuis?', a: 'Ja. We onderhouden relaties met verhuurders door heel Amsterdam, Het Gooi en de Vechtstreek. We kunnen virtuele bezichtigingen, tijdelijke opties en zelfs relocatiediensten regelen als u vanuit het buitenland verhuist.' },
       { q: 'Beheren jullie ook verhuurwoningen voor eigenaren?', a: 'Dat doen we. Van het vinden van de juiste huurders tot onderhoud, huurincasso en juridische compliance: we behandelen uw woning alsof het onze eigen is. Veel van onze verhuurders zijn al meer dan tien jaar bij ons.' },
     ],
     finalCtaTitle: 'Laten we praten over uw volgende stap',
-    finalCtaDesc: 'Kopen, verkopen, huren, of gewoon benieuwd naar de markt in Amsterdam, Het Gooi of de Vechtstreek? Kom langs bij ons kantoor aan de Leliegracht voor een kop koffie. Geen verkooppraatje, geen druk. Gewoon een eerlijk gesprek met mensen die deze markten echt kennen.',
+    finalCtaDesc:
+      'Verkopen, kopen, huren, of gewoon benieuwd naar de markt in Amsterdam, Het Gooi of de Vechtstreek? Kom langs bij ons kantoor aan de Leliegracht voor een kop koffie. Gewoon een eerlijk gesprek met mensen die deze markten echt kennen.',
     finalCtaBtn: 'Kom Eens Langs',
     finalCtaSell: 'Of verkoop uw woning',
-    finalCtaSellBtn: 'Gratis Taxatie Aanvragen',
+    finalCtaSellBtn: 'Gratis Waarde Indicatie Aanvragen',
   },
 };
 
@@ -674,23 +681,23 @@ export default function Home() {
 
           {/* Bento grid: 4 columns, 3 rows — zero gaps */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Buying — 2x2 hero card */}
+            {/* Selling — 2x2 hero card */}
             <Link
-              href={`/buying`}
+              href={`/selling`}
               className={`group sm:col-span-2 sm:row-span-2 relative bg-white border border-stone-200 p-8 lg:p-10 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[320px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '150ms' }}
             >
               <div>
                 <div className="w-12 h-12 flex items-center justify-center border border-stone-200 group-hover:border-brass group-hover:bg-brass/5 transition-all duration-300 mb-6">
-                  <HomeIcon className="w-5 h-5 text-charcoal group-hover:text-brass transition-colors" />
+                  <Key className="w-5 h-5 text-charcoal group-hover:text-brass transition-colors" />
                 </div>
                 <h3 className="font-display text-2xl lg:text-3xl text-charcoal mb-3 group-hover:text-brass transition-colors">
-                  {locale === 'nl' ? 'Kopen' : 'Buying'}
+                  {locale === 'nl' ? 'Verkopen' : 'Selling'}
                 </h3>
                 <p className="text-warm-gray leading-relaxed max-w-sm">
                   {locale === 'nl'
-                    ? 'Exclusieve toegang tot off-market woningen, strategische onderhandeling en volledige discretie, van eerste consult tot sleuteloverdracht.'
-                    : 'Exclusive access to off-market homes, strategic negotiation, and complete discretion, from first consultation to key transfer.'}
+                    ? 'Zorgvuldige positionering, discrete bezichtigingen, de juiste koper.'
+                    : 'Careful positioning, private viewings, the right buyer.'}
                 </p>
               </div>
               <div className="flex items-center gap-2 text-charcoal group-hover:text-brass transition-colors mt-6">
@@ -701,23 +708,23 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Selling */}
+            {/* Buying */}
             <Link
-              href={`/selling`}
+              href={`/buying`}
               className={`group relative bg-white border border-stone-200 p-6 lg:p-8 hover:border-brass transition-all duration-500 flex flex-col justify-between min-h-[150px] ${revealClass(servicesRef.inView)}`}
               style={{ transitionDelay: '200ms' }}
             >
               <div>
                 <div className="w-10 h-10 flex items-center justify-center border border-stone-200 group-hover:border-brass group-hover:bg-brass/5 transition-all duration-300 mb-4">
-                  <Key className="w-4 h-4 text-charcoal group-hover:text-brass transition-colors" />
+                  <HomeIcon className="w-4 h-4 text-charcoal group-hover:text-brass transition-colors" />
                 </div>
                 <h3 className="font-display text-xl text-charcoal mb-2 group-hover:text-brass transition-colors">
-                  {locale === 'nl' ? 'Verkopen' : 'Selling'}
+                  {locale === 'nl' ? 'Kopen' : 'Buying'}
                 </h3>
                 <p className="text-warm-gray text-sm leading-relaxed">
                   {locale === 'nl'
-                    ? 'Zorgvuldige positionering, discrete bezichtigingen, de juiste koper.'
-                    : 'Careful positioning, private viewings, the right buyer.'}
+                    ? 'Exclusieve toegang tot off-market woningen, strategische onderhandeling en volledige discretie, van eerste consult tot sleuteloverdracht.'
+                    : 'Exclusive access to off-market homes, strategic negotiation, and complete discretion, from first consultation to key transfer.'}
                 </p>
               </div>
             </Link>
@@ -758,7 +765,7 @@ export default function Home() {
                 </h3>
                 <p className="text-warm-gray text-sm leading-relaxed">
                   {locale === 'nl'
-                    ? 'Goede huurders, huur op tijd, juridische zaken geregeld.'
+                    ? 'Gescreende huurders. Juridische zaken zijn uitstekend geregeld en contracten naar hedendaags model.'
                     : 'Good tenants, rent on time, legal handled.'}
                 </p>
               </div>
@@ -779,7 +786,7 @@ export default function Home() {
                 </h3>
                 <p className="text-warm-gray text-sm leading-relaxed">
                   {locale === 'nl'
-                    ? 'Onderhoud, financiën, contact met huurders.'
+                    ? 'Onderhoud, meerjarenplan, financieel beheer en directe persoonlijke communicatie met huurders.'
                     : 'Maintenance, finances, tenant relations.'}
                 </p>
               </div>
@@ -800,7 +807,7 @@ export default function Home() {
                 </h3>
                 <p className="text-warm-gray text-sm leading-relaxed">
                   {locale === 'nl'
-                    ? 'Honderden mensen geholpen met settelen in Amsterdam. We kennen de buurten, de papierwinkel, en waar u goede koffie kunt krijgen.'
+                    ? 'Honderden expats geholpen met settelen. We kennen de buurten, de papierwinkel en de hotspots in en rond uw nieuwe onderkomen.'
                     : 'Hundreds of people helped settle in Amsterdam. We know the neighbourhoods, the paperwork, and where to get good coffee.'}
                 </p>
               </div>
@@ -848,7 +855,7 @@ export default function Home() {
                 {t.heritageTitle}
               </h2>
               <p
-                className={`text-warm-gray leading-relaxed mb-10 ${revealClass(heritageRef.inView)}`}
+                className={`text-warm-gray leading-relaxed mb-10 whitespace-pre-line ${revealClass(heritageRef.inView)}`}
                 style={{ transitionDelay: '200ms' }}
               >
                 {t.heritageDesc}
